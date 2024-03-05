@@ -25,7 +25,7 @@ Network log in frontend:
     ![](./ScribeFE/screenshots/Network_log.png)
 
 HTTP log in backend:
-    ![](./screenshots/HTTP_log.png)
+    ![](./ScribeFE/screenshots/HTTP_log.png)
 
 ## Development Notes
 
@@ -57,8 +57,9 @@ The below instructions are for quick setup. I have written scripts that install 
         1. Run ```Set-ExecutionPolicy AllSigned``` in a powershell window as an administrator.
             * If that fails try ```Set-ExecutionPolicy RemoteSigned -Scope CurrentUser -Force```
     * Mac/Linux:
-        1. Run ```chmod +x mac-setup.sh``` in the Scribe folder
-        2. Run ```chmod +x start.sh``` in the Scribe folder
+        1. Run ```chmod +x mac-setup.sh config.sh start.sh``` in the Scribe folder
+        2. Run ```chmod +x be-mac-setup.sh``` in the ScribeBE/setup folder
+        3. Run ```chmod +x fe-mac-setup.sh``` in the ScribeFE/setup folder
 2. Insert the API Key for Microsoft Azure STT:
     1. Open the file for your OS at Scribe/ScribeBE/setup/...
     2. Replace the your-key value with the API key I have sent to you.
