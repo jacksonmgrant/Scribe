@@ -1,0 +1,6 @@
+[submodule "ScribeFE"]
+	path = ScribeFE
+	url = https://github.com/jacksonmgrant/ScribeFE.git
+[submodule "ScribeBE"]
+	path = ScribeBE
+	url = https://github.com/jacksonmgrant/ScribeBE.git
