@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Scribe - Home</title>
+
+	<link rel="stylesheet" href="styles.css" />
+    <script src="https://kit.fontawesome.com/e7819825ef.js" crossorigin="anonymous"></script>
+</head>
+<body>
+	
+	<header>
+        <h1>Scribe</h1>
+        <div id="new-note-buttons">
+		    <button 
+		    	type="upload-audio-file" 
+		    	name="upload-audio-file" 
+		    	id="upload-audio-file"><i class="fa-solid fa-microphone"></i> Upload audio file</button>
+		    <button 
+		    	type="record-new-note"
+                name="record-new-note"
+		    	id="record-new-note" ><i class="fa-solid fa-file-audio"></i> Record new note</button>
+        </div>
+	</header>
+	<main>
+		<section class="note-list">
+			<h2>Notes</h2>
+
+			<div id="notes">
+
+				<!-- example note
+                <div class="note">
+					<div class="content">
+						<input 
+							type="text" 
+							class="text" 
+							value="A new note"
+							readonly>
+					</div>
+					<div class="actions">
+						<button class="edit">Edit</button>
+						<button class="delete">Delete</button>
+					</div>
+				</div> -->
+
+			</div>
+		</section>
+	</main>
+
+	<script src="script.js"></script>
+</body>
+</html>
