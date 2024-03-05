@@ -61,7 +61,7 @@ The below instructions are for quick setup. I have written scripts that install 
         2. Run ```chmod +x be-mac-setup.sh``` in the ScribeBE/setup folder
         3. Run ```chmod +x fe-mac-setup.sh``` in the ScribeFE/setup folder
 2. Insert the API Key for Microsoft Azure STT:
-    1. Open the file for your OS at Scribe/ScribeBE/setup/...
+    1. Open the config file for your OS (```.config.ps1``` for Windows, ```.config.sh``` for Mac).
     2. Replace the your-key value with the API key I have sent to you.
 3. Run the setup script:
     1. From the Scribe folder, run the startup script respective to your OS, for example: run ```./windows-setup.ps1``` in VSCode's terminal.

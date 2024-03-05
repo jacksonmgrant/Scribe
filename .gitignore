@@ -12,5 +12,5 @@
 !./ScribeBE/Uploads/.gitkeep
 
 # Ignore API key references
-#.config.ps1
-#.config.sh
+.config.ps1
+.config.sh
