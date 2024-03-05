@@ -8,7 +8,7 @@ py -m venv venv
 
 pip install -r requirements.txt
 
-. .\.config.ps1
+. ..\config\config.ps1
 setx SPEECH_KEY $API_KEY
 setx SPEECH_REGION eastus
 

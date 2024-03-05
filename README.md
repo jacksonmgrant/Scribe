@@ -48,7 +48,7 @@ All models are stored in `model.py`, currently that is just the model for notes.
 
 The below instructions are for quick setup. I have written scripts that install all dependencies and set up environments, as well as create an alias to run the project with one command. If they fail you, the instructions for setting up manually are in the project setup sections of each submodule's readme. Be very mindful of which folders you are running commands in.
 
-**IMPORTANT**: I have not tested the scripts for Mac/Linux. It is likely these will fail and you will need to manually configure the project. I am sorry, please reach out if you need help.
+Note: I have not tested the scripts for Mac/Linux. It is likely these will fail and you will need to manually configure the project. I am sorry, please reach out if you need help.
 
 ### Quick Setup
 
@@ -61,19 +61,20 @@ The below instructions are for quick setup. I have written scripts that install 
         2. Run ```chmod +x be-mac-setup.sh``` in the ScribeBE/setup folder
         3. Run ```chmod +x fe-mac-setup.sh``` in the ScribeFE/setup folder
 2. Insert the API Key for Microsoft Azure STT:
-    1. Open the config file for your OS (```.config.ps1``` for Windows, ```.config.sh``` for Mac).
+    1. Open the config file for your OS (```config.ps1``` for Windows, ```config.sh``` for Mac).
     2. Replace the your-key value with the API key I have sent to you.
 3. Run the setup script:
     1. From the Scribe folder, run the startup script respective to your OS, for example: run ```./windows-setup.ps1``` in VSCode's terminal.
-4. Restart your CLI.
-5. Run the project:
+4. Discard the changes to the config file so the API key does not get committed.
+5. Restart your CLI.
+6. Run the project:
     * Windows:
-        1. Run ./start.ps1 from the Scribe folder
+        * Run ./start.ps1 from the Scribe folder
     * Mac/Linux:
         * Run startapp from the Scribe folder
         * Or run ./start.sh from the Scribe folder
 
-
+___
 If you want to customize the command to start the app, follow these instructions:
 
 Windows:
@@ -83,3 +84,4 @@ Mac/Linux:
 1. Run ```nano ~/.bashrc``` (or ```nano ~/.bash_profile``` if that fails)
 2. Find the alias startapp
 3. Change startapp to whatever you want
+___
