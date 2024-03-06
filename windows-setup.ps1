@@ -10,4 +10,4 @@ Set-Location ../ScribeFE/setup
 
 Set-Location ../..
 
-Write-Host "Scribe modules installed, please restart your terminal"
+Write-Host "Scribe modules installed, please kill your terminal and restart Visual Sutdio Code."

@@ -69,10 +69,10 @@ Note: I have not tested the scripts for Mac/Linux. It is likely these will fail 
 5. Kill the terminal and restart Visual Studio Code.
 6. Run the project:
     * Windows:
-        * Run ./start.ps1 from the Scribe folder
+        * Run ```./start.ps1``` from the Scribe folder
     * Mac/Linux:
-        * Run startapp from the Scribe folder
-        * Or run ./start.sh from the Scribe folder
+        * Run ```startapp``` from the Scribe folder
+        * Or run ```./start.sh``` from the Scribe folder
 
 ___
 If you want to customize the command to start the app, follow these instructions:
