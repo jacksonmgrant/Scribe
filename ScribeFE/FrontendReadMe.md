@@ -39,39 +39,3 @@ The following commands are the basic React commands, copying here for reference.
 * ```npm run build```  Bundles the app into static files for production.
 * ```npm test``` Starts the test runner.
 
-## To-do
-
-### Midterm
-
-- [ ] Buttons
-    - [x] Create upload file button
-    - [ ] Create record audio button
-    - [ ] Deactivate buttons while waiting on API (Needs a loading screen)
-- [x] Make API calls to backend
-    - [x] Transcription
-    - [x] CRUD for notes
-- [x] Receive transcribed text from backend
-- [x] Create notes from audio transcription
-- [x] Edit/delete notes
-    - [x] Edit notes
-    - [x] Delete notes
-- [x] Favicon
-- [x] Make full note text readable
-- [ ] Upload screenshots of app
-
-### Final
-
-- [ ] Implement user auth
-- [ ] Persistent data storage
-- [ ] API Calls to LLM to synthesize long texts
-    - [ ] Option to transcribe raw speech or synthesize notes
-    - [ ] LLM Generates a note title
-    - [ ] Notes display in list with their title
-- [ ] Make it pretty
-    - [ ] Turn note editor into a modal
-    - [ ] Notes open up from list in a modal OR turn list into a sidebar
-- [ ] Add language identification to record in different languages
-
-## Known Bugs
- - Textarea for editing notes isn't locked in place - need to remove the ability to drag it around somehow. Haven't done a ton of debugging with it either.
- - Recording audio is nonfunctional. It sends a playable wav file to the backend, but the headers are corrupted and Azure cannot transcribe it. I am struggling to find a workaround.
