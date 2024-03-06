@@ -16,7 +16,8 @@ The Scribe backend handles audio transcription, analysis, and user data storage.
 # Demos
 
 CRUD actions:
-    <div style="position: relative; padding-bottom: 56.25%; height: 0;"><iframe src="https://www.loom.com/embed/1466ae1d1391430f85811b4509db6963?sid=2d92dc7d-2565-473f-86ab-683af466f3fc" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe></div>
+    [Watch the demo here](https://www.loom.com/embed/1466ae1d1391430f85811b4509db6963?sid=2d92dc7d-2565-473f-86ab-683af466f3fc)
+
 
 Multiple notes:
     ![](./ScribeFE/screenshots/Multiple_notes.png)
