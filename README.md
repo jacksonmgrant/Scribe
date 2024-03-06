@@ -6,11 +6,18 @@ The Scribe frontend implements audio recording, a clean UI, and API integration 
 
 The Scribe backend handles audio transcription, analysis, and user data storage. Audio transcription is done using the [Azure Speech to Text](https://learn.microsoft.com/en-us/azure/ai-services/speech-service/speech-to-text) service. User storage will be done with MongoDB, and communication to the frontend will be done with [FastAPI](https://fastapi.tiangolo.com/). Research still needs to be done on which LLM to use for synthesizing notes. It will need to have a free tier for API calls to it, and be good at understanding and writing text.
 
+### Usage
+
+* When uploading files, only use wav audio files. The Azure STT API cannot process any other type.
+  * Several sample files are located at Scribe/ScribeBE/Samples/. Conference.wav is the best file for quick testing, while the other two can be used for stress testing.
+* The app will be unusable while uploading audio, which takes about as long as the audio file is. The UI does not indicate this yet.
+* The free tier on Azure STT has a limit of 300 minutes of transcription per month. Please be mindful of what you transcribe and don't send files longer than 10 minutes without letting me know.
+
 ### Credits
 
 * The template UI code is repurposed from [this](https://www.youtube.com/watch?v=MkESyVB4oUw) task list tutorial by Tyler Potts. It has been updated to work in React. 
 * The project is also based on instructor Changhui Xu's [to-do app example](https://github.com/changhuixu/CS3980-2024/tree/main/my_todo_app), particularly on the backend. 
-* ChatGPT and Github CoPilot were used to help learn the tools used in this project, generate code fragments, and debug. 
+* ChatGPT and Github CoPilot were used to help learn the tools used in this project, generate code fragments, and debug.
 * The Favicon is the Notebook Flat Icon Vector from [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Notebook_Flat_Icon_Vector.svg) by Videoplasty.com, CC-BY-SA 4.0.
 
 # Demos
@@ -18,21 +25,20 @@ The Scribe backend handles audio transcription, analysis, and user data storage.
 CRUD actions:
     [Watch the demo here](https://www.loom.com/embed/1466ae1d1391430f85811b4509db6963?sid=2d92dc7d-2565-473f-86ab-683af466f3fc)
 
-
 Multiple notes:
-    ![](./ScribeFE/screenshots/Multiple_notes.png)
+    ![The Scribe app with multiple notes recorded](./ScribeFE/screenshots/Multiple_notes.png)
 
 Network log in frontend:
-    ![](./ScribeFE/screenshots/Network_log.png)
+    ![A screenshot of the network log after crud actions are performed](./ScribeFE/screenshots/Network_log.png)
 
 HTTP log in backend:
-    ![](./ScribeFE/screenshots/HTTP_log.png)
+    ![A screenshot of the console log in the backend after crud actions are performed](./ScribeFE/screenshots/HTTP_log.png)
 
 ## Development Notes
 
 ### Project Design
 
-The backend is a FastAPI app coordinated by `main.py`. main initiates the app, coordinates the router, and holds the transcription endpoints. The endpoints for managing notes are located in `note.py` to avoid cluttering main, but the states and router for notes are imported into main. 
+The backend is a FastAPI app coordinated by `main.py`. main initiates the app, coordinates the router, and holds the transcription endpoints. The endpoints for managing notes are located in `note.py` to avoid cluttering main, but the states and router for notes are imported into main.
 
 All models are stored in `model.py`, currently that is just the model for notes.
 
@@ -79,9 +85,11 @@ ___
 If you want to customize the command to start the app, follow these instructions:
 
 Windows:
+
 1. Run ```doskey shortcut-name=.\start.ps1``` every time you open the app and change shortcut-name
 
 Mac/Linux:
+
 1. Run ```nano ~/.bashrc``` (or ```nano ~/.bash_profile``` if that fails)
 2. Find the alias startapp
 3. Change startapp to whatever you want
@@ -90,39 +98,41 @@ Mac/Linux:
 
 ### Midterm
 
-- [ ] Buttons
-    - [x] Create upload file button
-    - [ ] Create record audio button
-    - [ ] Deactivate buttons while waiting on API (Needs a loading screen)
-- [x] Make API calls to backend
-    - [x] Transcription
-    - [x] CRUD for notes
-- [x] Receive transcribed text from backend
-- [x] Create notes from audio transcription
-- [x] Edit/delete notes
-    - [x] Edit notes
-    - [x] Delete notes
-- [x] Favicon
-- [x] Make full note text readable
-- [x] Upload screenshots of app
-- [x] Package into one repo
-    - [x] Write scripts for setup & startup
-    - [ ] Consolidate setup scripts for readability
+* [ ] Buttons
+  * [x] Create upload file button
+  * [ ] Create record audio button
+  * [ ] Deactivate buttons while waiting on API (Needs a loading screen)
+* [x] Make API calls to backend
+  * [x] Transcription
+  * [x] CRUD for notes
+* [x] Receive transcribed text from backend
+* [x] Create notes from audio transcription
+* [x] Edit/delete notes
+  * [x] Edit notes
+  * [x] Delete notes
+* [x] Favicon
+* [x] Make full note text readable
+* [x] Upload screenshots of app
+* [x] Package into one repo
+  * [x] Write scripts for setup & startup
+  * [ ] Consolidate setup scripts for readability
 
 ### Final
 
-- [ ] Implement user auth
-- [ ] Persistent data storage
-- [ ] API Calls to LLM to synthesize long texts
-    - [ ] Option to transcribe raw speech or synthesize notes
-    - [ ] LLM Generates a note title
-    - [ ] Notes display in list with their title
-- [ ] Make it pretty
-    - [ ] Turn note editor into a modal
-    - [ ] Notes open up from list in a modal OR turn list into a sidebar
-- [ ] Add language identification to record in different languages
+* [ ] Implement user auth
+* [ ] Persistent data storage
+* [ ] Require .wav files for input
+* [ ] API Calls to LLM to synthesize long texts
+  * [ ] Option to transcribe raw speech or synthesize notes
+  * [ ] LLM Generates a note title
+  * [ ] Notes display in list with their title
+* [ ] Make it pretty
+  * [ ] Turn note editor into a modal
+  * [ ] Notes open up from list in a modal OR turn list into a sidebar
+* [ ] Add language identification to record in different languages
 
 ## Known Bugs
- - Textarea for editing notes isn't locked in place - need to remove the ability to drag it around somehow. Haven't done a ton of debugging with it either.
- - Recording audio is nonfunctional. It sends a playable wav file to the backend, but the headers are corrupted and Azure cannot transcribe it. I am struggling to find a workaround.
- - npm install installs a lot of deprecated node modules, I would like to figure out how to update dependencies so that this doesn't happen.
+
+* Textarea for editing notes isn't locked in place - need to remove the ability to drag it around somehow. Haven't done a ton of debugging with it either.
+* Recording audio is nonfunctional. It sends a playable wav file to the backend, but the headers are corrupted and Azure cannot transcribe it. I am struggling to find a workaround.
+* [ ] Consolidate setup scripts for readability
