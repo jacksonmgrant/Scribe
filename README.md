@@ -107,6 +107,7 @@ Mac/Linux:
 - [x] Upload screenshots of app
 - [x] Package into one repo
     - [x] Write scripts for setup & startup
+    - [ ] Consolidate setup scripts for readability
 
 ### Final
 
@@ -124,3 +125,4 @@ Mac/Linux:
 ## Known Bugs
  - Textarea for editing notes isn't locked in place - need to remove the ability to drag it around somehow. Haven't done a ton of debugging with it either.
  - Recording audio is nonfunctional. It sends a playable wav file to the backend, but the headers are corrupted and Azure cannot transcribe it. I am struggling to find a workaround.
+ - npm install installs a lot of deprecated node modules, I would like to figure out how to update dependencies so that this doesn't happen.
