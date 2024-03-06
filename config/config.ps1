@@ -1,1 +1,1 @@
-$API_KEY=your-key
+$API_KEY="your-key"

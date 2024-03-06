@@ -1,1 +1,1 @@
-export API_KEY=your-key
+export API_KEY="your-key"
