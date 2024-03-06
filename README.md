@@ -66,7 +66,7 @@ Note: I have not tested the scripts for Mac/Linux. It is likely these will fail 
 3. Run the setup script:
     1. From the Scribe folder, run the startup script respective to your OS, for example: run ```./windows-setup.ps1``` in VSCode's terminal.
 4. Discard the changes to the config file so the API key does not get committed.
-5. Restart your CLI.
+5. Kill the terminal and restart Visual Studio Code.
 6. Run the project:
     * Windows:
         * Run ./start.ps1 from the Scribe folder

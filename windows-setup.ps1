@@ -1,11 +1,13 @@
 Write-Host "Installing Scribe modules..."
 
-cd ./ScribeBE/setup
+Set-Location ./ScribeBE/setup
 
 & ".\be-windows-setup.ps1"
 
-cd ../ScribeFE/setup
+Set-Location ../ScribeFE/setup
 
 & ".\fe-windows-setup.ps1"
+
+Set-Location ../..
 
 Write-Host "Scribe modules installed, please restart your terminal"
