@@ -70,7 +70,9 @@ All models are stored in `model.py`, currently that is just the model for notes.
 
 ## Project Setup
 
-The below instructions are for quick setup. I have written scripts that install all dependencies and set up environments, as well as create an alias to run the project with one command. If they fail you, the instructions for setting up manually are in the project setup sections of each submodule's readme. Be very mindful of which folders you are running commands in.
+The below instructions are for quick setup. I have written scripts that install all dependencies and set up environments, as well as create an alias to run the project with one command.
+
+If you are worried about running scripts or are encountering issues with them, you can run the commands in the files in terminal yourself. There are more instructions in the frontend and backend readmes.
 
 Note: I have not tested the scripts for Mac/Linux. It is likely these will fail and you will need to manually configure the project. I am sorry, please reach out if you need help.
 
@@ -83,10 +85,13 @@ Note: I have not tested the scripts for Mac/Linux. It is likely these will fail 
     - Mac/Linux:
         1. Run ```chmod +x mac-setup.sh config.sh start.sh``` in the Scribe folder
 2. Insert the API Key for Microsoft Azure STT:
-    1. Open the config file for your OS (```config.ps1``` for Windows, ```config.sh``` for Mac).
+    1. Open the config file for your OS (```config/config.ps1``` for Windows, ```config/config.sh``` for Mac).
     2. Replace the your-key value with the API key I have sent to you.
 3. Run the setup script:
-    1. From the Scribe folder, run the setup script respective to your OS, for example: run ```./windows-setup.ps1``` in VSCode's terminal.
+    - Windows:
+      1. From the Scribe folder, run ```./windows-setup.ps1``` in VSCode's terminal.
+    - Mac/Linux:
+      1. From the Scribe folder, run ```./mac-setup.sh``` in VSCode's terminal.
 4. Discard the changes to the config file so the API key does not get committed.
 5. Kill the terminal and restart Visual Studio Code.
 6. Run the project:
