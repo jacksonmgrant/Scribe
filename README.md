@@ -1,6 +1,23 @@
 # Scribe
 
-Scribe is a web app that records audio transcriptions into notes. The goal of this app, should it become a final project, is to implement an LLM to generate organized and easy-to-read notes from a long audio recording.
+- [Scribe](#scribe)
+  - [Overview](#overview)
+    - [Usage](#usage)
+    - [Credits](#credits)
+  - [Demos](#demos)
+  - [Development Notes](#development-notes)
+    - [Project Design](#project-design)
+    - [Requirements](#requirements)
+  - [Project Setup](#project-setup)
+    - [Quick Setup](#quick-setup)
+  - [To-do](#to-do)
+    - [Midterm](#midterm)
+    - [Final](#final)
+  - [Known Bugs](#known-bugs)
+
+## Overview
+
+Scribe is a web app that records audio transcriptions into notes. The goal of this app is to implement an LLM to generate organized and easy-to-read notes from a long audio recording.
 
 The Scribe frontend implements audio recording, a clean UI, and API integration with the backend. The UI is built with React, and audio recording is done with the [react-media-recorder-2](https://www.npmjs.com/package/react-media-recorder-2). JavaScript's fetch API is used to communicate with the backend.
 
@@ -8,19 +25,19 @@ The Scribe backend handles audio transcription, analysis, and user data storage.
 
 ### Usage
 
-* When uploading files, only use wav audio files. The Azure STT API cannot process any other type.
-  * Several sample files are located at Scribe/ScribeBE/Samples/. Conference.wav is the best file for quick testing, while the other two can be used for stress testing.
-* The app will be unusable while uploading audio, which takes about as long as the audio file is. The UI does not indicate this yet.
-* The free tier on Azure STT has a limit of 300 minutes of transcription per month. Please be mindful of what you transcribe and don't send files longer than 10 minutes without letting me know.
+- When uploading files, only use wav audio files. The Azure STT API cannot process any other type.
+  - Several sample files are located at Scribe/Samples/. Conference.wav is the best file for quick testing, while the other two can be used for stress testing.
+- The app will be unusable while uploading audio, which takes about as long as the audio file is. The UI does not indicate this yet.
+- The free tier on Azure STT has a limit of 300 minutes of transcription per month. Please be mindful of what you transcribe and don't send files longer than 10 minutes without letting me know.
 
 ### Credits
 
-* The template UI code is repurposed from [this](https://www.youtube.com/watch?v=MkESyVB4oUw) task list tutorial by Tyler Potts. It has been updated to work in React. 
-* The project is also based on instructor Changhui Xu's [to-do app example](https://github.com/changhuixu/CS3980-2024/tree/main/my_todo_app), particularly on the backend. 
-* ChatGPT and Github CoPilot were used to help learn the tools used in this project, generate code fragments, and debug.
-* The Favicon is the Notebook Flat Icon Vector from [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Notebook_Flat_Icon_Vector.svg) by Videoplasty.com, CC-BY-SA 4.0.
+- The template UI code is repurposed from [this](https://www.youtube.com/watch?v=MkESyVB4oUw) task list tutorial by Tyler Potts. It has been updated to work in React.
+- The project is also based on instructor Changhui Xu's [to-do app example](https://github.com/changhuixu/CS3980-2024/tree/main/my_todo_app), particularly on the backend.
+- ChatGPT and Github CoPilot were used to help learn the tools used in this project, generate code fragments, and debug.
+- The Favicon is the Notebook Flat Icon Vector from [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Notebook_Flat_Icon_Vector.svg) by Videoplasty.com, CC-BY-SA 4.0.
 
-# Demos
+## Demos
 
 CRUD actions:
     [Watch the demo here](https://www.loom.com/embed/1466ae1d1391430f85811b4509db6963?sid=2d92dc7d-2565-473f-86ab-683af466f3fc)
@@ -48,8 +65,8 @@ All models are stored in `model.py`, currently that is just the model for notes.
 
 ### Requirements
 
-* Node v20.11.0+ [LTS](https://nodejs.org/en/)
-* Python 3.12.x
+- Node v20.11.0+ [LTS](https://nodejs.org/en/)
+- Python 3.12.x
 
 ## Project Setup
 
@@ -60,26 +77,24 @@ Note: I have not tested the scripts for Mac/Linux. It is likely these will fail 
 ### Quick Setup
 
 1. Give the scripts permission to run:
-    * Windows:
+    - Windows:
         1. Run ```Set-ExecutionPolicy AllSigned``` in a powershell window as an administrator.
-            * If that fails try ```Set-ExecutionPolicy RemoteSigned -Scope CurrentUser -Force```
-    * Mac/Linux:
+            - If that fails try ```Set-ExecutionPolicy RemoteSigned -Scope CurrentUser -Force```
+    - Mac/Linux:
         1. Run ```chmod +x mac-setup.sh config.sh start.sh``` in the Scribe folder
-        2. Run ```chmod +x be-mac-setup.sh``` in the ScribeBE/setup folder
-        3. Run ```chmod +x fe-mac-setup.sh``` in the ScribeFE/setup folder
 2. Insert the API Key for Microsoft Azure STT:
     1. Open the config file for your OS (```config.ps1``` for Windows, ```config.sh``` for Mac).
     2. Replace the your-key value with the API key I have sent to you.
 3. Run the setup script:
-    1. From the Scribe folder, run the startup script respective to your OS, for example: run ```./windows-setup.ps1``` in VSCode's terminal.
+    1. From the Scribe folder, run the setup script respective to your OS, for example: run ```./windows-setup.ps1``` in VSCode's terminal.
 4. Discard the changes to the config file so the API key does not get committed.
 5. Kill the terminal and restart Visual Studio Code.
 6. Run the project:
-    * Windows:
-        * Run ```./start.ps1``` from the Scribe folder
-    * Mac/Linux:
-        * Run ```startapp``` from the Scribe folder
-        * Or run ```./start.sh``` from the Scribe folder
+    - Windows:
+        - Run ```./start.ps1``` from the Scribe folder
+    - Mac/Linux:
+        - Run ```startapp``` from the Scribe folder
+        - Or run ```./start.sh``` from the Scribe folder
 
 ___
 If you want to customize the command to start the app, follow these instructions:
@@ -94,45 +109,45 @@ Mac/Linux:
 2. Find the alias startapp
 3. Change startapp to whatever you want
 
-# To-do
+## To-do
 
 ### Midterm
 
-* [ ] Buttons
-  * [x] Create upload file button
-  * [ ] Create record audio button
-  * [ ] Deactivate buttons while waiting on API (Needs a loading screen)
-* [x] Make API calls to backend
-  * [x] Transcription
-  * [x] CRUD for notes
-* [x] Receive transcribed text from backend
-* [x] Create notes from audio transcription
-* [x] Edit/delete notes
-  * [x] Edit notes
-  * [x] Delete notes
-* [x] Favicon
-* [x] Make full note text readable
-* [x] Upload screenshots of app
-* [x] Package into one repo
-  * [x] Write scripts for setup & startup
-  * [ ] Consolidate setup scripts for readability
+- [ ] Buttons
+  - [x] Create upload file button
+  - [ ] Create record audio button
+  - [ ] Deactivate buttons while waiting on API (Needs a loading screen)
+- [x] Make API calls to backend
+  - [x] Transcription
+  - [x] CRUD for notes
+- [x] Receive transcribed text from backend
+- [x] Create notes from audio transcription
+- [x] Edit/delete notes
+  - [x] Edit notes
+  - [x] Delete notes
+- [x] Favicon
+- [x] Make full note text readable
+- [x] Upload screenshots of app
+- [x] Package into one repo
+  - [x] Write scripts for setup & startup
+  - [x] Consolidate setup scripts for readability
 
 ### Final
 
-* [ ] Implement user auth
-* [ ] Persistent data storage
-* [ ] Require .wav files for input
-* [ ] API Calls to LLM to synthesize long texts
-  * [ ] Option to transcribe raw speech or synthesize notes
-  * [ ] LLM Generates a note title
-  * [ ] Notes display in list with their title
-* [ ] Make it pretty
-  * [ ] Turn note editor into a modal
-  * [ ] Notes open up from list in a modal OR turn list into a sidebar
-* [ ] Add language identification to record in different languages
+- [ ] Implement user auth
+- [ ] Persistent data storage
+- [ ] Require .wav files for input
+- [ ] Allow user to listen to the recording in UI
+- [ ] API Calls to LLM to synthesize long texts
+  - [ ] LLM can create a summary of the recording
+  - [ ] Option to transcribe raw speech or synthesize notes
+  - [ ] LLM Generates a note title
+  - [ ] Notes display in list with their title
+- [ ] Make it pretty
+  - [ ] Notes open up from list in a modal OR turn list into a sidebar
+- [ ] Add language identification to record in different languages
 
 ## Known Bugs
 
-* Textarea for editing notes isn't locked in place - need to remove the ability to drag it around somehow. Haven't done a ton of debugging with it either.
-* Recording audio is nonfunctional. It sends a playable wav file to the backend, but the headers are corrupted and Azure cannot transcribe it. I am struggling to find a workaround.
-* [ ] Consolidate setup scripts for readability
+- Textarea for editing notes isn't locked in place - need to remove the ability to drag it around somehow. Haven't done a ton of debugging with it either.
+- Recording audio is nonfunctional. It sends a playable wav file to the backend, but the headers are corrupted and Azure cannot transcribe it. I am struggling to find a workaround.

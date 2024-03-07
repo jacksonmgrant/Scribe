@@ -1,14 +1,28 @@
 #! /bin/bash
+# Run this in the main Scribe folder
 
 echo "Setting up ScribeBE..."
 
-cd ./ScribeBE/setup
+cd ./ScribeBE
 
-./be-mac-setup.sh
+python3 -m venv venv
 
-cd ../ScribeFE/setup
+source venv/bin/activate
 
-./fe-mac-setup.sh
+pip install -r requirements.txt
+
+source ../config/config.sh
+export SPEECH_KEY=$API_KEY
+export SPEECH_REGION=eastus
+source ~/.bash_profile
+
+echo "ScribeBE setup complete."
+
+echo "Setting up ScribeFE..."
+
+cd ../ScribeFE/scribe-fe
+
+npm install
 
 echo "alias startapp='./start.sh'" >> ~/.bashrc
 
