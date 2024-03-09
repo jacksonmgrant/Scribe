@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import apiService from '../apiService';
-import NoteManager from './note-manager';
 import { useReactMediaRecorder } from "react-media-recorder-2";
 
 export function FileUploadButton({onUpload}) {
