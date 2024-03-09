@@ -22,7 +22,12 @@ async def get_note(note_id: int) -> dict:
     raise HTTPException(status_code=404, detail="Note not found")
 
 @note_router.post("/", status_code=201)
-async def create_note(note: Note) -> dict:
+async def create_note(note_text: str) -> dict:
+    note: Note = Note(
+        id=current_id,
+        text=note_text
+    )
+    current_id += 1
     note_list.append(note)
     return {"note" : note}
 
