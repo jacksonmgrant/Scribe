@@ -21,7 +21,7 @@ Scribe is a web app that records audio transcriptions into notes. The goal of th
 
 The Scribe frontend implements audio recording, a clean UI, and API integration with the backend. The UI is built with React, and audio recording is done with the [react-media-recorder-2](https://www.npmjs.com/package/react-media-recorder-2). JavaScript's fetch API is used to communicate with the backend.
 
-The Scribe backend handles audio transcription, analysis, and user data storage. Audio transcription is done using the [Azure Speech to Text](https://learn.microsoft.com/en-us/azure/ai-services/speech-service/speech-to-text) service. User storage will be done with MongoDB, and communication to the frontend will be done with [FastAPI](https://fastapi.tiangolo.com/). Research still needs to be done on which LLM to use for synthesizing notes. It will need to have a free tier for API calls to it, and be good at understanding and writing text.
+The Scribe backend handles audio transcription, analysis, and user data storage. Audio transcription is done using the [Azure Speech to Text](https://learn.microsoft.com/en-us/azure/ai-services/speech-service/speech-to-text) service. User storage will be done with MongoDB, and communication to the frontend is done with FastAPI. Research still needs to be done on which LLM to use for synthesizing notes. It will need to have a free tier for API calls to it, and be good at understanding and writing text.
 
 ### Usage
 
@@ -61,7 +61,9 @@ All models are stored in `model.py`, currently that is just the model for notes.
 
 `transcriber.py` contains the script for communicating with Azure's speech-to-text API. The method transcribe takes a wav file in and returns the transcription of the file. As a by-product it will save the wav file to the Uploads directory, this may be removed in future versions.
 
-[frontend design here]
+The frontend is a React app styled with CSS. The main page is organized by `index.js` and built out of React components defined in the components folder. Styles are imported into components and pages from their respective CSS files in the styles folder. Logos and the index HTML file used to store head tags are located in the public folder.
+
+API calls to the backend are imported into components from `apiService.js` to centralize API logic and improve code reusability. The base URL for API calls is stored in `apiConfig.js`.
 
 ### Requirements
 
@@ -150,6 +152,7 @@ Mac/Linux:
   - [ ] Notes display in list with their title
 - [ ] Make it pretty
   - [ ] Notes open up from list in a modal OR turn list into a sidebar
+  - [ ] Navbar for sign in/out, about page, and home
 - [ ] Add language identification to record in different languages
 
 ## Known Bugs
