@@ -20,6 +20,25 @@ const transcribe = (file) => {
         });
 }
 
+const createNote = (noteText) => {
+    return fetch(`${BASE_URL}/notes/`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({text: noteText}),
+        })
+        .then((response) => response.json())
+        .then((result) => {
+            console.log('Success:', result);
+            return result;
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+            throw error;
+        });
+}
+
 const getNotes = () => {
     return fetch(`${BASE_URL}/notes/`)
         .then((response) => response.json())
@@ -80,6 +99,6 @@ const deleteNoteById = (id) => {
         });
     }
 
-const apiService = {transcribe, getNotes, getNoteById, updateNote, deleteNoteById};
+const apiService = {transcribe, createNote, getNotes, getNoteById, updateNote, deleteNoteById};
 
 export default apiService;
