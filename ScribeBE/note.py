@@ -24,7 +24,6 @@ async def get_note(note_id: int) -> dict:
 @note_router.post("/", status_code=201)
 async def create_note(note_text: dict) -> dict:
     global current_id
-    print(note_text)
     note: Note = Note(
         id=current_id,
         text=note_text['text']
