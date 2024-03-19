@@ -1,8 +1,11 @@
 
 import { Outlet, Link } from "react-router-dom";
 import "./styles/layout.css"
+import { useState } from "react";
 
 const Layout = () => {
+    const [action,setAction] = useState("Sign up/Login")
+
     return (
       <>
         <nav>
@@ -15,12 +18,11 @@ const Layout = () => {
                       <Link to="/aboutus">About us</Link>
                   </li>
                   <li class="push">
-                      <Link to="/loginSignupPage">Sign up/Login</Link>
+                      <Link to="/loginSignupPage">{action}</Link>
                   </li>
               </div>
           </div>
         </nav>
-
         <Outlet />
       </>
     )

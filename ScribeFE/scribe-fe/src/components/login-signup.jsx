@@ -24,8 +24,6 @@ const LoginSignup = () => {
                 <div className='submit-container'>
                     <Link className="submit"to="/">Login</Link>
                     <Link className="submit"to="/SignupPage">Sign up</Link>
-                    {/* <input type = "submit" value="sign up" id='button' className={action === "Login"?"submit gray":"submit"} onClick={()=>{setAction("Sign Up")}}/> 
-                    <div id='button' className={action === "Sign Up"?"submit gray":"submit"} onClick={()=>{setAction("Login")}}>Login</div> */}
                 </div>
             </div>
         </form>
