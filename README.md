@@ -17,6 +17,8 @@
 
 ## Overview
 
+[Project proposal](https://docs.google.com/document/d/1GdgHPWnze3kT_F590w5CgGXA6Ve6duiCPAWjdjNOQRM/edit?usp=sharing)
+
 Scribe is a web app that records audio transcriptions into notes. The goal of this app is to implement an LLM to generate organized and easy-to-read notes from a long audio recording.
 
 The Scribe frontend implements audio recording, a clean UI, and API integration with the backend. The UI is built with React, and audio recording is done with the [react-media-recorder-2](https://www.npmjs.com/package/react-media-recorder-2). JavaScript's fetch API is used to communicate with the backend.
