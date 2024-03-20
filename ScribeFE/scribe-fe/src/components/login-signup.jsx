@@ -2,9 +2,9 @@ import React from 'react';
 import "../styles/LoginSignup.css"
 import email_icon from "./Assets/email.png"
 import password_icon from "./Assets/password.png"
-import { Outlet, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-const LoginSignup = () => {
+const LoginSignup = ({signin}) => {
     return(
         <form method='GET'>
             <div className='container'>
@@ -22,7 +22,7 @@ const LoginSignup = () => {
                     </div>
                 </div>
                 <div className='submit-container'>
-                    <Link className="submit"to="/">Login</Link>
+                    <Link className="submit"to="/" onClick={() => signin()}>Login</Link>
                     <Link className="submit"to="/SignupPage">Sign up</Link>
                 </div>
             </div>

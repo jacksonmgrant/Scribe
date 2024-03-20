@@ -2,12 +2,12 @@ import React from 'react';
 import "../styles/LoginSignup.css"
 import email_icon from "./Assets/email.png"
 import password_icon from "./Assets/password.png"
-import { Outlet, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import person_icon from "./Assets/person.png"
 
-const Signup = () => {
+const Signup = ({signin}) => {
     return(
-        <form method='GET'>
+        <form method='POST'>
             <div className='container'>
                 <div className='header'>
                     <div className='text'>Sign up</div>
@@ -27,7 +27,7 @@ const Signup = () => {
                     </div>
                 </div>
                 <div className='submit-container'>
-                    <Link className="submit"to="/">Sign up</Link>
+                    <Link className="submit"to="/" onClick={() => signin()}>Sign up</Link>
                 </div>
             </div>
         </form>

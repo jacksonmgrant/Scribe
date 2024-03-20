@@ -1,10 +1,10 @@
 import LoginSignup from "../login-signup";
 import "../../styles/LoginSignupPage.css"
 
-const LoginSignupPage = () =>{
+const LoginSignupPage = ({signin}) =>{
     return(
         <div>
-            <LoginSignup/>
+            <LoginSignup signin={signin}/>
         </div>
     )
 }

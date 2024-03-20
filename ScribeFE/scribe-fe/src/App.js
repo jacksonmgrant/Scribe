@@ -1,5 +1,7 @@
-import React, {Component} from 'react';
+import React from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import ParticlesBg from "particles-bg";
+import { useState } from "react";
 
 import './styles/App.css';
 
@@ -10,18 +12,36 @@ import SignupPage from './components/pages/SignupPage';
 import LoginSignupPage from './components/pages/LoginSignupPage';
 
 const App = () => {
+    const [isSignin,setIsSignin] = useState(false);
+
+    const signin = () => {
+        setIsSignin(true)
+    }
+
+    const signout = () => {
+        setIsSignin(false)
+    }
 
     return (
+        <div>
+        <ParticlesBg type="square" bg={true} />
         <BrowserRouter>
             <Routes>
-                <Route path="/" element={<Layout />}>
+                <Route path="/" element={<Layout isSignin={isSignin} signout={signout}/>}>
                     <Route index element={<Homepage />} />
                     <Route path='aboutus' element={<About />} />
-                    <Route path="loginSignupPage" element={<LoginSignupPage />} />
-                    <Route path="SignupPage" element={<SignupPage />} />
+                    <Route path="loginSignupPage" 
+                        element={<LoginSignupPage 
+                        signin={signin}/>} 
+                    />
+                    <Route path="SignupPage" 
+                        element={<SignupPage 
+                            signin={signin}/>} 
+                    />
                 </Route>
             </Routes>
         </BrowserRouter>
+        </div>
     );
 
 }
