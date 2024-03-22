@@ -10,6 +10,7 @@ import Layout from './Layout';
 import About from './components/pages/AboutUs';
 import SignupPage from './components/pages/SignupPage';
 import LoginSignupPage from './components/pages/LoginSignupPage';
+import FormSubmissionPage from "./components/pages/FormsubmissionPage";
 
 const App = () => {
     const [isSignin,setIsSignin] = useState(false);
@@ -38,6 +39,7 @@ const App = () => {
                         element={<SignupPage 
                             signin={signin}/>} 
                     />
+                    <Route path="formsubmission" element={<FormSubmissionPage/>}/>
                 </Route>
             </Routes>
         </BrowserRouter>

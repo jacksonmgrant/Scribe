@@ -15,6 +15,9 @@ const Layout = ({isSignin,signout}) => {
                   <li>
                       <Link to="/aboutus">About us</Link>
                   </li>
+                  <li>
+                      <Link to="/formsubmission">Form submission</Link>
+                  </li>
                   { isSignin === false
                   ?( 
                     <li class="push">
