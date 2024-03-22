@@ -17,16 +17,14 @@ async def create_user(name:str, email_id:str, password:str) -> str:
         "Email_id" : email_id,
         "Password" : password
     })
-
     return("successfuly signup")
 
 **** login    idea: we need to check that what user log-in is matching what we have in database *****
 
 @user_router.post("/loginSignupPage")
-async def login(name:str, email_id:str, password:str) -> str:
+async def login(email_id:str, password:str) -> str:
     
     check = {
-        "Name" : name,
         "Email_id" : email_id,
         "Password" : password
     }
@@ -34,6 +32,6 @@ async def login(name:str, email_id:str, password:str) -> str:
     for user in database:
         if user == check:
             return ("successfuly login")
-    return ("wrong username&password")
+    raise HTTPException(status_code=404, detail="wrong Username or password")
         
 """
