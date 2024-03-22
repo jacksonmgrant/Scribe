@@ -1,11 +1,8 @@
 .container{
     display: flex;
     flex-direction: column;
-    /* margin: auto; */
     margin-top: 5px;
     width: 600px;
-    /* background: linear-gradient(to right, rgb(104, 236, 238), rgb(199, 235, 20)); */
-    /* border-radius: 50px; */
 }
 
 .person{

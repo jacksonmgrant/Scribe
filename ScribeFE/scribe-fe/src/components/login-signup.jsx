@@ -22,7 +22,12 @@ const LoginSignup = ({signin}) => {
                     </div>
                 </div>
                 <div className='submit-container'>
-                    <Link className="submit"to="/" onClick={() => signin()}>Login</Link>
+                    <Link className="submit"to="/" 
+                        onClick={() => 
+                            signin()
+                        }
+                    >Login
+                    </Link>
                     <Link className="submit"to="/SignupPage">Sign up</Link>
                 </div>
             </div>
