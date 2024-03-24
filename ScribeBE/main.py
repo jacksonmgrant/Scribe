@@ -3,6 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from model import Note
 import note
 import transcriber
+import database
 
 app = FastAPI()
 
@@ -38,6 +39,7 @@ async def transcribe(file: UploadFile) -> dict:
         raise HTTPException(status_code=500, detail=speech)
     
     note.note_list.append(Note(id=note.current_id, text=speech))
+    #database.add_note(Note(id=note.current_id, text=speech))
     note.current_id += 1
     return {"transcribed" : speech}
 

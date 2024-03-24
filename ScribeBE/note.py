@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException
-
 from model import Note
+import database
 
 # This will be replaced with a database
 note_list: list[Note] = []

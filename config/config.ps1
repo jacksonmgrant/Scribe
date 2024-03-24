@@ -1,1 +1,1 @@
-$API_KEY="your-key"
+$API_KEY="5c5655a6e7d44fb4ae7a56a49a35bb2a"
