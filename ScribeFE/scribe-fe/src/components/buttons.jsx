@@ -48,6 +48,8 @@ export function RecordAudioButton({ onUpload }) {
     };
 
     const sendTranscription = async () => {
+        setStatus("idle");
+        
         console.log('Transcribed speech:', transcribedText);
 
         await apiService.createNote(transcribedText);

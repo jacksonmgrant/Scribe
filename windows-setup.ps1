@@ -29,4 +29,4 @@ Write-Host "ScribeFE setup complete."
 
 Set-Location ../..
 
-Write-Host "Scribe modules installed, please kill your terminal and restart Visual Studio Code."
+Write-Host "Scribe modules installed."
