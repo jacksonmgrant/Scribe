@@ -11,10 +11,10 @@ source venv/bin/activate
 
 pip install -r requirements.txt
 
-source ../config/config.sh
-export SPEECH_KEY=$API_KEY
-export SPEECH_REGION=eastus
-source ~/.bash_profile
+#source ../config/config.sh
+#export SPEECH_KEY=$API_KEY
+#export SPEECH_REGION=eastus
+#source ~/.bash_profile
 
 echo "ScribeBE setup complete."
 

@@ -87,8 +87,15 @@ Note: I have not tested the scripts for Mac/Linux. It is likely these will fail 
     - Mac/Linux:
         1. Run ```chmod +x mac-setup.sh config.sh start.sh``` in the Scribe folder
 2. Insert the API Key for Microsoft Azure STT:
-    1. Open the config file for your OS (```config/config.ps1``` for Windows, ```config/config.sh``` for Mac).
-    2. Replace the your-key value with the API key I have sent to you.
+    1. Create a file named .env in the folder Scribe/ScribeFE/scribe-fe.
+    2. Paste the following code into the file:  
+
+          ```text
+          REACT_APP_SPEECH_KEY="your-key"
+          REACT_APP_SPEECH_REGION='eastus'
+          ```
+
+    3. Replace the your-key value with the API key I have sent to you.
 3. Run the setup script:
     - Windows:
       1. From the Scribe folder, run ```./windows-setup.ps1``` in VSCode's terminal.

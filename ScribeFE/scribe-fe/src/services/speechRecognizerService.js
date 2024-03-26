@@ -11,7 +11,7 @@ export async function transcribeFile(event) {
         console.log(audioFile);
         
         // Uses environment variables to store the key and region
-        const speechConfig = sdk.SpeechConfig.fromSubscription(process.env.SPEECH_KEY, process.env.SPEECH_REGION);
+        const speechConfig = sdk.SpeechConfig.fromSubscription(process.env.REACT_APP_SPEECH_KEY, process.env.REACT_APP_SPEECH_REGION);
         speechConfig.speechRecognitionLanguage = 'en-US';
         
         const audioConfig = sdk.AudioConfig.fromWavFileInput(audioFile);
@@ -30,7 +30,7 @@ export async function transcribeFile(event) {
 }
 
 export async function sttFromMic() {
-    const speechConfig = sdk.SpeechConfig.fromSubscription(process.env.SPEECH_KEY, process.env.SPEECH_REGION);
+    const speechConfig = sdk.SpeechConfig.fromSubscription(process.env.REACT_APP_SPEECH_KEY, process.env.REACT_APP_SPEECH_REGION);
     speechConfig.speechRecognitionLanguage = 'en-US';
     
     const audioConfig = sdk.AudioConfig.fromDefaultMicrophoneInput();

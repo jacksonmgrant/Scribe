@@ -12,10 +12,10 @@ py -m venv venv
 
 pip install -r requirements.txt
 
-$Path = "../.env"
-$values = Get-Content $Path | Out-String | ConvertFrom-StringData
-$env:SPEECH_KEY = $values.SPEECH_KEY
-$env:SPEECH_REGION = $values.SPEECH_REGION
+#$Path = "../.env"
+#$values = Get-Content $Path | Out-String | ConvertFrom-StringData
+#$env:SPEECH_KEY = $values.SPEECH_KEY
+#$env:SPEECH_REGION = $values.SPEECH_REGION
 
 Write-Host "ScribeBE setup complete."
 
