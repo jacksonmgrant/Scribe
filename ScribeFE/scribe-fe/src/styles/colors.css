@@ -6,10 +6,64 @@
 	--pink: #EC4899;
 	--purple: #8B5CF6;
 	--light: #EEE;
+	--crimson: #DC2626;
+	--red: #bd1502;
+	
+	/* Original theme: */
 	--yellow: #fad000;
 	--yellow-orange: #fbb238;
 	--orange: #f5a802;
 	--dark-orange: #d19004;
-	--crimson: #DC2626;
-	--red: #bd1502;
+
+	/* Jackson: I asked Gemini for some theme examples, got mixed results. I like the last
+	   2 but am not fully sold on any. Would love some input from somebody who knows more about
+	   color than me, I'm going for something easy on the eyes for reading notes but still
+	   techy for an AI app. */
+
+	/* Softer options: */
+
+	/* Blue and white:*/
+	--light-blue: #70A1CC;
+	--charcoal: #333333;
+	--light-grey: #E0E0E0;
+	
+
+	/* Sage and white:*/
+	--sage: #9CA68C;
+	--white: #FFFFFF;
+	--light-grey: #F5F5F5;
+	
+
+	/*Lavender and navy:*/
+	--lavender: #D1C4E9;
+	--navy: #293247;
+	--light-lavender: #8C9EFF;
+	
+
+	/* Dark purple:*/
+	--dark-purple: #3F3759;
+	--lavender: #D6CEDC;
+	--muted-purple: #9B92B3;
+
+	/* Brighter options: */
+
+	/* Blue and Purple:*/
+	--neon-blue: #007bff;
+	--deep-purple: #800080;
+	--black: #000000;
+
+	/* Teal and Black: */
+	--teal: #38B3AE;
+	--black: #000000;
+	--light-grey: #AAAAAA;
+
+	/* Terracotta & Navy: */
+	--terracotta: #C68642;
+	--dark-navy: #303841 ;
+	--light-grey: #F5F5F5;
+
+	/* Plum and Ivory: */
+	--plum: #92597D;
+	--ivory: #FDF5E6;
+	
 }
