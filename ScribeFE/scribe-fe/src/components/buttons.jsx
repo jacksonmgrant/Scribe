@@ -44,6 +44,8 @@ export function RecordAudioButton({ onUpload }) {
 
     const startSttFromMic = async () => {
         setStatus("recording");
+        // Text is getting transcribed here, but finishes after the stop button function runs.
+        // Need to figure out how to wait until STT is finished before calling sendTranscription.
         const text = await sttFromMic();
         setTranscribedText(text);
     };
