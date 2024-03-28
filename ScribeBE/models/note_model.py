@@ -1,8 +1,7 @@
 from datetime import datetime
 from typing import Optional
-from beanie import Document
+from beanie import Document, Indexed
 from pydantic import BaseModel
-import pymongo
 
 class Note(BaseModel):
     id: int
@@ -10,10 +9,9 @@ class Note(BaseModel):
 
 class DbNote(Document):
     text: str
-    time: datetime = datetime.now()
+    time: Indexed(datetime) = datetime.now() # type: ignore
     hasRecording: Optional[bool] = False
     
     class Settings:
         name = "notes"
-        indexes = [("time", pymongo.DESCENDING)]
         keep_nulls = False

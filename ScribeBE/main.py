@@ -3,7 +3,6 @@ from fastapi.middleware.cors import CORSMiddleware
 from models.note_model import DbNote, Note
 import note
 import transcriber
-import asyncio
 from database import init_db
 
 async def start_db():
