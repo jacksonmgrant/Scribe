@@ -4,10 +4,10 @@ import '../../styles/homepage.css';
 
 const Homepage = () => {
     return(
-        <body>
+        <div>
             <Header className="App-header"/>
             <NoteManager />
-        </body>
+        </div>
     )
 }
 

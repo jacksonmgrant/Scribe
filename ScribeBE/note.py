@@ -23,6 +23,8 @@ async def get_note(note_id: int) -> dict:
 
 @note_router.post("/", status_code=201)
 async def create_note(note_text: dict) -> dict:
+    if note_text is None or 'text' not in note_text:
+        raise HTTPException(status_code=400, detail="Note must have text")
     global current_id
     note: Note = Note(
         id=current_id,

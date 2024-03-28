@@ -43,6 +43,7 @@ export function RecordAudioButton({ onUpload }) {
     const [ status, setStatus ] = useState("idle");
 
     const startSttFromMic = async () => {
+        setStatus("recording");
         const text = await sttFromMic();
         setTranscribedText(text);
     };
@@ -60,11 +61,11 @@ export function RecordAudioButton({ onUpload }) {
     return (
         <div>
             {status !== "recording" ? (
-                <button type="button" name="record-audio" id="record-audio" onClick={() => {setStatus("recording"); startSttFromMic();}}>
+                <button type="button" name="record-audio" id="record-audio" onClick={() => {startSttFromMic()}}>
                     <i className="fa-solid fa-microphone" style={{ marginRight: '8px' }}></i>  Record Audio
                 </button>
             ) : (
-                <button type="button" name="stop-recording" id="stop-recording" onClick={sendTranscription()}>
+                <button type="button" name="stop-recording" id="stop-recording" onClick={sendTranscription}>
                     <i className="fa-solid fa-stop stop-icon" style={{ marginRight: '8px' }}></i> Stop Recording
                 </button>
             )}
