@@ -1,20 +1,11 @@
-from datetime import datetime
-from typing import Optional
-import pymongo
-from beanie import Document, Indexed, init_beanie
+import os
+from beanie import init_beanie
+from dotenv import load_dotenv
 from motor.motor_asyncio import AsyncIOMotorClient
 
-class Note(Document):
-    text: str
-    time: datetime = datetime.now()
-    hasRecording: Optional[bool] = False
-
-    class Settings:
-        name = "notes"
-        indexes = [("time", pymongo.DESCENDING)]
+from models.note_model import Note
 
 async def init_db():
-    # Do not push password!
-    client = AsyncIOMotorClient("connection-string-here")
+    load_dotenv()
+    client = AsyncIOMotorClient(f"mongodb+srv://{os.getenv("DB_USER")}:{os.getenv("DB_PASS")}@scribedb.klymspw.mongodb.net/")
     await init_beanie(client.ScribeDB, document_models=[Note])
-

@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException
 
-from model import Note
+from models.note_model import Note, DbNote
 
 # This will be replaced with a database
 note_list: list[Note] = []
@@ -12,7 +12,8 @@ note_router = APIRouter()
 
 @note_router.get("/")
 async def get_notes() -> dict:
-    return {"notes": note_list}
+    notes = await DbNote.find_all()
+    return {"notes": notes}
 
 @note_router.get("/{note_id}")
 async def get_note(note_id: int) -> dict:
@@ -23,7 +24,8 @@ async def get_note(note_id: int) -> dict:
 
 @note_router.post("/", status_code=201)
 async def create_note(note: Note) -> dict:
-    note_list.append(note)
+    new_note = DbNote(text=note.text)
+    await new_note.insert()
     return {"note" : note}
 
 @note_router.put("/{note_id}")
