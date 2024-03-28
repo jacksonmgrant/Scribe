@@ -6,10 +6,8 @@ import transcriber
 import asyncio
 from database import init_db
 
-async def db():
+async def start_db():
     await init_db()
-
-asyncio.run(db())
 
 app = FastAPI()
 
@@ -55,3 +53,5 @@ async def transcribe_test(file: str):
 app.include_router(root_router, tags=["Root"])
 app.include_router(transcription_router, prefix="/transcribe", tags=["Transcription"])
 app.include_router(note.note_router, prefix="/notes", tags=["Note"])
+
+app.add_event_handler("startup", start_db)
