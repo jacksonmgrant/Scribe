@@ -12,8 +12,7 @@ note_router = APIRouter()
 
 @note_router.get("/")
 async def get_notes() -> dict:
-    # Getting an error that this can't await bc not async, but if I take away await it can't serialize
-    notes = await DbNote.find_all()
+    notes = await DbNote.find().to_list()
     return {"notes": notes}
 
 @note_router.get("/{note_id}")
@@ -33,17 +32,17 @@ async def create_note(note_text: dict) -> dict:
     return {"note" : note_text['text']}
 
 @note_router.put("/{note_id}")
-async def update_note(note_id: int, note: Note) -> dict:
-    for i in range(len(note_list)):
-        if note_list[i].id == note_id:
-            note_list[i] = note
-            return {"note" : note}
-    raise HTTPException(status_code=404, detail="Note not found")
+async def update_note(note_id: str, note: Note) -> dict:
+    note_to_update = await DbNote.find_one(DbNote.id == note_id)
+    if note_to_update == None:
+        raise HTTPException(status_code=404, detail="Note not found")
+    await note_to_update.update(set({DbNote.text: note.text}))
+    return {"message" : "Note updated"}
 
 @note_router.delete("/{note_id}")
-async def delete_note(note_id: int) -> dict:
-    for i in range(len(note_list)):
-        if note_list[i].id == note_id:
-            note_list.pop(i)
-            return {"message" : "Note deleted"}
-    raise HTTPException(status_code=404, detail="Note not found")
+async def delete_note(note_id: str) -> dict:
+    note_to_delete = await DbNote.find_one(DbNote.id == note_id)
+    if note_to_delete == None:
+        raise HTTPException(status_code=404, detail="Note not found")
+    await note_to_delete.delete()
+    return {"message" : "Note deleted"}
