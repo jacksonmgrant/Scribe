@@ -17,7 +17,7 @@
 
 ## Overview
 
-[Project proposal](https://docs.google.com/document/d/1GdgHPWnze3kT_F590w5CgGXA6Ve6duiCPAWjdjNOQRM/edit?usp=sharing)
+[Project proposal](https://drive.google.com/file/d/16IDP-MVffQDJVVcQPmE3bniw_TpQhXiI/view?usp=sharing)
 
 Scribe is a web app that records audio transcriptions into notes. The goal of this app is to implement an LLM to generate organized and easy-to-read notes from a long audio recording.
 
