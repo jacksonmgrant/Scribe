@@ -12,10 +12,6 @@ py -m venv venv
 
 pip install -r requirements.txt
 
-. ..\config\config.ps1
-setx SPEECH_KEY $API_KEY
-setx SPEECH_REGION eastus
-
 Write-Host "ScribeBE setup complete."
 
 Write-Host "Setting up ScribeFE..."
@@ -28,4 +24,4 @@ Write-Host "ScribeFE setup complete."
 
 Set-Location ../..
 
-Write-Host "Scribe modules installed, please kill your terminal and restart Visual Studio Code."
+Write-Host "Scribe modules installed."

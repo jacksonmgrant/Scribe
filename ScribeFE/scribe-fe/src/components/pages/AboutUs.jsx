@@ -1,5 +1,7 @@
 import suitFord from "../Assets/suitFord.jpg"
 import Jacksonpfp from "../Assets/Jackson-pfp.jpg"
+import Kate from "../Assets/kate.jpg"
+import me from "../Assets/me.png"
 import styles from "../../styles/About.module.css"
 
 const About = () => {
@@ -20,14 +22,14 @@ const About = () => {
           </div>
         </div>
         <div className={styles.person}>
-          <img src={suitFord} alt="ford" width="200" height="200" className={styles.pic}/>
+          <img src={Kate} alt="kate" width="200" height="200" className={styles.pic}/>
           <div className={styles.text}>
             <h2>Kate Doolittle</h2>
             <p>UI/UX Designer/Frontend Developer</p>
           </div>
         </div>
         <div className={styles.person}>
-          <img src={suitFord} alt="ford" width="200" height="200" className={styles.pic}/>
+          <img src={me} alt="dylan" width="200" height="200" className={styles.pic} style={{backgroundColor: "white"}}/>
           <div className={styles.text}>
             <h2>Dylan Crooks</h2>
             <p>Backend developer,Database designer</p>
