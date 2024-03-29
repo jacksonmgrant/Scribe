@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException
-
 from models.note_model import Note, DbNote
+from bson.objectid import ObjectId
 
 # This will be replaced with a database
 note_list: list[Note] = []
@@ -31,18 +31,23 @@ async def create_note(note_text: dict) -> dict:
     await new_note.insert()
     return {"note" : note_text['text']}
 
+### Nithi : in mongodb id datatype is objectId which is not int. look at mongodb compass ###
+###################################################################
 @note_router.put("/{note_id}")
 async def update_note(note_id: str, note: Note) -> dict:
-    note_to_update = await DbNote.find_one(DbNote.id == note_id)
+    note_obj_id = ObjectId(note_id)
+    note_to_update = await DbNote.find_one(DbNote.id == note_obj_id) # this is how you grab data from database by id
     if note_to_update == None:
-        raise HTTPException(status_code=404, detail="Note not found")
-    await note_to_update.update(set({DbNote.text: note.text}))
+        raise HTTPException(status_code=404, detail="Note not found") 
+    note_to_update.text = note.text
+    await note_to_update.save()
     return {"message" : "Note updated"}
 
 @note_router.delete("/{note_id}")
 async def delete_note(note_id: str) -> dict:
-    note_to_delete = await DbNote.find_one(DbNote.id == note_id)
-    if note_to_delete == None:
+    note_obj_id = ObjectId(note_id)
+    note_to_delete = await DbNote.find_one(DbNote.id == note_obj_id)
+    if note_to_delete is None:
         raise HTTPException(status_code=404, detail="Note not found")
     await note_to_delete.delete()
     return {"message" : "Note deleted"}
