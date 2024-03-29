@@ -5,7 +5,7 @@ from pydantic import BaseModel
 
 class Note(BaseModel):
     id: int
-    text: str
+    text: str | None
 
 class DbNote(Document):
     text: str
