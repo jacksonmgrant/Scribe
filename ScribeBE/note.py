@@ -27,10 +27,10 @@ async def get_note(note_id: int) -> dict:
 async def create_note(note_text: dict) -> dict:
     if note_text['text'] is None or 'text' not in note_text:
         raise HTTPException(status_code=400, detail="Note must have text")
-    new_note = DbNote(text=note.text)
+    new_note = DbNote(text=note_text['text'])
     # Insertion not working
     await new_note.insert()
-    return {"note" : note}
+    return {"note" : note_text['text']}
 
 @note_router.put("/{note_id}")
 async def update_note(note_id: int, note: Note) -> dict:
