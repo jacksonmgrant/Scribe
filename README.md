@@ -82,15 +82,25 @@ Note: I have not tested the scripts for Mac/Linux. It is likely these will fail 
 
 ### Quick Setup
 
-1. Give the scripts permission to run:
+1. Insert the API Key for Microsoft Azure STT:
+    1. Open the config file for your OS (```config/config.ps1``` for Windows, ```config/config.sh``` for Mac).
+    2. Replace the your-key value with the API key I have sent to you.
+2. Give the scripts permission to run:
     - Windows:
         1. Run ```Set-ExecutionPolicy AllSigned``` in a powershell window as an administrator.
             - If that fails try ```Set-ExecutionPolicy RemoteSigned -Scope CurrentUser -Force```
     - Mac/Linux:
-        1. Run ```chmod +x mac-setup.sh config.sh start.sh``` in the Scribe folder
+        1. Run ```chmod +x mac-setup.sh be-start.sh fe-start.sh``` in the Scribe folder
 2. Insert the API Key for Microsoft Azure STT:
-    1. Open the config file for your OS (```config/config.ps1``` for Windows, ```config/config.sh``` for Mac).
-    2. Replace the your-key value with the API key I have sent to you.
+    1. Create a file named .env in the folder Scribe/ScribeFE/scribe-fe.
+    2. Paste the following code into the file:  
+
+          ```text
+          REACT_APP_SPEECH_KEY="your-key"
+          REACT_APP_SPEECH_REGION='eastus'
+          ```
+
+    3. Replace the your-key value with the API key I have sent to you.
 3. Run the setup script:
     - Windows:
       1. From the Scribe folder, run ```./windows-setup.ps1``` in VSCode's terminal.
@@ -102,21 +112,9 @@ Note: I have not tested the scripts for Mac/Linux. It is likely these will fail 
     - Windows:
         - Run ```./start.ps1``` from the Scribe folder
     - Mac/Linux:
-        - Run ```startapp``` from the Scribe folder
-        - Or run ```./start.sh``` from the Scribe folder
-
-___
-If you want to customize the command to start the app, follow these instructions:
-
-Windows:
-
-1. Run ```doskey shortcut-name=.\start.ps1``` every time you open the app and change shortcut-name
-
-Mac/Linux:
-
-1. Run ```nano ~/.bashrc``` (or ```nano ~/.bash_profile``` if that fails)
-2. Find the alias startapp
-3. Change startapp to whatever you want
+        1. Run ```./be-start.sh``` from the Scribe folder
+        2. Open a new terminal instance
+        3. Run ```./fe-start.sh``` from the Scribe folder
 
 ## To-do
 

@@ -16,7 +16,7 @@ def transcribe(file: UploadFile) -> str:
     #Want to add language identification: https://learn.microsoft.com/en-us/azure/ai-services/speech-service/language-identification?pivots=programming-language-python#speech-to-text
     
     #Create a temporary audio file
-    file_name = f"{str(datetime.now().strftime("%Y-%m-%d_%H-%M-%S"))}_{file.filename}"
+    file_name = f"{str(datetime.now().strftime('%Y-%m-%d_%H-%M-%S'))}_{file.filename}"
     file_path = os.path.join("Uploads", file_name)
 
     with open(file_path, "wb") as buffer:

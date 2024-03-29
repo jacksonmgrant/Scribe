@@ -1,81 +1,86 @@
-import React, { useState } from 'react';
-import apiService from '../apiService';
-import NoteManager from './note-manager';
-import { useReactMediaRecorder } from "react-media-recorder-2";
+import React, { useState, useEffect } from 'react';
+import apiService from '../services/apiService';
+import { transcribeFile, sttFromMic } from '../services/speechRecognizerService';
 
-export function FileUploadButton({onUpload}) {
-  const [selectedFile, setSelectedFile] = useState(null);
+export function FileUploadButton({ onUpload }) {
 
-  function handleFileChange(event) {
-    const file = event.target.files[0];
-    setSelectedFile(file);
-  }
-
-  function handleUpload() {
-    const fileInput = document.getElementById('fileInput');
-    fileInput.click(); // Trigger the file input click
-  }
-
-  async function handleFileInput(event) {
-    const file = event.target.files[0];
-    if (file) {
-      setSelectedFile(file);
-      await sendFile(file);
-      onUpload();
+    function handleUpload() {
+        const fileInput = document.getElementById('fileInput');
+        fileInput.click(); // Trigger the file input click
     }
-  }
 
-  async function sendFile(file) {
-    await apiService.transcribe(file);
-  }
+    async function handleFileInput(event) {
+        try {
+            console.log("Transcribing");
+            const text = await transcribeFile(event);
+            console.log(text);
+            await apiService.createNote(text);
+            onUpload();
+        } catch (error) {
+            console.error(error);
+        }
+    }
 
-  return (
-    <div>
-        <input
-            type="file"
-            id="fileInput"
-            style={{ display: 'none' }}
-            onChange={handleFileInput}
-        />
-        <button
-            type="button" name="upload-audio-file" id="upload-audio-file" onClick={handleUpload}
-        >
-            <i className="fa-solid fa-file-audio" style={{ marginRight: '8px' }}></i> Upload File
-        </button>
-    </div>
-  );
+    return (
+        <div>
+            <input
+                type="file"
+                id="fileInput"
+                style={{ display: 'none' }}
+                onChange={handleFileInput}
+            />
+            <button
+                type="button" name="upload-audio-file" id="upload-audio-file" onClick={() => {handleUpload();}}
+            >
+                <i className="fa-solid fa-file-audio" style={{ marginRight: '8px' }}></i> Upload File
+            </button>
+        </div>
+    );
 }
 
-export function RecordAudioButton({onUpload}) {
-  const { startRecording, stopRecording, mediaBlobUrl, status} = useReactMediaRecorder({ audio: true });
-  const {audioUrl, setAudioUrl} = useState(null);
+export function RecordAudioButton({ onUpload }) {
+    const [ transcribedText, setTranscribedText ] = useState(null);
+    const [ status, setStatus ] = useState("idle");
 
-  const sendAudio = async () => {
-    console.log("getting : " + mediaBlobUrl);
-    const blob = (await fetch(mediaBlobUrl)).blob();
-    console.log("blob: " + blob)
-    // Create a new File from the Blob
-    const audioFile = new File([blob], 'recorded_audio.wav', { type: 'audio/wav' });
+    const startSttFromMic = async () => {
+        setStatus("recording");
+        // Currently, transcription stops as soon as the speaker pauses. We need to rework it so that it
+        // goes until the stop button is pressed.
+        const text = await sttFromMic();
+        setTranscribedText(text);
+    };
 
-    // You can now use 'audioFile' as needed (e.g., upload it to the server)
-    console.log('Audio File:', audioFile);
+    useEffect(() => {
+        // This effect will trigger whenever transcribedText changes
+        if (transcribedText !== null) {
+            // Perform actions that depend on the updated transcribedText here
+            console.log('Transcribed speech:', transcribedText);
+            apiService.createNote(transcribedText)
+                .then(() => {
+                    // Once note is created, trigger upload
+                    onUpload();
+                })
+                .catch(error => {
+                    console.error('Error creating note:', error);
+                });
+        }
+    }, [transcribedText]);
 
-    await apiService.transcribe(audioFile);
+    const sendTranscription = async () => {
+        setStatus("idle");
+    };
 
-    onUpload();
-  };
-
-  return (
-    <div>
-      {status !== "recording" ? (
-        <button type="button" name="record-audio" id="record-audio" onClick={startRecording}>
-          <i className="fa-solid fa-microphone" style={{ marginRight: '8px' }}></i>  Record Audio
-        </button>
-      ) : (
-        <button type="button" name="stop-recording" id="stop-recording" onClick={() => { stopRecording(); sendAudio(); }}>
-          <i className="fa-solid fa-stop stop-icon" style={{ marginRight: '8px' }}></i> Stop Recording
-        </button>
-      )}
-    </div>
-  );
+    return (
+        <div>
+            {status !== "recording" ? (
+                <button type="button" name="record-audio" id="record-audio" onClick={() => {startSttFromMic()}}>
+                    <i className="fa-solid fa-microphone" style={{ marginRight: '8px' }}></i>  Record Audio
+                </button>
+            ) : (
+                <button type="button" name="stop-recording" id="stop-recording" onClick={sendTranscription}>
+                    <i className="fa-solid fa-stop stop-icon" style={{ marginRight: '8px' }}></i> Stop Recording
+                </button>
+            )}
+        </div>
+    );
 }

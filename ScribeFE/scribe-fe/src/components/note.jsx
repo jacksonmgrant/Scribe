@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import apiService from '../apiService';
+import apiService from '../services/apiService';
 
 export function Note({id, text = "Empty note", onEdit, onDelete}) {
   const [noteText, setText] = useState(text);
