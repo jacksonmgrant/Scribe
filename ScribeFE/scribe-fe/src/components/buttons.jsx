@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import apiService from '../services/apiService';
 import { transcribeFile, sttFromMic } from '../services/speechRecognizerService';
 
@@ -44,20 +44,30 @@ export function RecordAudioButton({ onUpload }) {
 
     const startSttFromMic = async () => {
         setStatus("recording");
-        // Text is getting transcribed here, but finishes after the stop button function runs.
-        // Need to figure out how to wait until STT is finished before calling sendTranscription.
+        // Currently, transcription stops as soon as the speaker pauses. We need to rework it so that it
+        // goes until the stop button is pressed.
         const text = await sttFromMic();
         setTranscribedText(text);
     };
 
+    useEffect(() => {
+        // This effect will trigger whenever transcribedText changes
+        if (transcribedText !== null) {
+            // Perform actions that depend on the updated transcribedText here
+            console.log('Transcribed speech:', transcribedText);
+            apiService.createNote(transcribedText)
+                .then(() => {
+                    // Once note is created, trigger upload
+                    onUpload();
+                })
+                .catch(error => {
+                    console.error('Error creating note:', error);
+                });
+        }
+    }, [transcribedText]);
+
     const sendTranscription = async () => {
         setStatus("idle");
-        
-        console.log('Transcribed speech:', transcribedText);
-
-        await apiService.createNote(transcribedText);
-
-        onUpload();
     };
 
     return (

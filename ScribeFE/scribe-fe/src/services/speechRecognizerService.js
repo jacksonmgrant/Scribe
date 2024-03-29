@@ -36,14 +36,15 @@ export async function sttFromMic() {
     const audioConfig = sdk.AudioConfig.fromDefaultMicrophoneInput();
     const recognizer = new sdk.SpeechRecognizer(speechConfig, audioConfig);
 
-    recognizer.recognizeOnceAsync(result => {
-        if (result.reason === ResultReason.RecognizedSpeech) {
-            console.log(`RECOGNIZED: Text=${result.text}`);
-        } else {
-            console.log('ERROR: Speech was cancelled or could not be recognized. Ensure your microphone is working properly.');
-        }
-
-        return result.text;
+    return new Promise((resolve, reject) => {
+        recognizer.recognizeOnceAsync(result => {
+            if (result.reason === ResultReason.RecognizedSpeech) {
+                console.log(`RECOGNIZED: Text=${result.text}`);
+                resolve(result.text);
+            } else {
+                console.log('ERROR: Speech was cancelled or could not be recognized. Ensure your microphone is working properly.');
+            }
+        });
     });
 }
 
