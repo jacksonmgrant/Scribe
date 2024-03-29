@@ -12,6 +12,7 @@ note_router = APIRouter()
 
 @note_router.get("/")
 async def get_notes() -> dict:
+    # Getting an error that this can't await bc not async, but if I take away await it can't serialize
     notes = await DbNote.find_all()
     return {"notes": notes}
 
@@ -25,6 +26,7 @@ async def get_note(note_id: int) -> dict:
 @note_router.post("/", status_code=201)
 async def create_note(note: Note) -> dict:
     new_note = DbNote(text=note.text)
+    # Insertion not working
     await new_note.insert()
     return {"note" : note}
 

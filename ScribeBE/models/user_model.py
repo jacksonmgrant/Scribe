@@ -1,5 +1,4 @@
-from typing import Optional
-from beanie import Document, Indexed
+from beanie import Document
 from pydantic import BaseModel, EmailStr
 
 class User(BaseModel):

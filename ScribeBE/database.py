@@ -13,4 +13,4 @@ async def init_db():
     client = AsyncIOMotorClient(f"mongodb+srv://{os.getenv("DB_USER")}:{os.getenv("DB_PASS")}@scribedb.klymspw.mongodb.net/")
 
     # selecting collections
-    await init_beanie(client.ScribeDB, document_models=[DbNote], document_models=[DbUser])
+    await init_beanie(client.ScribeDB, document_models=[DbNote, DbUser])
