@@ -59,8 +59,8 @@ const Signup = ({signin}) => {
                         <input type='password' 
                             placeholder='Password' 
                             value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            />
+                            onChange={(event) => setPassword(event.target.value)}
+                        />
                     </div>
                 </div>
                 <div className='submit-container'>

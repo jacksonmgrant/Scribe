@@ -10,13 +10,14 @@ user_router = APIRouter()
 @user_router.post("/", status_code=201)
 async def signup(user:User) -> dict:
     
-    all_dbuser = await DbUser.find().to_list()
-    if all_dbuser:
-        for dbuser in all_dbuser :
-            if user.name == dbuser.name or user.email == dbuser.email:
-                raise HTTPException(status_code=400, detail="Sorry someone already use this email & name")
-            
-    if user.name == "" or user.email == "" or user.password == "":
+    # Check if there are any users with the same name or email.
+    existing_user = await DbUser.find_one({"$or": [{"name": user.name}, {"email": user.email}]})
+    if existing_user:
+        raise HTTPException(status_code=400, detail="Sorry, someone already uses this email or name. Plz try a new one")
+
+
+    # To check if name or email or password is blank
+    if not user.name or not user.email or not user.password:
         raise HTTPException(status_code=400, detail="name or email or password can not be blank")
     
     new_user =  DbUser(name=user.name,email=user.email,password=user.password)
@@ -24,18 +25,12 @@ async def signup(user:User) -> dict:
     
     return {"msg": "successfully add new user"}
 
+@user_router.post("/login", status_code=201)
+async def login(user:User) -> dict:
 
-
-# @user_router.post("/loginSignup")
-# async def login(email_id:str, password:str) -> str:
-    
-#     check = {
-#         "Email_id" : email_id,
-#         "Password" : password
-#     }
-    
-#     for user in database:
-#         if user == check:
-#             return ("successfuly login")
-#     raise HTTPException(status_code=404, detail="wrong Username or password")
+    existing_user = await DbUser.find_one({"$and": [{"password": user.password}, {"email": user.email}]})
+    if existing_user:
+       return {"msg": "welcome back"}
+    else :
+       raise HTTPException(status_code=400, detail="Email or password is not correct")
         
