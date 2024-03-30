@@ -4,7 +4,8 @@ import "../../styles/LoginSignupPage.css"
 const SignupPage = ({signin}) =>{
     return(
         <div>
-            <Signup  signin={signin}/>
+            <Signup
+            signin={signin}/>
         </div>
     )
 }

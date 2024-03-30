@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState } from "react";
 
@@ -35,7 +35,7 @@ const App = () => {
                         signin={signin}/>} 
                     />
                     <Route path="SignupPage" 
-                        element={<SignupPage 
+                        element={<SignupPage
                             signin={signin}/>} 
                     />
                     <Route path="formsubmission" element={<FormSubmissionPage/>}/>
