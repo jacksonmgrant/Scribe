@@ -1,37 +1,30 @@
 from fastapi import APIRouter, HTTPException
-
+from models.user_model import DbUser, User
+from pydantic import EmailStr
 
 user_router = APIRouter()
 
-"""
-I still need to setup mongoDB first, but this backend server should work
 
-    ***instantiate  database object from mongoDB***
-    database = I don't know about syntax
+@user_router.post("/", status_code=201)
+async def signup(user:User) -> dict:
+    if user.name == "" or user.email == "" or user.password == "":
+        raise HTTPException(status_code=400, detail="name or email or password can not be blank")
+    new_user =  DbUser(name=user.name,email=user.email,password=user.password)
+    await new_user.insert()
+    return ("successfuly signup")
 
-**** signup   idea: we need to push our clinet's info to database*****
-@user_router.post("/SignupPage", status_code=201)
-async def create_user(name:str, email_id:str, password:str) -> str:
-    database.append({
-        "Name" : name,
-        "Email_id" : email_id,
-        "Password" : password
-    })
-    return("successfuly signup")
 
-**** login    idea: we need to check that what user log-in is matching what we have in database *****
 
-@user_router.post("/loginSignupPage")
-async def login(email_id:str, password:str) -> str:
+# @user_router.post("/loginSignupPage")
+# async def login(email_id:str, password:str) -> str:
     
-    check = {
-        "Email_id" : email_id,
-        "Password" : password
-    }
+#     check = {
+#         "Email_id" : email_id,
+#         "Password" : password
+#     }
     
-    for user in database:
-        if user == check:
-            return ("successfuly login")
-    raise HTTPException(status_code=404, detail="wrong Username or password")
+#     for user in database:
+#         if user == check:
+#             return ("successfuly login")
+#     raise HTTPException(status_code=404, detail="wrong Username or password")
         
-"""

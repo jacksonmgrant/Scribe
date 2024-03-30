@@ -1,7 +1,9 @@
 from fastapi import FastAPI, HTTPException, UploadFile, APIRouter
 from fastapi.middleware.cors import CORSMiddleware
 from models.note_model import DbNote, Note
+from models.user_model import DbUser, User
 import note
+import user
 import transcriber
 from database import init_db
 
@@ -52,5 +54,5 @@ async def transcribe_test(file: str):
 app.include_router(root_router, tags=["Root"])
 app.include_router(transcription_router, prefix="/transcribe", tags=["Transcription"])
 app.include_router(note.note_router, prefix="/notes", tags=["Note"])
-
+app.include_router(user.user_router, prefix="/users")
 app.add_event_handler("startup", start_db)

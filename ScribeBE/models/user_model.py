@@ -13,3 +13,4 @@ class DbUser(Document):
     
     class Settings:
         name = "users"
+        keep_nulls = False
