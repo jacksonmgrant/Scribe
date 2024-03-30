@@ -45,8 +45,8 @@ async def update_note(note_id: str, note: Note) -> dict:
 
 @note_router.delete("/{note_id}")
 async def delete_note(note_id: str) -> dict:
-    note_obj_id = ObjectId(note_id)
-    note_to_delete = await DbNote.find_one(DbNote.id == note_obj_id)
+    # note_obj_id = ObjectId(note_id)
+    note_to_delete = await DbNote.find_one(DbNote.id == ObjectId("66071f843c3ee5e92b472c90"))
     if note_to_delete is None:
         raise HTTPException(status_code=404, detail="Note not found")
     await note_to_delete.delete()
