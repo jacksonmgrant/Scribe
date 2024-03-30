@@ -1,10 +1,12 @@
-import React from 'react';
+import React, {useState} from 'react';
 import "../styles/LoginSignup.css"
 import email_icon from "./Assets/email.png"
 import password_icon from "./Assets/password.png"
 import { Link } from "react-router-dom";
 
 const LoginSignup = ({signin}) => {
+    const [name, setName] = useState("");
+    const [password, setPassword] = useState("");
     return(
         <form method='GET'>
             <div className='container'>
