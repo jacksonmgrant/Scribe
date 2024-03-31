@@ -1,8 +1,9 @@
 from fastapi import APIRouter, HTTPException
 from models.user_model import DbUser, User
-from pydantic import EmailStr
 
-
+# for debugging purpose
+import logging
+logger = logging.getLogger(__name__)
 
 user_router = APIRouter()
 
@@ -10,11 +11,18 @@ user_router = APIRouter()
 @user_router.post("/", status_code=201)
 async def signup(user:User) -> dict:
     
-    # Check if there are any users with the same name or email.
-    existing_user = await DbUser.find_one({"$or": [{"name": user.name}, {"email": user.email}]})
-    if existing_user:
-        raise HTTPException(status_code=400, detail="Sorry, someone already uses this email or name. Plz try a new one")
+    # Check if there are that email or name already exists in database
+    existing_user = await DbUser.find_one({
+            "$or": [
+                {"email": user.email.lower()},
+                {"name": user.name}
+            ]
+        })
 
+    # logger.debug(f"Existing user found: {existing_user}")
+
+    if existing_user:
+        raise HTTPException(status_code=404, detail="Email or name already exists") 
 
     # To check if name or email or password is blank
     if not user.name or not user.email or not user.password:

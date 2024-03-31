@@ -53,7 +53,7 @@ const LoginSignup = ({signin}) => {
                     </div>
                 </div>
                 <div className='submit-container'>
-                    <Link className="submit"to="/" 
+                    <Link className="submit"to="/userpage" 
                         onClick={() => {
                             login()
                             signin()

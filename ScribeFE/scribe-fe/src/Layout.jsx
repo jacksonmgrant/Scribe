@@ -7,30 +7,36 @@ const Layout = ({isSignin,signout}) => {
     return (
       <>
         <nav>
-          <div className='zone pinkblue'>
-              <div className='main-nav'>
-                  <li>
-                      <Link to="/">Home</Link>
-                  </li>
-                  <li>
-                      <Link to="/aboutus">About us</Link>
-                  </li>
-                  <li>
-                      <Link to="/formsubmission">Form submission</Link>
-                  </li>
-                  { isSignin === false
-                  ?( 
-                    <li class="push">
-                        <Link to="/loginSignupPage">Sign up/Login</Link>
-                    </li>
-                    )
-                  : (
-                    <li class="push">
-                        <Link to="/loginSignupPage"  onClick={signout}>Sign out</Link>
-                    </li>
-                    )
-                  }
+          <div>
+            { isSignin === false
+            ?(
+              <div className='zone pinkblue'>
+                <div className='main-nav'>
+                <li>
+                  <Link to="/">Home</Link>
+                </li>
+                <li>
+                  <Link to="/aboutus">About us</Link>
+                </li>
+                <li>
+                  <Link to="/formsubmission">Form submission</Link>
+                </li> 
+                <li class="push">
+                    <Link to="/loginSignupPage">Sign up/Login</Link>
+                </li>
+                </div>
               </div>
+              )
+            : (
+              <div className='zone pinkblue'>
+                <div className='main-nav'>
+                  <li class="push">
+                      <Link to="/loginSignupPage" onClick={signout}>Sign out</Link>
+                  </li>
+                </div>
+              </div>
+              )
+            }
           </div>
         </nav>
         <Outlet />
