@@ -87,7 +87,7 @@ Note: I have not tested the scripts for Mac/Linux. It is likely these will fail 
         1. Run ```Set-ExecutionPolicy AllSigned``` in a powershell window as an administrator.
             - If that fails try ```Set-ExecutionPolicy RemoteSigned -Scope CurrentUser -Force```
     - Mac/Linux:
-        1. Run ```chmod +x mac-setup.sh config.sh start.sh``` in the Scribe folder
+        1. Run ```chmod +x mac-setup.sh be-start.sh fe-start.sh``` in the Scribe folder
 2. Insert the API Key for Microsoft Azure STT:
     1. Create a file named .env in the folder Scribe/ScribeFE/scribe-fe.
     2. Paste the following code into the file:  
@@ -113,9 +113,7 @@ Note: I have not tested the scripts for Mac/Linux. It is likely these will fail 
       1. From the Scribe folder, run ```./windows-setup.ps1``` in VSCode's terminal.
     - Mac/Linux:
       1. From the Scribe folder, run ```./mac-setup.sh``` in VSCode's terminal.
-5. Discard the changes to the config file so the API key does not get committed.
-6. Kill the terminal and restart Visual Studio Code.
-7. Run the project:
+5. Run the project:
     - Windows:
         - Run ```./start.ps1``` from the Scribe folder
     - Mac/Linux:
