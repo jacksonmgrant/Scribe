@@ -13,7 +13,20 @@
 	--yellow: #fad000;
 	--yellow-orange: #fbb238;
 	--orange: #f5a802;
-	--dark-orange: #d19004;
+	--dark-orange: #c06a00; /* Kate: darkened this for a little more contrast */
+
+	/* Kate: --yellow-orange on --dark (and vice-cersa) passes WCAG AA
+			  --dark-orange on --dark (and vice-versa) fails everything
+			  --dark-orange on --darkest (and vice-versa) passes WCAG AA for Large Text and Graphics, but fails normal text
+			  --orange on --dark (and vice-versa) passes WCAG AA
+			  --orange on --darkest (and vice-versa) passes WCAG AAA
+			  --red and crimson fail, fix for delete button
+	I'm going to clean up this document and finalize the color palette, then I'll write a style guide
+	we can link in the Readme on how to use colors to pass WCAG AA accessibility standards
+
+	I might nix the color gradient on the text. It's interesting but it makes meeting accessibility harder.
+	It's fine for the background tho
+	 */
 
 	/* Jackson: I asked Gemini for some theme examples, got mixed results. I like the last
 	   2 but am not fully sold on any. Would love some input from somebody who knows more about
