@@ -7,7 +7,7 @@
 	font-weight: 300;
 	background-clip: text;
 	color: transparent;
-	background-image: linear-gradient(to right, var(--yellow-orange), var(--dark-orange));
+	background-image: linear-gradient(to bottom right, var(--yellow-orange), var(--dark-orange));
 	margin-bottom: 1rem;
 }
 
@@ -72,14 +72,9 @@ textarea {
 }
 
 .note .actions .edit {
-	background-image: linear-gradient(to right, var(--yellow), var(--dark-orange));
-    -webkit-background-clip: text;
-    background-clip: text;
-	-webkit-text-fill-color: transparent;
+	color: var(--orange);
 }
 
 .note .actions .delete {
-	background-clip: text;
-	color: transparent;
-	background-image: linear-gradient(to right, var(--crimson), var(--red));
+	color: var(--red);
 }

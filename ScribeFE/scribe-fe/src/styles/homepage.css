@@ -41,14 +41,7 @@ header {
 
 header h1{ 
 	font-size: 2.5rem;
-	font-weight: 300;
-  	font-style: bold;
-	background-clip: text;
-	color: transparent;
-	background-image: linear-gradient(to right, var(--yellow-orange), var(--dark-orange));
-	margin-right: 1rem;
-    margin-top: 1rem;
-	margin-bottom: 1rem;
+	color: var(--orange);
 }
 
 main {

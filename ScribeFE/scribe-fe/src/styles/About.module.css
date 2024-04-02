@@ -6,9 +6,7 @@
 
     h1 {
         font-size: 2.5rem;
-        background-clip: text;
-        color: transparent;
-        background-image: linear-gradient(var(--yellow-orange), var(--dark-orange));
+        color: var(--orange);
     }
 }
 
