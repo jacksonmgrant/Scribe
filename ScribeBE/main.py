@@ -2,8 +2,10 @@ from fastapi import FastAPI, HTTPException, UploadFile, APIRouter
 from fastapi.middleware.cors import CORSMiddleware
 from models.note_model import DbNote, Note
 from models.user_model import DbUser, User
+from models.feedback_model import DbFeedback, Feedback
 import note
 import user
+import feedback
 import transcriber
 from database import init_db
 
@@ -55,4 +57,5 @@ app.include_router(root_router, tags=["Root"])
 app.include_router(transcription_router, prefix="/transcribe", tags=["Transcription"])
 app.include_router(note.note_router, prefix="/notes", tags=["Note"])
 app.include_router(user.user_router, prefix="/users")
+app.include_router(feedback.feedback_router, prefix="/feedback", tags=["Feedback"])
 app.add_event_handler("startup", start_db)
