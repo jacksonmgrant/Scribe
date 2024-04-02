@@ -7,7 +7,7 @@ const Layout = ({isSignin,signout}) => {
     return (
       <>
         <nav>
-          <div className='zone pinkblue'>
+          <div className='zone orange'>
               <div className='main-nav'>
                   <li>
                       <Link to="/">Home</Link>

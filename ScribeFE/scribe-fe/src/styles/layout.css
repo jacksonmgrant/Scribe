@@ -1,9 +1,6 @@
 .zone {
-    cursor:pointer;
-    color:#FFF;
-    font-size:2em;
-    border-radius: 4px;
-    border:1px solid #bbb;
+    cursor: pointer;
+    font-size: 2em;
     transition: all 0.3s linear;
 }
 
@@ -19,19 +16,28 @@
 }
 
 li{
-    padding: 20px;
+    padding: 15px;
 }
 
 
 a {
-    color: #f5f5f6;
+    color: var(--darkest);
     text-decoration: None;
+    border: 1px solid transparent; 
+    border-radius: 4px;
+    padding-block: 5px;
+    padding-inline: 8px;
+}
+
+a:hover, a:focus {
+    border-color: var(--darkest);
+    transition: all 0.5s ease;
 }
 
 .blue{
     background: #7abcff
 }
 
-.pinkblue{
-    background: linear-gradient(319deg, #3d3eff 0%, #07a4d8 37%, #fd00ff 130%);;
+.orange{
+    background: var(--orange);
 }
