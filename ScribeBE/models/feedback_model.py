@@ -3,12 +3,11 @@ from pydantic import BaseModel
 
 class Feedback(BaseModel):
     id: int
-    feedback: str
+    text: str
     rating: int
 
 class DbFeedback(Document):
-    id: int
-    feedback: str
+    text: str
     rating: int
     
     class Settings:
