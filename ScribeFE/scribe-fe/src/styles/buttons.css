@@ -74,5 +74,5 @@ button {
 }
 
 .stop-icon {
-    color: rgb(199, 5, 5);
+    color: var(--red);
 }
