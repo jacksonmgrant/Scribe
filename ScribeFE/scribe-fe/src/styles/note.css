@@ -76,5 +76,5 @@ textarea {
 }
 
 .note .actions .delete {
-	color: var(--red);
+	color: var(--light-crimson);
 }

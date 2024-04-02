@@ -6,6 +6,7 @@
 	--pink: #EC4899;
 	--purple: #8B5CF6;
 	--light: #EEE;
+	--light-crimson: #ff4747;
 	--crimson: #DC2626;
 	--red: #bd1502;
 	
@@ -20,7 +21,7 @@
 			  --dark-orange on --darkest (and vice-versa) passes WCAG AA for Large Text and Graphics, but fails normal text
 			  --orange on --dark (and vice-versa) passes WCAG AA
 			  --orange on --darkest (and vice-versa) passes WCAG AAA
-			  --red and crimson fail, fix for delete button
+			  --red and crimson fail, created --light-crimson for delete button, which passed WCAG AA on --darkest bg
 	I'm going to clean up this document and finalize the color palette, then I'll write a style guide
 	we can link in the Readme on how to use colors to pass WCAG AA accessibility standards
 
