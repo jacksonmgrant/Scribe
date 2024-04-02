@@ -1,12 +1,29 @@
-.container{
-    display: flex;
-    flex-wrap: wrap;
-    width: 85%;
+.aboutContainer {
+    width: 80%;
     margin: auto;
-    padding-block: 5vh 10vh;
+    padding-block: 10vh 15vh;
+    text-align: center;
+
+    h1 {
+        font-size: 2.5rem;
+        background-clip: text;
+        color: transparent;
+        background-image: linear-gradient(var(--yellow-orange), var(--dark-orange));
+    }
 }
 
-.person{
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding-top: 5vh;
+
+    h2 {
+        font-size: 1.75rem;
+    }
+}
+
+.person {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -17,6 +34,8 @@
 .text{
     display: flex;
     flex-direction: column;
+    font-size: 1.25rem;
+    padding-top: 0.5rem;
 }
 
 .pic{
