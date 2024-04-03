@@ -5,7 +5,7 @@ import password_icon from "./Assets/password.png"
 import { Link } from "react-router-dom";
 import person_icon from "./Assets/person.png"
 
-const Signup = ({signin}) => {
+const Signup = ({signin,signout}) => {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -72,7 +72,7 @@ const Signup = ({signin}) => {
                     <Link className="submit" to={canSignup} 
                     onClick={() => {
                         createUser();
-                        signin();
+                        signup === true ? signin() : signout();
                     }}>
                         Sign up
                     </Link>

@@ -4,7 +4,7 @@ import email_icon from "./Assets/email.png"
 import password_icon from "./Assets/password.png"
 import { Link } from "react-router-dom";
 
-const LoginSignup = ({signin}) => {
+const LoginSignup = ({signin,signout}) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [login, setlogin] = useState(false);
@@ -32,7 +32,9 @@ const LoginSignup = ({signin}) => {
             throw error;
         }
     }
+
     const canLogin = login === true ? '/userpage' : '/loginSignupPage';
+    
     return(
         <form method='GET'>
             <div className='container'>
@@ -61,7 +63,7 @@ const LoginSignup = ({signin}) => {
                     <Link className="submit" to={canLogin} 
                         onClick={() => {
                             checkUser()
-                            signin()
+                            login === true ? signin() : signout();
                         }}
                     >Login
                     </Link>

@@ -35,11 +35,15 @@ const App = () => {
                     <Route path='aboutus' element={<About />} />
                     <Route path="loginSignupPage" 
                         element={<LoginSignupPage 
-                        signin={signin}/>} 
+                        signin={signin}
+                        signout={signout}
+                        />} 
                     />
                     <Route path="SignupPage" 
                         element={<SignupPage
-                            signin={signin}/>} 
+                            signin={signin}
+                            signout={signout}
+                            />} 
                     />
                     <Route path="formsubmission" element={<FormSubmissionPage/>}/>
                 </Route>
