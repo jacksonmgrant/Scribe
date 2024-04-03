@@ -41,5 +41,5 @@ li:hover, li:focus {
 }
 
 .orange{
-    background: var(--orange);
+    background: var(--orange-bg-gradient);
 }
