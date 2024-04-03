@@ -1,8 +1,5 @@
 .zone {
     font-size: 1.25rem;
-    h1 {
-        font-size: 1.25rem;
-    }
 }
 
 .main-nav{
@@ -10,7 +7,7 @@
     align-items: center;
     list-style: none;
     margin: 0;
-    padding-block: 15px;
+    padding: 15px;
 }
 
 .push{
@@ -19,12 +16,8 @@
 
 li{
     padding-inline: 15px;
-}
-
-
-a {
-    color: var(--darkest);
-    text-decoration: None;
+    margin-inline: 10px;
+    height: 2.35rem;
     border: 1px solid transparent; 
     border-radius: 8px;
     padding-block: 5px;
@@ -32,7 +25,13 @@ a {
     transition: all 0.25s ease;
 }
 
-a:hover, a:focus, a:active {
+
+a {
+    color: var(--darkest);
+    text-decoration: None;
+}
+
+li:hover, li:focus {
     border-color: var(--darkest);
     transition: all 0.5s ease;
 }

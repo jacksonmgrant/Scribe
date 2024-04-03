@@ -1,5 +1,6 @@
-import { Outlet, Link } from "react-router-dom";
-import "./styles/layout.css"
+import { Outlet } from "react-router-dom";
+import Logo from "./components/Assets/logo-bw.png";
+import "./styles/layout.css";
 
 
 const Layout = ({isSignin,signout}) => {
@@ -10,30 +11,28 @@ const Layout = ({isSignin,signout}) => {
           <div className='zone orange'>
               <div className='main-nav'>
                   <li>
-                    <div style={{ display: 'flex', alignItems:  'center' }}>
-                      <img title="Scribe Logo" src="/logo512.png" style={{ height: '3rem' }}></img>
-                      <Link to="/">
-                          <h1>Scribe</h1>
-                      </Link>
+                    <div style={{ display: 'flex', alignItems:  'start' }}>
+                      <img alt="Scribe Logo" src={Logo} style={{ height: '1.75rem', marginRight: '0.5rem' }}></img>
+                      <a href="/" style={{ fontWeight: '700' }}>Scribe</a>
                     </div>
                   </li>
                   <li>
-                      <Link to="/aboutus">About us</Link>
+                      <a id="aboutus" href="/aboutus">About us</a>
                   </li>
                   <li>
-                      <Link to="/formsubmission">Form submission</Link>
+                      <a id="formsubmission" href="/formsubmission">Form submission</a>
                   </li>
                   { isSignin === false
                   ?( 
-                    <li class="push">
-                        <Link to="/loginSignupPage">Sign up/Login
-                        <i class="fa-solid fa-right-to-bracket" style={{ marginLeft: '8px' }}></i>
-                        </Link>
+                    <li className="push">
+                        <a id="loginSignupPage" href="/loginSignupPage">Log In
+                        <i className="fa-solid fa-right-to-bracket" style={{ marginLeft: '8px' }}></i>
+                        </a>
                     </li>
                     )
                   : (
-                    <li class="push">
-                        <Link to="/loginSignupPage"  onClick={signout}>Sign out</Link>
+                    <li className="push">
+                        <a href="/loginSignupPage"  onClick={signout}>Log out</a>
                     </li>
                     )
                   }
