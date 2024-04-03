@@ -1,50 +1,49 @@
 .container{
     display: flex;
     flex-direction: column;
-    margin: auto;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    width: 600px;
-    background: linear-gradient(319deg, #3d3eff 0%, #07a4d8 37%, #fd00ff 130%);
-    padding-bottom: 30px;
-    border-radius: 60px;
+    align-items: center;
+    width: 40rem;
+    margin-inline: auto;
+    margin-block: 5rem 8rem;
+    background: var(--darkest);
+    padding: 2rem;
+    border-radius: 25px;
 }
 
 .header{
     display: flex;
-    flex-direction: column;
     align-items: center;
-    gap: 9px;
-    width: 100%; 
-    margin-top: 30px;
+    width: 100%;
+    justify-content: center;
+
+    h1 {
+        color: var(--orange);
+        font-size: 2.5rem;
+        font-weight: 700;
+        text-align: center;
+    }
+    
 }
 
-.text{
-    color: rgb(23, 224, 238);
-    font-size: 48px;
-    font-weight: 700;
-}
-
-
-.inputs{
-    margin-top: 55px;
+.inputs {
+    margin-top: 2.5rem;
+    width: 80%;
     display: flex;
     flex-direction: column;
-    gap:25px;
+    gap: 2rem;
 }
 
 .input{
     display: flex;
     align-items: center;
     margin: auto;
-    width: 480px;
-    height: 80px;
-    background: #eaeaea;
-
-}
-
-.input img{
-    margin: 0px 30px;
+    width: 100%;
+    height: auto;
+    background: var(--light);
+    color: var(--grey);
+    font-size: 1.25rem;
+    border-radius: 8px;
+    padding-inline: 1rem;
 }
 
 .input input {
@@ -53,35 +52,53 @@
     background: transparent;
     border: none;
     outline: none;
-    color: #797979;
-    font-size: 19px;
-
+    color: var(--grey);
+    font-size: 1.25rem;
+    padding-inline: 1rem;
 }
 
-
-.submit-container{
+.submit-container {
     display: flex;
-    gap: 30px;
-    margin: 60px auto;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 80%;
+    margin: auto;
+    margin-block: 2.5rem;
+}
+
+.signup-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    .signup {
+        color: var(--light);
+        text-decoration: underline;
+        padding-inline: 1rem;
+        transition: all 0.25s ease;
+    }
+
+    .signup:hover, .signup:focus {
+        color: var(--orange);
+        transition: all 0.5s ease;
+    }
 }
 
 .submit{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 220px;
-    height: 59px;
-    background: #000;
-    border-radius: 50px;
-    font-size: 19px;
+    width: 100%;
+    color: var(--orange);
+    font-size: 1.25rem;
     font-weight: 700;
+    background-color: var(--dark); /* Dark background color */
+    border: 1px solid var(--dark);
+    border-radius: 8px; /* Add rounded corners */
+    padding: 10px 20px; /* Adjust padding for the button */
     cursor: pointer;
+    transition: all 0.25s ease;
 }
 
-#button {
-    color: rgb(23, 224, 238);
-}
-
-.submit:hover{
-    background-color: rgb(255, 255, 255);
+.submit:hover, .submit:focus {
+    border: 1px solid var(--orange);
+    transition: all 0.5s ease;
 }
