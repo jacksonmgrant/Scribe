@@ -2,7 +2,6 @@ from beanie import Document
 from pydantic import BaseModel
 
 class Feedback(BaseModel):
-    id: int
     text: str
     rating: int
 
@@ -11,5 +10,5 @@ class DbFeedback(Document):
     rating: int
     
     class Settings:
-        name = "feedback"
+        name = "feedbacks"
         keep_nulls = False

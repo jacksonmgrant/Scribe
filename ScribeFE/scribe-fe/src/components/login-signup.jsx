@@ -22,9 +22,7 @@ const LoginSignup = ({signin}) => {
                 }),
             });
             const user = await response.json();
-            console.log(user);
-            console.log(user.msg == "welcome back");
-            if(user.msg == "welcome back"){
+            if(user.msg === "welcome back"){
                 setlogin(true)
             }else{
                 setlogin(false)
@@ -34,7 +32,7 @@ const LoginSignup = ({signin}) => {
             throw error;
         }
     }
-    const canLogin = login == true ? '/userpage' : '/loginSignupPage';
+    const canLogin = login === true ? '/userpage' : '/loginSignupPage';
     return(
         <form method='GET'>
             <div className='container'>

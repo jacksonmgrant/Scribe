@@ -25,7 +25,7 @@ const Signup = ({signin}) => {
                 }),
             });
             const user = await response.json();
-            if(user.msg == "successfully add new user"){
+            if(user.msg === "successfully add new user"){
                 setSignup(true)
             }else {
                 setSignup(false)
@@ -36,7 +36,7 @@ const Signup = ({signin}) => {
         }
     }
 
-    const canSignup = signup == true ? '/userpage' : '/SignupPage';
+    const canSignup = signup === true ? '/userpage' : '/SignupPage';
 
     return(
         <form method='POST'>
