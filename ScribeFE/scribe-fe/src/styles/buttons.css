@@ -11,7 +11,7 @@ button {
     margin: 4px;
 }
 
-#upload-audio-file {
+#upload-audio-file, #record-audio, #stop-recording {
 	color: var(--light);
     font-size: 1.25rem;
     font-weight: 700;
@@ -19,45 +19,16 @@ button {
     border-radius: 8px; /* Add rounded corners */
     padding: 10px 20px; /* Adjust padding for the button */
     cursor: pointer;
-}
-
-
-#record-audio {
-    color: var(--light);
-    font-size: 1.25rem;
-    font-weight: 700;
-    background-color: var(--darkest); /* Dark background color */
-    border-radius: 8px; /* Add rounded corners */
-    padding: 10px 20px; /* Adjust padding for the button */
-    cursor: pointer;
-}
-
-#record-audio:hover, #record-audio:active, #upload-audio-file:hover, #upload-audi0-file:active {
-	border: 1px solid var(--orange);
-    transition: all 0.5s ease;
-}
-
-#stop-recording {
-    color: var(--light);
-    font-size: 1.25rem;
-    font-weight: 700;
-    background-color: var(--darkest); /* Dark background color */
-    border: none; /* Remove default button border */
-    border-radius: 8px; /* Add rounded corners */
-    padding: 10px 20px; /* Adjust padding for the button */
-    cursor: pointer;
-    transition: 0.4s;
-}
-
-
-#stop-recording:hover {
-	opacity: 0.8;
-}
-
-#stop-recording:active {
-	opacity: 0.6;
+    transition: all 0.25s ease;
 }
 
 .stop-icon {
-    color: var(--red);
+    color: var(--light-crimson);
+}
+
+#record-audio:hover, #record-audio:active,
+#upload-audio-file:hover, #upload-audi0-file:active,
+#stop-recording:hover, #stop-recording:active {
+	border: 1px solid var(--orange);
+    transition: all 0.5s ease;
 }
