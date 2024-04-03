@@ -7,27 +7,34 @@ import { Link } from "react-router-dom";
 const LoginSignup = ({signin}) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    
-    const login = async () => {
+    const [login, setlogin] = useState(false);
+
+    const checkUser = async () => {
         try {
-            const response = await fetch(`http://localhost:8000/login/`, {
+            const response = await fetch(`http://localhost:8000/users/login/`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    emai: email,
+                    email: email,
                     password: password
                 }),
             });
-            const result_1 = await response.json();
-            console.log('Success:', result_1);
-            return result_1;
+            const user = await response.json();
+            console.log(user);
+            console.log(user.msg == "welcome back");
+            if(user.msg == "welcome back"){
+                setlogin(true)
+            }else{
+                setlogin(false)
+            }
         } catch (error) {
             console.error('Error:', error);
             throw error;
         }
     }
+    const canLogin = login == true ? '/userpage' : '/loginSignupPage';
     return(
         <form method='GET'>
             <div className='container'>
@@ -53,9 +60,9 @@ const LoginSignup = ({signin}) => {
                     </div>
                 </div>
                 <div className='submit-container'>
-                    <Link className="submit"to="/userpage" 
+                    <Link className="submit" to={canLogin} 
                         onClick={() => {
-                            login()
+                            checkUser()
                             signin()
                         }}
                     >Login

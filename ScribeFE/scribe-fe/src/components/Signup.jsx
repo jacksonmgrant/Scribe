@@ -9,7 +9,7 @@ const Signup = ({signin}) => {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    
+    const [signup, setSignup] = useState(false);
 
     const createUser = async () => {
         try {
@@ -24,14 +24,19 @@ const Signup = ({signin}) => {
                     password: password
                 }),
             });
-            const result_1 = await response.json();
-            console.log('Success:', result_1);
-            return result_1;
+            const user = await response.json();
+            if(user.msg == "successfully add new user"){
+                setSignup(true)
+            }else {
+                setSignup(false)
+            }
         } catch (error) {
             console.error('Error:', error);
             throw error;
         }
     }
+
+    const canSignup = signup == true ? '/userpage' : '/SignupPage';
 
     return(
         <form method='POST'>
@@ -64,7 +69,7 @@ const Signup = ({signin}) => {
                     </div>
                 </div>
                 <div className='submit-container'>
-                    <Link className="submit"to="/userpage" 
+                    <Link className="submit" to={canSignup} 
                     onClick={() => {
                         createUser();
                         signin();

@@ -6,6 +6,10 @@ class User(BaseModel):
     email: EmailStr
     password: str
 
+class Login(BaseModel):
+    email: EmailStr
+    password: str
+
 class DbUser(Document):
     name: str
     email: EmailStr
