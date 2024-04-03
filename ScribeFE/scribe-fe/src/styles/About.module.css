@@ -1,8 +1,7 @@
 .aboutContainer {
     width: 80%;
     margin: auto;
-    padding-block: 10vh 15vh;
-    text-align: center;
+    padding-block: 5rem 8rem;
 
     h1 {
         font-size: 2.5rem;
@@ -26,7 +25,6 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
-    padding: 25px;
 }
 
 .text{
@@ -37,6 +35,6 @@
 }
 
 .pic{
-    border-radius: 100px;
+    border-radius: 12px;
     margin-bottom: 25px;
 }

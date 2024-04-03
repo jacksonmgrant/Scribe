@@ -5,55 +5,40 @@
 
 button {
 	appearance: none;
-	border: none;
+	border: 1px solid transparent;
 	outline: none;
 	background: none;
     margin: 4px;
 }
 
 #upload-audio-file {
-	color: white;
+	color: var(--light);
     font-size: 1.25rem;
     font-weight: 700;
     background-color: var(--darkest); /* Dark background color */
-    border: none; /* Remove default button border */
     border-radius: 8px; /* Add rounded corners */
     padding: 10px 20px; /* Adjust padding for the button */
     cursor: pointer;
-    transition: 0.4s;
 }
 
-
-#upload-audio-file:hover {
-	opacity: 0.8;
-}
-
-#upload-audio-file:active {
-	opacity: 0.6;
-}
 
 #record-audio {
-    color: white;
+    color: var(--light);
     font-size: 1.25rem;
     font-weight: 700;
     background-color: var(--darkest); /* Dark background color */
-    border: none; /* Remove default button border */
     border-radius: 8px; /* Add rounded corners */
     padding: 10px 20px; /* Adjust padding for the button */
     cursor: pointer;
-    transition: 0.4s;
 }
 
-#record-audio:hover {
-	opacity: 0.8;
-}
-
-#record-audio:active {
-	opacity: 0.6;
+#record-audio:hover, #record-audio:active, #upload-audio-file:hover, #upload-audi0-file:active {
+	border: 1px solid var(--orange);
+    transition: all 0.5s ease;
 }
 
 #stop-recording {
-    color: white;
+    color: var(--light);
     font-size: 1.25rem;
     font-weight: 700;
     background-color: var(--darkest); /* Dark background color */

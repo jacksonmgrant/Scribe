@@ -10,7 +10,12 @@ const Layout = ({isSignin,signout}) => {
           <div className='zone orange'>
               <div className='main-nav'>
                   <li>
-                      <Link to="/">Home</Link>
+                    <div style={{ display: 'flex', alignItems:  'center' }}>
+                      <img title="Scribe Logo" src="/logo512.png" style={{ height: '3rem' }}></img>
+                      <Link to="/">
+                          <h1>Scribe</h1>
+                      </Link>
+                    </div>
                   </li>
                   <li>
                       <Link to="/aboutus">About us</Link>
@@ -21,7 +26,9 @@ const Layout = ({isSignin,signout}) => {
                   { isSignin === false
                   ?( 
                     <li class="push">
-                        <Link to="/loginSignupPage">Sign up/Login</Link>
+                        <Link to="/loginSignupPage">Sign up/Login
+                        <i class="fa-solid fa-right-to-bracket" style={{ marginLeft: '8px' }}></i>
+                        </Link>
                     </li>
                     )
                   : (

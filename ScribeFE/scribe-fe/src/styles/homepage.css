@@ -30,8 +30,8 @@ body {
 }
 
 header {
-	padding: 2rem 1rem;
-	max-width: 800px;
+	padding: 5rem 1rem 1.25rem;
+	max-width: 80%;
 	width: 100%;
 	margin: 0 auto;
     display: flex;
@@ -46,7 +46,10 @@ header h1{
 
 main {
 	flex: 1 1 0%;
-	max-width: 1000px;
-	width: 100%;
-	margin: 0 auto;
+	width: 80%;
+	margin: auto;
+}
+
+#new-note-buttons {
+	padding-inline: 0.75rem;
 }
