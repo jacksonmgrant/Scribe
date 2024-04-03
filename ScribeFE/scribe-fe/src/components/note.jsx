@@ -34,13 +34,13 @@ export function Note({id, text = "Empty note", onEdit, onDelete}) {
       </div>
       <div className="actions">
         {isEditing ? <button className="edit" onClick={handleSaveClick}>Save
-        <i class="fa-solid fa-square-check" style={{ marginLeft: '8px' }}></i>
+        <i className="fa-solid fa-square-check" style={{ marginLeft: '8px' }}></i>
         </button>
           : <button className="edit" onClick={handleEditClick}>Edit
-            <i class="fa-solid fa-pen-to-square" style={{ marginLeft: '8px' }}></i>
+            <i className="fa-solid fa-pen-to-square" style={{ marginLeft: '8px' }}></i>
             </button>}
         <button className="delete" onClick={handleDeleteClick}>Delete
-        <i class="fa-solid fa-trash" style={{ marginLeft: '8px' }}></i>
+        <i className="fa-solid fa-trash" style={{ marginLeft: '8px' }}></i>
         </button>
       </div>
      </div>
