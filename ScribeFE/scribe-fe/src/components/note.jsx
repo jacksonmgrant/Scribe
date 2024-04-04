@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import apiService from '../services/apiService';
 
-export function Note({id, text = "Empty note", onEdit, onDelete}) {
+export function Note({id: _id, text = "Empty note", time, hasRecording, onEdit, onDelete}) {
   const [noteText, setText] = useState(text);
   const [isEditing, setIsEditing] = useState(false);
 
@@ -15,15 +15,15 @@ export function Note({id, text = "Empty note", onEdit, onDelete}) {
   }
 
   async function handleSaveClick() {
-    await apiService.updateNote({id, text: noteText})
-    onEdit(id, noteText);
+    await apiService.updateNote(_id, text)
+    onEdit(_id, noteText);
     setIsEditing(false);
   }
 
   async function handleDeleteClick() {
     // This will need to send a delete request to the server
-    await apiService.deleteNoteById(id);
-    onDelete(id);
+    await apiService.deleteNoteById(_id);
+    onDelete(_id);
   }
 
   return (

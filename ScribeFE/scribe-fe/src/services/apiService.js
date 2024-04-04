@@ -65,13 +65,14 @@ const getNoteById = (id) => {
         });
     }
 
-const updateNote = (note) => {
-    return fetch(`${BASE_URL}/notes/${note.id}`, {
+const updateNote = (id, note) => {
+    const data = {note_id: id, text: note};
+    return fetch(`${BASE_URL}/notes/`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify(note),
+        body: JSON.stringify(data),
         })
         .then((response) => response.json())
         .then((result) => {
