@@ -16,21 +16,21 @@ async def get_notes() -> dict:
     notes = await DbNote.find().to_list()
     return {"notes": notes}
 
-@note_router.get("/{note_id}")
-async def get_note(note_id: int) -> dict:
-    for note in note_list:
-        if note.id == note_id:
-            return {"note" : note}
-    raise HTTPException(status_code=404, detail="Note not found")
+@note_router.get("/")
+async def get_note(note_id: Any) -> dict:
+    note_obj_id = ObjectId(note_id)
+    note = await DbNote.find_one(DbNote.id == note_obj_id)
+    if note is None:
+        raise HTTPException(status_code=404, detail="Note not found")
+    return {"note" : note}
 
 @note_router.post("/", status_code=201)
 async def create_note(note_text: dict) -> dict:
     if note_text['text'] is None or 'text' not in note_text:
         raise HTTPException(status_code=400, detail="Note must have text")
     new_note = DbNote(text=note_text['text'])
-    # Insertion not working
     await new_note.insert()
-    return {"note" : note_text['text']}
+    return {"note created" : note_text['text']}
 
 ### Nithi : in mongodb id datatype is objectId which is not int. look at mongodb compass ###
 ###################################################################
