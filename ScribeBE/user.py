@@ -28,7 +28,7 @@ async def signup(user:User) -> dict:
     if not user.name or not user.email or not user.password:
         raise HTTPException(status_code=400, detail={"msg": "name or email or password can not be blank"})
     
-    new_user =  DbUser(name=user.name,email=user.email,password=hashed_user_password)
+    new_user =  DbUser(name=user.name,email=user.email,password=hashed_user_password,role="user")
     await new_user.insert()
     
     return {"msg": "successfully add new user"}
