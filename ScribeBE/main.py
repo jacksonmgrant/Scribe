@@ -1,8 +1,16 @@
 from fastapi import FastAPI, HTTPException, UploadFile, APIRouter
 from fastapi.middleware.cors import CORSMiddleware
-from model import Note
+from models.note_model import DbNote, Note
+from models.user_model import DbUser, User
+from models.feedback_model import DbFeedback, Feedback
 import note
+import user
+import feedback
 import transcriber
+from database import init_db
+
+async def start_db():
+    await init_db()
 
 app = FastAPI()
 
@@ -37,8 +45,8 @@ async def transcribe(file: UploadFile) -> dict:
     if "ResultReason" in speech:
         raise HTTPException(status_code=500, detail=speech)
     
-    note.note_list.append(Note(id=note.current_id, text=speech))
-    note.current_id += 1
+    new_note = DbNote(text=speech, hasRecording=True)
+    await new_note.insert()
     return {"transcribed" : speech}
 
 @transcription_router.get("/test")
@@ -48,3 +56,6 @@ async def transcribe_test(file: str):
 app.include_router(root_router, tags=["Root"])
 app.include_router(transcription_router, prefix="/transcribe", tags=["Transcription"])
 app.include_router(note.note_router, prefix="/notes", tags=["Note"])
+app.include_router(user.user_router, prefix="/users")
+app.include_router(feedback.feedback_router, prefix="/feedback")
+app.add_event_handler("startup", start_db)

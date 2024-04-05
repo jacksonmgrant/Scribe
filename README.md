@@ -78,8 +78,6 @@ The below instructions are for quick setup. I have written scripts that install 
 
 If you are worried about running scripts or are encountering issues with them, you can run the commands in the files in terminal yourself. There are more instructions in the frontend and backend readmes.
 
-Note: I have not tested the scripts for Mac/Linux. It is likely these will fail and you will need to manually configure the project. I am sorry, please reach out if you need help.
-
 ### Quick Setup
 
 1. Give the scripts permission to run:
@@ -87,7 +85,7 @@ Note: I have not tested the scripts for Mac/Linux. It is likely these will fail 
         1. Run ```Set-ExecutionPolicy AllSigned``` in a powershell window as an administrator.
             - If that fails try ```Set-ExecutionPolicy RemoteSigned -Scope CurrentUser -Force```
     - Mac/Linux:
-        1. Run ```chmod +x mac-setup.sh be-start.sh fe-start.sh``` in the Scribe folder
+        1. Run ```chmod +x mac-setup.sh config.sh start.sh``` in the Scribe folder
 2. Insert the API Key for Microsoft Azure STT:
     1. Create a file named .env in the folder Scribe/ScribeFE/scribe-fe.
     2. Paste the following code into the file:  
@@ -100,13 +98,15 @@ Note: I have not tested the scripts for Mac/Linux. It is likely these will fail 
     3. Replace the your-key value with the API key I have sent to you.
 3. Insert your database credentials
     1. Add your database user [here](https://cloud.mongodb.com/v2/65ff51a50085c37972c4b409#/security/database/users) and your IP address [here](https://cloud.mongodb.com/v2/65ff51a50085c37972c4b409#/security/network/accessList)
-        * If you don't have access, please send me the email associated with your MongoDB acccount to be added to the organization. 
+        - If you don't have access, please send me the email associated with your MongoDB acccount to be added to the organization.
     2. Create a file named .env in the folder Scribe/ScribeBE.
     3. Paste the following code into the file:
+
        ```text
        DB_USER="your_username"
        DB_PASS="your_password"
        ```
+
     4. Replace the username and password fields with your credentials
 4. Run the setup script:
     - Windows:

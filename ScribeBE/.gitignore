@@ -10,3 +10,6 @@ __pycache__/
 # Ignore uploaded files
 Uploads/*
 !Uploads/.gitkeep
+
+# Ignore environment files
+.env
