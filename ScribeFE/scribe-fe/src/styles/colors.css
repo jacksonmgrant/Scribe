@@ -1,19 +1,48 @@
 :root {
+/* ==== Theme Colors ==== */ 
+	/* Light */
+	--light: #EEEEEE;
+
+	/* Medium */
+	--gray: #6B7280;
+
+	/* Dark */
 	--dark: #374151;
 	--darker: #1F2937;
 	--darkest: #111827;
-	--grey: #6B7280;
-	--pink: #EC4899;
-	--purple: #8B5CF6;
-	--light: #EEE;
-	--crimson: #DC2626;
-	--red: #bd1502;
-	
-	/* Original theme: */
+
+	/* Primary Color */
 	--yellow: #fad000;
 	--yellow-orange: #fbb238;
 	--orange: #f5a802;
-	--dark-orange: #d19004;
+	--dark-orange: #c06a00; /* Kate: darkened this for a little more contrast */
+
+	/* Secondary Color */
+	--light-crimson: #ff4747;
+	/* Kate: come up with other varients of this color and test on dif backgrounds */	
+
+	/* Kate: --yellow-orange on --dark (and vice-cersa) passes WCAG AA
+			 --dark-orange on --dark (and vice-versa) fails everything
+			 --dark-orange on --darkest (and vice-versa) passes WCAG AA for Large Text and Graphics, but fails normal text
+			 --orange on --dark (and vice-versa) passes WCAG AA
+			 --orange on --darkest (and vice-versa) passes WCAG AAA
+			 --light-crimson passes WCAG AA on --darkest bg
+	I'm going to clean up this document and finalize the color palette, then I'll write a style guide
+	we can link in the Readme on how to use colors to pass WCAG AA accessibility standards
+
+	I nixed the color gradient on the text. It's interesting but it makes meeting accessibility harder.
+	It's fine for the background tho */
+
+/* ==== Project Color Definitions ==== */
+/* best practice is to define custom properties for colors and 
+then define custom properties for uses based on those colors */
+	--dark-bg-gradient: linear-gradient(to bottom right, var(--dark), var(--darker));
+	--orange-bg-gradient: linear-gradient(to bottom right, var(--yellow-orange), var(--orange));
+	--h1: var(--orange);
+	--h2: var(--light);
+	--text-orange: var(--orange);
+	--text-light: var(--light);
+	--text-dark: var(--darkest);
 
 	/* Jackson: I asked Gemini for some theme examples, got mixed results. I like the last
 	   2 but am not fully sold on any. Would love some input from somebody who knows more about
@@ -65,5 +94,5 @@
 	/* Plum and Ivory: */
 	--plum: #92597D;
 	--ivory: #FDF5E6;
-	
 }
+

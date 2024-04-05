@@ -1,8 +1,6 @@
 import React, {useState} from 'react';
 import "../styles/LoginSignup.css"
-import email_icon from "./Assets/email.png"
-import password_icon from "./Assets/password.png"
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 const LoginSignup = ({signin,signout}) => {
     const [email, setEmail] = useState("");
@@ -39,11 +37,11 @@ const LoginSignup = ({signin,signout}) => {
         <form method='GET'>
             <div className='container'>
                 <div className='header'>
-                    <div className='text'>Login</div>
+                    <h1 className='text'>Log In</h1>
                 </div>
                 <div className='inputs'>
                     <div className='input'>
-                        <img src={email_icon} alt=''/>
+                        <i className="fa-solid fa-envelope"></i>
                         <input type='email' 
                         name="userid" 
                         placeholder='Email Id'
@@ -51,7 +49,7 @@ const LoginSignup = ({signin,signout}) => {
                         />
                     </div>
                     <div className='input'>
-                        <img src={password_icon} alt=''/>
+                        <i className="fa-solid fa-lock"></i>
                         <input type='password' 
                         name="password" 
                         placeholder='Password'
@@ -67,7 +65,10 @@ const LoginSignup = ({signin,signout}) => {
                         }}
                     >Login
                     </Link>
-                    <Link className="submit"to="/SignupPage">Sign up</Link>
+                </div>
+                <div className='signup-container'>
+                    <p>Don't have an account?</p>
+                    <Link className="signup" to="/SignupPage">Sign up today!</Link>
                 </div>
             </div>
         </form>

@@ -1,9 +1,6 @@
 import React, {useState} from 'react';
-import "../styles/LoginSignup.css"
-import email_icon from "./Assets/email.png"
-import password_icon from "./Assets/password.png"
-import { Link } from "react-router-dom";
-import person_icon from "./Assets/person.png"
+import "../styles/LoginSignup.css";
+import { Link } from 'react-router-dom';
 
 const Signup = ({signin,signout}) => {
     const [name, setName] = useState("");
@@ -42,25 +39,25 @@ const Signup = ({signin,signout}) => {
         <form method='POST'>
             <div className='container'>
                 <div className='header'>
-                    <div className='text'>Sign up</div>
+                    <h1 className='text'>Sign up</h1>
                 </div>
                 <div className='inputs'>
                     <div className='input'>
-                        <img src = {person_icon} alt=''/>
+                        <i className="fa-solid fa-user"></i>
                         <input type='text' placeholder='Name' 
                             value={name}
                             onChange={(event) => setName(event.target.value)}
                         />
                     </div>
                     <div className='input'>
-                        <img src={email_icon} alt=''/>
-                        <input type='email'  placeholder='Email Id' 
+                        <i className="fa-solid fa-user"></i>
+                        <input type='email'  placeholder='Email' 
                             value={email}
                             onChange={(event) => setEmail(event.target.value)}
                         />
                     </div>
                     <div className='input'>
-                        <img src={password_icon} alt=''/>
+                        <i className="fa-solid fa-lock"></i>
                         <input type='password' 
                             placeholder='Password' 
                             value={password}
