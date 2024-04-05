@@ -6,7 +6,6 @@ export function Note({id: _id, text = "Empty note", time, hasRecording, onEdit, 
   const [isEditing, setIsEditing] = useState(false);
 
   function editNote(e) {
-    // This will need to send a put request to the server
     setText(e.target.value);
   }
 
@@ -15,7 +14,7 @@ export function Note({id: _id, text = "Empty note", time, hasRecording, onEdit, 
   }
 
   async function handleSaveClick() {
-    await apiService.updateNote(_id, text)
+    await apiService.updateNote(_id, noteText)
     onEdit(_id, noteText);
     setIsEditing(false);
   }
