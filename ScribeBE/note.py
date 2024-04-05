@@ -1,6 +1,6 @@
 from typing import Any
 from fastapi import APIRouter, HTTPException
-from models.note_model import Note, DbNote
+from models.note_model import Note, DbNote, NoteUpdate
 from bson.objectid import ObjectId
 
 # This will be replaced with a database
@@ -16,7 +16,7 @@ async def get_notes() -> dict:
     notes = await DbNote.find().to_list()
     return {"notes": notes}
 
-@note_router.get("/")
+@note_router.get("/{note_id}")
 async def get_note(note_id: Any) -> dict:
     note_obj_id = ObjectId(note_id)
     note = await DbNote.find_one(DbNote.id == note_obj_id)
@@ -35,14 +35,14 @@ async def create_note(note_text: dict) -> dict:
 ### Nithi : in mongodb id datatype is objectId which is not int. look at mongodb compass ###
 ###################################################################
 @note_router.put("/")
-async def update_note(note_id: Any, text: str) -> dict:
-    note_obj_id = ObjectId(note_id)
-    note_to_update = await DbNote.find_one(DbNote.id == note_obj_id) # this is how you grab data from database by id
-    if note_to_update == None:
+async def update_note(note_data: NoteUpdate) -> dict:
+    note_obj_id = ObjectId(note_data.note_id)
+    note_to_update = await DbNote.find_one(DbNote.id == note_obj_id)
+    if note_to_update is None:
         raise HTTPException(status_code=404, detail="Note not found") 
-    note_to_update.text = text
+    note_to_update.text = note_data.text
     await note_to_update.save()
-    return {"message" : "Note updated"}
+    return {"message": "Note updated"}
 
 @note_router.delete("/{note_id}")
 async def delete_note(note_id: Any) -> dict:
