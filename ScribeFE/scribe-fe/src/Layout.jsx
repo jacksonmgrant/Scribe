@@ -33,7 +33,7 @@ const Layout = ({isSignin,signout}) => {
                   <li>
                     <div style={{ display: 'flex', alignItems:  'start' }}>
                       <img alt="Scribe Logo" src={Logo} style={{ height: '1.75rem', marginRight: '0.5rem' }}></img>
-                      <Link to="/" style={{ fontWeight: '700' }}>Scribe</Link>
+                      <Link to="/userpage" style={{ fontWeight: '700' }}>Scribe</Link>
                     </div>
                   </li>
                   <li>
