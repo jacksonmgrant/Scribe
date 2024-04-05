@@ -2,7 +2,7 @@ import Header from '../header';
 import NoteManager from '../note-manager';
 import '../../styles/homepage.css';
 
-const Homepage = () => {
+const Userpage = () => {
     return(
         <div>
             <Header className="App-header"/>
@@ -11,4 +11,4 @@ const Homepage = () => {
     )
 }
 
-export default Homepage;
+export default Userpage;

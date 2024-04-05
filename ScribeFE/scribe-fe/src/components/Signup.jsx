@@ -1,8 +1,40 @@
-import React from 'react';
+import React, {useState} from 'react';
 import "../styles/LoginSignup.css";
 import { Link } from 'react-router-dom';
 
-const Signup = ({signin}) => {
+const Signup = ({signin,signout}) => {
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [signup, setSignup] = useState(false);
+
+    const createUser = async () => {
+        try {
+            const response = await fetch(`http://localhost:8000/users/`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    name: name,
+                    email: email,
+                    password: password
+                }),
+            });
+            const user = await response.json();
+            if(user.msg === "successfully add new user"){
+                setSignup(true)
+            }else {
+                setSignup(false)
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            throw error;
+        }
+    }
+
+    const canSignup = signup === true ? '/userpage' : '/SignupPage';
+
     return(
         <form method='POST'>
             <div className='container'>
@@ -12,19 +44,35 @@ const Signup = ({signin}) => {
                 <div className='inputs'>
                     <div className='input'>
                         <i className="fa-solid fa-user"></i>
-                        <input type='text' name="Name" placeholder='Name'/>
+                        <input type='text' placeholder='Name' 
+                            value={name}
+                            onChange={(event) => setName(event.target.value)}
+                        />
                     </div>
                     <div className='input'>
-                        <i className="fa-solid fa-envelope"></i>
-                        <input type='email' name="userid" placeholder='Email'/>
+                        <i className="fa-solid fa-user"></i>
+                        <input type='email'  placeholder='Email' 
+                            value={email}
+                            onChange={(event) => setEmail(event.target.value)}
+                        />
                     </div>
                     <div className='input'>
-                    <i className="fa-solid fa-lock"></i>
-                        <input type='password' name="password" placeholder='Password'/>
+                        <i className="fa-solid fa-lock"></i>
+                        <input type='password' 
+                            placeholder='Password' 
+                            value={password}
+                            onChange={(event) => setPassword(event.target.value)}
+                        />
                     </div>
                 </div>
                 <div className='submit-container'>
-                    <Link className="submit" to="/" onClick={() => signin()}>Sign up</Link>
+                    <Link className="submit" to={canSignup} 
+                    onClick={() => {
+                        createUser();
+                        signup === true ? signin() : signout();
+                    }}>
+                        Sign up
+                    </Link>
                 </div>
             </div>
         </form>
