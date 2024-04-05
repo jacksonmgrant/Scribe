@@ -1,5 +1,6 @@
 import React from 'react';
-import "../styles/LoginSignup.css"
+import "../styles/LoginSignup.css";
+import { Link } from 'react-router-dom';
 
 const Signup = ({signin}) => {
     return(
@@ -23,7 +24,7 @@ const Signup = ({signin}) => {
                     </div>
                 </div>
                 <div className='submit-container'>
-                    <a className="submit" href="/" onClick={() => signin()}>Sign up</a>
+                    <Link className="submit" to="/" onClick={() => signin()}>Sign up</Link>
                 </div>
             </div>
         </form>
