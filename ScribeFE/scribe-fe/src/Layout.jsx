@@ -33,6 +33,7 @@ const Layout = ({isSignin,signout}) => {
                   : (
                     <li className="push">
                         <a href="/loginSignupPage"  onClick={signout}>Log out</a>
+                        <i className="fa-solid fa-right-to-bracket" style={{ marginLeft: '8px' }}></i>
                     </li>
                     )
                   }
