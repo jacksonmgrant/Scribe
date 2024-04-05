@@ -8,6 +8,7 @@
     background: var(--darkest);
     padding: 2rem;
     border-radius: 25px;
+    color: var(--text-light);
 }
 
 .header{

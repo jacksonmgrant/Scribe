@@ -38,7 +38,11 @@
 then define custom properties for uses based on those colors */
 	--dark-bg-gradient: linear-gradient(to bottom right, var(--dark), var(--darker));
 	--orange-bg-gradient: linear-gradient(to bottom right, var(--yellow-orange), var(--orange));
-	--heading: var(--orange);
+	--h1: var(--orange);
+	--h2: var(--light);
+	--text-orange: var(--orange);
+	--text-light: var(--light);
+	--text-dark: var(--darkest);
 
 	/* Jackson: I asked Gemini for some theme examples, got mixed results. I like the last
 	   2 but am not fully sold on any. Would love some input from somebody who knows more about
