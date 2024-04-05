@@ -14,6 +14,7 @@ class DbUser(Document):
     name: str
     email: EmailStr
     password: str
+    role: str | None = "user"
     
     class Settings:
         name = "users"
