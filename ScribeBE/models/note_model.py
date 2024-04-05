@@ -4,12 +4,8 @@ from beanie import Document, Indexed
 from pydantic import BaseModel
 
 class Note(BaseModel):
-    id: int
+    id: str
     text: str | None
-
-class NoteUpdate(BaseModel):
-    note_id: str
-    text: str
 
 class DbNote(Document):
     # May need to figure out how to manage a null text field coming from the FE

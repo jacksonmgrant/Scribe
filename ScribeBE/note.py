@@ -1,6 +1,7 @@
+from datetime import datetime
 from typing import Any
 from fastapi import APIRouter, HTTPException
-from models.note_model import Note, DbNote, NoteUpdate
+from models.note_model import Note, DbNote
 from bson.objectid import ObjectId
 
 # This will be replaced with a database
@@ -32,16 +33,15 @@ async def create_note(note_text: dict) -> dict:
     await new_note.insert()
     return {"note created" : note_text['text']}
 
-### Nithi : in mongodb id datatype is objectId which is not int. look at mongodb compass ###
-###################################################################
 @note_router.put("/")
-async def update_note(note_data: NoteUpdate) -> dict:
-    note_obj_id = ObjectId(note_data.note_id)
+async def update_note(note: Note) -> dict:
+    note_obj_id = ObjectId(note.id)
+    print(note_obj_id)
     note_to_update = await DbNote.find_one(DbNote.id == note_obj_id)
+    print(note_to_update)
     if note_to_update is None:
         raise HTTPException(status_code=404, detail="Note not found") 
-    note_to_update.text = note_data.text
-    await note_to_update.save()
+    await note_to_update.update({"$set": {DbNote.text: note.text, DbNote.time: datetime.now()}})
     return {"message": "Note updated"}
 
 @note_router.delete("/{note_id}")
