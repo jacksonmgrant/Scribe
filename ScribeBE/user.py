@@ -1,17 +1,18 @@
 from fastapi import APIRouter, HTTPException
 from models.user_model import DbUser, User, Login
+import string
+import random
+from hash_password import HashPassword
 
-# for debugging purpose
-import logging
-logger = logging.getLogger(__name__)
 
+hash_password = HashPassword()
 user_router = APIRouter()
 
 
 @user_router.post("/", status_code=201)
 async def signup(user:User) -> dict:
-    
-    # Check if there are that email or name already exists in database
+    random_letter = random.choice(string.ascii_lowercase)
+    hashed_user_password = hash_password.create_hash_with_salt(user.password ,random_letter * 21 + random_letter)
     existing_user = await DbUser.find_one({
             "$or": [
                 {"email": user.email.lower()},
@@ -27,15 +28,16 @@ async def signup(user:User) -> dict:
     if not user.name or not user.email or not user.password:
         raise HTTPException(status_code=400, detail={"msg": "name or email or password can not be blank"})
     
-    new_user =  DbUser(name=user.name,email=user.email,password=user.password)
+    new_user =  DbUser(name=user.name,email=user.email,password=hashed_user_password)
     await new_user.insert()
     
     return {"msg": "successfully add new user"}
 
 @user_router.post("/login", status_code=201)
 async def login(user:Login) -> dict:
-    existing_user = await DbUser.find_one({"$and": [{"password": user.password}, {"email": user.email}]})
-    if existing_user:
+    existing_user = await DbUser.find_one(DbUser.email == user.email)
+    check_password = hash_password.verify_hash(user.password,existing_user.password)
+    if existing_user and check_password:
        return {"msg": "welcome back"}
     else:
        raise HTTPException(status_code=400, detail="Email or password is not correct")
