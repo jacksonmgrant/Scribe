@@ -38,7 +38,7 @@ const LoginSignup = ({signin,signout}) => {
         }
     }
 
-    // const canLogin = login === true ? '/userpage' : '/loginSignupPage';
+    
     return(
         <form method='GET'>
             <div className='container'>
