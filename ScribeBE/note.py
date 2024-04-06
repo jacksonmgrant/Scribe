@@ -14,7 +14,7 @@ async def get_notes(user_id: Any) -> dict:
     except:
         raise HTTPException(status_code=400, detail="Invalid user id")
     user = await DbUser.find_one(DbUser.id == user_obj_id)
-    if user == "admin":
+    if user.role == "admin":
         notes = await DbNote.find().to_list()
     else:
         notes = await DbNote.find(DbNote.user_id == user_id).to_list()
