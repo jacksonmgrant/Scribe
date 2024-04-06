@@ -14,7 +14,8 @@ export default function NoteManager() {
 
 	async function fetchNotes() {
 		try {
-			const allNotes = await apiService.getNotes();
+			// TODO Replace the admin id here with the global current user id
+			const allNotes = await apiService.getNotes("66105db717133f8a7b0952dc");
 			setNotes(allNotes.notes);
 		} catch (error) {
 			console.error("Error fetching notes:", error);

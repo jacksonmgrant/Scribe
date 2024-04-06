@@ -14,7 +14,8 @@ export function FileUploadButton({ onUpload }) {
             console.log("Transcribing");
             const text = await transcribeFile(event);
             console.log(text);
-            await apiService.createNote(text);
+            // TODO replace the admin id with the global current user id            
+            await apiService.createNote(text, "66105db717133f8a7b0952dc");
             onUpload();
         } catch (error) {
             console.error(error);
@@ -55,7 +56,8 @@ export function RecordAudioButton({ onUpload }) {
         if (transcribedText !== null) {
             // Perform actions that depend on the updated transcribedText here
             console.log('Transcribed speech:', transcribedText);
-            apiService.createNote(transcribedText)
+            // TODO replace the admin id with the global current user id            
+            apiService.createNote(transcribedText, "66105db717133f8a7b0952dc")
                 .then(() => {
                     // Once note is created, trigger upload
                     onUpload();

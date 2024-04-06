@@ -11,7 +11,8 @@ class DbNote(Document):
     # May need to figure out how to manage a null text field coming from the FE
     text: str
     time: Indexed(datetime) = datetime.now() # type: ignore
-    hasRecording: Optional[bool] = False
+    recording_id: Optional[str] = None
+    user_id: Optional[str] = None
     
     class Settings:
         name = "notes"
