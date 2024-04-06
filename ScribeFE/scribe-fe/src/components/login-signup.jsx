@@ -23,7 +23,8 @@ const LoginSignup = ({signin,signout}) => {
                 }),
             });
             const user = await response.json();
-            if(user.msg === "welcome back"){
+            console.log(user)
+            if(user){
                 setlogin(true)
                 navigate('/userpage')
                 signin()

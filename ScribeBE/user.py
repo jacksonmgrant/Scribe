@@ -3,7 +3,8 @@ from models.user_model import DbUser, User, Login
 import string
 import random
 from hash_password import HashPassword
-
+import JWT_token
+from datetime import datetime, timedelta, timezone
 
 hash_password = HashPassword()
 user_router = APIRouter()
@@ -28,16 +29,25 @@ async def signup(user:User) -> dict:
     return {"msg": "successfully add new user"}
 
 @user_router.post("/login", status_code=201)
-async def login(user:Login) -> dict:
+async def login(user:Login):
     existing_user = await DbUser.find_one(DbUser.email == user.email)
 
     # email is not correct
     if not existing_user:
         raise HTTPException(status_code=400, detail="Email or password is not correct")
-
     check_password = hash_password.verify_hash(user.password,existing_user.password)
+    
+    if check_password:
+        user_token = JWT_token.create_access_token(
+        data={"email_id" : existing_user.email,
+            "password" : user.password},
+        expires_delta=timedelta(minutes=JWT_token.ACCESS_TOKEN_EXPIRE_MINUTES),
+        )
+    
+    
+        
     if existing_user and check_password:
-       return {"msg": "welcome back"}
+       return user_token
 
     # password is not correct   
     raise HTTPException(status_code=400, detail="Email or password is not correct")
