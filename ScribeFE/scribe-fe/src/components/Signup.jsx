@@ -6,7 +6,6 @@ const Signup = ({signin,signout}) => {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [signup, setSignup] = useState(false);
     const [cannotSignup,setCannotSignup] = useState(false)
     const navigate = useNavigate();
 
@@ -25,12 +24,10 @@ const Signup = ({signin,signout}) => {
             });
             const user = await response.json();
             if(user.msg === "successfully add new user"){
-                setSignup(true)
                 navigate('/userpage')
                 signin()
             }else {
                 setCannotSignup(true)
-                setSignup(false)
                 signout()
             }
         } catch (error) {
