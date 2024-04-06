@@ -1,12 +1,15 @@
 import React, {useState} from 'react';
 import "../styles/LoginSignup.css"
-import { Link } from 'react-router-dom';
+import {Link,useNavigate} from 'react-router-dom';
+
 
 const LoginSignup = ({signin,signout}) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [login, setlogin] = useState(false);
-    const [cannotLogin,setCannotLogin] = useState(false)
+    const [cannotLogin,setCannotLogin] = useState(false);
+    const navigate = useNavigate();
+    
     const checkUser = async () => {
         try {
             const response = await fetch(`http://localhost:8000/users/login/`, {
@@ -22,9 +25,12 @@ const LoginSignup = ({signin,signout}) => {
             const user = await response.json();
             if(user.msg === "welcome back"){
                 setlogin(true)
+                navigate('/userpage')
+                signin()
             }else{
                 setlogin(false)
                 setCannotLogin(true)
+                signout()
             }
         } catch (error) {
             console.error('Error:', error);
@@ -32,8 +38,7 @@ const LoginSignup = ({signin,signout}) => {
         }
     }
 
-    const canLogin = login === true ? '/userpage' : '/loginSignupPage';
-    
+    // const canLogin = login === true ? '/userpage' : '/loginSignupPage';
     return(
         <form method='GET'>
             <div className='container'>
@@ -60,10 +65,9 @@ const LoginSignup = ({signin,signout}) => {
                     {cannotLogin && <p style={{ color: 'red' }}>Wrong Email Id or password</p>}
                 </div>
                 <div className='submit-container'>
-                    <Link className="submit" to={canLogin} 
-                        onClick={() => {
-                            checkUser()
-                            login === true ? signin() : signout();
+                    <Link className="submit" 
+                        onClick={async () => {
+                            await checkUser()
                         }}
                     >Login
                     </Link>
@@ -78,3 +82,5 @@ const LoginSignup = ({signin,signout}) => {
 }
 
 export default LoginSignup;
+
+// to={canLogin}

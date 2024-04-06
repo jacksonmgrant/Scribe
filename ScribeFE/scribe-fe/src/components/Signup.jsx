@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import "../styles/LoginSignup.css";
-import { Link } from 'react-router-dom';
+import { Link,useNavigate } from 'react-router-dom';
 
 const Signup = ({signin,signout}) => {
     const [name, setName] = useState("");
@@ -8,6 +8,8 @@ const Signup = ({signin,signout}) => {
     const [password, setPassword] = useState("");
     const [signup, setSignup] = useState(false);
     const [cannotSignup,setCannotSignup] = useState(false)
+    const navigate = useNavigate();
+
     const createUser = async () => {
         try {
             const response = await fetch(`http://localhost:8000/users/`, {
@@ -24,9 +26,12 @@ const Signup = ({signin,signout}) => {
             const user = await response.json();
             if(user.msg === "successfully add new user"){
                 setSignup(true)
+                navigate('/userpage')
+                signin()
             }else {
                 setCannotSignup(true)
                 setSignup(false)
+                signout()
             }
         } catch (error) {
             console.error('Error:', error);
@@ -34,7 +39,7 @@ const Signup = ({signin,signout}) => {
         }
     }
 
-    const canSignup = signup === true ? '/userpage' : '/SignupPage';
+    // const canSignup = signup === true ? '/userpage' : '/SignupPage';
 
     return(
         <form method='POST'>
@@ -68,10 +73,9 @@ const Signup = ({signin,signout}) => {
                     {cannotSignup && <p style={{ color: 'red' }}>Someone already use this Email</p>}
                 </div>
                 <div className='submit-container'>
-                    <Link className="submit" to={canSignup} 
-                    onClick={() => {
-                        createUser();
-                        signup === true ? signin() : signout();
+                    <Link className="submit" 
+                    onClick={async () => {
+                        await createUser();
                     }}>
                         Sign up
                     </Link>
