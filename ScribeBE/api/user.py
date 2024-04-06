@@ -40,8 +40,11 @@ async def login(user:Login):
     
     if check_password:
         user_token = JWT_token.create_access_token(
-        data={"email_id" : existing_user.email,
-            "password" : user.password},
+        data={
+            "sub" : str(existing_user.id),
+            "email_id" : existing_user.email,
+            "password" : user.password
+        },
         expires_delta=timedelta(minutes=JWT_token.ACCESS_TOKEN_EXPIRE_MINUTES),
         )
     

@@ -1,5 +1,13 @@
 import BASE_URL from './apiConfig';
 
+function decodeToken(token) {
+    console.log(token);
+    const arrayToken = token.split('.');
+    const payload = JSON.parse(atob(arrayToken[1]));
+    console.log(payload);
+    return payload;
+}
+
 //Only returns the transcribed text, but creates a new note
 const transcribe = (file) => {
     const formData = new FormData();
@@ -20,7 +28,8 @@ const transcribe = (file) => {
         });
 }
 
-const createNote = (noteText, userId) => {
+const createNote = (noteText) => {
+    const userId = decodeToken(localStorage.getItem('token')).sub;
     const data = {id: userId, text: noteText};
     return fetch(`${BASE_URL}/notes/`, {
             method: 'POST',
@@ -40,8 +49,9 @@ const createNote = (noteText, userId) => {
         });
 }
 
-const getNotes = (user_id) => {
-    return fetch(`${BASE_URL}/notes/${user_id}`)
+const getNotes = () => {
+    const userId = decodeToken(localStorage.getItem('token')).sub;
+    return fetch(`${BASE_URL}/notes/${userId}`)
         .then((response) => response.json())
         .then((result) => {
             console.log('Success:', result);

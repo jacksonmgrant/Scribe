@@ -25,11 +25,6 @@ const LoginSignup = ({signin,signout}) => {
             const user = await response.json();
             console.log(user)
             console.log(user.detail)
-            // if(user){
-            //     setlogin(true)
-            //     navigate('/userpage')
-            //     signin()
-            // }
             if(user.detail === "Email or password is not correct"){
                 console.log("yes")
                 setlogin(false)
@@ -37,6 +32,7 @@ const LoginSignup = ({signin,signout}) => {
                 signout()
             }else if(user){
                 setlogin(true)
+                localStorage.setItem('token', user[0])
                 navigate('/userpage')
                 signin()                
             }
