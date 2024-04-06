@@ -2,8 +2,8 @@ from fastapi import APIRouter, HTTPException
 from models.user_model import DbUser, User, Login
 import string
 import random
-from ScribeBE.security.hash_password import HashPassword
-import ScribeBE.security.JWT_token as JWT_token
+from security.hash_password import HashPassword
+import security.JWT_token as JWT_token
 from datetime import datetime, timedelta, timezone
 
 hash_password = HashPassword()
