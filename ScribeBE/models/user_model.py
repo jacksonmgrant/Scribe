@@ -3,11 +3,11 @@ from pydantic import BaseModel, EmailStr
 
 class User(BaseModel):
     name: str
-    email: EmailStr
+    email: EmailStr | str
     password: str
 
 class Login(BaseModel):
-    email: EmailStr
+    email: EmailStr | str
     password: str
 
 class DbUser(Document):

@@ -13,20 +13,14 @@ user_router = APIRouter()
 async def signup(user:User) -> dict:
     random_letter = random.choice(string.ascii_lowercase)
     hashed_user_password = hash_password.create_hash_with_salt(user.password ,random_letter * 21 + random_letter)
-    existing_user = await DbUser.find_one({
-            "$or": [
-                {"email": user.email.lower()},
-                {"name": user.name.lower()}
-            ]
-        })
+    existing_email = await DbUser.find_one(DbUser.email == user.email)
 
-    
-    if existing_user:
-        raise HTTPException(status_code=404, detail={"msg": "Someone already use this email.Please Use something else"}) 
+    if existing_email:
+        raise HTTPException(status_code=404, detail="Someone already use this email.Please Use something else") 
 
     # To check if name or email or password is blank
     if not user.name or not user.email or not user.password:
-        raise HTTPException(status_code=400, detail={"msg": "name or email or password can not be blank"})
+        raise HTTPException(status_code=400, detail="name or email or password can not be blank")
     
     new_user =  DbUser(name=user.name,email=user.email,password=hashed_user_password)
     await new_user.insert()
@@ -36,10 +30,17 @@ async def signup(user:User) -> dict:
 @user_router.post("/login", status_code=201)
 async def login(user:Login) -> dict:
     existing_user = await DbUser.find_one(DbUser.email == user.email)
+
+    # email is not correct
+    if not existing_user:
+        raise HTTPException(status_code=400, detail="Email or password is not correct")
+
     check_password = hash_password.verify_hash(user.password,existing_user.password)
     if existing_user and check_password:
        return {"msg": "welcome back"}
-    else:
-       raise HTTPException(status_code=400, detail="Email or password is not correct")
-        
-# email:User.email, password:User.password
+
+    # password is not correct   
+    raise HTTPException(status_code=400, detail="Email or password is not correct")
+
+
+
