@@ -9,25 +9,24 @@ note_router = APIRouter()
 
 @note_router.get("/{user_id}")
 async def get_notes(user_id: Any) -> dict:
-    # Cannot accept
-    user_obj_id = ObjectId(user_id)
+    try:
+        user_obj_id = ObjectId(user_id)
+    except:
+        raise HTTPException(status_code=400, detail="Invalid user id")
     user = await DbUser.find_one(DbUser.id == user_obj_id)
-    if user is "admin":
+    if user == "admin":
         notes = await DbNote.find().to_list()
-    elif user is None:
-        raise HTTPException(status_code=404, detail="User not found")
     else:
-        notes = await DbNote.find(DbNote.user_id == user_obj_id).to_list()
+        notes = await DbNote.find(DbNote.user_id == user_id).to_list()
     return {"notes": notes}
 
 @note_router.post("/", status_code=201)
-async def create_note(note_text: str, user_id: Any) -> dict:
-    user_obj_id = ObjectId(user_id)
-    if note_text['text'] is None or 'text' not in note_text:
+async def create_note(note: Note) -> dict:
+    if note.text is None:
         raise HTTPException(status_code=400, detail="Note must have text")
-    new_note = DbNote(text=note_text['text'], user_id=user_obj_id)
+    new_note = DbNote(text=note.text, user_id=note.id)
     await new_note.insert()
-    return {"note created" : note_text['text']}
+    return {"note created" : note.text}
 
 @note_router.put("/")
 async def update_note(note: Note) -> dict:

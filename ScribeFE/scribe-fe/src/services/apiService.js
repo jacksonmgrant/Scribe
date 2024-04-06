@@ -21,12 +21,13 @@ const transcribe = (file) => {
 }
 
 const createNote = (noteText, userId) => {
+    const data = {id: userId, text: noteText};
     return fetch(`${BASE_URL}/notes/`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({text: noteText, user_id: userId}),
+            body: JSON.stringify(data),
         })
         .then((response) => response.json())
         .then((result) => {
@@ -51,24 +52,6 @@ const getNotes = (user_id) => {
             throw error;
         });
 }
-
-/*const getNoteById = (id) => {
-    return fetch(`${BASE_URL}/notes/${id}`, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-    })
-        .then((response) => response.json())
-        .then((result) => {
-            console.log('Success:', result);
-            return result;
-        })
-            .catch((error) => {
-            console.error('Error:', error);
-            throw error;
-        });
-    }*/
 
 const updateNote = (id, note) => {
     const data = {id: id, text: note};
