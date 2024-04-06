@@ -19,11 +19,11 @@
 
 [Project proposal](https://drive.google.com/file/d/16IDP-MVffQDJVVcQPmE3bniw_TpQhXiI/view?usp=sharing)
 
-Scribe is a web app that records audio transcriptions into notes. The goal of this app is to implement an LLM to generate organized and easy-to-read notes from a long audio recording.
+Scribe is a web app that records audio transcriptions into notes. The goal of this app is to implement an AI model to generate organized and easy-to-read notes from a long audio recording.
 
-The Scribe frontend implements audio recording, a clean UI, and API integration with the backend. The UI is built with React, and audio recording is done with the [react-media-recorder-2](https://www.npmjs.com/package/react-media-recorder-2). JavaScript's fetch API is used to communicate with the backend.
+The Scribe frontend implements audio recording & transcription, a clean UI, and API integration with the backend. The UI is built with React, audio transcription is done using the [Azure Speech to Text](https://learn.microsoft.com/en-us/azure/ai-services/speech-service/speech-to-text) service. JavaScript's fetch API is used to communicate with the backend.
 
-The Scribe backend handles audio transcription, analysis, and user data storage. Audio transcription is done using the [Azure Speech to Text](https://learn.microsoft.com/en-us/azure/ai-services/speech-service/speech-to-text) service. User storage will be done with MongoDB, and communication to the frontend is done with FastAPI. Research still needs to be done on which LLM to use for synthesizing notes. It will need to have a free tier for API calls to it, and be good at understanding and writing text.
+The Scribe backend handles user data storage, authentication, and authorization. User data is stored with MongoDB Atlas, and communication to the frontend is done with FastAPI. Research still needs to be done on which AI model to use for synthesizing notes.
 
 ### Usage
 
@@ -41,35 +41,25 @@ The Scribe backend handles audio transcription, analysis, and user data storage.
 
 ## Demos
 
-CRUD actions:
+CRUD actions (Old UI):
     [Watch the demo here](https://www.loom.com/embed/1466ae1d1391430f85811b4509db6963?sid=2d92dc7d-2565-473f-86ab-683af466f3fc)
 
 Multiple notes:
     ![The Scribe app with multiple notes recorded](./ScribeFE/screenshots/Multiple_notes.png)
 
-Network log in frontend:
-    ![A screenshot of the network log after crud actions are performed](./ScribeFE/screenshots/Network_log.png)
-
-HTTP log in backend:
-    ![A screenshot of the console log in the backend after crud actions are performed](./ScribeFE/screenshots/HTTP_log.png)
-
 ## Development Notes
 
 ### Project Design
 
-The backend is a FastAPI app coordinated by `main.py`. main initiates the app, coordinates the router, and holds the transcription endpoints. The endpoints for managing notes are located in `note.py` to avoid cluttering main, but the states and router for notes are imported into main.
+The backend is a FastAPI app coordinated by `main.py`. main initiates the app, connects to the database, and coordinates the routers. The models folder contains object models for the database and API. The apis folder contains all of the endpoints, organized by router, and the security folder holds classes used for user authentication. 
 
-All models are stored in `model.py`, currently that is just the model for notes.
+The frontend is a React app styled with CSS. `app.js` utilizes the react-router-dom library to create a page routing heirarchy. The base code for pages is stored in the components/pages folder, and then they are enhanced with additional components. Styles are imported into components and pages from their respective CSS files in the styles folder. Logos and the index HTML file used to store head tags are located in the public folder.
 
-`transcriber.py` contains the script for communicating with Azure's speech-to-text API. The method transcribe takes a wav file in and returns the transcription of the file. As a by-product it will save the wav file to the Uploads directory, this may be removed in future versions.
-
-The frontend is a React app styled with CSS. The main page is organized by `index.js` and built out of React components defined in the components folder. Styles are imported into components and pages from their respective CSS files in the styles folder. Logos and the index HTML file used to store head tags are located in the public folder.
-
-API calls to the backend are imported into components from `apiService.js` to centralize API logic and improve code reusability. The base URL for API calls is stored in `apiConfig.js`.
+API calls to the backend are imported into components from `apiService.js` to centralize API logic and improve code reusability. The base URL for API calls is stored in `apiConfig.js`. `speechRecognizerService.js` is used to make calls to Azure's speech-to-text API to transcribe text on the frontend.
 
 ### Requirements
 
-- Node v20.11.0+ [LTS](https://nodejs.org/en/)
+- Node v20+ [LTS](https://nodejs.org/en/)
 - Python 3.12.x
 
 ## Project Setup
@@ -125,10 +115,10 @@ If you are worried about running scripts or are encountering issues with them, y
 
 ### Midterm
 
-- [ ] Buttons
+- [x] Buttons
   - [x] Create upload file button
-  - [ ] Create record audio button
-  - [ ] Deactivate buttons while waiting on API (Needs a loading screen)
+  - [x] Create record audio button
+  - [x] Deactivate buttons while waiting on API (Needs a loading screen)
 - [x] Make API calls to backend
   - [x] Transcription
   - [x] CRUD for notes
@@ -146,8 +136,8 @@ If you are worried about running scripts or are encountering issues with them, y
 
 ### Final
 
-- [ ] Implement user auth
-- [ ] Persistent data storage
+- [x] Implement user auth
+- [x] Persistent data storage
 - [ ] Require .wav files for input
 - [ ] Allow user to listen to the recording in UI
 - [ ] API Calls to LLM to synthesize long texts
@@ -157,10 +147,9 @@ If you are worried about running scripts or are encountering issues with them, y
   - [ ] Notes display in list with their title
 - [ ] Make it pretty
   - [ ] Notes open up from list in a modal OR turn list into a sidebar
-  - [ ] Navbar for sign in/out, about page, and home
+  - [x] Navbar for sign in/out, about page, and home
 - [ ] Add language identification to record in different languages
 
 ## Known Bugs
 
 - Textarea for editing notes isn't locked in place - need to remove the ability to drag it around somehow. Haven't done a ton of debugging with it either.
-- Recording audio is nonfunctional. It sends a playable wav file to the backend, but the headers are corrupted and Azure cannot transcribe it. I am struggling to find a workaround.
