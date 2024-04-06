@@ -7,7 +7,7 @@ const Signup = ({signin,signout}) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [signup, setSignup] = useState(false);
-
+    const [cannotSignup,setCannotSignup] = useState(false)
     const createUser = async () => {
         try {
             const response = await fetch(`http://localhost:8000/users/`, {
@@ -25,6 +25,7 @@ const Signup = ({signin,signout}) => {
             if(user.msg === "successfully add new user"){
                 setSignup(true)
             }else {
+                setCannotSignup(true)
                 setSignup(false)
             }
         } catch (error) {
@@ -64,6 +65,7 @@ const Signup = ({signin,signout}) => {
                             onChange={(event) => setPassword(event.target.value)}
                         />
                     </div>
+                    {cannotSignup && <p style={{ color: 'red' }}>Someone already use this Email</p>}
                 </div>
                 <div className='submit-container'>
                     <Link className="submit" to={canSignup} 

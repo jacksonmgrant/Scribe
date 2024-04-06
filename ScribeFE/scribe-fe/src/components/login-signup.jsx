@@ -6,7 +6,7 @@ const LoginSignup = ({signin,signout}) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [login, setlogin] = useState(false);
-
+    const [cannotLogin,setCannotLogin] = useState(false)
     const checkUser = async () => {
         try {
             const response = await fetch(`http://localhost:8000/users/login/`, {
@@ -24,6 +24,7 @@ const LoginSignup = ({signin,signout}) => {
                 setlogin(true)
             }else{
                 setlogin(false)
+                setCannotLogin(true)
             }
         } catch (error) {
             console.error('Error:', error);
@@ -56,6 +57,7 @@ const LoginSignup = ({signin,signout}) => {
                         onChange={(event) => setPassword(event.target.value)}
                         />
                     </div>
+                    {cannotLogin && <p style={{ color: 'red' }}>Wrong Email Id or password</p>}
                 </div>
                 <div className='submit-container'>
                     <Link className="submit" to={canLogin} 
