@@ -5,13 +5,7 @@ from models.user_model import DbUser
 from models.note_model import Note, DbNote
 from bson.objectid import ObjectId
 
-# This will be replaced with a database
-note_list: list[Note] = []
-current_id = 0
-
-
 note_router = APIRouter()
-
 
 @note_router.get("/{user_id}")
 async def get_notes(user_id: Any) -> dict:
