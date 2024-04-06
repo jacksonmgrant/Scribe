@@ -4,7 +4,7 @@ import string
 import random
 from security.hash_password import HashPassword
 import security.JWT_token as JWT_token
-from datetime import datetime, timedelta, timezone
+from datetime import timedelta
 
 hash_password = HashPassword()
 user_router = APIRouter()
@@ -48,8 +48,6 @@ async def login(user:Login):
         expires_delta=timedelta(minutes=JWT_token.ACCESS_TOKEN_EXPIRE_MINUTES),
         )
     
-    
-        
     if existing_user and check_password:
        return {user_token}
 
