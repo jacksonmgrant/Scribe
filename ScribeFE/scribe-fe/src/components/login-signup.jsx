@@ -28,6 +28,7 @@ const LoginSignup = ({signin,signout}) => {
                 setCannotLogin(true)
                 signout()
             }else if(user){
+                localStorage.setItem('token', user[0])
                 navigate('/userpage')
                 signin()                
             }

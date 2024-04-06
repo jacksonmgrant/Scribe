@@ -41,17 +41,12 @@ async def transcribe(file: UploadFile) -> dict:
     
     speech = transcriber.transcribe(file)
 
-    #This error reporting not working right now
     if "ResultReason" in speech:
         raise HTTPException(status_code=500, detail=speech)
     
     new_note = DbNote(text=speech, hasRecording=True)
     await new_note.insert()
     return {"transcribed" : speech}
-
-@transcription_router.get("/test")
-async def transcribe_test(file: str):
-    return transcriber.transcribe(file)
 
 app.include_router(root_router, tags=["Root"])
 app.include_router(transcription_router, prefix="/transcribe", tags=["Transcription"])

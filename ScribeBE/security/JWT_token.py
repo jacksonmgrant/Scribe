@@ -13,7 +13,8 @@ class Token:
 
 
 class TokenPayload:
-    def __init__(self, email_id: EmailStr | str | None, password: str | None, exp: int | None) -> None:
+    def __init__(self, id: str | None, email_id: EmailStr | str | None, password: str | None, exp: int | None) -> None:
+        self.id = id
         self.email_id = email_id
         self.password = password
         self.exp = exp
@@ -37,10 +38,11 @@ def create_access_token(data: dict, expires_delta: timedelta | None = None):
 def decode_jwt_token(token: str) -> TokenPayload | None:
     try:
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+        id: str = payload.get("sub")
         email: str = payload.get("email_id")
         password: str = payload.get("password")
         exp: int = payload.get("exp")
-        return TokenPayload(email,password, exp)
+        return TokenPayload(id, email,password, exp)
     except JWTError:
         print("invalid JWT token")
 
