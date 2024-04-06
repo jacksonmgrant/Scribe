@@ -31,9 +31,15 @@ export function Note({id: _id, text = "Empty note", time, hasRecording, onEdit, 
           : <textarea type="text" className="text" value={noteText} onChange={editNote} readOnly rows={noteText.length/100+1} cols={100} />}
       </div>
       <div className="actions">
-        {isEditing ? <button className="edit" onClick={handleSaveClick}>Save</button>
-          : <button className="edit" onClick={handleEditClick}>Edit</button>}
-        <button className="delete" onClick={handleDeleteClick}>Delete</button>
+        {isEditing ? <button className="edit" onClick={handleSaveClick}>Save
+        <i className="fa-solid fa-square-check" style={{ marginLeft: '8px' }}></i>
+        </button>
+          : <button className="edit" onClick={handleEditClick}>Edit
+            <i className="fa-solid fa-pen-to-square" style={{ marginLeft: '8px' }}></i>
+            </button>}
+        <button className="delete" onClick={handleDeleteClick}>Delete
+        <i className="fa-solid fa-trash" style={{ marginLeft: '8px' }}></i>
+        </button>
       </div>
      </div>
   );

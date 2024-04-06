@@ -1,13 +1,12 @@
 .note-list {
-	padding: 1rem;
+	padding: 2rem 1rem;
+	width: 100%;
 }
 
 .note-list h2 {
 	font-size: 1.5rem;
 	font-weight: 300;
-	background-clip: text;
-	color: transparent;
-	background-image: linear-gradient(to right, var(--yellow-orange), var(--dark-orange));
+	color: var(--orange);
 	margin-bottom: 1rem;
 }
 
@@ -42,16 +41,20 @@ textarea {
 	color: var(--light);
 	font-size: 1.125rem;
 	width: 100%;
-	transition: 0.4s;
+	padding: 0.5rem;
+	border-radius: 8px;
+	transition: all 0.25s ease;
 }
 
 .note .content .text:not(:read-only) {
-	color: var(--light);
+	background-color: var(--dark);
+	transition: all 0.5s ease;
 }
 
 .note .actions {
 	display: flex;
-	margin: 0 -0.5rem;
+	align-items: center;
+	margin: 0 -0.5rem 0 1rem;
 }
 
 .note .actions button {
@@ -60,26 +63,25 @@ textarea {
 	font-size: 1.125rem;
 	font-weight: 700;
 	text-transform: uppercase;
-	transition: 0.4s;
+	border-radius: 8px;
+	height: 2.5rem;
+	transition: all 0.25s ease;
 }
 
-.note .actions button:hover {
-	opacity: 0.8;
+.note .actions button:hover, .note .actions button:active {
+	border: 1px solid var(--orange);
+	transition: all 0.5s ease;
 }
 
-.note .actions button:active {
-	opacity: 0.6;
+.note .actions .delete:hover, .note .actions .delete:active {
+	border: 1px solid var(--light-crimson);
+	transition: all 0.5s ease;
 }
 
 .note .actions .edit {
-	background-image: linear-gradient(to right, var(--yellow), var(--dark-orange));
-    -webkit-background-clip: text;
-    background-clip: text;
-	-webkit-text-fill-color: transparent;
+	color: var(--orange);
 }
 
 .note .actions .delete {
-	background-clip: text;
-	color: transparent;
-	background-image: linear-gradient(to right, var(--crimson), var(--red));
+	color: var(--light-crimson);
 }
