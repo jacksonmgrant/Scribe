@@ -39,8 +39,6 @@ const Signup = ({signin,signout}) => {
         }
     }
 
-    // const canSignup = signup === true ? '/userpage' : '/SignupPage';
-
     return(
         <form method='POST'>
             <div className='container'>
@@ -83,6 +81,7 @@ const Signup = ({signin,signout}) => {
             </div>
         </form>
     );
+
 }
 
 export default Signup;
