@@ -35,6 +35,7 @@ async def login(user:Login):
     # email is not correct
     if not existing_user:
         raise HTTPException(status_code=400, detail="Email or password is not correct")
+    
     check_password = hash_password.verify_hash(user.password,existing_user.password)
     
     if check_password:
@@ -47,7 +48,7 @@ async def login(user:Login):
     
         
     if existing_user and check_password:
-       return user_token
+       return {user_token}
 
     # password is not correct   
     raise HTTPException(status_code=400, detail="Email or password is not correct")

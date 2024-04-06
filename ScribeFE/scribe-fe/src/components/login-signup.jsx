@@ -24,14 +24,21 @@ const LoginSignup = ({signin,signout}) => {
             });
             const user = await response.json();
             console.log(user)
-            if(user){
-                setlogin(true)
-                navigate('/userpage')
-                signin()
-            }else{
+            console.log(user.detail)
+            // if(user){
+            //     setlogin(true)
+            //     navigate('/userpage')
+            //     signin()
+            // }
+            if(user.detail === "Email or password is not correct"){
+                console.log("yes")
                 setlogin(false)
                 setCannotLogin(true)
                 signout()
+            }else if(user){
+                setlogin(true)
+                navigate('/userpage')
+                signin()                
             }
         } catch (error) {
             console.error('Error:', error);
