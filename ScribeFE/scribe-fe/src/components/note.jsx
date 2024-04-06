@@ -48,11 +48,13 @@ export function Note({id: _id, text = "Empty note", time, hasRecording, onEdit, 
         </button>
       </div>
      </div>
+     {/* edit modal */}
      <div className='dialog-container'>
-        <dialog id="dialog"
+        <dialog
           open={open}
           aria-labelledby="modal-modal-title"
           aria-describedby="modal-modal-description">
+          <h2>Edit Note</h2>
           <textarea type="text" className="text" value={noteText} onChange={editNote} />
           <div className="buttons">
             <button className="cancel" onClick={handleClose}>Cancel
