@@ -3,24 +3,34 @@
 	width: 100%;
 }
 
-.note-list h2 {
+.note-list h2, h2 {
 	font-size: 1.5rem;
 	font-weight: 300;
-	color: var(--orange);
+	color: var(--h2);
 	margin-bottom: 1rem;
 }
 
 textarea {
+	width: 100%;
+	resize: none;
     appearance: none;
-	border: none;
 	outline: none;
+	border: none;
+	border-radius: 8px;
 	background: none;
-    margin: 4px;
-    max-height: fit-content;
+	padding: 0.75rem;
 	display: block;
 	word-wrap: normal;
+	overflow-y: scroll;
 	white-space: pre-wrap;
-	overflow: hidden;
+    scrollbar-color: var(--orange) var(--light);
+    color: var(--text-light);
+    font-size: 1.25rem;
+	font-weight: 300;
+}
+
+.content textarea {
+	max-height: 10rem;
 }
 
 #notes .note {
@@ -46,14 +56,9 @@ textarea {
 	transition: all 0.25s ease;
 }
 
-.note .content .text:not(:read-only) {
-	background-color: var(--dark);
-	transition: all 0.5s ease;
-}
-
 .note .actions {
 	display: flex;
-	align-items: center;
+	align-items: top;
 	margin: 0 -0.5rem 0 1rem;
 }
 
@@ -84,4 +89,92 @@ textarea {
 
 .note .actions .delete {
 	color: var(--light-crimson);
+}
+
+.dialog-container {
+	height: 100%;
+	width: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	background-color: var(--modal-shadow);
+	opacity: 100%;
+	transition: all .25s ease;
+}
+
+dialog {
+    position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+    margin: auto;
+    width: 50%;
+    height: 60%;
+    background: var(--darkest);
+    padding: 2rem;
+    border: 1px solid var(--orange);
+    border-radius: 25px;
+    color: var(--text-light);
+	opacity: 100%;
+	transition: all 1s ease;
+}
+
+.delete-dialog {
+	height: fit-content;
+	width: 30%;
+}
+
+.delete-message {
+	padding-bottom: 1.5rem;
+}
+
+dialog textarea {
+    height: 75%;
+	background-color: var(--dark);
+	margin-bottom: 1rem;
+	resize: none;
+}
+
+.buttons {
+	display: flex;
+	justify-content: space-between;
+}
+
+dialog button {
+	cursor: pointer;
+	font-size: 1.125rem;
+	font-weight: 700;
+	text-transform: uppercase;
+	border-radius: 8px;
+	height: 2.5rem;
+    color: var(--orange);
+	transition: all 0.25s ease;
+}
+
+.save:hover, .save:active {
+	border: 1px solid var(--orange);
+	transition: all 0.5s ease;
+}
+
+.cancel {
+    color: var(--light);
+	transition: all 0.25s ease;
+}
+
+.cancel:hover, .cancel:active {
+	border: 1px solid var(--light);
+	transition: all 0.5s ease;
+}
+
+.delete {
+    color: var(--light-crimson);
+	transition: all 0.25s ease;
+}
+
+.delete:hover, .delete:active {
+	border: 1px solid var(--light-crimson);
+	transition: all 0.5s ease;
 }
