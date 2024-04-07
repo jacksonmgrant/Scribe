@@ -12,14 +12,13 @@
 
 textarea {
 	width: 100%;
-	resize: vertical;
+	resize: none;
     appearance: none;
 	outline: none;
 	border: none;
 	border-radius: 8px;
 	background: none;
 	padding: 0.75rem;
-	height: 100%;
 	display: block;
 	word-wrap: normal;
 	overflow-y: scroll;
@@ -31,9 +30,7 @@ textarea {
 }
 
 .content textarea {
-	height: 2rem;
-	min-height: 2rem;
-	max-height: fit-content;
+	max-height: 10rem;
 }
 
 #notes .note {

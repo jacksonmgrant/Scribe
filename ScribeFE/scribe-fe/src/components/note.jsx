@@ -32,7 +32,7 @@ export function Note({id: _id, text = "Empty note", time, hasRecording, onEdit, 
           aria-labelledby="modal-modal-title"
           aria-describedby="modal-modal-description">
           <h2>Edit Note</h2>
-          <textarea type="text" className="text" value={noteText} onChange={editNote} rows="1"/>
+          <textarea type="text" className="text" value={noteText} onChange={editNote}/>
           <div className="buttons">
             <button className="cancel" onClick={handleEditClose}>Cancel
             </button>
@@ -87,7 +87,7 @@ export function Note({id: _id, text = "Empty note", time, hasRecording, onEdit, 
     <>
     <div className="note">
       <div className="content">
-        <textarea type="text" className="text" value={noteText} onChange={editNote} readOnly/>
+        <textarea type="text" className="text" value={noteText} onChange={editNote} readOnly rows={noteText.length/100+1} cols={100}/>
       </div>
       <div className="actions">
         <button className="edit" onClick={handleEditOpen}>Edit
