@@ -2,9 +2,9 @@ from fastapi import APIRouter, HTTPException
 from models.user_model import DbUser, User, Login
 import string
 import random
-from hash_password import HashPassword
-import JWT_token
-from datetime import datetime, timedelta, timezone
+from security.hash_password import HashPassword
+import security.JWT_token as JWT_token
+from datetime import timedelta
 
 hash_password = HashPassword()
 user_router = APIRouter()
@@ -23,7 +23,7 @@ async def signup(user:User) -> dict:
     if not user.name or not user.email or not user.password:
         raise HTTPException(status_code=400, detail="name or email or password can not be blank")
     
-    new_user =  DbUser(name=user.name,email=user.email,password=hashed_user_password)
+    new_user =  DbUser(name=user.name,email=user.email,password=hashed_user_password,role="user")
     await new_user.insert()
     
     return {"msg": "successfully add new user"}
@@ -40,13 +40,14 @@ async def login(user:Login):
     
     if check_password:
         user_token = JWT_token.create_access_token(
-        data={"email_id" : existing_user.email,
-            "password" : user.password},
+        data={
+            "sub" : str(existing_user.id),
+            "email_id" : existing_user.email,
+            "password" : user.password
+        },
         expires_delta=timedelta(minutes=JWT_token.ACCESS_TOKEN_EXPIRE_MINUTES),
         )
     
-    
-        
     if existing_user and check_password:
        return {user_token}
 

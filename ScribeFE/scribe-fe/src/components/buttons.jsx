@@ -6,7 +6,7 @@ export function FileUploadButton({ onUpload }) {
 
     function handleUpload() {
         const fileInput = document.getElementById('fileInput');
-        fileInput.click(); // Trigger the file input click
+        fileInput.click();
     }
 
     async function handleFileInput(event) {
@@ -51,13 +51,10 @@ export function RecordAudioButton({ onUpload }) {
     };
 
     useEffect(() => {
-        // This effect will trigger whenever transcribedText changes
         if (transcribedText !== null) {
-            // Perform actions that depend on the updated transcribedText here
             console.log('Transcribed speech:', transcribedText);
             apiService.createNote(transcribedText)
                 .then(() => {
-                    // Once note is created, trigger upload
                     onUpload();
                 })
                 .catch(error => {

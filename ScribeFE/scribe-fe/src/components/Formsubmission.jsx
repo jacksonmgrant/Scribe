@@ -1,12 +1,14 @@
 import React, {useState} from 'react';
 import "../styles/LoginSignup.css"
 import styles from "../styles/Formsubmission.module.css"
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 
 const FormSubmission = () => {
 
     const [text, setText] = useState("");
     const [rating, setRating] = useState(0);
+    const [cannotSend, setCannotSend] = useState(false);
+    const navigate = useNavigate();
 
     const checkUser = async () => {
         try {
@@ -21,7 +23,14 @@ const FormSubmission = () => {
                 }),
             });
             const feedback = await response.json();
-            return feedback
+            console.log(feedback)
+            if(feedback.detail === "successfully add new feedback"){
+                navigate('/userpage')
+                setCannotSend(false)
+            }
+            if(feedback.detail === "Plz fill something"){
+                setCannotSend(true)
+            }
         } catch (error) {
             console.error('Error:', error);
             throw error;
@@ -50,11 +59,12 @@ const FormSubmission = () => {
                         onChange={(event) => setRating(event.target.value)} 
                         placeholder='Give us a reviews out of 10'/>
                     </div>
+                    {cannotSend && <p className={styles.header} style={{ color: 'maroon' }}>**Both input cannot be empty plz try one more time**</p>}
                 </div>
                 <div className='submit-container'>
-                    <Link className="submit" to="/"
-                    onClick={() => {
-                        checkUser();
+                    <Link className="submit" 
+                    onClick={async () => {
+                        await checkUser();
                     }}>
                         Submit
                     </Link>

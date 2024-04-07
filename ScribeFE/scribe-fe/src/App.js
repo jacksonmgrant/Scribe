@@ -11,7 +11,7 @@ import SignupPage from './components/pages/SignupPage';
 import LoginSignupPage from './components/pages/LoginSignupPage';
 import FormSubmissionPage from "./components/pages/FormsubmissionPage";
 import Welcomepage from "./components/pages/WelcomePage";
-// import ParticlesBg from 'particles-bg'
+import ParticlesBg from 'particles-bg'
 
 const App = () => {
     const [isSignin,setIsSignin] = useState(false);
@@ -26,29 +26,31 @@ const App = () => {
 
     return (
         <div>
-        {/* <ParticlesBg type="square" bg={true} /> */}
-        <BrowserRouter>
-            <Routes>
-                <Route path="/" element={<Layout isSignin={isSignin} signout={signout}/>}>
-                    <Route index element={<Welcomepage />} />
-                    <Route path="userpage" element={<UserPage />} />
-                    <Route path='aboutus' element={<About />} />
-                    <Route path="loginSignupPage" 
-                        element={<LoginSignupPage 
-                        signin={signin}
-                        signout={signout}
-                        />} 
-                    />
-                    <Route path="SignupPage" 
-                        element={<SignupPage
+            <ParticlesBg bg={true}/>
+            
+            <BrowserRouter>
+                <Routes>
+                    <Route path="/" element={<Layout isSignin={isSignin} signout={signout}/>}>
+                        <Route index element={<Welcomepage />} />
+                        <Route path="userpage" element={<UserPage />} />
+                        <Route path='aboutus' element={<About />} />
+                        <Route path="loginSignupPage" 
+                            element={<LoginSignupPage 
                             signin={signin}
                             signout={signout}
                             />} 
-                    />
-                    <Route path="formsubmission" element={<FormSubmissionPage/>}/>
-                </Route>
-            </Routes>
-        </BrowserRouter>
+                        />
+                        <Route path="SignupPage" 
+                            element={<SignupPage
+                                signin={signin}
+                                signout={signout}
+                                />} 
+                        />
+                        <Route path="formsubmission" element={<FormSubmissionPage/>}/>
+                    </Route>
+                </Routes>
+            </BrowserRouter>
+            
         </div>
     );
 

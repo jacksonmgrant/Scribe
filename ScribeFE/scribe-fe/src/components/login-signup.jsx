@@ -6,7 +6,6 @@ import {Link,useNavigate} from 'react-router-dom';
 const LoginSignup = ({signin,signout}) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [login, setlogin] = useState(false);
     const [cannotLogin,setCannotLogin] = useState(false);
     const navigate = useNavigate();
     
@@ -25,18 +24,11 @@ const LoginSignup = ({signin,signout}) => {
             const user = await response.json();
             console.log(user)
             console.log(user.detail)
-            // if(user){
-            //     setlogin(true)
-            //     navigate('/userpage')
-            //     signin()
-            // }
             if(user.detail === "Email or password is not correct"){
-                console.log("yes")
-                setlogin(false)
                 setCannotLogin(true)
                 signout()
             }else if(user){
-                setlogin(true)
+                localStorage.setItem('token', user[0])
                 navigate('/userpage')
                 signin()                
             }
@@ -91,4 +83,3 @@ const LoginSignup = ({signin,signout}) => {
 
 export default LoginSignup;
 
-// to={canLogin}
