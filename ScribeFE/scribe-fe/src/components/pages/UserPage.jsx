@@ -4,7 +4,7 @@ import '../../styles/homepage.css';
 
 const Userpage = () => {
     return(
-        <div>
+        <div className="home-container">
             <Header className="App-header"/>
             <NoteManager />
         </div>
