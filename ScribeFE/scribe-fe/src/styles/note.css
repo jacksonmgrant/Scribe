@@ -12,18 +12,18 @@
 
 textarea {
 	width: 100%;
-	resize: none;
+	resize: vertical;
     appearance: none;
 	outline: none;
 	border: none;
 	border-radius: 8px;
 	background: none;
 	padding: 0.75rem;
-    height: 100%;
+	height: 100%;
 	display: block;
 	word-wrap: normal;
-	white-space: pre-wrap;
 	overflow-y: scroll;
+	white-space: pre-wrap;
     scrollbar-color: var(--orange) var(--light);
     color: var(--text-light);
     font-size: 1.25rem;
@@ -31,7 +31,9 @@ textarea {
 }
 
 .content textarea {
-	max-height: 8rem;
+	height: 2rem;
+	min-height: 2rem;
+	max-height: fit-content;
 }
 
 #notes .note {
@@ -92,15 +94,18 @@ textarea {
 	color: var(--light-crimson);
 }
 
-/*.dialog-container {
-	width: 100vh;
-	width: 100vw;
-	position: absolute;
+.dialog-container {
+	height: 100%;
+	width: 100%;
+	position: fixed;
 	top: 0;
 	left: 0;
 	bottom: 0;
 	right: 0;
-}*/
+	background-color: var(--modal-shadow);
+	opacity: 100%;
+	transition: all .25s ease;
+}
 
 dialog {
     position: absolute;
@@ -116,26 +121,24 @@ dialog {
     border: 1px solid var(--orange);
     border-radius: 25px;
     color: var(--text-light);
-	transition: open .5s ease;
+	opacity: 100%;
+	transition: all 1s ease;
+}
+
+.delete-dialog {
+	height: fit-content;
+	width: 30%;
+}
+
+.delete-message {
+	padding-bottom: 1.5rem;
 }
 
 dialog textarea {
-    width: 100%;
-    appearance: none;
-	border-radius: 8px;
-	outline: none;
-	background-color: var(--dark);
-	padding: 0.75rem;
     height: 75%;
-	display: block;
-	word-wrap: normal;
-	white-space: pre-wrap;
-	overflow-y: scroll;
-    scrollbar-color: var(--orange) var(--light);
-    color: var(--text-light);
-    font-size: 1.25rem;
-	font-weight: 300;
+	background-color: var(--dark);
 	margin-bottom: 1rem;
+	resize: none;
 }
 
 .buttons {
@@ -145,14 +148,13 @@ dialog textarea {
 
 dialog button {
 	cursor: pointer;
-	margin: 0 0.5rem;
 	font-size: 1.125rem;
 	font-weight: 700;
 	text-transform: uppercase;
 	border-radius: 8px;
 	height: 2.5rem;
-	transition: all 0.25s ease;
     color: var(--orange);
+	transition: all 0.25s ease;
 }
 
 .save:hover, .save:active {
@@ -162,9 +164,20 @@ dialog button {
 
 .cancel {
     color: var(--light);
+	transition: all 0.25s ease;
 }
 
 .cancel:hover, .cancel:active {
 	border: 1px solid var(--light);
+	transition: all 0.5s ease;
+}
+
+.delete {
+    color: var(--light-crimson);
+	transition: all 0.25s ease;
+}
+
+.delete:hover, .delete:active {
+	border: 1px solid var(--light-crimson);
 	transition: all 0.5s ease;
 }

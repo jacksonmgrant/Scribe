@@ -44,6 +44,8 @@ then define custom properties for uses based on those colors */
 	--text-light: var(--light);
 	--text-dark: var(--darkest);
 
+	--modal-shadow: rgba(17, 24, 39, 0.75);
+
 	/* Jackson: I asked Gemini for some theme examples, got mixed results. I like the last
 	   2 but am not fully sold on any. Would love some input from somebody who knows more about
 	   color than me, I'm going for something easy on the eyes for reading notes but still
