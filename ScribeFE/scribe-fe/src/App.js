@@ -26,8 +26,6 @@ const App = () => {
 
     return (
         <div>
-            <ParticlesBg bg={true}/>
-            
             <BrowserRouter>
                 <Routes>
                     <Route path="/" element={<Layout isSignin={isSignin} signout={signout}/>}>
