@@ -3,11 +3,11 @@ from fastapi.middleware.cors import CORSMiddleware
 from models.note_model import DbNote, Note
 from models.user_model import DbUser, User
 from models.feedback_model import DbFeedback, Feedback
-import api.note as note
-import api.user as user
-import api.feedback as feedback
+import routes.note as note
+import routes.user as user
+import routes.feedback as feedback
 import transcriber
-from database import init_db
+from database.database import init_db
 
 async def start_db():
     await init_db()

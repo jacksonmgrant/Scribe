@@ -2,8 +2,8 @@ from fastapi import APIRouter, HTTPException
 from models.user_model import DbUser, User, Login
 import string
 import random
-from security.hash_password import HashPassword
-import security.JWT_token as JWT_token
+from auth.hash_password import HashPassword
+import auth.JWT_token as JWT_token
 from datetime import timedelta
 
 hash_password = HashPassword()
