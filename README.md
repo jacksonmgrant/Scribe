@@ -81,11 +81,11 @@ If you are worried about running scripts or are encountering issues with them, y
     2. Paste the following code into the file:  
 
           ```text
-          REACT_APP_SPEECH_KEY="your-key"
+          REACT_APP_SPEECH_KEY="your_key"
           REACT_APP_SPEECH_REGION='eastus'
           ```
 
-    3. Replace the your-key value with the API key I have sent to you.
+    3. Replace the your_key value with the API key I have sent to you.
 3. Insert your database credentials
     1. Add your database user [here](https://cloud.mongodb.com/v2/65ff51a50085c37972c4b409#/security/database/users) and your IP address [here](https://cloud.mongodb.com/v2/65ff51a50085c37972c4b409#/security/network/accessList)
         - If you don't have access, please send me the email associated with your MongoDB acccount to be added to the organization.
@@ -93,11 +93,11 @@ If you are worried about running scripts or are encountering issues with them, y
     3. Paste the following code into the file:
 
        ```text
-       DB_USER="your_username"
-       DB_PASS="your_password"
+       CONNECTION_STRING = "mongodb+srv://username:password@scribedb.klymspw.mongodb.net/"
+       SECRET_KEY = "secret_key"
        ```
 
-    4. Replace the username and password fields with your credentials
+    4. Replace username and password in the connection string with your credentials, and replace secret_key with the secret key I have sent you.
 4. Run the setup script:
     - Windows:
       1. From the Scribe folder, run ```./windows-setup.ps1``` in VSCode's terminal.
