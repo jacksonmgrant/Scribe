@@ -75,7 +75,7 @@ If you are worried about running scripts or are encountering issues with them, y
         1. Run ```Set-ExecutionPolicy AllSigned``` in a powershell window as an administrator.
             - If that fails try ```Set-ExecutionPolicy RemoteSigned -Scope CurrentUser -Force```
     - Mac/Linux:
-        1. Run ```chmod +x mac-setup.sh config.sh start.sh``` in the Scribe folder
+        1. Run ```chmod +x mac-setup.sh be-start.sh fe-start.sh``` in the Scribe folder
 2. Insert the API Key for Microsoft Azure STT:
     1. Create a file named .env in the folder Scribe/ScribeFE/scribe-fe.
     2. Paste the following code into the file:  
