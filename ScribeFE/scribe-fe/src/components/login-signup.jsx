@@ -22,15 +22,15 @@ const LoginSignup = ({signin,signout}) => {
                 }),
             });
             const user = await response.json();
-            console.log(user)
-            console.log(user.detail)
+            console.log(user);
             if(user.detail === "Email or password is not correct"){
-                setCannotLogin(true)
-                signout()
+                console.log(user.detail);
+                setCannotLogin(true);
+                signout();
             }else if(user){
-                localStorage.setItem('token', user[0])
-                navigate('/userpage')
-                signin()                
+                localStorage.setItem('token', user.access_token);
+                navigate('/userpage');
+                signin();
             }
         } catch (error) {
             console.error('Error:', error);

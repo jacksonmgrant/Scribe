@@ -51,7 +51,7 @@ Multiple notes:
 
 ### Project Design
 
-The backend is a FastAPI app coordinated by `main.py`. main initiates the app, connects to the database, and coordinates the routers. The models folder contains object models for the database and API. The apis folder contains all of the endpoints, organized by router, and the security folder holds classes used for user authentication. 
+The backend is a FastAPI app coordinated by `main.py`. main initiates the app, connects to the database, and coordinates the routers. The models folder contains object models for the database and API. The routes folder contains all of the endpoints, organized by router, and the auth folder holds classes used for user authentication. 
 
 The frontend is a React app styled with CSS. `app.js` utilizes the react-router-dom library to create a page routing heirarchy. The base code for pages is stored in the components/pages folder, and then they are enhanced with additional components. Styles are imported into components and pages from their respective CSS files in the styles folder. Logos and the index HTML file used to store head tags are located in the public folder.
 

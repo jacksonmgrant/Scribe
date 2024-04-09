@@ -1,4 +1,5 @@
 from datetime import datetime, timedelta, timezone
+from fastapi import HTTPException, status
 from jose import JWTError, jwt
 from pydantic import EmailStr
 
@@ -45,6 +46,28 @@ def decode_jwt_token(token: str) -> TokenPayload | None:
         return TokenPayload(id, email,password, exp)
     except JWTError:
         print("invalid JWT token")
+
+def verify_access_token(token: str):
+    try:
+        data = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+
+        expire = data.get("expires")
+
+        if expire is None:
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail="No access token supplied",
+            )
+        if datetime.now() > datetime.fromtimestamp(expire):
+            raise HTTPException(
+                status_code=status.HTTP_403_FORBIDDEN, detail="Token expired!"
+            )
+        return data
+
+    except JWTError:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST, detail="Invalid token"
+        )
 
 
 

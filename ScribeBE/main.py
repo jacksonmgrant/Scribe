@@ -1,5 +1,6 @@
 from fastapi import FastAPI, HTTPException, UploadFile, APIRouter
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import RedirectResponse
 from models.note_model import DbNote, Note
 from models.user_model import DbUser, User
 from models.feedback_model import DbFeedback, Feedback
@@ -29,7 +30,7 @@ transcription_router = APIRouter()
 
 @root_router.get("/")
 async def root():
-    return {"message": "Hello World"}
+    return RedirectResponse(url="/events/")
 
 #Will likely need to update this
 allowed_content_types = ["audio/wav", "audio/x-wav"]
