@@ -5,7 +5,7 @@ from models.user_model import DbUser
 from models.note_model import Note, DbNote
 from bson.objectid import ObjectId
 
-note_router = APIRouter()
+note_router = APIRouter(tags=["Note"])
 
 @note_router.get("/{user_id}")
 async def get_notes(user_id: Any) -> dict:

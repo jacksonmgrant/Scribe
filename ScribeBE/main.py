@@ -1,9 +1,10 @@
+from contextlib import asynccontextmanager
+from functools import lru_cache
 from fastapi import FastAPI, HTTPException, UploadFile, APIRouter
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import RedirectResponse
-from models.note_model import DbNote, Note
-from models.user_model import DbUser, User
-from models.feedback_model import DbFeedback, Feedback
+from settings import Settings
+from models.note_model import DbNote
 import routes.note as note
 import routes.user as user
 import routes.feedback as feedback
@@ -13,9 +14,22 @@ from database.database import init_db
 async def start_db():
     await init_db()
 
-app = FastAPI()
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    # on startup event
+    #logger.info("Application starts up...")
+    get_settings()
+    await start_db()
+    yield
+    # on shutdown event
+    ...
 
-# Add CORS middleware to allow for cross-origin requests
+@lru_cache
+def get_settings():
+    return Settings()
+
+app = FastAPI(title="Scribe", version="0.1.0", lifespan=lifespan)
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -32,9 +46,7 @@ transcription_router = APIRouter()
 async def root():
     return RedirectResponse(url="/events/")
 
-#Will likely need to update this
 allowed_content_types = ["audio/wav", "audio/x-wav"]
-
 @transcription_router.post("/", status_code=201)
 async def transcribe(file: UploadFile) -> dict:
     if file.content_type not in allowed_content_types:
@@ -51,7 +63,6 @@ async def transcribe(file: UploadFile) -> dict:
 
 app.include_router(root_router, tags=["Root"])
 app.include_router(transcription_router, prefix="/transcribe", tags=["Transcription"])
-app.include_router(note.note_router, prefix="/notes", tags=["Note"])
+app.include_router(note.note_router, prefix="/notes")
 app.include_router(user.user_router, prefix="/users")
 app.include_router(feedback.feedback_router, prefix="/feedback")
-app.add_event_handler("startup", start_db)

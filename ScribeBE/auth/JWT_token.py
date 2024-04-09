@@ -2,8 +2,10 @@ from datetime import datetime, timedelta, timezone
 from fastapi import HTTPException, status
 from jose import JWTError, jwt
 from pydantic import EmailStr
+from settings import Settings
 
 SECRET_KEY = "a2ddad598b891e78cbbc00c4d53c8346a58c29f6a1dd4b4ce05c13b999a0c3e1"
+# SECRET_KEY = Settings().SECRET_KEY
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 30
 
