@@ -2,14 +2,14 @@ import { Outlet, Link } from "react-router-dom";
 import Logo from "./components/Assets/logo-bw.png";
 import "./styles/layout.css";
 
-
 const Layout = ({isSignin,signout}) => {
+  var signinStatus = localStorage.getItem(isSignin)
 
     return (
       <>
         <nav>
           <div>
-            { isSignin === false
+            { signinStatus === false
             ?(
               <div className='zone orange'>
                 <div className='main-nav'>
@@ -20,7 +20,7 @@ const Layout = ({isSignin,signout}) => {
                     </div>
                   </li>
                   <li className="push">
-                      <Link id="loginSignupPage" to="/loginSignupPage">Log In
+                      <Link to="/loginSignupPage">Log In
                       <i className="fa-solid fa-right-to-bracket" style={{ marginLeft: '8px' }}></i>
                       </Link>
                   </li>
