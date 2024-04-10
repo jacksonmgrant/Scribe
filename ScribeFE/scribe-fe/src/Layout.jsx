@@ -3,13 +3,12 @@ import Logo from "./components/Assets/logo-bw.png";
 import "./styles/layout.css";
 
 const Layout = ({isSignin,signout}) => {
-  var signinStatus = localStorage.getItem(isSignin)
 
     return (
       <>
         <nav>
           <div>
-            { signinStatus === false
+            { isSignin === false
             ?(
               <div className='zone orange'>
                 <div className='main-nav'>
@@ -26,7 +25,7 @@ const Layout = ({isSignin,signout}) => {
                   </li>
                 </div>
               </div>
-              )
+              ) 
             : (
               <div className='zone orange'>
                 <div className='main-nav'>
