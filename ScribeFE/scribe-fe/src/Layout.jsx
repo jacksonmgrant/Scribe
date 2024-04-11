@@ -37,7 +37,7 @@ const Layout = ({isSignin,signout}) => {
                       <Link id="aboutus" to="/aboutus">About us</Link>
                   </li>
                   <li>
-                      <Link id="formsubmission" to="/formsubmission">Form submission</Link>
+                      <Link id="formsubmission" to="/formsubmission">User feedback</Link>
                   </li>
                   <li className="push">
                       <Link to="/loginSignupPage"  onClick={signout}>Log out</Link>
