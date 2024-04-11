@@ -5,7 +5,7 @@
     width: 40rem;
     margin-inline: auto;
     margin-block: 5rem 8rem;
-    background: var(--darkest);
+    background: var(--solid-bg);
     padding: 2rem;
     border-radius: 25px;
     color: var(--text-light);
@@ -40,8 +40,8 @@
     margin: auto;
     width: 100%;
     height: auto;
-    background: var(--light);
-    color: var(--gray);
+    background: var(--form-field);
+    color: var(--form-field-text);
     font-size: 1.25rem;
     border-radius: 8px;
     padding-inline: 1rem;
@@ -53,7 +53,7 @@
     background: transparent;
     border: none;
     outline: none;
-    color: var(--gray);
+    color: var(--form-field-text);
     font-size: 1.25rem;
     padding-inline: 1rem;
 }
@@ -74,25 +74,26 @@
     align-items: center;
 
     .signup {
-        color: var(--light);
+        color: var(--text-light);
         text-decoration: underline;
         padding-inline: 1rem;
         transition: all 0.25s ease;
     }
 
     .signup:hover, .signup:focus {
-        color: var(--orange);
+        color: var(--border-main);
         transition: all 0.5s ease;
     }
 }
 
 .submit{
     width: 100%;
-    color: var(--orange);
+    color: var(--text-main);
     font-size: 1.25rem;
     font-weight: 700;
-    background-color: var(--dark); /* Dark background color */
-    border: 1px solid var(--dark);
+    height: 100%;
+    background-color: var(--solid-bg); /* Dark background color */
+    border: 1px solid transparent;
     border-radius: 8px; /* Add rounded corners */
     padding: 10px 20px; /* Adjust padding for the button */
     cursor: pointer;
@@ -100,6 +101,6 @@
 }
 
 .submit:hover, .submit:focus {
-    border: 1px solid var(--orange);
+    border: 1px solid var(--border-main);
     transition: all 0.5s ease;
 }

@@ -20,7 +20,7 @@ button {
 }
 
 #upload-audio-file, #record-audio, #stop-recording {
-	color: var(--light);
+	color: var(--text-light);
     font-size: 1.25rem;
     font-weight: 700;
     background-color: var(--darkest); /* Dark background color */
@@ -34,9 +34,9 @@ button {
     color: var(--light-crimson);
 }
 
-#record-audio:hover, #record-audio:active,
-#upload-audio-file:hover, #upload-audi0-file:active,
-#stop-recording:hover, #stop-recording:active {
-	border: 1px solid var(--orange);
+#record-audio:hover, #record-audio:active, #record-audio:focus,
+#upload-audio-file:hover, #upload-audio-file:active, #upload-audio-file:focus,
+#stop-recording:hover, #stop-recording:active, #stop-recording:focus {
+	border: 1px solid var(--border-main);
     transition: all 0.5s ease;
 }
