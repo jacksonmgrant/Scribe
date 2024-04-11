@@ -54,15 +54,15 @@ const FormSubmission = () => {
                         <h2>Rate us</h2>
                         <div className={styles.stars}>  
                             <input id="radio1" name="rating" type="radio" value="1"/>
-                            <label for="radio1"></label>
+                            <label tabIndex="0" for="radio1"></label>
                             <input id="radio2" name="rating" type="radio" value="2"/>
-                            <label for="radio2"></label>
+                            <label tabIndex="0" for="radio2"></label>
                             <input id="radio3" name="rating" type="radio" value="3"/>
-                            <label for="radio3"></label>
+                            <label tabIndex="0" for="radio3"></label>
                             <input id="radio4" name="rating" type="radio" value="4"/>
-                            <label for="radio4"></label>
+                            <label tabIndex="0" for="radio4"></label>
                             <input id="radio5" name="rating" type="radio" value="5"/>
-                            <label for="radio5"></label>
+                            <label tabIndex="0" for="radio5"></label>
                         </div>
                     </form>
                     {cannotSend && <p className={styles.header} style={{ color: 'var(--light-crimson)' }}>Form fields cannot be empty</p>}
