@@ -23,7 +23,7 @@ const LoginSignup = ({signin,signout}) => {
             });
             const user = await response.json();
             console.log(user);
-            if(user.detail === "Email or password is not correct"){
+            if(user.detail === "Incorrect email or password, or user does not exist."){
                 console.log(user.detail);
                 setCannotLogin(true);
                 signout();
