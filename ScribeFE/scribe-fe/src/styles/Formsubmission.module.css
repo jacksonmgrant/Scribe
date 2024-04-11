@@ -5,7 +5,7 @@
     width: 40rem;
     margin-inline: auto;
     margin-block: 5rem 8rem;
-    background: var(--darkest);
+    background: var(--solid-bg);
     padding: 2rem;
     border-radius: 25px;
     text-align: left;
@@ -54,8 +54,8 @@
     margin: auto;
     width: 100%;
     height: auto;
-    background: var(--light);
-    color: var(--gray);
+    background: var(--form-field);
+    color: var(--form-field-text);
     font-size: 1.25rem;
     border-radius: 8px;
 }
@@ -72,6 +72,7 @@ textarea {
 
 label {
     font-size: 3rem;
+    cursor: pointer;
 }
 
 input[type=radio] + label:before {
@@ -82,13 +83,13 @@ input[type=radio] + label:before {
 
 input[type=radio]:checked + label:before {
     content: "\f005";
-    color: var(--orange);
+    color: var(--star-filled);
     transition: all 0.5s ease;
 
 }
 input[type=radio]:focus + label:before {
     font-weight: bold;
-    color: var(--orange);
+    color: var(--star-focus);
     transition: all 0.5s ease;
 }
 
