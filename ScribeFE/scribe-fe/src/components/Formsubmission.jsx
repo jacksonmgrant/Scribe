@@ -54,7 +54,7 @@ const FormSubmission = () => {
                     </div>
                     <form className={styles.input} onChange={(event) => setRating(event.target.value)} >
                         <h2>Rate us</h2>
-                        <div>  
+                        <div className={styles.stars}>  
                             {[...Array(5)].map((star, index) =>{
                                 const currentRating = index + 1;
                                 return(

@@ -59,6 +59,11 @@ textarea {
     color: var(--text-dark);
 }
 
+.stars {
+    display: flex;
+    justify-content: space-between;
+}
+
 .input input {
     display: none;
 }
