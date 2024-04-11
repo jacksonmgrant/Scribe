@@ -28,7 +28,7 @@ async def signup(user:User) -> dict:
 async def login(user: Login):
     existing_user = await DbUser.find_one(DbUser.email == user.email)
 
-    # email is not correct
+    # for case email is not correct
     if not existing_user:
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Incorrect email or password, or user does not exist.")
     
@@ -45,9 +45,12 @@ async def login(user: Login):
         )
         return {"access_token": user_token, "token_type": "Bearer"}
     
-    raise HTTPException(
-        status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid details passed."
-    )
+    # raise HTTPException(
+    #     status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid details passed."
+    # )
+
+    ## for case password is not correct
+    raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Incorrect email or password, or user does not exist.")
 
 
 
