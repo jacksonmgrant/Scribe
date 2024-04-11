@@ -122,6 +122,12 @@ dialog {
 	transition: all 1s ease;
 }
 
+@media (max-width: 1200px) {
+	dialog {
+		width: 80%;
+	}
+}
+
 .delete-dialog {
 	height: fit-content;
 	width: 30%;
