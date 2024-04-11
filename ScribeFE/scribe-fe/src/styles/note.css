@@ -126,6 +126,15 @@ dialog {
 	dialog {
 		width: 80%;
 	}
+
+	.note {
+		flex-direction: column;
+	}
+
+	.note .actions {
+		justify-content: space-between;
+		margin: 1rem 0 0 0;
+	}
 }
 
 .delete-dialog {
