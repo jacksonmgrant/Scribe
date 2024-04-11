@@ -38,6 +38,7 @@ then define custom properties for uses based on those colors */
 	--dark-bg-gradient: linear-gradient(to bottom right, var(--dark), var(--darker));
 	--main-bg-gradient: linear-gradient(to bottom right, var(--yellow-orange), var(--orange));
 	--solid-bg: var(--darkest);
+	--solid-bg-2: var(--dark);
 
 	--h1: var(--orange);
 	--h2: var(--light);
