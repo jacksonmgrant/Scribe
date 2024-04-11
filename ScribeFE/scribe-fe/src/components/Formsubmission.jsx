@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import {FaStar} from "react-icons/fa"
 import "../styles/LoginSignup.css"
 import styles from "../styles/Formsubmission.module.css"
 import { Link,useNavigate } from "react-router-dom";
@@ -8,6 +9,7 @@ const FormSubmission = () => {
     const [text, setText] = useState("");
     const [rating, setRating] = useState(0);
     const [cannotSend, setCannotSend] = useState(false);
+    const [hover, setHover] = useState(null)
     const navigate = useNavigate();
 
     const checkUser = async () => {
@@ -52,17 +54,25 @@ const FormSubmission = () => {
                     </div>
                     <form className={styles.input} onChange={(event) => setRating(event.target.value)} >
                         <h2>Rate us</h2>
-                        <div className={styles.stars}>  
-                            <input id="radio1" name="rating" type="radio" value="1"/>
-                            <label tabIndex="0" for="radio1"></label>
-                            <input id="radio2" name="rating" type="radio" value="2"/>
-                            <label tabIndex="0" for="radio2"></label>
-                            <input id="radio3" name="rating" type="radio" value="3"/>
-                            <label tabIndex="0" for="radio3"></label>
-                            <input id="radio4" name="rating" type="radio" value="4"/>
-                            <label tabIndex="0" for="radio4"></label>
-                            <input id="radio5" name="rating" type="radio" value="5"/>
-                            <label tabIndex="0" for="radio5"></label>
+                        <div>  
+                            {[...Array(5)].map((star, index) =>{
+                                const currentRating = index + 1;
+                                return(
+                                <label>
+                                    <input
+                                      type='radio'
+                                      name="rating"
+                                      onClick={() => setRating(currentRating)}
+                                    />
+                                <FaStar 
+                                    size={60}
+                                    color={currentRating <= (hover || rating) ? "#ffc107" : "#e4e5e9"}
+                                    onMouseEnter={() => setHover(currentRating)}
+                                    onMouseLeave={() => setHover(null)}
+                                />
+                                </label>
+                                )
+                            })}  
                         </div>
                     </form>
                     {cannotSend && <p className={styles.header} style={{ color: 'var(--light-crimson)' }}>Form fields cannot be empty</p>}
