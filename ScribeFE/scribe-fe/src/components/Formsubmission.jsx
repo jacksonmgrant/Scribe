@@ -41,28 +41,34 @@ const FormSubmission = () => {
         <form method='GET'>
             <div className={styles.container}>
                 <div className={styles.header}>
-                    <div className='text'>Form Submission</div>
+                    <h1>User feedback</h1>
                 </div>
                 <div className={styles.inputs}>
+                    <h2>Tell us about your experience</h2>
                     <div className={styles.experience} >
                         <textarea 
-                        rows="7" 
-                        style={{ height: '200px', width: '450px' }} 
-                        placeholder='tell us your experience'
                         onChange={(event) => setText(event.target.value)} >
                         </textarea>
                     </div>
-                    <div className={styles.input} style={{ borderRadius: '25px' }}>
-                        <input type='number' 
-                        max={10} 
-                        id="review"
-                        onChange={(event) => setRating(event.target.value)} 
-                        placeholder='Give us a reviews out of 10'/>
-                    </div>
-                    {cannotSend && <p className={styles.header} style={{ color: 'maroon' }}>**Both input cannot be empty plz try one more time**</p>}
+                    <form className={styles.input} onChange={(event) => setRating(event.target.value)} >
+                        <h2>Rate us</h2>
+                        <div className={styles.stars}>  
+                            <input id="radio1" name="rating" type="radio" value="1"/>
+                            <label for="radio1"></label>
+                            <input id="radio2" name="rating" type="radio" value="2"/>
+                            <label for="radio2"></label>
+                            <input id="radio3" name="rating" type="radio" value="3"/>
+                            <label for="radio3"></label>
+                            <input id="radio4" name="rating" type="radio" value="4"/>
+                            <label for="radio4"></label>
+                            <input id="radio5" name="rating" type="radio" value="5"/>
+                            <label for="radio5"></label>
+                        </div>
+                    </form>
+                    {cannotSend && <p className={styles.header} style={{ color: 'var(--light-crimson)' }}>Form fields cannot be empty</p>}
                 </div>
                 <div className='submit-container'>
-                    <Link className="submit" 
+                    <Link className='submit'
                     onClick={async () => {
                         await checkUser();
                     }}>
