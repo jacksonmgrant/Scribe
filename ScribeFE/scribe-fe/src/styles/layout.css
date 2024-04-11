@@ -1,5 +1,6 @@
 .zone {
     font-size: 1.25rem;
+    color: var(--text-dark);
 }
 
 .main-nav{
@@ -18,6 +19,7 @@ li{
     padding-inline: 15px;
     margin-inline: 10px;
     height: 2.35rem;
+    align-items: center;
     border: 1px solid transparent; 
     border-radius: 8px;
     padding-block: 5px;

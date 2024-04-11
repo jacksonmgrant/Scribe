@@ -13,10 +13,9 @@ const Layout = ({isSignin,signout}) => {
               <div className='zone orange'>
                 <div className='main-nav'>
                   <li>
-                    <div style={{ display: 'flex', alignItems:  'start' }}>
+                      <Link to="/" style={{ fontWeight: '700', display: 'flex', alignItems: 'center' }}>
                       <img alt="Scribe Logo" src={Logo} style={{ height: '1.75rem', marginRight: '0.5rem' }}></img>
-                      <Link to="/" style={{ fontWeight: '700' }}>Scribe</Link>
-                    </div>
+                      <span style={{ paddingBottom: '3px' }}>Scribe</span></Link>
                   </li>
                   <li className="push">
                       <Link to="/loginSignupPage">Log In
@@ -30,10 +29,9 @@ const Layout = ({isSignin,signout}) => {
               <div className='zone orange'>
                 <div className='main-nav'>
                   <li>
-                    <div style={{ display: 'flex', alignItems:  'start' }}>
+                      <Link to="/userpage" style={{ fontWeight: '700', display: 'flex', alignItems: 'center' }}>
                       <img alt="Scribe Logo" src={Logo} style={{ height: '1.75rem', marginRight: '0.5rem' }}></img>
-                      <Link to="/userpage" style={{ fontWeight: '700' }}>Scribe</Link>
-                    </div>
+                      <span style={{ paddingBottom: '3px' }}>Scribe</span></Link>
                   </li>
                   <li>
                       <Link id="aboutus" to="/aboutus">About us</Link>
