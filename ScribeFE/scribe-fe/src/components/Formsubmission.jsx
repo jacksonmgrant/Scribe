@@ -66,7 +66,7 @@ const FormSubmission = () => {
                                     />
                                 <FaStar 
                                     size={60}
-                                    color={currentRating <= (hover || rating) ? "#ffc107" : "#e4e5e9"}
+                                    color={currentRating <= (hover || rating) ? "#ffc107" : "#f7f8fa"}
                                     onMouseEnter={() => setHover(currentRating)}
                                     onMouseLeave={() => setHover(null)}
                                 />
