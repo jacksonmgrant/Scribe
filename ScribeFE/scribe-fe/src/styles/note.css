@@ -73,12 +73,12 @@ textarea {
 	transition: all 0.25s ease;
 }
 
-.note .actions button:hover, .note .actions button:active {
+.note .actions button:hover, .note .actions button:active, .note .actions button:focus {
 	border: 1px solid var(--border-main);
 	transition: all 0.5s ease;
 }
 
-.note .actions .delete:hover, .note .actions .delete:active {
+.note .actions .delete:hover, .note .actions .delete:active, .note .actions .delete:focus {
 	border: 1px solid var(--danger);
 	transition: all 0.5s ease;
 }
@@ -148,7 +148,7 @@ dialog {
 
 dialog textarea {
     height: 82%;
-	background-color: var(--solid-bg);
+	background-color: var(--solid-bg-2);
 	margin-bottom: 1rem;
 	resize: none;
 	color: var(--text-light)
@@ -170,7 +170,7 @@ dialog button {
 	transition: all 0.25s ease;
 }
 
-.save:hover, .save:active {
+.save:hover, .save:active, .save:focus {
 	border: 1px solid var(--border-main);
 	transition: all 0.5s ease;
 }
@@ -180,7 +180,7 @@ dialog button {
 	transition: all 0.25s ease;
 }
 
-.cancel:hover, .cancel:active {
+.cancel:hover, .cancel:active, .cancel:focus {
 	border: 1px solid var(--border-light);
 	transition: all 0.5s ease;
 }
@@ -190,7 +190,7 @@ dialog button {
 	transition: all 0.25s ease;
 }
 
-.delete:hover, .delete:active {
+.delete:hover, .delete:active, .delete:focus {
 	border: 1px solid var(--danger);
 	transition: all 0.5s ease;
 }
