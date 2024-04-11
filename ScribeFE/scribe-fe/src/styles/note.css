@@ -111,8 +111,8 @@ dialog {
 	bottom: 0;
 	right: 0;
     margin: auto;
-    width: 50%;
-    height: 60%;
+    width: 60%;
+    height: 80%;
     background: var(--darkest);
     padding: 2rem;
     border: 1px solid var(--orange);
@@ -132,7 +132,7 @@ dialog {
 }
 
 dialog textarea {
-    height: 75%;
+    height: 82%;
 	background-color: var(--dark);
 	margin-bottom: 1rem;
 	resize: none;
