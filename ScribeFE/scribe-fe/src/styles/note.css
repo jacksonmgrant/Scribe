@@ -136,6 +136,7 @@ dialog textarea {
 	background-color: var(--dark);
 	margin-bottom: 1rem;
 	resize: none;
+	color: var(--text-light)
 }
 
 .buttons {
