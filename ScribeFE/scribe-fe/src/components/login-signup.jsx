@@ -50,7 +50,7 @@ const LoginSignup = ({signin,signout}) => {
                         <i className="fa-solid fa-envelope"></i>
                         <input type='email' 
                         name="userid" 
-                        placeholder='Email Id'
+                        placeholder='Email'
                         onChange={(event) => setEmail(event.target.value)}
                         />
                     </div>
@@ -69,7 +69,7 @@ const LoginSignup = ({signin,signout}) => {
                         onClick={async () => {
                             await checkUser()
                         }}
-                    >Login
+                    >Log in
                     </Link>
                 </div>
                 <div className='signup-container'>
