@@ -41,13 +41,6 @@
     font-size: 1.25rem;
 }
 
-.stars {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
 .experience {
     display: flex;
     align-items: top;
@@ -71,28 +64,8 @@ textarea {
 }
 
 label {
-    font-size: 3rem;
     cursor: pointer;
 }
-
-input[type=radio] + label:before {
-    font-family: FontAwesome;
-    content: "\f005";
-    transition: all 0.25s ease;
-}
-
-input[type=radio]:checked + label:before {
-    content: "\f005";
-    color: var(--star-filled);
-    transition: all 0.5s ease;
-
-}
-input[type=radio]:focus + label:before {
-    font-weight: bold;
-    color: var(--star-focus);
-    transition: all 0.5s ease;
-}
-
 
 .submit-container{
     display: flex;
