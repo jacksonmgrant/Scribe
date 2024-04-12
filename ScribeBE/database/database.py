@@ -14,7 +14,7 @@ async def init_db():
     # reads the environment variables from the .env file.
     load_dotenv()
     # connect to your mongodb database. Please change to your database
-    client = AsyncIOMotorClient(f"mongodb+srv://{os.getenv("DB_USER")}:{os.getenv("DB_PASS")}@scribedb.klymspw.mongodb.net/")
+    client = AsyncIOMotorClient(f"mongodb+srv://{settings.DB_USER}:{settings.DB_PASS}@scribedb.klymspw.mongodb.net/")
     # client = AsyncIOMotorClient(settings.CONNECTION_STRING)
     # selecting collections
     await init_beanie(client.ScribeDB, document_models=[DbNote, DbUser, DbFeedback])

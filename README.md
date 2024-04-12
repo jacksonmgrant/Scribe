@@ -93,11 +93,12 @@ If you are worried about running scripts or are encountering issues with them, y
     3. Paste the following code into the file:
 
        ```text
-       CONNECTION_STRING = "mongodb+srv://username:password@scribedb.klymspw.mongodb.net/"
-       SECRET_KEY = "secret_key"
+        DB_USER="username"
+        DB_PASS="password"       
+        SECRET_KEY = "secret_key"
        ```
 
-    4. Replace username and password in the connection string with your credentials, and replace secret_key with the secret key I have sent you.
+    4. Replace username and password with your user credentials, and replace secret_key with the secret key I have sent you.
 4. Run the setup script:
     - Windows:
       1. From the Scribe folder, run ```./windows-setup.ps1``` in VSCode's terminal.
