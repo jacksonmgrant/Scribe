@@ -8,7 +8,7 @@ const LoginSignup = ({signin,signout}) => {
     const [password, setPassword] = useState("");
     const [cannotLogin,setCannotLogin] = useState(false);
     const navigate = useNavigate();
-    
+
     const checkUser = async () => {
         try {
             const response = await fetch(`http://localhost:8000/users/login/`, {
@@ -29,6 +29,7 @@ const LoginSignup = ({signin,signout}) => {
                 signout();
             }else if(user){
                 localStorage.setItem('token', user.access_token);
+                await sendTokenToBackend(user.access_token);
                 navigate('/userpage');
                 signin();
             }
@@ -38,6 +39,21 @@ const LoginSignup = ({signin,signout}) => {
         }
     }
 
+    // I found a way to send token and I beleive this is what they call interceptor 
+    // but I'm not sure which endpoint we want to store our token
+    const sendTokenToBackend = async (token) => {
+        try {
+            const response = await fetch(`http://localhost:8000/users/login/`, {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+        } catch (error) {
+            console.error('Error sending token to backend:', error);
+            throw error;
+        }
+    }
     
     return(
         <form method='GET'>
