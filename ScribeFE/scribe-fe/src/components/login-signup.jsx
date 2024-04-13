@@ -47,12 +47,7 @@ const LoginSignup = ({signin,signout}) => {
                 method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${token}`,
-                    'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({
-                    email: email,
-                    password: password
-                }),
             });
             console.log("2 ",response)
         } catch (error) {
