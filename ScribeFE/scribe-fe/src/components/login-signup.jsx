@@ -22,7 +22,7 @@ const LoginSignup = ({signin,signout}) => {
                 }),
             });
             const user = await response.json();
-            console.log(user);
+            console.log("1 ",user);
             if(user.detail === "Incorrect email or password, or user does not exist."){
                 console.log(user.detail);
                 setCannotLogin(true);
@@ -44,11 +44,17 @@ const LoginSignup = ({signin,signout}) => {
     const sendTokenToBackend = async (token) => {
         try {
             const response = await fetch(`http://localhost:8000/users/login/`, {
-                method: 'GET',
+                method: 'POST',
                 headers: {
-                    'Authorization': `Bearer ${token}`
-                }
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    email: email,
+                    password: password
+                }),
             });
+            console.log("2 ",response)
         } catch (error) {
             console.error('Error sending token to backend:', error);
             throw error;
