@@ -26,11 +26,11 @@ const FormSubmission = () => {
             });
             const feedback = await response.json();
             console.log(feedback)
-            if(feedback.detail === "successfully add new feedback"){
+            if(feedback.detail === "Successfully submitted feedback"){
                 navigate('/userpage')
                 setCannotSend(false)
             }
-            if(feedback.detail === "Plz fill something"){
+            if(feedback.detail === "Form fields cannot be blank"){
                 setCannotSend(true)
             }
         } catch (error) {
@@ -58,24 +58,26 @@ const FormSubmission = () => {
                             {[...Array(5)].map((star, index) =>{
                                 const currentRating = index + 1;
                                 return(
+                                <>
+                                <input
+                                    type='radio'
+                                    name="rating"
+                                />
                                 <label>
-                                    <input
-                                      type='radio'
-                                      name="rating"
-                                      onClick={() => setRating(currentRating)}
-                                    />
                                 <FaStar 
                                     size={60}
-                                    color={currentRating <= (hover || rating) ? "#ffc107" : "#f7f8fa"}
+                                    color={currentRating <= (hover || rating) ? "var(--orange)" : "var(--light)"}
                                     onMouseEnter={() => setHover(currentRating)}
                                     onMouseLeave={() => setHover(null)}
+                                    onClick={() => setRating(currentRating)}
                                 />
                                 </label>
+                                </>
                                 )
                             })}  
                         </div>
                     </form>
-                    {cannotSend && <p className={styles.header} style={{ color: 'var(--light-crimson)' }}>Form fields cannot be empty</p>}
+                    {cannotSend && <p className={styles.header} style={{ color: 'var(--danger)' }}>Form fields cannot be blank</p>}
                 </div>
                 <div className='submit-container'>
                     <Link className='submit'
