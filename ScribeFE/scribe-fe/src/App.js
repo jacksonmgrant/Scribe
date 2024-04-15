@@ -15,6 +15,9 @@ import ParticlesBg from 'particles-bg'
 
 const App = () => {
     const [isSignin,setIsSignin] = useState(false);
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
 
     const signin = () => {
         setIsSignin(true)
@@ -22,6 +25,17 @@ const App = () => {
 
     const signout = () => {
         setIsSignin(false)
+    }
+
+    const clearSignupInput = () => {
+        setName("")
+        setEmail("")
+        setPassword("")
+    }
+
+    const clearLoginInput = () => {
+        setEmail("")
+        setPassword("")
     }
 
     return (
@@ -36,12 +50,24 @@ const App = () => {
                             element={<LoginSignupPage 
                             signin={signin}
                             signout={signout}
+                            email={email}
+                            setEmail={setEmail}
+                            password ={password}
+                            setPassword={setPassword}
+                            clearLoginInput={clearLoginInput}
                             />} 
                         />
                         <Route path="SignupPage" 
                             element={<SignupPage
                                 signin={signin}
                                 signout={signout}
+                                name={name}
+                                setName={setName}
+                                email={email}
+                                setEmail={setEmail}
+                                password ={password}
+                                setPassword={setPassword}
+                                clearSignupInput={clearSignupInput}
                                 />} 
                         />
                         <Route path="formsubmission" element={<FormSubmissionPage/>}/>

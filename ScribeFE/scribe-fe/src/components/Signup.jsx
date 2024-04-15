@@ -2,10 +2,8 @@ import React, {useState} from 'react';
 import "../styles/LoginSignup.css";
 import { Link,useNavigate } from 'react-router-dom';
 
-const Signup = ({signin,signout}) => {
-    const [name, setName] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+const Signup = ({signin,signout,name,setName,email,setEmail,password,setPassword,clearSignupInput}) => {
+
     const [cannotSignup,setCannotSignup] = useState(false)
     const navigate = useNavigate();
 
@@ -71,6 +69,7 @@ const Signup = ({signin,signout}) => {
                     <Link className="submit" 
                     onClick={async () => {
                         await createUser();
+                        clearSignupInput()
                     }}>
                         Sign up
                     </Link>
