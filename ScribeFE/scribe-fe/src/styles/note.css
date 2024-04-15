@@ -133,9 +133,12 @@ dialog {
 
 dialog textarea {
     height: 75%;
-	background-color: var(--dark);
 	margin-bottom: 1rem;
 	resize: none;
+}
+
+.text-edit {
+	background-color: var(--dark);
 }
 
 .buttons {

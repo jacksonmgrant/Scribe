@@ -6,6 +6,7 @@ export function Note({id: _id, text = "Empty note", time, hasRecording, onEdit, 
   const [noteText, setText] = useState(text);
 
   const [editOpen, setEditOpen] = React.useState(false);
+  const [isEditable, setIsEditable] = React.useState(false);
   const [deleteOpen, setDeleteOpen] = React.useState(false);
 
   const handleEditOpen = () => setEditOpen(true);
@@ -17,6 +18,14 @@ export function Note({id: _id, text = "Empty note", time, hasRecording, onEdit, 
 
   function EditModal() {
     const handleEditClose = () => setEditOpen(false);
+
+    async function handleEditClick() {
+      setIsEditable(true);
+    }
+
+    async function handleEditCancel() {
+      setIsEditable(false);
+    }
   
     async function handleSaveClick() {
       await apiService.updateNote(_id, noteText)
@@ -31,19 +40,34 @@ export function Note({id: _id, text = "Empty note", time, hasRecording, onEdit, 
           open={editOpen}
           aria-labelledby="modal-modal-title"
           aria-describedby="modal-modal-description">
-          <h2>Edit Note</h2>
-          <textarea type="text" className="text" value={noteText} onChange={editNote}/>
-          <div className="buttons">
-            <button className="cancel" onClick={handleEditClose}>Cancel
-            </button>
-            <button className="save" onClick={handleSaveClick}>Save
-              <i className="fa-solid fa-square-check" style={{ marginLeft: '8px' }}></i>
-            </button>
-          </div>
+            {isEditable ?
+            <>
+            <h2>Edit Note</h2>
+            <textarea type="text" className="text-edit" value={noteText} onChange={editNote}/>
+            <div className="buttons">
+              <button className="cancel" onClick={handleEditCancel}>Cancel
+              </button>
+              <button className="save" onClick={handleSaveClick}>Save
+                <i className="fa-solid fa-square-check" style={{ marginLeft: '8px' }}></i>
+              </button>
+            </div>
+            </>
+            :
+            <>
+            <h2>View Note</h2>
+            <textarea type="text" className="text" value={noteText} readOnly/>
+            <div className="buttons">
+              <button className="cancel" onClick={handleEditClose}>Close
+              </button>
+              <button className="save" onClick={handleEditClick}>Edit
+                <i className="fa-solid fa-pen-to-square" style={{ marginLeft: '8px' }}></i>
+              </button>
+            </div>
+            </>}
         </dialog>
       </div>
       : <div></div> //Kate: if the dialog is not open return an empty div, 
-      //without this div-container is visible always and prevents clicking buttons
+      //without this dialog-container is visible always and prevents clicking buttons
       //unsure if there's a better way to do this but it works for now
     )
   }
@@ -90,8 +114,8 @@ export function Note({id: _id, text = "Empty note", time, hasRecording, onEdit, 
         <textarea type="text" className="text" value={noteText} onChange={editNote} readOnly rows={noteText.length/100+1} cols={100}/>
       </div>
       <div className="actions">
-        <button className="edit" onClick={handleEditOpen}>Edit
-          <i className="fa-solid fa-pen-to-square" style={{ marginLeft: '8px' }}></i>
+        <button className="edit" onClick={handleEditOpen}>View
+          <i className="fa-solid fa-eye" style={{ marginLeft: '8px' }}></i>
         </button>
         <button className="delete" onClick={handleDeleteOpen}>Delete
         <i className="fa-solid fa-trash" style={{ marginLeft: '8px' }}></i>
