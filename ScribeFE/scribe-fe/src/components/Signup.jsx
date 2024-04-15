@@ -21,7 +21,7 @@ const Signup = ({signin,signout,name,setName,email,setEmail,password,setPassword
                 }),
             });
             const user = await response.json();
-            if(user.msg === "Successfully signed up"){
+            if(user.msg === "successfully add new user"){
                 navigate('/userpage')
                 signin()
             }else {
