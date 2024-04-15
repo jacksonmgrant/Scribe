@@ -3,13 +3,11 @@ import "../styles/LoginSignup.css"
 import {Link,useNavigate} from 'react-router-dom';
 
 
-const LoginSignup = ({signin,signout}) => {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [login, setlogin] = useState(false);
+const LoginSignup = ({signin,signout,email,setEmail,password,setPassword,clearLoginInput}) => {
+
     const [cannotLogin,setCannotLogin] = useState(false);
     const navigate = useNavigate();
-    
+
     const checkUser = async () => {
         try {
             const response = await fetch(`http://localhost:8000/users/login/`, {
@@ -23,22 +21,16 @@ const LoginSignup = ({signin,signout}) => {
                 }),
             });
             const user = await response.json();
-            console.log(user)
-            console.log(user.detail)
-            // if(user){
-            //     setlogin(true)
-            //     navigate('/userpage')
-            //     signin()
-            // }
-            if(user.detail === "Email or password is not correct"){
-                console.log("yes")
-                setlogin(false)
-                setCannotLogin(true)
-                signout()
+            console.log("1 ",user);
+            if(user.detail === "Incorrect email or password, or user does not exist."){
+                console.log(user.detail);
+                setCannotLogin(true);
+                signout();
             }else if(user){
-                setlogin(true)
-                navigate('/userpage')
-                signin()                
+                localStorage.setItem('token', user.access_token);
+                await sendTokenToBackend(user.access_token);
+                navigate('/userpage');
+                signin();
             }
         } catch (error) {
             console.error('Error:', error);
@@ -46,6 +38,27 @@ const LoginSignup = ({signin,signout}) => {
         }
     }
 
+    // I found a way to send token and I beleive this is what they call interceptor 
+    // but I'm not sure which endpoint we want to store our token
+    const sendTokenToBackend = async (token) => {
+        try {
+            const response = await fetch(`http://localhost:8000/users/login/`, {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    email: email,
+                    password: password
+                }),
+            });
+            console.log("2 ",response)
+        } catch (error) {
+            console.error('Error sending token to backend:', error);
+            throw error;
+        }
+    }
     
     return(
         <form method='GET'>
@@ -58,7 +71,8 @@ const LoginSignup = ({signin,signout}) => {
                         <i className="fa-solid fa-envelope"></i>
                         <input type='email' 
                         name="userid" 
-                        placeholder='Email Id'
+                        placeholder='Email'
+                        required
                         onChange={(event) => setEmail(event.target.value)}
                         />
                     </div>
@@ -67,17 +81,19 @@ const LoginSignup = ({signin,signout}) => {
                         <input type='password' 
                         name="password" 
                         placeholder='Password'
+                        required
                         onChange={(event) => setPassword(event.target.value)}
                         />
                     </div>
-                    {cannotLogin && <p style={{ color: 'red' }}>Wrong Email Id or password</p>}
+                    {cannotLogin && <p style={{ color: 'var(--danger)' }}>Incorrect email or password</p>}
                 </div>
                 <div className='submit-container'>
                     <Link className="submit" 
                         onClick={async () => {
                             await checkUser()
+                            clearLoginInput()
                         }}
-                    >Login
+                    >Log in
                     </Link>
                 </div>
                 <div className='signup-container'>
@@ -91,4 +107,3 @@ const LoginSignup = ({signin,signout}) => {
 
 export default LoginSignup;
 
-// to={canLogin}

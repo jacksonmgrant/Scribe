@@ -2,7 +2,6 @@ import { Outlet, Link } from "react-router-dom";
 import Logo from "./components/Assets/logo-bw.png";
 import "./styles/layout.css";
 
-
 const Layout = ({isSignin,signout}) => {
 
     return (
@@ -11,40 +10,39 @@ const Layout = ({isSignin,signout}) => {
           <div>
             { isSignin === false
             ?(
-              <div className='zone orange'>
+              <div className='zone gradient'>
                 <div className='main-nav'>
                   <li>
-                    <div style={{ display: 'flex', alignItems:  'start' }}>
+                      <Link to="/" style={{ fontWeight: '700', display: 'flex', alignItems: 'center' }}>
                       <img alt="Scribe Logo" src={Logo} style={{ height: '1.75rem', marginRight: '0.5rem' }}></img>
-                      <Link to="/" style={{ fontWeight: '700' }}>Scribe</Link>
-                    </div>
+                      <span style={{ paddingBottom: '3px' }}>Scribe</span></Link>
                   </li>
                   <li className="push">
-                      <Link id="loginSignupPage" to="/loginSignupPage">Log In
+                      <Link to="/loginSignupPage">Log In
                       <i className="fa-solid fa-right-to-bracket" style={{ marginLeft: '8px' }}></i>
                       </Link>
                   </li>
                 </div>
               </div>
-              )
+              ) 
             : (
-              <div className='zone orange'>
+              <div className='zone gradient'>
                 <div className='main-nav'>
                   <li>
-                    <div style={{ display: 'flex', alignItems:  'start' }}>
+                      <Link to="/userpage" style={{ fontWeight: '700', display: 'flex', alignItems: 'center' }}>
                       <img alt="Scribe Logo" src={Logo} style={{ height: '1.75rem', marginRight: '0.5rem' }}></img>
-                      <Link to="/userpage" style={{ fontWeight: '700' }}>Scribe</Link>
-                    </div>
+                      <span style={{ paddingBottom: '2px' }}>Scribe</span></Link>
                   </li>
                   <li>
                       <Link id="aboutus" to="/aboutus">About us</Link>
                   </li>
                   <li>
-                      <Link id="formsubmission" to="/formsubmission">Form submission</Link>
+                      <Link id="formsubmission" to="/formsubmission">User feedback</Link>
                   </li>
                   <li className="push">
-                      <Link to="/loginSignupPage"  onClick={signout}>Log out</Link>
+                      <Link to="/loginSignupPage"  onClick={signout}>Log out
                       <i className="fa-solid fa-right-to-bracket" style={{ marginLeft: '8px' }}></i>
+                      </Link>
                   </li>
                 </div>
               </div>

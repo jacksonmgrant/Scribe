@@ -1,5 +1,6 @@
 .zone {
     font-size: 1.25rem;
+    color: var(--text-dark);
 }
 
 .main-nav{
@@ -15,8 +16,15 @@
 }
 
 li{
-    padding-inline: 15px;
+    display: flex;
     margin-inline: 10px;
+    align-items: center;
+}
+
+
+a {
+    color: var(--text-dark);
+    text-decoration: None;
     height: 2.35rem;
     border: 1px solid transparent; 
     border-radius: 8px;
@@ -25,21 +33,11 @@ li{
     transition: all 0.25s ease;
 }
 
-
-a {
-    color: var(--darkest);
-    text-decoration: None;
-}
-
-li:hover, li:focus {
-    border-color: var(--darkest);
+a:hover, a:focus {
+    border-color: var(--border-dark);
     transition: all 0.5s ease;
 }
 
-.blue{
-    background: #7abcff
-}
-
-.orange{
-    background: var(--orange-bg-gradient);
+.gradient{
+    background: var(--main-bg-gradient);
 }

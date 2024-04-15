@@ -2,11 +2,8 @@ import React, {useState} from 'react';
 import "../styles/LoginSignup.css";
 import { Link,useNavigate } from 'react-router-dom';
 
-const Signup = ({signin,signout}) => {
-    const [name, setName] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [signup, setSignup] = useState(false);
+const Signup = ({signin,signout,name,setName,email,setEmail,password,setPassword,clearSignupInput}) => {
+
     const [cannotSignup,setCannotSignup] = useState(false)
     const navigate = useNavigate();
 
@@ -25,12 +22,10 @@ const Signup = ({signin,signout}) => {
             });
             const user = await response.json();
             if(user.msg === "successfully add new user"){
-                setSignup(true)
                 navigate('/userpage')
                 signin()
             }else {
                 setCannotSignup(true)
-                setSignup(false)
                 signout()
             }
         } catch (error) {
@@ -68,12 +63,13 @@ const Signup = ({signin,signout}) => {
                             onChange={(event) => setPassword(event.target.value)}
                         />
                     </div>
-                    {cannotSignup && <p style={{ color: 'red' }}>Someone already use this Email</p>}
+                    {cannotSignup && <p style={{ color: 'var(--danger)' }}>An account with this email already exists</p>}
                 </div>
                 <div className='submit-container'>
                     <Link className="submit" 
                     onClick={async () => {
                         await createUser();
+                        clearSignupInput()
                     }}>
                         Sign up
                     </Link>

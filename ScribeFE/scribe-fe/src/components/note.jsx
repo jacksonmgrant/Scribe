@@ -43,7 +43,7 @@ export function Note({id: _id, text = "Empty note", time, hasRecording, onEdit, 
     return (
       editOpen ? 
       <div className='dialog-container'> {/* Kate: styled to prevent user from clicking behind modal */}
-        <dialog className="edit-dialog open"
+        <dialog className="edit-dialog"
           open={editOpen}
           aria-labelledby="modal-modal-title"
           aria-describedby="modal-modal-description">
