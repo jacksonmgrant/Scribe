@@ -60,7 +60,7 @@ then define custom properties for uses based on those colors */
 	--star-focus: var(--gray);
 
 	--scrollbar: var(--orange);
-	--scrollbar-container: var(--light);
+	--scrollbar-container: transparent;
 
 	--danger: var(--light-crimson);
 
