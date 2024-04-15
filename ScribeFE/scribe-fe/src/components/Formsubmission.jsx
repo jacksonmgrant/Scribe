@@ -26,11 +26,11 @@ const FormSubmission = () => {
             });
             const feedback = await response.json();
             console.log(feedback)
-            if(feedback.detail === "Successfully submitted feedback"){
+            if(feedback.detail === "successfully add new feedback"){
                 navigate('/userpage')
                 setCannotSend(false)
             }
-            if(feedback.detail === "Form fields cannot be blank"){
+            if(feedback.detail === "Plz fill something"){
                 setCannotSend(true)
             }
         } catch (error) {
