@@ -17,7 +17,14 @@ export function Note({id: _id, text = "Empty note", time, hasRecording, onEdit, 
   }
 
   function EditModal() {
-    const handleEditClose = () => setEditOpen(false);
+    if (editOpen === true) {
+      document.body.style.overflow = 'hidden'; //disable window scroll
+    }
+
+    function handleEditClose() {
+      setEditOpen(false);
+      document.body.style.overflow = 'scroll'; //enable window scroll
+    }
 
     async function handleEditClick() {
       setIsEditable(true);
@@ -34,7 +41,7 @@ export function Note({id: _id, text = "Empty note", time, hasRecording, onEdit, 
     }
 
     return (
-      editOpen ?
+      editOpen ? 
       <div className='dialog-container'> {/* Kate: styled to prevent user from clicking behind modal */}
         <dialog className="edit-dialog open"
           open={editOpen}
@@ -73,7 +80,14 @@ export function Note({id: _id, text = "Empty note", time, hasRecording, onEdit, 
   }
 
   function DeleteModal() {
-    const handleDeleteClose = () => setDeleteOpen(false);
+    if (deleteOpen === true) {
+      document.body.style.overflow = 'hidden';
+    }
+
+    function handleDeleteClose() {
+      setDeleteOpen(false);
+      document.body.style.overflow = 'scroll';
+    }
   
     async function handleDeleteClick() {
       // This will need to send a delete request to the server
