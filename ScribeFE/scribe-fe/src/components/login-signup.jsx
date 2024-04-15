@@ -72,6 +72,7 @@ const LoginSignup = ({signin,signout,email,setEmail,password,setPassword,clearLo
                         <input type='email' 
                         name="userid" 
                         placeholder='Email'
+                        required
                         onChange={(event) => setEmail(event.target.value)}
                         />
                     </div>
@@ -80,10 +81,11 @@ const LoginSignup = ({signin,signout,email,setEmail,password,setPassword,clearLo
                         <input type='password' 
                         name="password" 
                         placeholder='Password'
+                        required
                         onChange={(event) => setPassword(event.target.value)}
                         />
                     </div>
-                    {cannotLogin && <p style={{ color: 'red' }}>Wrong Email Id or password</p>}
+                    {cannotLogin && <p style={{ color: 'var(--danger)' }}>Incorrect email or password</p>}
                 </div>
                 <div className='submit-container'>
                     <Link className="submit" 

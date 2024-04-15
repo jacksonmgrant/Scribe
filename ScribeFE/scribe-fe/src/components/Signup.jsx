@@ -21,7 +21,7 @@ const Signup = ({signin,signout,name,setName,email,setEmail,password,setPassword
                 }),
             });
             const user = await response.json();
-            if(user.msg === "successfully add new user"){
+            if(user.msg === "Successfully signed up"){
                 navigate('/userpage')
                 signin()
             }else {
@@ -63,7 +63,7 @@ const Signup = ({signin,signout,name,setName,email,setEmail,password,setPassword
                             onChange={(event) => setPassword(event.target.value)}
                         />
                     </div>
-                    {cannotSignup && <p style={{ color: 'red' }}>Someone already use this Email</p>}
+                    {cannotSignup && <p style={{ color: 'var(--danger)' }}>An account with this email already exists</p>}
                 </div>
                 <div className='submit-container'>
                     <Link className="submit" 
