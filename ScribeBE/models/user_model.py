@@ -1,4 +1,4 @@
-from beanie import Document
+from beanie import Document  # type: ignore
 from pydantic import BaseModel, EmailStr
 
 
@@ -23,7 +23,7 @@ class DbUser(Document):
     email: EmailStr
     password: str
     role: str | None = "user"
-    
+
     class Settings:
         name = "users"
         keep_nulls = False

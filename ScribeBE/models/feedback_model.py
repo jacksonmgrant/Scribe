@@ -1,4 +1,4 @@
-from beanie import Document
+from beanie import Document  # type: ignore
 from pydantic import BaseModel
 
 
