@@ -1,31 +1,56 @@
-.font-bold {
-    font-weight: 700;
+.welcome-container {
+    width: 80%;
+    margin: auto;
+    padding-block: 5rem 8rem;
+    padding-inline: 1rem;
+
+    h1 {
+        font-size: 2.5rem;
+        color: var(--h1);
+    }
+
+    h2 {
+        font-size: 1.75rem;
+        color: var(--h2);
+        padding-top: 1rem;
+    }
 }
 
-.text-center {
+.content {
     display: flex;
-    justify-content: center;
-}
-
-.glowing-head{
-    -webkit-text-fill-color: #0000;
-    background-clip: text;
-    font-size: 5rem;
-    font-weight: 600;
-    line-height: 1.1;
-}
-
-.glowing-head {
-    background-image: linear-gradient(#fff 30%, hsla(56, 93%, 49%, 0.767));
-}
-
-.container2{
-    display: flex;
-    flex-direction: column;
+    width: 100%;
 }
 
 .overview{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
+    width: 25%;
+    padding-left: 2rem;
+
+    p {
+        color: var(--text-light);
+    }
+}
+
+.videoText {
+    width: 75%;
+}
+
+.wrapper {
+    position: relative;
+    padding-top: 56.25% /* Player ratio: 100 / (1280 / 720) */
+}
+
+.player {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.problem {
+    color: var(--danger);
+}
+
+.solution {
+    color: var(--text-main);
 }

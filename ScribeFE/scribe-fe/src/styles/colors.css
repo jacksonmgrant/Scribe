@@ -1,19 +1,68 @@
 :root {
+/* ==== Theme Colors ==== */ 
+	/* Light */
+	--light: #EEEEEE;
+
+	/* Medium */
+	--gray: #6B7280;
+
+	/* Dark */
 	--dark: #374151;
 	--darker: #1F2937;
 	--darkest: #111827;
-	--grey: #6B7280;
-	--pink: #EC4899;
-	--purple: #8B5CF6;
-	--light: #EEE;
-	--crimson: #DC2626;
-	--red: #bd1502;
-	
-	/* Original theme: */
-	--yellow: #fad000;
+
+	/* Primary Color */
+	--yellow: #fad000; /* Kate: we don't use this */
 	--yellow-orange: #fbb238;
 	--orange: #f5a802;
-	--dark-orange: #d19004;
+	--dark-orange: #c06a00; /* Kate: we don't use this */
+
+	/* Secondary Color */
+	--light-crimson: #ff4747;
+
+	/* Kate: --yellow-orange on --dark (and vice-cersa) passes WCAG AA
+			 --dark-orange on --dark (and vice-versa) fails everything
+			 --dark-orange on --darkest (and vice-versa) passes WCAG AA for Large Text and Graphics, but fails normal text
+			 --orange on --dark (and vice-versa) passes WCAG AA
+			 --orange on --darkest (and vice-versa) passes WCAG AAA
+			 --light-crimson passes WCAG AA on --darkest bg
+	I'm going to clean up this document and finalize the color palette, then I'll write a style guide
+	we can link in the Readme on how to use colors to pass WCAG AA accessibility standards
+
+	I nixed the color gradient on the text. It's interesting but it makes meeting accessibility harder.
+	It's fine for the background tho */
+
+/* ==== Project Color Definitions ==== */
+/* best practice is to define custom properties for colors and 
+then define custom properties for uses based on those colors */
+	--dark-bg-gradient: linear-gradient(to bottom right, var(--dark), var(--darker));
+	--main-bg-gradient: linear-gradient(to bottom right, var(--yellow-orange), var(--orange));
+	--solid-bg: var(--darkest);
+	--solid-bg-2: var(--dark);
+
+	--h1: var(--orange);
+	--h2: var(--light);
+
+	--text-main: var(--orange);
+	--text-light: var(--light);
+	--text-dark: var(--darkest);
+
+	--border-main: var(--orange);
+	--border-light: var(--light);
+	--border-dark: var(--darkest);
+
+	--modal-shadow: rgba(17, 24, 39, 0.75);
+
+	--form-field: var(--light);
+	--form-field-text: var(--gray);
+
+	--star-filled: var(--orange);
+	--star-focus: var(--gray);
+
+	--scrollbar: var(--orange);
+	--scrollbar-container: transparent;
+
+	--danger: var(--light-crimson);
 
 	/* Jackson: I asked Gemini for some theme examples, got mixed results. I like the last
 	   2 but am not fully sold on any. Would love some input from somebody who knows more about
@@ -65,5 +114,5 @@
 	/* Plum and Ivory: */
 	--plum: #92597D;
 	--ivory: #FDF5E6;
-	
 }
+

@@ -2,5 +2,5 @@
 
 body{
     /* background: linear-gradient(to right, rgb(255, 0, 247), rgb(0, 238, 255)); */
-    background: linear-gradient(to bottom, var(--dark), var(--darkest));
+    background: var(--dark-bg-gradient);
 }

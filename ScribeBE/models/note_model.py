@@ -8,13 +8,13 @@ class Note(BaseModel):
     id: str
     text: str | None
 
+
+class DbNote(Document):
+    text: str
+    time: Indexed(datetime) = datetime.now() # type: ignore
+    recording_id: Optional[str] = None
+    user_id: Optional[str] = None
+    
     class Settings:
         name = "notes"
         keep_nulls = False
-
-
-class DbNote(Document):
-    # May need to figure out how to manage a null text field coming from the FE
-    text: str
-    time: Indexed(datetime) = datetime.now()  # type: ignore
-    hasRecording: Optional[bool] = False

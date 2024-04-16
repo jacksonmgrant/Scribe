@@ -1,17 +1,14 @@
 .zone {
-    cursor:pointer;
-    color:#FFF;
-    font-size:2em;
-    border-radius: 4px;
-    border:1px solid #bbb;
-    transition: all 0.3s linear;
+    font-size: 1.25rem;
+    color: var(--text-dark);
 }
 
 .main-nav{
     display: flex;
-    font-size: 0.7em;
+    align-items: center;
     list-style: none;
-    margin : 0;
+    margin: 0;
+    padding: 15px;
 }
 
 .push{
@@ -19,19 +16,28 @@
 }
 
 li{
-    padding: 20px;
+    display: flex;
+    margin-inline: 10px;
+    align-items: center;
 }
 
 
 a {
-    color: #f5f5f6;
+    color: var(--text-dark);
     text-decoration: None;
+    height: 2.35rem;
+    border: 1px solid transparent; 
+    border-radius: 8px;
+    padding-block: 5px;
+    padding-inline: 8px;
+    transition: all 0.25s ease;
 }
 
-.blue{
-    background: #7abcff
+a:hover, a:focus {
+    border-color: var(--border-dark);
+    transition: all 0.5s ease;
 }
 
-.pinkblue{
-    background: linear-gradient(319deg, #3d3eff 0%, #07a4d8 37%, #fd00ff 130%);;
+.gradient{
+    background: var(--main-bg-gradient);
 }

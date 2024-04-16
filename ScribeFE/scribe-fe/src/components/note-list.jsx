@@ -28,7 +28,7 @@ export default function NoteList({notes, setNotes}) {
 	// html is an auto-refreshing list of notes
   	return (
   	  	<div>
-  	    	{<main>
+  	    	{<div>
 				<section className="note-list">
 					<h2>Notes</h2>
 					<div id="notes">
@@ -39,7 +39,7 @@ export default function NoteList({notes, setNotes}) {
   	    				))}
 					</div>
 				</section>
-			</main>}
+			</div>}
   	  	</div>
   	);
 }

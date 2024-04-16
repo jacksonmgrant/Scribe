@@ -4,42 +4,33 @@ from beanie import PydanticObjectId
 from bson.objectid import ObjectId
 from fastapi import APIRouter, Depends, HTTPException, status
 from database.connection import Database
+from models.user_model import DbUser
 from models.note_model import Note, DbNote
 
-# This will be replaced with a database
-note_list: list[Note] = []
-current_id = 0
+note_router = APIRouter(tags=["Note"])
 
 
-note_router = APIRouter()
-
-note_database = Database(Note)
-
-
-@note_router.get("/", response_model=list[Note])
-async def get_notes() -> list[Note]:
-    notes = await note_database.get_all()
-    return notes
-
-
-@note_router.get("/{note_id}", response_model=Note)
-async def get_note(note_id: PydanticObjectId) -> Note:
-    note = await note_database.get(note_id)
-    if not note:
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND, 
-            detail="Note not found",
-            )
-    return note
+@note_router.get("/{user_id}")
+async def get_notes(user_id: Any) -> dict:
+    try:
+        user_obj_id = ObjectId(user_id)
+    except:
+        raise HTTPException(status_code=400, detail="Invalid user id")
+    user = await DbUser.find_one(DbUser.id == user_obj_id)
+    if user.role == "admin":
+        notes = await DbNote.find().to_list()
+    else:
+        notes = await DbNote.find(DbNote.user_id == user_id).to_list()
+    return {"notes": notes}
 
 
 @note_router.post("/", status_code=201)
-async def create_note(note_text: dict) -> dict:
-    if note_text['text'] is None or 'text' not in note_text:
+async def create_note(note: Note) -> dict:
+    if note.text is None:
         raise HTTPException(status_code=400, detail="Note must have text")
-    new_note = DbNote(text=note_text['text'])
+    new_note = DbNote(text=note.text, user_id=note.id)
     await new_note.insert()
-    return {"note created" : note_text['text']}
+    return {"note created" : note.text}
 
 @note_router.put("/")
 async def update_note(note: Note) -> dict:

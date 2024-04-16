@@ -1,6 +1,6 @@
 import { Outlet, Link } from "react-router-dom";
-import "./styles/layout.css"
-
+import Logo from "./components/Assets/logo-bw.png";
+import "./styles/layout.css";
 
 const Layout = ({isSignin,signout}) => {
 
@@ -10,28 +10,39 @@ const Layout = ({isSignin,signout}) => {
           <div>
             { isSignin === false
             ?(
-              <div className='zone pinkblue'>
+              <div className='zone gradient'>
                 <div className='main-nav'>
-                <li>
-                  <Link to="/">Home</Link>
-                </li>
-                <li>
-                  <Link to="/aboutus">About us</Link>
-                </li>
-                <li>
-                  <Link to="/formsubmission">Form submission</Link>
-                </li> 
-                <li class="push">
-                    <Link to="/loginSignupPage">Sign up/Login</Link>
-                </li>
+                  <li>
+                      <Link to="/" style={{ fontWeight: '700', display: 'flex', alignItems: 'center' }}>
+                      <img alt="Scribe Logo" src={Logo} style={{ height: '1.75rem', marginRight: '0.5rem' }}></img>
+                      <span style={{ paddingBottom: '3px' }}>Scribe</span></Link>
+                  </li>
+                  <li className="push">
+                      <Link to="/loginSignupPage">Log In
+                      <i className="fa-solid fa-right-to-bracket" style={{ marginLeft: '8px' }}></i>
+                      </Link>
+                  </li>
                 </div>
               </div>
-              )
+              ) 
             : (
-              <div className='zone pinkblue'>
+              <div className='zone gradient'>
                 <div className='main-nav'>
-                  <li class="push">
-                      <Link to="/loginSignupPage" onClick={signout}>Sign out</Link>
+                  <li>
+                      <Link to="/userpage" style={{ fontWeight: '700', display: 'flex', alignItems: 'center' }}>
+                      <img alt="Scribe Logo" src={Logo} style={{ height: '1.75rem', marginRight: '0.5rem' }}></img>
+                      <span style={{ paddingBottom: '2px' }}>Scribe</span></Link>
+                  </li>
+                  <li>
+                      <Link id="aboutus" to="/aboutus">About us</Link>
+                  </li>
+                  <li>
+                      <Link id="formsubmission" to="/formsubmission">User feedback</Link>
+                  </li>
+                  <li className="push">
+                      <Link to="/loginSignupPage"  onClick={signout}>Log out
+                      <i className="fa-solid fa-right-to-bracket" style={{ marginLeft: '8px' }}></i>
+                      </Link>
                   </li>
                 </div>
               </div>

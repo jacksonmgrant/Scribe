@@ -1,5 +1,13 @@
 import BASE_URL from './apiConfig';
 
+function decodeToken(token) {
+    console.log(token);
+    const arrayToken = token.split('.');
+    const payload = JSON.parse(atob(arrayToken[1]));
+    console.log(payload);
+    return payload;
+}
+
 //Only returns the transcribed text, but creates a new note
 const transcribe = (file) => {
     const formData = new FormData();
@@ -21,12 +29,14 @@ const transcribe = (file) => {
 }
 
 const createNote = (noteText) => {
+    const userId = decodeToken(localStorage.getItem('token')).sub;
+    const data = {id: userId, text: noteText};
     return fetch(`${BASE_URL}/notes/`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({text: noteText}),
+            body: JSON.stringify(data),
         })
         .then((response) => response.json())
         .then((result) => {
@@ -40,7 +50,8 @@ const createNote = (noteText) => {
 }
 
 const getNotes = () => {
-    return fetch(`${BASE_URL}/notes/`)
+    const userId = decodeToken(localStorage.getItem('token')).sub;
+    return fetch(`${BASE_URL}/notes/${userId}`)
         .then((response) => response.json())
         .then((result) => {
             console.log('Success:', result);
@@ -51,19 +62,6 @@ const getNotes = () => {
             throw error;
         });
 }
-
-const getNoteById = (id) => {
-    return fetch(`${BASE_URL}/notes/${id}`)
-        .then((response) => response.json())
-        .then((result) => {
-            console.log('Success:', result);
-            return result;
-        })
-            .catch((error) => {
-            console.error('Error:', error);
-            throw error;
-        });
-    }
 
 const updateNote = (id, note) => {
     const data = {id: id, text: note};
@@ -100,6 +98,6 @@ const deleteNoteById = (id) => {
         });
     }
 
-const apiService = {transcribe, createNote, getNotes, getNoteById, updateNote, deleteNoteById};
+const apiService = {transcribe, createNote, getNotes, updateNote, deleteNoteById};
 
 export default apiService;
