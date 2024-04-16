@@ -1,19 +1,35 @@
 import BASE_URL from './apiConfig';
 
+// Template for interceptor taken from https://blog.logrocket.com/intercepting-javascript-fetch-api-requests-responses/
+const { fetch: originalFetch } = window;
+window.fetch = async (...args) => {
+    let [url, config] = args;
+    if (!config) {
+        config = {};
+    }
+    if (url.includes("notes") || url.includes("feedback")) {
+        config.headers = {
+            ...config.headers,
+            'Authorization': `Bearer ${await localStorage.getItem('token')}`,
+        };
+    }
+    url = `${BASE_URL}${url}`;
+    const response = await originalFetch(url, config);
+    return response;
+};
+
 function decodeToken(token) {
-    console.log(token);
     const arrayToken = token.split('.');
     const payload = JSON.parse(atob(arrayToken[1]));
-    console.log(payload);
     return payload;
 }
 
 //Only returns the transcribed text, but creates a new note
-const transcribe = (file) => {
+const transcribe = async (file) => {
     const formData = new FormData();
     formData.append('file', file);
 
-    return fetch(`${BASE_URL}/transcribe/`, {
+    return fetch(`/transcribe/`, {
             method: 'POST',
             body: formData,
         })
@@ -28,10 +44,26 @@ const transcribe = (file) => {
         });
 }
 
-const createNote = (noteText) => {
-    const userId = decodeToken(localStorage.getItem('token')).sub;
+const getNotes = async () => {
+    const token = await localStorage.getItem('token');
+    const userId = decodeToken(token).sub;
+    return fetch(`/notes/${userId}`)
+        .then((response) => response.json())
+        .then((result) => {
+            console.log('Success:', result);
+            return result;
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+            throw error;
+        });
+}
+
+const createNote = async (noteText) => {
+    const token = await localStorage.getItem('token');
+    const userId = decodeToken(token).sub;
     const data = {id: userId, text: noteText};
-    return fetch(`${BASE_URL}/notes/`, {
+    return fetch(`/notes/`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -49,23 +81,9 @@ const createNote = (noteText) => {
         });
 }
 
-const getNotes = () => {
-    const userId = decodeToken(localStorage.getItem('token')).sub;
-    return fetch(`${BASE_URL}/notes/${userId}`)
-        .then((response) => response.json())
-        .then((result) => {
-            console.log('Success:', result);
-            return result;
-        })
-        .catch((error) => {
-            console.error('Error:', error);
-            throw error;
-        });
-}
-
-const updateNote = (id, note) => {
+const updateNote = async (id, note) => {
     const data = {id: id, text: note};
-    return fetch(`${BASE_URL}/notes/`, {
+    return fetch(`/notes/`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
@@ -83,8 +101,8 @@ const updateNote = (id, note) => {
         });
 }
 
-const deleteNoteById = (id) => {
-    return fetch(`${BASE_URL}/notes/${id}`, {
+const deleteNoteById = async (id) => {
+    return fetch(`/notes/${id}`, {
             method: 'DELETE',
         })
         .then((response) => response.json())
