@@ -1,12 +1,12 @@
 import json
 from typing import Any
 
-from beanie import init_beanie, PydanticObjectId
+from beanie import init_beanie, PydanticObjectId  # type: ignore
 from pydantic_settings import BaseSettings, SettingsConfigDict
 from models.feedback_model import Feedback
 from models.note_model import Note
 from models.user_model import User
-from motor.motor_asyncio import AsyncIOMotorClient
+from motor.motor_asyncio import AsyncIOMotorClient  # type: ignore
 from pydantic import BaseModel, Field
 
 
