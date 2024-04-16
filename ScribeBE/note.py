@@ -1,8 +1,10 @@
 from datetime import datetime
 from typing import Any
-from fastapi import APIRouter, HTTPException
-from models.note_model import Note, DbNote
+from beanie import PydanticObjectId
 from bson.objectid import ObjectId
+from fastapi import APIRouter, Depends, HTTPException, status
+from database.connection import Database
+from models.note_model import Note, DbNote
 
 # This will be replaced with a database
 note_list: list[Note] = []
@@ -11,19 +13,25 @@ current_id = 0
 
 note_router = APIRouter()
 
+note_database = Database(Note)
 
-@note_router.get("/")
-async def get_notes() -> dict:
-    notes = await DbNote.find().to_list()
-    return {"notes": notes}
 
-@note_router.get("/{note_id}")
-async def get_note(note_id: Any) -> dict:
-    note_obj_id = ObjectId(note_id)
-    note = await DbNote.find_one(DbNote.id == note_obj_id)
-    if note is None:
-        raise HTTPException(status_code=404, detail="Note not found")
-    return {"note" : note}
+@note_router.get("/", response_model=list[Note])
+async def get_notes() -> list[Note]:
+    notes = await note_database.get_all()
+    return notes
+
+
+@note_router.get("/{note_id}", response_model=Note)
+async def get_note(note_id: PydanticObjectId) -> Note:
+    note = await note_database.get(note_id)
+    if not note:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND, 
+            detail="Note not found",
+            )
+    return note
+
 
 @note_router.post("/", status_code=201)
 async def create_note(note_text: dict) -> dict:
