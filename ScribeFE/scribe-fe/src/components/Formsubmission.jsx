@@ -12,12 +12,13 @@ const FormSubmission = () => {
     const [hover, setHover] = useState(null)
     const navigate = useNavigate();
 
-    const checkUser = async () => {
+    const createFeedback = async () => {
         try {
-            const response = await fetch(`http://localhost:8000/feedback/`, {
+            const response = await fetch(`/feedback/`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + localStorage.getItem('token')
                 },
                 body: JSON.stringify({
                     text: text,
@@ -82,7 +83,7 @@ const FormSubmission = () => {
                 <div className='submit-container'>
                     <Link className='submit'
                     onClick={async () => {
-                        await checkUser();
+                        await createFeedback();
                     }}>
                         Submit
                     </Link>

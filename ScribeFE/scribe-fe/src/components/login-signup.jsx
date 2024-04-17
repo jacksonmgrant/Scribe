@@ -10,7 +10,7 @@ const LoginSignup = ({signin,signout,email,setEmail,password,setPassword,clearLo
 
     const checkUser = async () => {
         try {
-            const response = await fetch(`http://localhost:8000/users/login/`, {
+            const response = await fetch(`/users/login/`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -27,35 +27,12 @@ const LoginSignup = ({signin,signout,email,setEmail,password,setPassword,clearLo
                 setCannotLogin(true);
                 signout();
             }else if(user){
-                localStorage.setItem('token', user.access_token);
-                await sendTokenToBackend(user.access_token);
+                await localStorage.setItem('token', user.access_token);
                 navigate('/userpage');
                 signin();
             }
         } catch (error) {
             console.error('Error:', error);
-            throw error;
-        }
-    }
-
-    // I found a way to send token and I beleive this is what they call interceptor 
-    // but I'm not sure which endpoint we want to store our token
-    const sendTokenToBackend = async (token) => {
-        try {
-            const response = await fetch(`http://localhost:8000/users/login/`, {
-                method: 'POST',
-                headers: {
-                    'Authorization': `Bearer ${token}`,
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    email: email,
-                    password: password
-                }),
-            });
-            console.log("2 ",response)
-        } catch (error) {
-            console.error('Error sending token to backend:', error);
             throw error;
         }
     }

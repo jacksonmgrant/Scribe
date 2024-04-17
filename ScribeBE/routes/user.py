@@ -1,3 +1,4 @@
+import logging
 from fastapi import APIRouter, Depends, HTTPException, status
 from models.user_model import DbUser, User, Login, TokenResponse
 from auth.hash_password import HashPassword
@@ -21,8 +22,16 @@ async def signup(user:User) -> dict:
     hashed_user_password = hash_password.create_hash(user.password)
     new_user =  DbUser(name=user.name, email=user.email, password=hashed_user_password, role="user")
     await new_user.insert()
+
+    user_token = JWT_token.create_access_token(
+        data={
+            "sub" : str(new_user.id),
+            "email_id" : new_user.email,
+        },
+        expires_delta=timedelta(minutes=JWT_token.ACCESS_TOKEN_EXPIRE_MINUTES)
+    )
     
-    return {"msg": "successfully add new user"}
+    return {"msg": "successfully add new user", "access_token": user_token, "token_type": "Bearer"}
 
 @user_router.post("/login", response_model=TokenResponse)
 async def login(user: Login):
@@ -39,7 +48,6 @@ async def login(user: Login):
             data={
                 "sub" : str(existing_user.id),
                 "email_id" : existing_user.email,
-                "password" : user.password
             },
             expires_delta=timedelta(minutes=JWT_token.ACCESS_TOKEN_EXPIRE_MINUTES)
         )

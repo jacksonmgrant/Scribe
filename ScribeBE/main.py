@@ -44,7 +44,7 @@ transcription_router = APIRouter()
 
 @root_router.get("/")
 async def root():
-    return RedirectResponse(url="/events/")
+    return RedirectResponse(url="/notes/")
 
 allowed_content_types = ["audio/wav", "audio/x-wav"]
 @transcription_router.post("/", status_code=201)
