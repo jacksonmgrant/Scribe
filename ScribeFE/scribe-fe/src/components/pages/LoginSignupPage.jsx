@@ -1,10 +1,11 @@
 import LoginSignup from "../login-signup";
 import "../../styles/LoginSignupPage.css"
 
-const LoginSignupPage = ({signin,signout,email,setEmail,password,setPassword,clearLoginInput}) =>{
+const LoginSignupPage = ({isSignin,signin,signout,email,setEmail,password,setPassword,clearLoginInput}) =>{
     return(
         <div>
-            <LoginSignup 
+            <LoginSignup
+            isSignin={isSignin} 
             signin={signin}
             signout={signout}
             email={email}

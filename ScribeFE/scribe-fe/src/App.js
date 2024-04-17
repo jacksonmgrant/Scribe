@@ -47,7 +47,8 @@ const App = () => {
                         <Route path="userpage" element={<UserPage />} />
                         <Route path='aboutus' element={<About />} />
                         <Route path="loginSignupPage" 
-                            element={<LoginSignupPage 
+                            element={<LoginSignupPage
+                            isSignin={isSignin} 
                             signin={signin}
                             signout={signout}
                             email={email}
@@ -59,6 +60,7 @@ const App = () => {
                         />
                         <Route path="SignupPage" 
                             element={<SignupPage
+                                isSignin={isSignin}
                                 signin={signin}
                                 signout={signout}
                                 name={name}

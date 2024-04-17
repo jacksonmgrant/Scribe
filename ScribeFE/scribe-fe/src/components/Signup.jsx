@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import "../styles/LoginSignup.css";
 import { Link,useNavigate } from 'react-router-dom';
 
-const Signup = ({signin,signout,name,setName,email,setEmail,password,setPassword,clearSignupInput}) => {
+const Signup = ({isSignin,signin,signout,name,setName,email,setEmail,password,setPassword,clearSignupInput}) => {
 
     const [cannotSignup,setCannotSignup] = useState(false)
     const navigate = useNavigate();
@@ -17,7 +17,8 @@ const Signup = ({signin,signout,name,setName,email,setEmail,password,setPassword
                 body: JSON.stringify({
                     name: name,
                     email: email,
-                    password: password
+                    password: password,
+                    isSignin: isSignin
                 }),
             });
             const user = await response.json();
