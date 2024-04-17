@@ -17,7 +17,7 @@ const Signup = ({signin,signout,name,setName,email,setEmail,password,setPassword
                 body: JSON.stringify({
                     name: name,
                     email: email,
-                    password: password
+                    password: password,
                 }),
             });
             const user = await response.json();
