@@ -5,7 +5,6 @@ class User(BaseModel):
     name: str
     email: EmailStr | str
     password: str
-    isSignin: bool
 
 class TokenResponse(BaseModel):
     access_token: str
@@ -14,7 +13,6 @@ class TokenResponse(BaseModel):
 class Login(BaseModel):
     email: EmailStr | str
     password: str
-    isSignin: bool
 
 class DbUser(Document):
     name: str

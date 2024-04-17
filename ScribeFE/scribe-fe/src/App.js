@@ -11,20 +11,22 @@ import SignupPage from './components/pages/SignupPage';
 import LoginSignupPage from './components/pages/LoginSignupPage';
 import FormSubmissionPage from "./components/pages/FormsubmissionPage";
 import Welcomepage from "./components/pages/WelcomePage";
-import ParticlesBg from 'particles-bg'
+// import ParticlesBg from 'particles-bg'
 
 const App = () => {
-    const [isSignin,setIsSignin] = useState(false);
+    const [isSignin,setIsSignin] = useState(localStorage.getItem("isSignin") === "true" ? true : false);
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
     const signin = () => {
-        setIsSignin(true)
+        setIsSignin(true);
+        localStorage.setItem("isSignin", "true");
     }
 
     const signout = () => {
-        setIsSignin(false)
+        setIsSignin(false);
+        localStorage.setItem("isSignin", "false");
     }
 
     const clearSignupInput = () => {
@@ -47,8 +49,7 @@ const App = () => {
                         <Route path="userpage" element={<UserPage />} />
                         <Route path='aboutus' element={<About />} />
                         <Route path="loginSignupPage" 
-                            element={<LoginSignupPage
-                            isSignin={isSignin} 
+                            element={<LoginSignupPage 
                             signin={signin}
                             signout={signout}
                             email={email}
@@ -60,7 +61,6 @@ const App = () => {
                         />
                         <Route path="SignupPage" 
                             element={<SignupPage
-                                isSignin={isSignin}
                                 signin={signin}
                                 signout={signout}
                                 name={name}
