@@ -32,7 +32,7 @@ async def get_notes(user_id: PydanticObjectId,
     return notes
 
 
-@note_router.post("/new", status_code=201)
+@note_router.post("/", status_code=201)
 async def create_note(body: Note, user: str = Depends(authenticate)) -> dict:
     body.creator = user
     logger.info(f"User {user.email} is creating a note.")
