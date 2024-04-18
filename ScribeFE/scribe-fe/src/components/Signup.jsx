@@ -44,7 +44,7 @@ const Signup = ({signin,signout,name,setName,email,setEmail,password,setPassword
                 <div className='inputs'>
                     <div className='input'>
                         <i className="fa-solid fa-user"></i>
-                        <input type='text' placeholder='Name' 
+                        <input autoFocus type='text' placeholder='Name' 
                             value={name}
                             onChange={(event) => setName(event.target.value)}
                         />

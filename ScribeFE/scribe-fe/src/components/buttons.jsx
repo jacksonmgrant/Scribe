@@ -44,11 +44,30 @@ export function RecordAudioButton({ onUpload }) {
 
     const startSttFromMic = async () => {
         setStatus("recording");
-        // Currently, transcription stops as soon as the speaker pauses. We need to rework it so that it
-        // goes until the stop button is pressed.
-        const text = await sttFromMic();
-        setTranscribedText(text);
+        record(status);
     };
+
+    const record = async (currentStatus) => {
+        try {
+            console.log("Recording");
+            let text = [];
+            while (currentStatus === "recording") {
+                console.log("Getting speech from mic")
+                text = [...text, await sttFromMic()];
+            }
+            setTranscribedText(text.join(" "));
+        } catch (error) {
+            console.error(`Error recording: ${error}`);
+        }
+    };
+
+    useEffect(() => {
+        return () => {
+            if (status === "recording") {
+                setStatus("idle");
+            }
+        };
+    }, [status]);
 
     useEffect(() => {
         if (transcribedText !== null) {
@@ -60,6 +79,7 @@ export function RecordAudioButton({ onUpload }) {
                 .catch(error => {
                     console.error('Error creating note:', error);
                 });
+            setTranscribedText(null);
         }
     }, [transcribedText]);
 

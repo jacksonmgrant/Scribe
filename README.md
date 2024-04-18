@@ -169,6 +169,7 @@ If you are worried about running scripts or are encountering issues with them, y
   - [x] Notes open up from list in a modal OR turn list into a sidebar
 - [x] Make setup easy with scripts
 - [ ] Require .wav files for file upload input
+- [ ] Loading screen while notes are being transcribed
 - [ ] API Calls to LLM to synthesize long texts
   - [ ] LLM can create a summary of the recording
   - [ ] Option to transcribe raw speech or synthesize notes
