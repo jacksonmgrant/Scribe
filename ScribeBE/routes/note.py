@@ -24,11 +24,11 @@ async def get_notes(user_id: PydanticObjectId,
     user = await DbUser.find_one(DbUser.id == user_id)
     if user.role == "admin":
         notes = await note_database.get_all()
-        logger.info(f"viewing {len(notes)} notes")
+        logger.info(f"Viewing {len(notes)} notes")
     else:
         # update user database
         notes = await DbNote.find(DbNote.user_id == user_id).to_list()
-        logger.info(f"viewing {len(notes)} notes for {user.email}")
+        logger.info(f"Viewing {len(notes)} notes for {user.email}")
     return notes
 
 
@@ -40,7 +40,7 @@ async def create_note(body: Note, user: str = Depends(authenticate)) -> dict:
         logger.warning("Note must have text.")
         raise HTTPException(status_code=400, detail="Note must have text")
     note_id = await note_database.save(body)
-    logger.info(f"\t A new note #{note_id} created.")
+    logger.info(f"New note #{note_id} created.")
     return {"message": "Note created successfully"}
 
 
@@ -71,7 +71,7 @@ async def update_note(
             status_code=status.HTTP_404_NOT_FOUND,
             detail="Note not found"
         )
-    logger.info(f"\t Note #{note_id} is updated.")
+    logger.info(f"Note #{note_id} is updated.")
     return updated_note
 
 
@@ -94,5 +94,5 @@ async def delete_note(note_id: PydanticObjectId,
             detail="Operation not allowed"
         )
     note_to_delete = await note_database.delete(note_id)
-    logger.info(f"\t Note #{note_id} is updated.")
+    logger.info(f"Note #{note_id} is updated.")
     return {"message": "Note deleted successfully"}

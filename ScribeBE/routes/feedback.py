@@ -19,5 +19,5 @@ async def recieve_feedback(feedback: Feedback,
         raise HTTPException(status_code=400, detail="Plz fill something")
     new_feedback = DbFeedback(text=feedback.text, rating=feedback.rating)
     await feedback_database.save(new_feedback)
-    logger.info(f"viewing feedback from {user.email}")
+    logger.info(f"New feedback from {user.email} created")
     return {"detail": "successfully add new feedback"}

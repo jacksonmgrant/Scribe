@@ -19,14 +19,14 @@ async def signup(user: User) -> dict:
     logger.info(f"User {user.email} is signing up.")
     # To check if name or email or password is blank
     if not user.name or not user.email or not user.password:
-        logger.warning("\t Form fields cannot be blank")
+        logger.warning("Form fields cannot be blank")
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST,
                             detail="name or email or password can not be blank"
                             )
 
     existing_email = await DbUser.find_one(DbUser.email == user.email)
     if existing_email:
-        logger.warning(f"\t User {user.email} has already signed up.")
+        logger.warning(f"User {user.email} has already signed up.")
         raise HTTPException(status_code=status.HTTP_409_CONFLICT,
                             detail="A user with this email already exists."
                             )
@@ -55,7 +55,7 @@ async def login(user: Login):
 
     # for case email is not correct
     if not existing_user:
-        logger.warning(f"\t User {user.email} not found.")
+        logger.warning(f"User {user.email} not found.")
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
             detail="Incorrect email or password, or user does not exist."
@@ -65,7 +65,7 @@ async def login(user: Login):
                                                existing_user.password)
 
     if check_password:
-        logger.warning(f"\t User {user.email} signed in.")
+        logger.info(f"User {user.email} signed in.")
         user_token = JWT_token.create_access_token(
             data={
                 "sub": str(existing_user.id),
@@ -77,7 +77,7 @@ async def login(user: Login):
             )
         )
         return {"access_token": user_token, "token_type": "Bearer"}
-
+    logger.info("Invalid details passed.")
     raise HTTPException(
         status_code=status.HTTP_401_UNAUTHORIZED,
         detail="Invalid details passed."
