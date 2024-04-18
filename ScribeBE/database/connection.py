@@ -3,9 +3,9 @@ from typing import Any
 
 from beanie import init_beanie, PydanticObjectId  # type: ignore
 from pydantic_settings import BaseSettings, SettingsConfigDict
-from models.feedback_model import Feedback
-from models.note_model import Note
-from models.user_model import User
+from models.feedback_model import DbFeedback
+from models.note_model import DbNote
+from models.user_model import DbUser
 from motor.motor_asyncio import AsyncIOMotorClient  # type: ignore
 from pydantic import BaseModel, Field
 
@@ -18,10 +18,11 @@ class Settings(BaseSettings):
     model_config = SettingsConfigDict(env_file=".env")
 
     async def initialize_database(self):
-        client = AsyncIOMotorClient(self.DATABASE_URL)
+        DATABASE_URL: str = f"mongodb+srv://{self.DB_USER}:{self.DB_PASS}@scribedb.klymspw.mongodb.net/"
+        client = AsyncIOMotorClient(DATABASE_URL)
         await init_beanie(
-            database=client.get_default_database(),
-            document_models=[Feedback, Note, User]
+            database=client.ScribeDB,
+            document_models=[DbFeedback, DbNote, DbUser]
         )
 
 
