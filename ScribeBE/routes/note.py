@@ -1,7 +1,9 @@
 # from datetime import datetime
 import logging
+from typing import Any
 from auth.authenticate import authenticate
 from beanie import PydanticObjectId  # type: ignore
+from bson.objectid import ObjectId  # type: ignore
 from database.connection import Database
 from fastapi import APIRouter, Depends, HTTPException, status  # type: ignore
 from models.user_model import DbUser
@@ -15,18 +17,18 @@ note_database = Database(Note)
 
 
 @note_router.get("/{user_id}")
-async def get_notes(user_id: PydanticObjectId,
+async def get_notes(user_id: Any,
                     user: str = Depends(authenticate)) -> dict:
-    if not user_id:
+    try:
+        user_obj_id = ObjectId(user_id)
+    except Exception:
         logger.warning(f"{user_id} is an invalid user id")
         raise HTTPException(status_code=400, detail="Invalid user id")
-    # update user database
-    user = await DbUser.find_one(DbUser.id == user_id)
+    user = await DbUser.find_one(DbUser.id == user_obj_id)
     if user.role == "admin":
         notes = await note_database.get_all()
         logger.info(f"Viewing {len(notes)} notes")
     else:
-        # update user database
         notes = await DbNote.find(DbNote.user_id == user_id).to_list()
         logger.info(f"Viewing {len(notes)} notes for {user.email}")
     return notes
