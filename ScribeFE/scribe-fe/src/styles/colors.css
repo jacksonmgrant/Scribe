@@ -51,7 +51,7 @@ then define custom properties for uses based on those colors */
 	--border-light: var(--light);
 	--border-dark: var(--darkest);
 
-	--modal-shadow: rgba(17, 24, 39, 0.75);
+	--modal-shadow: rgba(17, 24, 39, 0.85);
 
 	--form-field: var(--light);
 	--form-field-text: var(--gray);

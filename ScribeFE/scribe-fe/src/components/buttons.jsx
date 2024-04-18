@@ -1,8 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import apiService from '../services/apiService';
 import { transcribeFile, sttFromMic } from '../services/speechRecognizerService';
+import '../styles/buttons.css'
 
 export function FileUploadButton({ onUpload }) {
+    // hook for loading screen
+    const [isTranscribing, setIsTranscribing] = useState(false);
+
+    if (isTranscribing === true) {
+        document.body.style.overflow = 'hidden'; //disable window scroll
+      }
 
     function handleUpload() {
         const fileInput = document.getElementById('fileInput');
@@ -12,9 +19,12 @@ export function FileUploadButton({ onUpload }) {
     async function handleFileInput(event) {
         try {
             console.log("Transcribing");
+            setIsTranscribing(true);
             const text = await transcribeFile(event);
             console.log(text);
             await apiService.createNote(text);
+            setIsTranscribing(false);
+            document.body.style.overflow = 'scroll'; //enable window scroll
             onUpload();
         } catch (error) {
             console.error(error);
@@ -22,6 +32,24 @@ export function FileUploadButton({ onUpload }) {
     }
 
     return (
+        isTranscribing ?
+        <>
+        <div className="loading-screen">
+            <iframe style={{border: 'none', width: '200px'}} src="https://lottie.host/embed/3578901e-5772-46f4-a34a-22b3a2904f7b/4eUF6lZ22c.json"></iframe>
+        </div>
+        <div>
+        <input
+            type="file"
+            id="fileInput"
+            style={{ display: 'none' }}
+            onChange={handleFileInput}
+        />
+        <button type="button" name="upload-audio-file" id="upload-audio-file" onClick={() => {handleUpload();}}>
+            <i className="fa-solid fa-file-audio" style={{ marginRight: '8px' }}></i> Upload File
+        </button>
+        </div>
+        </>
+        :
         <div>
             <input
                 type="file"
@@ -29,9 +57,7 @@ export function FileUploadButton({ onUpload }) {
                 style={{ display: 'none' }}
                 onChange={handleFileInput}
             />
-            <button
-                type="button" name="upload-audio-file" id="upload-audio-file" onClick={() => {handleUpload();}}
-            >
+            <button type="button" name="upload-audio-file" id="upload-audio-file" onClick={() => {handleUpload();}}>
                 <i className="fa-solid fa-file-audio" style={{ marginRight: '8px' }}></i> Upload File
             </button>
         </div>
