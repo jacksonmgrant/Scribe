@@ -13,7 +13,9 @@ logger = logging.getLogger(__name__)
 
 note_router = APIRouter(tags=["Note"])
 
-note_database = Database(Note)
+note_database = Database(DbNote)
+
+user_database = Database(DbUser)
 
 
 @note_router.get("/{user_id}")
@@ -31,19 +33,19 @@ async def get_notes(user_id: Any,
     else:
         notes = await DbNote.find(DbNote.user_id == user_id).to_list()
         logger.info(f"Viewing {len(notes)} notes for {user.email}")
-    return notes
+    return {"notes": notes}
 
 
 @note_router.post("/", status_code=201)
-async def create_note(body: Note, user: str = Depends(authenticate)) -> dict:
-    body.creator = user
-    logger.info(f"User {user.email} is creating a note.")
-    if not body:
+async def create_note(note: Note, user: str = Depends(authenticate)) -> dict:
+    logger.info(f"User {(await user_database.get(user)).email} is creating a note.")
+    if not note.text:
         logger.warning("Note must have text.")
         raise HTTPException(status_code=400, detail="Note must have text")
-    note_id = await note_database.save(body)
+    new_note = DbNote(text=note.text, user_id=note.id)
+    note_id = await note_database.save(new_note)
     logger.info(f"New note #{note_id} created.")
-    return {"message": "Note created successfully"}
+    return {"note created" : note.text}
 
 
 @note_router.put("/{note_id}", response_model=Note)
