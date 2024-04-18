@@ -232,3 +232,14 @@ jose.exceptions.ExpiredSignatureError: Signature has expired.
 2024-04-18 13:24:21,448 INFO routes.note:76 Note #6621654eb788778c523b8b02 is updated.
 2024-04-18 13:24:24,381 INFO routes.note:83 User jacksonmgrant@gmail.com is deleting note #6621654eb788778c523b8b02.
 2024-04-18 13:24:24,608 INFO routes.note:99 Note #6621654eb788778c523b8b02 is updated.
+2024-04-18 15:20:44,189 INFO main:24 Application starts up...
+2024-04-18 15:20:46,203 INFO main:24 Application starts up...
+2024-04-18 15:21:01,386 INFO main:24 Application starts up...
+2024-04-18 15:21:17,157 INFO main:24 Application starts up...
+2024-04-18 15:21:30,578 INFO routes.user:54 User a@gmail.com is signing into the system.
+2024-04-18 15:21:30,820 INFO routes.user:69 User a@gmail.com signed in.
+2024-04-18 15:21:30,890 INFO routes.note:35 Viewing 2 notes for a@gmail.com
+2024-04-18 15:21:30,945 INFO routes.note:35 Viewing 2 notes for a@gmail.com
+2024-04-18 15:22:47,225 INFO routes.feedback:22 New feedback from a@gmail.com created
+2024-04-18 15:22:47,285 INFO routes.note:35 Viewing 2 notes for a@gmail.com
+2024-04-18 15:22:47,340 INFO routes.note:35 Viewing 2 notes for a@gmail.com
