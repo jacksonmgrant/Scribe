@@ -6,6 +6,7 @@ export function Note({id: _id, text = "Empty note", time, hasRecording, onEdit, 
   const [noteText, setText] = useState(text);
 
   const [editOpen, setEditOpen] = React.useState(false);
+  const [isEditable, setIsEditable] = React.useState(false);
   const [deleteOpen, setDeleteOpen] = React.useState(false);
 
   const handleEditOpen = () => setEditOpen(true);
@@ -16,7 +17,22 @@ export function Note({id: _id, text = "Empty note", time, hasRecording, onEdit, 
   }
 
   function EditModal() {
-    const handleEditClose = () => setEditOpen(false);
+    if (editOpen === true) {
+      document.body.style.overflow = 'hidden'; //disable window scroll
+    }
+
+    function handleEditClose() {
+      setEditOpen(false);
+      document.body.style.overflow = 'scroll'; //enable window scroll
+    }
+
+    async function handleEditClick() {
+      setIsEditable(true);
+    }
+
+    async function handleEditCancel() {
+      setIsEditable(false);
+    }
   
     async function handleSaveClick() {
       await apiService.updateNote(_id, noteText)
@@ -25,31 +41,53 @@ export function Note({id: _id, text = "Empty note", time, hasRecording, onEdit, 
     }
 
     return (
-      editOpen ?
+      editOpen ? 
       <div className='dialog-container'> {/* Kate: styled to prevent user from clicking behind modal */}
         <dialog className="edit-dialog"
           open={editOpen}
           aria-labelledby="modal-modal-title"
           aria-describedby="modal-modal-description">
-          <h2>Edit Note</h2>
-          <textarea type="text" className="text" value={noteText} onChange={editNote}/>
-          <div className="buttons">
-            <button className="cancel" onClick={handleEditClose}>Cancel
-            </button>
-            <button className="save" onClick={handleSaveClick}>Save
-              <i className="fa-solid fa-square-check" style={{ marginLeft: '8px' }}></i>
-            </button>
-          </div>
+            {isEditable ?
+            <>
+            <h2>Edit Note</h2>
+            <textarea type="text" className="text-edit" value={noteText} onChange={editNote}/>
+            <div className="buttons">
+              <button className="cancel" onClick={handleEditCancel}>Cancel
+              </button>
+              <button className="save" onClick={handleSaveClick}>Save
+                <i className="fa-solid fa-square-check" style={{ marginLeft: '8px' }}></i>
+              </button>
+            </div>
+            </>
+            :
+            <>
+            <h2>View Note</h2>
+            <textarea type="text" className="text" value={noteText} readOnly/>
+            <div className="buttons">
+              <button className="cancel" onClick={handleEditClose}>Close
+              </button>
+              <button className="save" onClick={handleEditClick}>Edit
+                <i className="fa-solid fa-pen-to-square" style={{ marginLeft: '8px' }}></i>
+              </button>
+            </div>
+            </>}
         </dialog>
       </div>
       : <div></div> //Kate: if the dialog is not open return an empty div, 
-      //without this div-container is visible always and prevents clicking buttons
+      //without this dialog-container is visible always and prevents clicking buttons
       //unsure if there's a better way to do this but it works for now
     )
   }
 
   function DeleteModal() {
-    const handleDeleteClose = () => setDeleteOpen(false);
+    if (deleteOpen === true) {
+      document.body.style.overflow = 'hidden';
+    }
+
+    function handleDeleteClose() {
+      setDeleteOpen(false);
+      document.body.style.overflow = 'scroll';
+    }
   
     async function handleDeleteClick() {
       // This will need to send a delete request to the server
@@ -90,8 +128,8 @@ export function Note({id: _id, text = "Empty note", time, hasRecording, onEdit, 
         <textarea type="text" className="text" value={noteText} onChange={editNote} readOnly rows={noteText.length/100+1} cols={100}/>
       </div>
       <div className="actions">
-        <button className="edit" onClick={handleEditOpen}>Edit
-          <i className="fa-solid fa-pen-to-square" style={{ marginLeft: '8px' }}></i>
+        <button className="edit" onClick={handleEditOpen}>View
+          <i className="fa-solid fa-eye" style={{ marginLeft: '8px' }}></i>
         </button>
         <button className="delete" onClick={handleDeleteOpen}>Delete
         <i className="fa-solid fa-trash" style={{ marginLeft: '8px' }}></i>

@@ -14,7 +14,7 @@ note_database = Database(Note)
 
 
 @note_router.get("/{user_id}")
-async def get_notes(user_id: Any) -> list[Note]:
+async def get_notes(user_id: Any, user: str = Depends(authenticate)) -> dict:
     try:
         user_obj_id = PydanticObjectId(user_id)
     except Exception:

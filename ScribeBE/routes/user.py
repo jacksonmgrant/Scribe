@@ -1,3 +1,4 @@
+import logging
 from auth.hash_password import HashPassword
 import auth.JWT_token as JWT_token
 from database.connection import Database
@@ -29,7 +30,17 @@ async def signup(user: User) -> dict:
     hashed_user_password = hash_password.create_hash(user.password)
     user.password = hashed_user_password
     await user_database.save(user)
-    return {"message": "successfully add new user"}
+
+    user_token = JWT_token.create_access_token(
+        data={
+            "sub": str(user.id),
+            "email_id": user.email,
+        },
+        expires_delta=timedelta(minutes=JWT_token.ACCESS_TOKEN_EXPIRE_MINUTES)
+    )
+
+    return {"msg": "successfully add new user",
+            "access_token": user_token, "token_type": "Bearer"}
 
 
 @user_router.post("/login", response_model=TokenResponse)
@@ -38,8 +49,10 @@ async def login(user: Login):
 
     # for case email is not correct
     if not existing_user:
-        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST,
-                            detail="Incorrect email or password, or user does not exist.")
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Incorrect email or password, or user does not exist."
+        )
 
     check_password = hash_password.verify_hash(user.password,
                                                existing_user.password)
@@ -51,7 +64,9 @@ async def login(user: Login):
                 "email_id": existing_user.email,
                 "password": user.password
             },
-            expires_delta=timedelta(minutes=JWT_token.ACCESS_TOKEN_EXPIRE_MINUTES)
+            expires_delta=timedelta(
+                minutes=JWT_token.ACCESS_TOKEN_EXPIRE_MINUTES
+            )
         )
         return {"access_token": user_token, "token_type": "Bearer"}
 
