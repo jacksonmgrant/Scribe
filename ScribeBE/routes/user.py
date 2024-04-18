@@ -44,6 +44,7 @@ async def signup(user: User) -> dict:
         expires_delta=timedelta(minutes=JWT_token.ACCESS_TOKEN_EXPIRE_MINUTES)
     )
 
+    logger.info(f"User {user.email} signed up.")
     return {"msg": "successfully add new user",
             "access_token": user_token, "token_type": "Bearer"}
 
