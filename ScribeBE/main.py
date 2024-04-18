@@ -5,13 +5,14 @@ from fastapi import FastAPI, HTTPException, UploadFile, APIRouter  # type: ignor
 from fastapi.middleware.cors import CORSMiddleware  # type: ignore
 from fastapi.responses import RedirectResponse  # type: ignore
 
+
+from models.note_model import DbNote
+import routes.note as note
+import routes.user as user
+import routes.feedback as feedback
+import transcriber
 from database.connection import Settings
 from logging_setup import setup_logging
-from models.note_model import DbNote
-from routes.note import note_router
-from routes.user import user_router
-from routes.feedback import feedback_router
-import transcriber
 
 setup_logging()
 logger = logging.getLogger(__name__)
@@ -33,7 +34,6 @@ def get_settings():
 
 
 app = FastAPI(title="Scribe", version="0.1.0", lifespan=lifespan)
-
 
 app.add_middleware(
     CORSMiddleware,
@@ -69,11 +69,9 @@ async def transcribe(file: UploadFile) -> dict:
     await new_note.insert()
     return {"transcribed": speech}
 
-# Register routes
-
 app.include_router(root_router, tags=["Root"])
 app.include_router(transcription_router, prefix="/transcribe",
                    tags=["Transcription"])
-app.include_router(note_router, prefix="/notes")
-app.include_router(user_router, prefix="/users")
-app.include_router(feedback_router, prefix="/feedback")
+app.include_router(note.note_router, prefix="/notes")
+app.include_router(user.user_router, prefix="/users")
+app.include_router(feedback.feedback_router, prefix="/feedback")
