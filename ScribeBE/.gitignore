@@ -14,5 +14,5 @@ Uploads/*
 # Ignore environment files
 .env
 
-# Ignore all log files
-*.log
+# Ignore app.log files
+ScribeBE/logs/app.log

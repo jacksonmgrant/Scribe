@@ -243,3 +243,16 @@ jose.exceptions.ExpiredSignatureError: Signature has expired.
 2024-04-18 15:22:47,225 INFO routes.feedback:22 New feedback from a@gmail.com created
 2024-04-18 15:22:47,285 INFO routes.note:35 Viewing 2 notes for a@gmail.com
 2024-04-18 15:22:47,340 INFO routes.note:35 Viewing 2 notes for a@gmail.com
+2024-04-18 16:07:33,577 INFO main:24 Application starts up...
+2024-04-18 16:09:17,616 INFO main:24 Application starts up...
+2024-04-18 16:09:19,566 INFO main:24 Application starts up...
+2024-04-18 16:12:41,014 INFO main:24 Application starts up...
+2024-04-18 16:12:56,564 INFO routes.user:54 User a@gmail.com is signing into the system.
+2024-04-18 16:12:56,812 INFO routes.user:69 User a@gmail.com signed in.
+2024-04-18 16:12:56,896 INFO routes.note:35 Viewing 2 notes for a@gmail.com
+2024-04-18 16:12:56,953 INFO routes.note:35 Viewing 2 notes for a@gmail.com
+2024-04-18 16:13:07,852 INFO routes.note:41 User a@gmail.com is creating a note.
+2024-04-18 16:13:07,884 INFO routes.note:47 New note #66218ce351a86b010728de45 created.
+2024-04-18 16:13:07,940 INFO routes.note:35 Viewing 3 notes for a@gmail.com
+2024-04-18 16:13:15,987 INFO routes.note:35 Viewing 3 notes for a@gmail.com
+2024-04-18 16:13:16,045 INFO routes.note:35 Viewing 3 notes for a@gmail.com
