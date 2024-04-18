@@ -35,7 +35,7 @@ export function FileUploadButton({ onUpload }) {
         isTranscribing ?
         <>
         <div className="loading-screen">
-            <iframe style={{border: 'none', width: '200px'}} src="https://lottie.host/embed/3578901e-5772-46f4-a34a-22b3a2904f7b/4eUF6lZ22c.json"></iframe>
+            <iframe title="loading" style={{border: 'none', width: '200px'}} src="https://lottie.host/embed/3578901e-5772-46f4-a34a-22b3a2904f7b/4eUF6lZ22c.json"></iframe>
         </div>
         <div>
         <input
