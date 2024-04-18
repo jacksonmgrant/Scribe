@@ -33,9 +33,22 @@ export function FileUploadButton({ onUpload }) {
 
     return (
         isTranscribing ?
+        <>
         <div className="loading-screen">
             <iframe style={{border: 'none', width: '200px'}} src="https://lottie.host/embed/3578901e-5772-46f4-a34a-22b3a2904f7b/4eUF6lZ22c.json"></iframe>
         </div>
+        <div>
+        <input
+            type="file"
+            id="fileInput"
+            style={{ display: 'none' }}
+            onChange={handleFileInput}
+        />
+        <button type="button" name="upload-audio-file" id="upload-audio-file" onClick={() => {handleUpload();}}>
+            <i className="fa-solid fa-file-audio" style={{ marginRight: '8px' }}></i> Upload File
+        </button>
+        </div>
+        </>
         :
         <div>
             <input
