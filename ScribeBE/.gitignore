@@ -13,3 +13,6 @@ Uploads/*
 
 # Ignore environment files
 .env
+
+# Ignore all log files
+*.log
