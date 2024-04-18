@@ -26,17 +26,14 @@ async def lifespan(app: FastAPI):
     # on shutdown event
     ...
 
-app = FastAPI(title="Scribe", version="0.1.0", lifespan=lifespan)
-
 
 @lru_cache
 def get_settings():
     return Settings()
 
 
-# register origins
+app = FastAPI(title="Scribe", version="0.1.0", lifespan=lifespan)
 
-origins = ["*"]
 
 app.add_middleware(
     CORSMiddleware,
