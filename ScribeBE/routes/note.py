@@ -38,7 +38,7 @@ async def get_notes(user_id: Any,
 
 @note_router.post("/", status_code=201)
 async def create_note(note: Note, user: str = Depends(authenticate)) -> dict:
-    logger.info(f"User {(await user_database.get(user)).email} is creating a note.")
+    logger.info(f"User {user["email_id"]} is creating a note.")
     if not note.text:
         logger.warning("Note must have text.")
         raise HTTPException(status_code=400, detail="Note must have text")
@@ -48,50 +48,48 @@ async def create_note(note: Note, user: str = Depends(authenticate)) -> dict:
     return {"note created" : note.text}
 
 
-@note_router.put("/{note_id}", response_model=Note)
-async def update_note(
-    note_id: PydanticObjectId, body: DbNote, user: str = Depends(authenticate)
-) -> Note:
-    logger.info(f"User {user.email} is updating event #{note_id}")
-    note_to_update = await note_database.get(note_id)
+@note_router.put("/")
+async def update_note(note: Note, user: str = Depends(authenticate)) -> dict:
+    logger.info(f"User {user["email_id"]} is updating event #{note.id}")
+    note_to_update = await note_database.get(note.id)
     if not note_to_update:
-        logger.warning(f"Note #{note_id} not found")
+        logger.warning(f"Note #{note.id} not found")
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
             detail="Note not found",
             )
-    if note_to_update.creator != user:
+    if note_to_update.user_id != user["sub"]:
         logger.warning(
-            f"User {user.email} is not authorized to perform that operation"
+            f"User {user["email_id"]} is not authorized to perform that operation"
         )
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
             detail="Operation not allowed"
         )
-    updated_note = await note_database.update(note_id, body)
+    updated_note = await note_database.update(note.id, note)
     if not updated_note:
-        logger.warning(f"Note #{note_id} not found")
+        logger.warning(f"Note #{note.id} not found")
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
             detail="Note not found"
         )
-    logger.info(f"Note #{note_id} is updated.")
-    return updated_note
+    logger.info(f"Note #{note.id} is updated.")
+    return {"message": "Note updated"}
 
 
 @note_router.delete("/{note_id}")
 async def delete_note(note_id: PydanticObjectId,
                       user: str = Depends(authenticate)) -> dict:
-    logger.info(f"User {user.email} is deleting note #{note_id}.")
+    logger.info(f"User {user["email_id"]} is deleting note #{note_id}.")
     note_to_delete = await note_database.get(note_id)
     if not note_to_delete:
         logger.warning(f"Note #{note_id} not found")
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND, detail="Note not found"
         )
-    if note_to_delete.creator != user:
+    if note_to_delete.user_id != user["sub"]:
         logger.warning(
-            f"User {user.email} is not authorized to perform that operation"
+            f"User {user["email_id"]} is not authorized to perform that operation"
         )
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
