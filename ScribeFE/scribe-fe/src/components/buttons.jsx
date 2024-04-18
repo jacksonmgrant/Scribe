@@ -14,7 +14,16 @@ export function FileUploadButton({ onUpload }) {
             console.log("Transcribing");
             const text = await transcribeFile(event);
             console.log(text);
-            await apiService.createNote(text);
+            const response = await apiService.createNote2(text); 
+            console.log(response)
+            const noteID = response.noteID;
+            try {
+                const file = event.target.files[0]
+                if (file.size < 15 * 1024 * 1024) {
+                    apiService.sendAudio(file,noteID)
+                }
+            }
+            catch (error) {}
             onUpload();
         } catch (error) {
             console.error(error);

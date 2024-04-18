@@ -2,6 +2,7 @@ from datetime import datetime
 from typing import Optional
 from beanie import Document, Indexed
 from pydantic import BaseModel
+from bson.objectid import ObjectId
 
 class Note(BaseModel):
     id: str

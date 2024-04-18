@@ -7,6 +7,7 @@ from settings import Settings
 from models.note_model import DbNote
 from models.user_model import DbUser
 from models.feedback_model import DbFeedback
+from models.audio_model import DbAudio
 
 settings = Settings()
 
@@ -17,4 +18,4 @@ async def init_db():
     client = AsyncIOMotorClient(f"mongodb+srv://{settings.DB_USER}:{settings.DB_PASS}@scribedb.klymspw.mongodb.net/")
     # client = AsyncIOMotorClient(settings.CONNECTION_STRING)
     # selecting collections
-    await init_beanie(client.ScribeDB, document_models=[DbNote, DbUser, DbFeedback])
+    await init_beanie(client.ScribeDB, document_models=[DbNote, DbUser, DbFeedback, DbAudio])

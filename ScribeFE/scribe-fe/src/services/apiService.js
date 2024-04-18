@@ -98,6 +98,54 @@ const deleteNoteById = (id) => {
         });
     }
 
-const apiService = {transcribe, createNote, getNotes, updateNote, deleteNoteById};
+const createNote2 = (noteText) => {
+    const userId = decodeToken(localStorage.getItem('token')).sub;
+    const data = {id: userId, text: noteText};
+    return fetch(`${BASE_URL}/notes/returnWithID`, {
+        method: 'POST',
+        headers: {
+        'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+        
+    })
+    .then((response) => response.json())
+    .then((result) => {
+    console.log('Success:', result);
+    return result;
+    })
+    .catch((error) => {
+    console.error('Error:', error);
+    throw error;
+    });
+}
+
+// idk how to do frontend, gemini made it async and got mad when I told it to do it as const.
+
+async function sendAudio(audioFile, audioID) {
+    const formData = new FormData();
+    formData.append('audioFile', audioFile);
+    formData.append('audioID', audioID)
+    try {
+        const response = await fetch(`${BASE_URL}/audio`, {
+            method: 'POST',
+            headers: {
+            'Content-Type': 'multipart/form-data', // is it json? idk
+            },
+            body: formData,
+        });
+        if (response.ok) {
+            const data = await response.json();
+            console.log('Success:', data);
+            return data;
+        } else {
+        console.error('Error uploading audio:', response.statusText);
+        }
+    } catch (error) {
+    console.error('Error uploading audio:', error);
+    }
+}
+
+const apiService = {transcribe, createNote, getNotes, updateNote, deleteNoteById, createNote2, sendAudio};
 
 export default apiService;

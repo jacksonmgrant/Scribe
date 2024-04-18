@@ -4,6 +4,16 @@ from fastapi import APIRouter, HTTPException
 from models.user_model import DbUser
 from models.note_model import Note, DbNote
 from bson.objectid import ObjectId
+import logging
+from typing import Optional
+
+
+# Configure logging
+logging.basicConfig(level=logging.DEBUG)  # Set desired logging level (e.g., DEBUG, INFO, WARNING)
+
+# Use the logger within your application
+logger = logging.getLogger(__name__)  # Use __name__ for the current module
+
 
 note_router = APIRouter(tags=["Note"])
 
@@ -47,3 +57,13 @@ async def delete_note(note_id: Any) -> dict:
         raise HTTPException(status_code=404, detail="Note not found")
     await note_to_delete.delete()
     return {"message" : "Note deleted"}
+
+
+@note_router.post("/returnWithID", status_code=201)
+async def create_note_2(note: Note) -> dict:
+    if note.text is None:
+        raise HTTPException(status_code=400, detail="Note must have text")
+    new_id = str(ObjectId())
+    new_note = DbNote(text=note.text, user_id=note.id, recording_id=str(new_id))
+    await new_note.insert()
+    return {"note_created" : note.text, "noteID" : new_id}

@@ -1,0 +1,5 @@
+{
+    "python.analysis.extraPaths": [
+        "./ScribeBE/venv/Lib/site-packages"
+    ]
+}
