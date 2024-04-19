@@ -1,7 +1,7 @@
 import pytest
 from bson.objectid import ObjectId
 import httpx
-from auth.JWT_token import create_access_token
+from auth.JWT_token import create_access_token 
 
 @pytest.fixture
 async def access_token() -> str:
