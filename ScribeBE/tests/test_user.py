@@ -44,22 +44,52 @@ async def access_token() -> str:
                 minutes=JWT_token.ACCESS_TOKEN_EXPIRE_MINUTES 
             ))
 
-# @pytest.mark.anyio
-# async def test_signup(access_token: str) -> None:
+@pytest.fixture
+async def access_token2() -> str:
+    return create_access_token(data={
+                "email_id": 'pytest@gmail.com',
+                "password": "pytest123"
+            },
+            expires_delta=timedelta(
+                minutes=JWT_token.ACCESS_TOKEN_EXPIRE_MINUTES 
+            ))
 
-#     await init_db()
+@pytest.mark.anyio
+async def test_signup(access_token2: str) -> None:
 
-#     payload = {"name" : "pytest", "email": "pytest@gmail.com", "password": "pytest123"}
-#     headers = {"Content-Type": "application/json"}
-#     test_response = {'access_token': f'{access_token}', 'token_type': 'Bearer'}
+    await init_db()
+
+    payload = {"name" : "pytest", "email": "pytest@gmail.com", "password": "pytest123"}
+    headers = {"Content-Type": "application/json"}
+    test_response = "successfully add new user"
     
-#     async with AsyncClient(
-#         transport=ASGITransport(app=app), base_url="http://localhost:3000"
-#     ) as client:
-#         response = await client.post("/users/signup", json=payload, headers=headers)
+    async with AsyncClient(
+        transport=ASGITransport(app=app), base_url="http://localhost:8000"
+    ) as client:
+        response = await client.post("/users/signup", json=payload, headers=headers)
 
-#     assert response.status_code == 201
-#     assert response.json() == test_response
+    json_response = response.json()
+    msg = json_response["msg"]
+
+    assert response.status_code == 201
+    assert msg == test_response
+
+@pytest.mark.anyio
+async def test_signup_with_exist_user(access_token2: str) -> None:
+
+    await init_db()
+
+    payload = {"name" : "a", "email": "a@gmail.com", "password": "a123"}
+    headers = {"Content-Type": "application/json"}
+    test_response = {"detail" : "A user with this email already exists."}
+    
+    async with AsyncClient(
+        transport=ASGITransport(app=app), base_url="http://localhost:8000"
+    ) as client:
+        response = await client.post("/users/signup", json=payload, headers=headers)
+    
+    assert response.status_code == 409
+    assert response.json() == test_response
 
 @pytest.mark.anyio
 async def test_login_with_exist_user(access_token: str) -> None:
