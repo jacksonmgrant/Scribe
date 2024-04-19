@@ -79,7 +79,8 @@ async def login(user: Login):
         )
         return {"access_token": user_token, "token_type": "Bearer"}
     logger.info("Invalid details passed.")
+
     raise HTTPException(
-        status_code=status.HTTP_401_UNAUTHORIZED,
-        detail="Invalid details passed."
+        status_code=status.HTTP_400_BAD_REQUEST,
+        detail="Incorrect email or password, or user does not exist."
     )

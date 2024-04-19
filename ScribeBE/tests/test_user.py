@@ -9,9 +9,13 @@ from auth.JWT_token import create_access_token
 from bson.objectid import ObjectId
 from models.user_model import DbUser, User
 import jwt
+import os
+from dotenv import load_dotenv
 
+load_dotenv()
 user_database = Database(User)
 hash_passowrd = HashPassword()
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 async def init_db():
     settings = Settings()
@@ -62,24 +66,47 @@ async def test_login_with_exist_user(access_token: str) -> None:
 
     await init_db()
 
-    payload = {"name" : "a", "email": "a@gmail.com", "password": "a123"}
+    payload = {"email": "a@gmail.com", "password": "a123"}
     headers = {
         "Content-Type": "application/json",
         "Authorization": f"Bearer {access_token}"
     }
-    test_response = jwt.decode(access_token, "a2ddad598b891e78cbbc00c4d53c8346a58c29f6a1dd4b4ce05c13b999a0c3e1", algorithms=["HS256"])
+    
+    test_response = jwt.decode(access_token, SECRET_KEY, algorithms=["HS256"])
     test_response_email_id = test_response["email_id"]
     test_response_passowrd = test_response["password"]
+    
     async with AsyncClient(
-        transport=ASGITransport(app=app), base_url="http://localhost:3000"
+        transport=ASGITransport(app=app), base_url="http://localhost:8000"
     ) as client:
         response = await client.post("/users/login", json=payload, headers=headers)
 
     JWT_token_response = response.json()["access_token"]
-    decode_JWT_token_response = jwt.decode(JWT_token_response, "a2ddad598b891e78cbbc00c4d53c8346a58c29f6a1dd4b4ce05c13b999a0c3e1", algorithms=["HS256"])
+    decode_JWT_token_response = jwt.decode(JWT_token_response, SECRET_KEY, algorithms=["HS256"])
     JWT_token_response_email_id = decode_JWT_token_response["email_id"]
     JWT_token_response_password = decode_JWT_token_response["password"]
 
     assert response.status_code == 200
     assert JWT_token_response_email_id == test_response_email_id
     assert JWT_token_response_password == test_response_passowrd
+
+@pytest.mark.anyio
+async def test_login_with_user_not_existing(access_token: str) -> None:
+
+    await init_db()
+
+    payload = {"email": "", "password": ""}
+    headers = {
+        "Content-Type": "application/json",
+        "Authorization": f"Bearer {access_token}"
+    }
+    
+    test_response = {"detail" : "Incorrect email or password, or user does not exist."}
+    
+    async with AsyncClient(
+        transport=ASGITransport(app=app), base_url="http://localhost:8000"
+    ) as client:
+        response = await client.post("/users/login", json=payload, headers=headers)
+
+    assert response.status_code == 400
+    assert response.json() == test_response
