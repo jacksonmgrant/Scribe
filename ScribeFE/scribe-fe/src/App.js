@@ -14,19 +14,19 @@ import Welcomepage from "./components/pages/WelcomePage";
 // import ParticlesBg from 'particles-bg'
 
 const App = () => {
-    const [isSignin,setIsSignin] = useState(localStorage.getItem("isSignin") === "true" ? true : false);
+    const [isSignin,setIsSignin] = useState(sessionStorage.getItem("isSignin") === "true" ? true : false);
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
     const signin = () => {
         setIsSignin(true);
-        localStorage.setItem("isSignin", "true");
+        sessionStorage.setItem("isSignin", "true");
     }
 
     const signout = () => {
         setIsSignin(false);
-        localStorage.setItem("isSignin", "false");
+        sessionStorage.setItem("isSignin", "false");
     }
 
     const clearSignupInput = () => {
