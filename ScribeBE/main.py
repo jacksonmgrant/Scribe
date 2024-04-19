@@ -70,8 +70,7 @@ async def transcribe(file: UploadFile) -> dict:
     return {"transcribed": speech}
 
 app.include_router(root_router, tags=["Root"])
-app.include_router(transcription_router, prefix="/transcribe",
-                   tags=["Transcription"])
+app.include_router(transcription_router, prefix="/transcribe", tags=["Transcription"])
 app.include_router(note.note_router, prefix="/notes")
 app.include_router(user.user_router, prefix="/users")
 app.include_router(feedback.feedback_router, prefix="/feedback")

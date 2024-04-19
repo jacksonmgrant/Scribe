@@ -1,7 +1,7 @@
 import pytest
 from bson.objectid import ObjectId
 import httpx
-from auth.JWT_token import create_access_token
+from auth.JWT_token import create_access_token 
 
 @pytest.fixture
 async def access_token() -> str:
@@ -19,8 +19,8 @@ async def test_recieve_feedback(access_token: str) -> None:
     }
 
     payload = {
-        "text" : "good",
-        "rating" : 3
+        "text" : "pytest",
+        "rating" : 5
     }
 
     test_response = {"detail":"successfully add new feedback"}
@@ -28,4 +28,42 @@ async def test_recieve_feedback(access_token: str) -> None:
     response = httpx.post("http://localhost:8000/feedback/",headers=headers,json=payload)
 
     assert response.status_code == 201
+    assert response.json() == test_response
+
+@pytest.mark.anyio
+async def test_recieve_feedback_with_empty_text_review(access_token: str) -> None:
+    headers = {
+        "Content-Type": "application/json",
+        "Authorization": f"Bearer {access_token}"
+    }
+
+    payload = {
+        "text" : "",
+        "rating" : 2
+    }
+
+    test_response = {"detail":"Plz fill something"}
+
+    response = httpx.post("http://localhost:8000/feedback/",headers=headers,json=payload)
+
+    assert response.status_code == 400
+    assert response.json() == test_response
+
+@pytest.mark.anyio
+async def test_recieve_feedback_with_empty_rating_review(access_token: str) -> None:
+    headers = {
+        "Content-Type": "application/json",
+        "Authorization": f"Bearer {access_token}"
+    }
+
+    payload = {
+        "text" : "asd",
+        "rating" : 0
+    }
+
+    test_response = {"detail":"Plz fill something"}
+
+    response = httpx.post("http://localhost:8000/feedback/",headers=headers,json=payload)
+
+    assert response.status_code == 400
     assert response.json() == test_response
