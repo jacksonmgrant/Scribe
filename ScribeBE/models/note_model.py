@@ -7,6 +7,7 @@ from bson.objectid import ObjectId
 class Note(BaseModel):
     id: str
     text: str | None
+    recording_id: str | None
 
 class DbNote(Document):
     text: str

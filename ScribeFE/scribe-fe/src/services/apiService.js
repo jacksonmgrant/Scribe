@@ -28,9 +28,12 @@ const transcribe = (file) => {
         });
 }
 
-const createNote = (noteText) => {
+const createNote = (noteText, recording_id) => {
     const userId = decodeToken(localStorage.getItem('token')).sub;
-    const data = {id: userId, text: noteText};
+    let data;
+    if (recording_id) {data = {id: userId, text: noteText, recording_id: recording_id}}
+    else {data = {id: userId, text: noteText}};
+    console.log(data)
     return fetch(`${BASE_URL}/notes/`, {
             method: 'POST',
             headers: {
@@ -104,7 +107,7 @@ const createNote2 = (noteText) => {
     return fetch(`${BASE_URL}/notes/returnWithID`, {
         method: 'POST',
         headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/json'
         },
         body: JSON.stringify(data),
         
@@ -122,16 +125,12 @@ const createNote2 = (noteText) => {
 
 // idk how to do frontend, gemini made it async and got mad when I told it to do it as const.
 
-async function sendAudio(audioFile, audioID) {
+async function sendAudio(audioFile) {
     const formData = new FormData();
     formData.append('audioFile', audioFile);
-    formData.append('audioID', audioID)
     try {
         const response = await fetch(`${BASE_URL}/audio`, {
             method: 'POST',
-            headers: {
-            'Content-Type': 'multipart/form-data', // is it json? idk
-            },
             body: formData,
         });
         if (response.ok) {

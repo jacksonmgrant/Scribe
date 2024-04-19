@@ -34,7 +34,10 @@ async def get_notes(user_id: Any) -> dict:
 async def create_note(note: Note) -> dict:
     if note.text is None:
         raise HTTPException(status_code=400, detail="Note must have text")
-    new_note = DbNote(text=note.text, user_id=note.id)
+    if note.recording_id is None:
+        new_note = DbNote(text=note.text, user_id=note.id)
+    else:
+        new_note = DbNote(text=note.text, user_id=note.id,recording_id=note.recording_id)
     await new_note.insert()
     return {"note created" : note.text}
 

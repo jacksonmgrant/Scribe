@@ -30,24 +30,20 @@ audio_router = APIRouter(tags=["audio"])
 
 #something = Database(DbAudio)
 
-@audio_router.post("/s",status_code=201)
-async def poopie(request: Request) -> dict:
-    return {"big black balls": " i love balls"}
 
 @audio_router.post("/", status_code=201)
-async def receive_audio(request: Request) -> dict:
+async def receive_audio(audio: UploadFile) -> dict:
     try:
-        form_data = await request.form()
-        user_id = form_data["user_id"]
-        id = form_data["id"]
-        audio = form_data["audio"]
-        if not (user_id or audio or id):
-            raise HTTPException(status_code=400, detail=f"Missing required fields: {', '.join([field for field in ['user_id', 'audio', 'id'] if not field])}")
-        new_audio = DbAudio(wavfile=audio,user_id=user_id,_id=id)
+        if not (audio):
+            raise HTTPException(status_code=400, detail=f"Missing Audio")
+        new_id = ObjectId()
+        new_audio = DbAudio(wavfile=audio,id=new_id)
         #await new_audio.insert()
     except Exception as e:
-        await(logger.exception(e))
-    return {"success" : "I hope"}
+        #return {"epic fail": "dumbass"}
+        logger.exception(e)
+        return (e)
+    return {"id" : new_id}
 
 @audio_router.post("/reem", status_code=201)
 async def testicles(request: Request) -> dict:
