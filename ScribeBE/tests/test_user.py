@@ -20,18 +20,6 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 async def init_db():
     settings = Settings()
     await settings.initialize_database()
-
-# @pytest.fixture
-# async def access_token() -> str:
-#     hashed_user_password = hash_passowrd.create_hash("pytest123")
-#     new_user = DbUser(name="pytest", email="pytest@gmail.com",
-#                       password=hashed_user_password)
-#     await user_database.save(new_user)
-#     return create_access_token(data={
-#                 "sub": str(ObjectId(new_user.id)),
-#                 "email_id": new_user.email,
-#                 "password": new_user.password
-#             })
            
 @pytest.fixture
 async def access_token() -> str:
