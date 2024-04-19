@@ -1,7 +1,6 @@
 from datetime import datetime, timedelta, timezone
 from fastapi import HTTPException, status
 from jose import JWTError, jwt
-from pydantic import EmailStr
 from settings import Settings
 import logging
 
