@@ -38,15 +38,15 @@ export function FileUploadButton({ onUpload }) {
             <iframe title="loading" style={{border: 'none', width: '200px'}} src="https://lottie.host/embed/3578901e-5772-46f4-a34a-22b3a2904f7b/4eUF6lZ22c.json"></iframe>
         </div>
         <div>
-        <input
-            type="file"
-            id="fileInput"
-            style={{ display: 'none' }}
-            onChange={handleFileInput}
-        />
-        <button type="button" name="upload-audio-file" id="upload-audio-file" onClick={() => {handleUpload();}}>
-            <i className="fa-solid fa-file-audio" style={{ marginRight: '8px' }}></i> Upload File
-        </button>
+            <input
+                type="file"
+                id="fileInput"
+                style={{ display: 'none' }}
+                onChange={handleFileInput}
+            />
+            <button type="button" name="upload-audio-file" id="upload-audio-file" onClick={() => {handleUpload();}}>
+                <i className="fa-solid fa-file-audio" style={{ marginRight: '8px' }}></i> Upload File
+            </button>
         </div>
         </>
         :
@@ -65,6 +65,13 @@ export function FileUploadButton({ onUpload }) {
 }
 
 export function RecordAudioButton({ onUpload }) {
+    // hook for loading screen
+    const [isTranscribing, setIsTranscribing] = useState(false);
+
+    if (isTranscribing === true) {
+        document.body.style.overflow = 'hidden'; //disable window scroll
+        }
+
     const [ transcribedText, setTranscribedText ] = useState(null);
     const [ status, setStatus ] = useState("idle");
 
@@ -79,6 +86,8 @@ export function RecordAudioButton({ onUpload }) {
     useEffect(() => {
         if (transcribedText !== null) {
             console.log('Transcribed speech:', transcribedText);
+            setIsTranscribing(false);
+            document.body.style.overflow = 'scroll'; //enable window scroll
             apiService.createNote(transcribedText)
                 .then(() => {
                     onUpload();
@@ -90,10 +99,16 @@ export function RecordAudioButton({ onUpload }) {
     }, [transcribedText]);
 
     const sendTranscription = async () => {
+        setIsTranscribing(true);
         setStatus("idle");
     };
 
     return (
+        isTranscribing ?
+        <>
+        <div className="loading-screen">
+            <iframe style={{border: 'none', width: '200px'}} src="https://lottie.host/embed/3578901e-5772-46f4-a34a-22b3a2904f7b/4eUF6lZ22c.json"></iframe>
+        </div>
         <div>
             {status !== "recording" ? (
                 <button type="button" name="record-audio" id="record-audio" onClick={() => {startSttFromMic()}}>
@@ -104,6 +119,19 @@ export function RecordAudioButton({ onUpload }) {
                     <i className="fa-solid fa-stop stop-icon" style={{ marginRight: '8px' }}></i> Stop Recording
                 </button>
             )}
+        </div>
+        </>
+        :
+        <div>
+        {status !== "recording" ? (
+            <button type="button" name="record-audio" id="record-audio" onClick={() => {startSttFromMic()}}>
+                <i className="fa-solid fa-microphone" style={{ marginRight: '8px' }}></i>  Record Audio
+            </button>
+        ) : (
+            <button type="button" name="stop-recording" id="stop-recording" onClick={sendTranscription}>
+                <i className="fa-solid fa-stop stop-icon" style={{ marginRight: '8px' }}></i> Stop Recording
+            </button>
+        )}
         </div>
     );
 }

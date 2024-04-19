@@ -35,6 +35,11 @@ textarea {
 	max-height: 10rem;
 }
 
+#notes {
+	display: flex;
+	flex-direction: column-reverse;
+}
+
 #notes .note {
 	display: flex;
 	justify-content: space-between;
