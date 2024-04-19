@@ -83,8 +83,3 @@ async def login(user: Login):
         status_code=status.HTTP_401_UNAUTHORIZED,
         detail="Invalid details passed."
     )
-
-    # for case password is not correct
-    # raise HTTPException(
-    #     status_code=status.HTTP_400_BAD_REQUEST,
-    #     detail="Incorrect email or password, or user does not exist.")

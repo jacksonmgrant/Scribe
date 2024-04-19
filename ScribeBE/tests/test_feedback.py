@@ -19,8 +19,8 @@ async def test_recieve_feedback(access_token: str) -> None:
     }
 
     payload = {
-        "text" : "good",
-        "rating" : 3
+        "text" : "pytest",
+        "rating" : 5
     }
 
     test_response = {"detail":"successfully add new feedback"}
