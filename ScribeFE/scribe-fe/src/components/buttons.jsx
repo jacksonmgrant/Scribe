@@ -40,6 +40,7 @@ export function FileUploadButton({ onUpload }) {
         <div>
             <input
                 type="file"
+                accept=".wav, .wav-x"
                 id="fileInput"
                 style={{ display: 'none' }}
                 onChange={handleFileInput}
@@ -53,6 +54,7 @@ export function FileUploadButton({ onUpload }) {
         <div>
             <input
                 type="file"
+                accept=".wav, .wav-x"
                 id="fileInput"
                 style={{ display: 'none' }}
                 onChange={handleFileInput}
