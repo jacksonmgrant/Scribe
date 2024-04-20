@@ -20,18 +20,6 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 async def init_db():
     settings = Settings()
     await settings.initialize_database()
-
-# @pytest.fixture
-# async def access_token() -> str:
-#     hashed_user_password = hash_passowrd.create_hash("pytest123")
-#     new_user = DbUser(name="pytest", email="pytest@gmail.com",
-#                       password=hashed_user_password)
-#     await user_database.save(new_user)
-#     return create_access_token(data={
-#                 "sub": str(ObjectId(new_user.id)),
-#                 "email_id": new_user.email,
-#                 "password": new_user.password
-#             })
            
 @pytest.fixture
 async def access_token() -> str:
@@ -44,25 +32,49 @@ async def access_token() -> str:
                 minutes=JWT_token.ACCESS_TOKEN_EXPIRE_MINUTES 
             ))
 
-# @pytest.mark.anyio
-# async def test_signup(access_token: str) -> None:
-
-#     await init_db()
-
-#     payload = {"name" : "pytest", "email": "pytest@gmail.com", "password": "pytest123"}
-#     headers = {"Content-Type": "application/json"}
-#     test_response = {'access_token': f'{access_token}', 'token_type': 'Bearer'}
-    
-#     async with AsyncClient(
-#         transport=ASGITransport(app=app), base_url="http://localhost:3000"
-#     ) as client:
-#         response = await client.post("/users/signup", json=payload, headers=headers)
-
-#     assert response.status_code == 201
-#     assert response.json() == test_response
+################# signu TESTCASE ########################################
 
 @pytest.mark.anyio
-async def test_login_with_exist_user(access_token: str) -> None:
+async def test_signup() -> None:
+
+    await init_db()
+
+    payload = {"name" : "pytest", "email": "pytest@gmail.com", "password": "pytest123"}
+    headers = {"Content-Type": "application/json"}
+    test_response = "successfully add new user"
+    
+    async with AsyncClient(
+        transport=ASGITransport(app=app), base_url="http://localhost:8000"
+    ) as client:
+        response = await client.post("/users/signup", json=payload, headers=headers)
+
+    json_response = response.json()
+    msg = json_response["msg"]
+
+    assert response.status_code == 201
+    assert msg == test_response
+
+@pytest.mark.anyio
+async def test_signup_with_exist_user() -> None:
+
+    await init_db()
+
+    payload = {"name" : "a", "email": "a@gmail.com", "password": "a123"}
+    headers = {"Content-Type": "application/json"}
+    test_response = {"detail" : "A user with this email already exists."}
+    
+    async with AsyncClient(
+        transport=ASGITransport(app=app), base_url="http://localhost:8000"
+    ) as client:
+        response = await client.post("/users/signup", json=payload, headers=headers)
+    
+    assert response.status_code == 409
+    assert response.json() == test_response
+
+################# LOGIN TESTCASE########################################
+
+@pytest.mark.anyio
+async def test_login(access_token: str) -> None:
 
     await init_db()
 
