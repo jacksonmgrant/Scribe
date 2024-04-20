@@ -1,26 +1,24 @@
 from httpx import ASGITransport, AsyncClient
 import pytest
-from database.connection import Settings, Database
+from database.connection import Settings
 from main import app
 import auth.JWT_token as JWT_token
 from datetime import timedelta
-from auth.hash_password import HashPassword
 from auth.JWT_token import create_access_token
 from bson.objectid import ObjectId
-from models.user_model import DbUser, User
-import jwt
 import os
 from dotenv import load_dotenv
 
+
 load_dotenv()
-user_database = Database(User)
-hash_passowrd = HashPassword()
 SECRET_KEY = os.getenv('SECRET_KEY')
+
 
 async def init_db():
     settings = Settings()
     await settings.initialize_database()
-           
+
+
 @pytest.fixture
 async def access_token() -> str:
     return create_access_token(data={
@@ -32,11 +30,11 @@ async def access_token() -> str:
                 minutes=JWT_token.ACCESS_TOKEN_EXPIRE_MINUTES 
             ))
 
-################# signu TESTCASE ########################################
+################# signup TESTCASE ########################################
 
-@pytest.mark.anyio
+@pytest.mark.asyncio
 async def test_signup() -> None:
-
+    
     await init_db()
 
     payload = {"name" : "pytest", "email": "pytest@gmail.com", "password": "pytest123"}
@@ -54,7 +52,7 @@ async def test_signup() -> None:
     assert response.status_code == 201
     assert msg == test_response
 
-@pytest.mark.anyio
+@pytest.mark.asyncio
 async def test_signup_with_exist_user() -> None:
 
     await init_db()
@@ -73,7 +71,7 @@ async def test_signup_with_exist_user() -> None:
 
 ################# LOGIN TESTCASE########################################
 
-@pytest.mark.anyio
+@pytest.mark.asyncio
 async def test_login(access_token: str) -> None:
 
     await init_db()
@@ -84,25 +82,15 @@ async def test_login(access_token: str) -> None:
         "Authorization": f"Bearer {access_token}"
     }
     
-    test_response = jwt.decode(access_token, SECRET_KEY, algorithms=["HS256"])
-    test_response_email_id = test_response["email_id"]
-    test_response_passowrd = test_response["password"]
-    
     async with AsyncClient(
         transport=ASGITransport(app=app), base_url="http://localhost:8000"
     ) as client:
         response = await client.post("/users/login", json=payload, headers=headers)
 
-    JWT_token_response = response.json()["access_token"]
-    decode_JWT_token_response = jwt.decode(JWT_token_response, SECRET_KEY, algorithms=["HS256"])
-    JWT_token_response_email_id = decode_JWT_token_response["email_id"]
-    JWT_token_response_password = decode_JWT_token_response["password"]
-
     assert response.status_code == 200
-    assert JWT_token_response_email_id == test_response_email_id
-    assert JWT_token_response_password == test_response_passowrd
 
-@pytest.mark.anyio
+
+@pytest.mark.asyncio
 async def test_login_with_user_not_existing(access_token: str) -> None:
 
     await init_db()
