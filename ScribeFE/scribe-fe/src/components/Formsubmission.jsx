@@ -41,25 +41,24 @@ const FormSubmission = () => {
     }
 
     return(
-        <form method='GET'>
-            <div className={styles.container}>
-                <div className={styles.header}>
-                    <h1>User feedback</h1>
+        <div className={styles.container}>
+            <div className={styles.header}>
+                <h1>User feedback</h1>
+            </div>
+            <div className={styles.inputs}>
+                <h2>Tell us about your experience</h2>
+                <div className={styles.experience} >
+                    <textarea 
+                    onChange={(event) => setText(event.target.value)} >
+                    </textarea>
                 </div>
-                <div className={styles.inputs}>
-                    <h2>Tell us about your experience</h2>
-                    <div className={styles.experience} >
-                        <textarea 
-                        onChange={(event) => setText(event.target.value)} >
-                        </textarea>
-                    </div>
-                    <form className={styles.input} onChange={(event) => setRating(event.target.value)} >
-                        <h2>Rate us</h2>
-                        <div className={styles.stars}>  
-                            {[...Array(5)].map((star, index) =>{
-                                const currentRating = index + 1;
-                                return(
-                                <>
+                <form className={styles.input} onChange={(event) => setRating(event.target.value)} >
+                    <h2>Rate us</h2>
+                    <div className={styles.stars}>  
+                        {[...Array(5)].map((star, index) =>{
+                            const currentRating = index + 1;
+                            return(
+                            <div key={index}>
                                 <input
                                     type='radio'
                                     name="rating"
@@ -73,23 +72,22 @@ const FormSubmission = () => {
                                     onClick={() => setRating(currentRating)}
                                 />
                                 </label>
-                                </>
-                                )
-                            })}  
-                        </div>
-                    </form>
-                    {cannotSend && <p className={styles.header} style={{ color: 'var(--danger)' }}>Form fields cannot be blank</p>}
-                </div>
-                <div className='submit-container'>
-                    <Link className='submit'
-                    onClick={async () => {
-                        await createFeedback();
-                    }}>
-                        Submit
-                    </Link>
-                </div>
+                            </div>
+                            )
+                        })}  
+                    </div>
+                </form>
+                {cannotSend && <p className={styles.header} style={{ color: 'var(--danger)' }}>Form fields cannot be blank</p>}
             </div>
-        </form>
+            <div className='submit-container'>
+                <Link className='submit'
+                onClick={async () => {
+                    await createFeedback();
+                }}>
+                    Submit
+                </Link>
+            </div>
+        </div>
     );
 }
 

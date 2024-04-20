@@ -5,7 +5,7 @@ import "./styles/layout.css";
 const Layout = ({isSignin,signout}) => {
 
     return (
-      <>
+      <div>
         <nav>
           <div>
             { isSignin === false
@@ -51,7 +51,7 @@ const Layout = ({isSignin,signout}) => {
           </div>
         </nav>
         <Outlet />
-      </>
+      </div>
     )
   };
 

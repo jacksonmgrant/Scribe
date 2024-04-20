@@ -9,7 +9,7 @@ const Signup = ({signin,signout,name,setName,email,setEmail,password,setPassword
 
     const createUser = async () => {
         try {
-            const response = await fetch(`/users/`, {
+            const response = await fetch(`/users/signup`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

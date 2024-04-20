@@ -20,7 +20,7 @@ textarea {
 	background: none;
 	padding: 0.75rem;
 	display: block;
-	word-wrap: normal;
+	word-wrap: break-word;
 	overflow-y: scroll;
 	white-space: pre-wrap;
     scrollbar-color: var(--scrollbar) var(--scrollbar-container);
@@ -30,8 +30,14 @@ textarea {
 }
 
 .content textarea {
+	min-height: fit-content;
 	height: 100%;
 	max-height: 10rem;
+}
+
+#notes {
+	display: flex;
+	flex-direction: column-reverse;
 }
 
 #notes .note {
@@ -148,7 +154,7 @@ dialog {
 }
 
 dialog textarea {
-  height: 82%;
+  	height: 82%;
 	margin-bottom: 1rem;
 	resize: none;
 	color: var(--text-light)

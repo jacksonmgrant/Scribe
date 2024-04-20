@@ -23,6 +23,7 @@ export function Note({id: _id, text = "Empty note", time, hasRecording, onEdit, 
 
     function handleEditClose() {
       setEditOpen(false);
+      setIsEditable(false);
       document.body.style.overflow = 'scroll'; //enable window scroll
     }
 

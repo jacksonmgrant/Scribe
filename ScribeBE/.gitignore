@@ -1,5 +1,3 @@
-# Ignore env
-.env
 
 # Ignore venv
 venv/
@@ -13,3 +11,4 @@ Uploads/*
 
 # Ignore environment files
 .env
+
