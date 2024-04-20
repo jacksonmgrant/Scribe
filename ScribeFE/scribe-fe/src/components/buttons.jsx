@@ -67,46 +67,42 @@ export function FileUploadButton({ onUpload }) {
 export function RecordAudioButton({ onUpload }) {
     // hook for loading screen
     const [isTranscribing, setIsTranscribing] = useState(false);
+    //const [ transcribedText, setTranscribedText ] = useState(null);
+    const [ status, setStatus ] = useState("idle");
+
+    let transcribedTextArray = [];
 
     if (isTranscribing === true) {
         document.body.style.overflow = 'hidden'; //disable window scroll
-        }
-
-    const [ transcribedText, setTranscribedText ] = useState(null);
-    const [ status, setStatus ] = useState("idle");
+    }
 
     const startSttFromMic = async () => {
         setStatus("recording");
-        record(status);
+        //record();
     };
 
-    const record = async (currentStatus) => {
+    useEffect(() => {
+        if (status === "recording") {
+            record();
+        }
+    }, [status]);
+
+    const record = async () => {
         try {
             console.log("Recording");
-            let text = [];
-            while (currentStatus === "recording") {
+            while (status === "recording") {
                 console.log("Getting speech from mic")
-                text = [...text, await sttFromMic()];
+                transcribedTextArray = [...transcribedTextArray, await sttFromMic()];
             }
-            setTranscribedText(text.join(" "));
         } catch (error) {
             console.error(`Error recording: ${error}`);
         }
     };
 
-    useEffect(() => {
-        return () => {
-            if (status === "recording") {
-                setStatus("idle");
-            }
-        };
-    }, [status]);
-
-    useEffect(() => {
-        if (transcribedText !== null) {
+    const sendTranscription = async () => {
+        if (transcribedTextArray.length !== 0) {
+            const transcribedText = transcribedTextArray.join(' ');
             console.log('Transcribed speech:', transcribedText);
-            setIsTranscribing(false);
-            document.body.style.overflow = 'scroll'; //enable window scroll
             apiService.createNote(transcribedText)
                 .then(() => {
                     onUpload();
@@ -114,12 +110,10 @@ export function RecordAudioButton({ onUpload }) {
                 .catch(error => {
                     console.error('Error creating note:', error);
                 });
-            setTranscribedText(null);
+            transcribedTextArray = [];
         }
-    }, [transcribedText]);
-
-    const sendTranscription = async () => {
-        setIsTranscribing(true);
+        setIsTranscribing(false);
+        document.body.style.overflow = 'scroll'; //enable window scroll
         setStatus("idle");
     };
 
