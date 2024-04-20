@@ -24,7 +24,7 @@ logger = logging.getLogger(__name__)  # Use __name__ for the current module
 #create new endpoint that takes in a file and stores it in the database
 
 # then get the object_id created by Mongo and return that to the frontend
-audio_router = APIRouter(tags=["audio"])
+audio_router = APIRouter(tags=["Audio"])
 
 
 
@@ -32,32 +32,12 @@ audio_router = APIRouter(tags=["audio"])
 
 
 @audio_router.post("/", status_code=201)
-async def receive_audio(audio: UploadFile) -> dict:
-    try:
-        if not (audio):
-            raise HTTPException(status_code=400, detail=f"Missing Audio")
-        new_id = ObjectId()
-        new_audio = DbAudio(wavfile=audio,id=new_id)
-        #await new_audio.insert()
-    except Exception as e:
-        #return {"epic fail": "dumbass"}
-        logger.exception(e)
-        return (e)
-    return {"id" : new_id}
-
-@audio_router.post("/reem", status_code=201)
-async def testicles(request: Request) -> dict:
-    # Access form data using request.form()
-    form_data = await request.form()
-    user_id = form_data["user_id"]
-    id = form_data["id"]
-    audio = form_data["audio"]
-    if audio:
-        logging.info("audio exists")
-    logging.info(f"Received user_id: {user_id}, id: {id}")
-
-    return {"oops": "big fard"}
-
-# do we want users sending audio data to backend first (notes matching to audio) or
-
-# or do we want users to create a note first, then match it with audio? (audio matching to notes)
+async def receive_audio(file: UploadFile) -> dict:
+    if file.content_type not in ["audio/wav", "audio/x-wav"]:
+        raise HTTPException(status_code=400, detail="File must be a .wav file")
+    audio_bytes = await file.read()
+    # Need to figure out what type to use for the audio file
+    # UploadFile doesn't work in MongoDB bc it is FastAPI specific
+    new_audio = DbAudio(wavfile=audio_bytes)
+    await new_audio.insert()
+    return {"id" : new_audio.id}

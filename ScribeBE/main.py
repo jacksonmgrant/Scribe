@@ -67,4 +67,4 @@ app.include_router(transcription_router, prefix="/transcribe", tags=["Transcript
 app.include_router(note.note_router, prefix="/notes")
 app.include_router(user.user_router, prefix="/users")
 app.include_router(feedback.feedback_router, prefix="/feedback")
-app.include_router(audio.audio_router,prefix="/audio")
+app.include_router(audio.audio_router, prefix="/audio", tags=["Audio"])
