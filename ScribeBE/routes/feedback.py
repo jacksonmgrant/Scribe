@@ -1,5 +1,5 @@
 import logging
-from database.connection import Database
+from database.database import Database
 from fastapi import APIRouter, Depends, HTTPException  # type: ignore
 from auth.authenticate import authenticate
 from models.feedback_model import Feedback, DbFeedback

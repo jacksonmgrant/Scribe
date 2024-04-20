@@ -1,7 +1,7 @@
 import logging
 from auth.hash_password import HashPassword
 import auth.JWT_token as JWT_token
-from database.connection import Database
+from database.database import Database
 from fastapi import APIRouter, HTTPException, status  # type: ignore
 from models.user_model import DbUser, User, Login, TokenResponse
 from datetime import timedelta

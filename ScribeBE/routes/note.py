@@ -4,7 +4,7 @@ from typing import Any
 from auth.authenticate import authenticate
 from beanie import PydanticObjectId  # type: ignore
 from bson.objectid import ObjectId  # type: ignore
-from database.connection import Database
+from database.database import Database
 from fastapi import APIRouter, Depends, HTTPException, status  # type: ignore
 from models.user_model import DbUser
 from models.note_model import Note, DbNote
