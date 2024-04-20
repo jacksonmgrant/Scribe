@@ -43,6 +43,10 @@ class Database:
     async def get_all(self) -> list[Any]:
         docs = await self.model.find_all().to_list()
         return docs
+    
+    async def get_by_field(self, field: str, value: Any) -> list:
+        docs = await self.model.find({field: value}).to_list()
+        return docs
 
     async def update(self, id: PydanticObjectId, body: BaseModel) -> Any:
         doc_id = id

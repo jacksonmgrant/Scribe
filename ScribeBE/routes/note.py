@@ -26,12 +26,12 @@ async def get_notes(user_id: Any,
     except Exception:
         logger.warning(f"{user_id} is an invalid user id")
         raise HTTPException(status_code=400, detail="Invalid user id")
-    user = await DbUser.find_one(DbUser.id == user_obj_id)
+    user = await user_database.get(user_obj_id)
     if user.role == "admin":
         notes = await note_database.get_all()
         logger.info(f"Viewing {len(notes)} notes")
     else:
-        notes = await DbNote.find(DbNote.user_id == user_id).to_list()
+        notes = await note_database.get_by_field("user_id", user_id)
         logger.info(f"Viewing {len(notes)} notes for {user.email}")
     return {"notes": notes}
 
