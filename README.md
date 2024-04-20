@@ -168,6 +168,7 @@ API calls to the backend are imported into components from `apiService.js` to ce
   - [x] Loading screen while notes are being uploaded
 - [x] Make setup easy with scripts
 - [ ] Require .wav files for file upload input
+- [ ] Loading screen while notes are being transcribed
 - [ ] API Calls to LLM to synthesize long texts
   - [ ] LLM can create a summary of the recording
   - [ ] Option to transcribe raw speech or synthesize notes

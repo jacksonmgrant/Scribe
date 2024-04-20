@@ -40,6 +40,7 @@ export function FileUploadButton({ onUpload }) {
         <div>
             <input
                 type="file"
+                accept=".wav, .wav-x"
                 id="fileInput"
                 style={{ display: 'none' }}
                 onChange={handleFileInput}
@@ -53,6 +54,7 @@ export function FileUploadButton({ onUpload }) {
         <div>
             <input
                 type="file"
+                accept=".wav, .wav-x"
                 id="fileInput"
                 style={{ display: 'none' }}
                 onChange={handleFileInput}
@@ -67,27 +69,42 @@ export function FileUploadButton({ onUpload }) {
 export function RecordAudioButton({ onUpload }) {
     // hook for loading screen
     const [isTranscribing, setIsTranscribing] = useState(false);
+    //const [ transcribedText, setTranscribedText ] = useState(null);
+    const [ status, setStatus ] = useState("idle");
+
+    let transcribedTextArray = [];
 
     if (isTranscribing === true) {
         document.body.style.overflow = 'hidden'; //disable window scroll
-        }
-
-    const [ transcribedText, setTranscribedText ] = useState(null);
-    const [ status, setStatus ] = useState("idle");
+    }
 
     const startSttFromMic = async () => {
         setStatus("recording");
-        // Currently, transcription stops as soon as the speaker pauses. We need to rework it so that it
-        // goes until the stop button is pressed.
-        const text = await sttFromMic();
-        setTranscribedText(text);
+        //record();
     };
 
     useEffect(() => {
-        if (transcribedText !== null) {
+        if (status === "recording") {
+            record();
+        }
+    }, [status]);
+
+    const record = async () => {
+        try {
+            console.log("Recording");
+            while (status === "recording") {
+                console.log("Getting speech from mic")
+                transcribedTextArray = [...transcribedTextArray, await sttFromMic()];
+            }
+        } catch (error) {
+            console.error(`Error recording: ${error}`);
+        }
+    };
+
+    const sendTranscription = async () => {
+        if (transcribedTextArray.length !== 0) {
+            const transcribedText = transcribedTextArray.join(' ');
             console.log('Transcribed speech:', transcribedText);
-            setIsTranscribing(false);
-            document.body.style.overflow = 'scroll'; //enable window scroll
             apiService.createNote(transcribedText)
                 .then(() => {
                     onUpload();
@@ -95,11 +112,10 @@ export function RecordAudioButton({ onUpload }) {
                 .catch(error => {
                     console.error('Error creating note:', error);
                 });
+            transcribedTextArray = [];
         }
-    }, [transcribedText]);
-
-    const sendTranscription = async () => {
-        setIsTranscribing(true);
+        setIsTranscribing(false);
+        document.body.style.overflow = 'scroll'; //enable window scroll
         setStatus("idle");
     };
 

@@ -51,7 +51,7 @@ export function Note({id: _id, text = "Empty note", time, hasRecording, onEdit, 
             {isEditable ?
             <>
             <h2>Edit Note</h2>
-            <textarea type="text" className="text-edit" value={noteText} onChange={editNote}/>
+            <textarea autoFocus type="text" className="text-edit" value={noteText} onChange={editNote}/>
             <div className="buttons">
               <button className="cancel" onClick={handleEditCancel}>Cancel
               </button>
@@ -112,7 +112,7 @@ export function Note({id: _id, text = "Empty note", time, hasRecording, onEdit, 
           <div className="buttons">
             <button className="cancel" onClick={handleDeleteClose}>Cancel
             </button>
-            <button className="delete" onClick={handleDeleteClick}>Delete
+            <button autoFocus className="delete" onClick={handleDeleteClick}>Delete
             <i className="fa-solid fa-trash" style={{ marginLeft: '8px' }}></i>
             </button>
           </div>

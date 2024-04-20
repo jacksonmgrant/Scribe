@@ -46,7 +46,8 @@ const LoginSignup = ({signin,signout,email,setEmail,password,setPassword,clearLo
                 <div className='inputs'>
                     <div className='input'>
                         <i className="fa-solid fa-envelope"></i>
-                        <input type='email' 
+                        <input autoFocus
+                        type='email' 
                         name="userid" 
                         placeholder='Email'
                         required
