@@ -6,10 +6,9 @@ import auth.JWT_token as JWT_token
 from datetime import timedelta
 from auth.JWT_token import create_access_token
 from bson.objectid import ObjectId
-import jwt
 import os
 from dotenv import load_dotenv
-import asyncio
+
 
 load_dotenv()
 SECRET_KEY = os.getenv('SECRET_KEY')
@@ -82,20 +81,11 @@ async def test_login(access_token: str) -> None:
         "Content-Type": "application/json",
         "Authorization": f"Bearer {access_token}"
     }
-    test_response = access_token
-    # test_response = jwt.decode(access_token, SECRET_KEY, algorithms=["HS256"])
-    # test_response_email_id = test_response["email_id"]
-    # test_response_passowrd = test_response["password"]
     
     async with AsyncClient(
         transport=ASGITransport(app=app), base_url="http://localhost:8000"
     ) as client:
         response = await client.post("/users/login", json=payload, headers=headers)
-
-    # JWT_token_response = response.json()["access_token"]
-    # decode_JWT_token_response = jwt.decode(JWT_token_response, SECRET_KEY, algorithms=["HS256"])
-    # JWT_token_response_email_id = decode_JWT_token_response["email_id"]
-    # JWT_token_response_password = decode_JWT_token_response["password"]
 
     assert response.status_code == 200
 
