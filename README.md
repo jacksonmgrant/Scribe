@@ -157,7 +157,7 @@ API calls to the backend are imported into components from `apiService.js` to ce
   - [ ] Routers
     - [x] Feedback
     - [ ] Notes
-    - [ ] Users
+    - [x] Users
   - [ ] Authentication/Authorization
      
 #### Stretch Goals
