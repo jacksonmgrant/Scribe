@@ -32,18 +32,10 @@ async def access_token() -> str:
                 minutes=JWT_token.ACCESS_TOKEN_EXPIRE_MINUTES 
             ))
 
-@pytest.fixture
-async def access_token2() -> str:
-    return create_access_token(data={
-                "email_id": 'pytest@gmail.com',
-                "password": "pytest123"
-            },
-            expires_delta=timedelta(
-                minutes=JWT_token.ACCESS_TOKEN_EXPIRE_MINUTES 
-            ))
+################# signu TESTCASE ########################################
 
 @pytest.mark.anyio
-async def test_signup(access_token2: str) -> None:
+async def test_signup() -> None:
 
     await init_db()
 
@@ -63,7 +55,7 @@ async def test_signup(access_token2: str) -> None:
     assert msg == test_response
 
 @pytest.mark.anyio
-async def test_signup_with_exist_user(access_token2: str) -> None:
+async def test_signup_with_exist_user() -> None:
 
     await init_db()
 
@@ -79,8 +71,10 @@ async def test_signup_with_exist_user(access_token2: str) -> None:
     assert response.status_code == 409
     assert response.json() == test_response
 
+################# LOGIN TESTCASE########################################
+
 @pytest.mark.anyio
-async def test_login_with_exist_user(access_token: str) -> None:
+async def test_login(access_token: str) -> None:
 
     await init_db()
 
