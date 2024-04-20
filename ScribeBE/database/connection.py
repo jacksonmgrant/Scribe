@@ -1,5 +1,3 @@
-from typing import Any
-
 from beanie import init_beanie  # type: ignore
 from pydantic_settings import BaseSettings, SettingsConfigDict
 from models.feedback_model import DbFeedback

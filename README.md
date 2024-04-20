@@ -1,19 +1,18 @@
 # Scribe
 
-- [Scribe](#scribe)
-  - [Overview](#overview)
-    - [Usage](#usage)
-    - [Credits](#credits)
-  - [Demos](#demos)
-  - [Development Notes](#development-notes)
-    - [Project Design](#project-design)
-    - [Requirements](#requirements)
-  - [Project Setup](#project-setup)
-    - [Quick Setup](#quick-setup)
-  - [To-do](#to-do)
-    - [Midterm](#midterm)
-    - [Final](#final)
-  - [Known Bugs](#known-bugs)
+- [Overview](#overview)
+  - [Usage](#usage)
+  - [Credits](#credits)
+- [Demos](#demos)
+- [Development Notes](#development-notes)
+  - [Project Design](#project-design)
+  - [Requirements](#requirements)
+- [Project Setup](#project-setup)
+  - [Quick Setup](#quick-setup)
+- [To-do](#to-do)
+  - [Midterm](#midterm)
+  - [Final](#final)
+- [Known Bugs](#known-bugs)
 
 ## Overview
 
@@ -29,13 +28,12 @@ The Scribe backend handles user data storage, authentication, and authorization.
 
 - When uploading files, only use wav audio files. The Azure STT API cannot process any other type.
   - Several sample files are located at Scribe/Samples/. Conference.wav is the best file for quick testing, while the other two can be used for stress testing.
-- The app will be unusable while uploading audio, which takes about as long as the audio file is. The UI does not indicate this yet.
 - The free tier on Azure STT has a limit of 300 minutes of transcription per month. Please be mindful of what you transcribe and don't send files longer than 10 minutes without letting me know.
 
 ### Credits
 
-- The template UI code is repurposed from [this](https://www.youtube.com/watch?v=MkESyVB4oUw) task list tutorial by Tyler Potts. It has been updated to work in React.
-- The project is also based on instructor Changhui Xu's [to-do app example](https://github.com/changhuixu/CS3980-2024/tree/main/my_todo_app), particularly on the backend.
+
+- The project is based on instructor Changhui Xu's [event planner example](https://github.com/changhuixu/CS3980-2024/tree/main/event_planner), particularly on the backend.
 - ChatGPT and Github CoPilot were used to help learn the tools used in this project, generate code fragments, and debug.
 - The Favicon is the Notebook Flat Icon Vector from [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Notebook_Flat_Icon_Vector.svg) by Videoplasty.com, CC-BY-SA 4.0.
 
@@ -49,14 +47,6 @@ Multiple notes:
 
 ## Development Notes
 
-### Project Design
-
-The backend is a FastAPI app coordinated by `main.py`. main initiates the app, connects to the database, and coordinates the routers. The models folder contains object models for the API and MongoDB database. The routes folder contains all of the endpoints, organized by router, and the auth folder holds classes used for user authentication. 
-
-The frontend is a React app styled with CSS. `app.js` utilizes the react-router-dom library to create a page routing heirarchy. The base code for pages is stored in the components/pages folder, and then they are enhanced with additional components. Styles are imported into components and pages from their respective CSS files in the styles folder. Logos and the index HTML file used to store head tags are located in the public folder.
-
-API calls to the backend are imported into components from `apiService.js` to centralize API logic and improve code reusability. The base URL for API calls is stored in `apiConfig.js`. `speechRecognizerService.js` is used to make calls to Azure's speech-to-text API to transcribe text on the frontend.
-
 ### Requirements
 
 - Node v20+ [LTS](https://nodejs.org/en/)
@@ -64,9 +54,7 @@ API calls to the backend are imported into components from `apiService.js` to ce
 
 ## Project Setup
 
-The below instructions are for quick setup. I have written scripts that install all dependencies and set up environments, as well as create an alias to run the project with one command.
-
-If you are worried about running scripts or are encountering issues with them, you can run the commands in the files in terminal yourself. There are more instructions in the frontend and backend readmes.
+The below instructions are for quick setup. I have written scripts that install all dependencies and set up environments. If you are worried about running scripts or are encountering issues with them, you can run the commands in the files in terminal yourself.
 
 ### Quick Setup
 
@@ -111,6 +99,14 @@ If you are worried about running scripts or are encountering issues with them, y
         1. Run ```./be-start.sh``` from the Scribe folder
         2. Open a new terminal instance
         3. Run ```./fe-start.sh``` from the Scribe folder
+
+### Project Design
+
+The backend is a FastAPI app coordinated by `main.py`. main initiates the app, connects to the database, and coordinates the routers. The models folder contains object models for the API and MongoDB database. The routes folder contains all of the endpoints, organized by router, and the auth folder holds classes used for user authentication. 
+
+The frontend is a React app styled with CSS. `app.js` utilizes the react-router-dom library to create a page routing heirarchy. The base code for pages is stored in the components/pages folder, and then they are enhanced with additional components. Styles are imported into components and pages from their respective CSS files in the styles folder. Logos and the index HTML file used to store head tags are located in the public folder.
+
+API calls to the backend are imported into components from `apiService.js` to centralize API logic and improve code reusability. The base URL for API calls is stored in `apiConfig.js`. `speechRecognizerService.js` is used to make calls to Azure's speech-to-text API to transcribe text on the frontend.
 
 ## To-do
 
@@ -159,7 +155,9 @@ If you are worried about running scripts or are encountering issues with them, y
 - [x] Logs are generated by the backend and stored on disk
 - [ ] Automated backend test coverage
   - [ ] Routers
-  - [ ] Database
+    - [x] Feedback
+    - [ ] Notes
+    - [ ] Users
   - [ ] Authentication/Authorization
      
 #### Stretch Goals
@@ -167,6 +165,7 @@ If you are worried about running scripts or are encountering issues with them, y
 - [x] Make it pretty
   - [x] Adjust style for web accessibility standards
   - [x] Notes open up from list in a modal OR turn list into a sidebar
+  - [x] Loading screen while notes are being uploaded
 - [x] Make setup easy with scripts
 - [ ] Require .wav files for file upload input
 - [ ] API Calls to LLM to synthesize long texts
@@ -178,4 +177,4 @@ If you are worried about running scripts or are encountering issues with them, y
 
 ## Known Bugs
 
-- Textarea for editing notes isn't locked in place - need to remove the ability to drag it around somehow. Haven't done a ton of debugging with it either.
+- As of April 11 2024, Azure STT does not work on Firefox. There does not seem to be a solution to this yet.

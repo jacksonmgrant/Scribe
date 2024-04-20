@@ -1,7 +1,7 @@
 import json
 from typing import Any
 
-from beanie import init_beanie, PydanticObjectId  # type: ignore
+from beanie import PydanticObjectId  # type: ignore
 from pydantic import BaseModel
 
 class Database:

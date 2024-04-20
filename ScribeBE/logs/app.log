@@ -22,3 +22,11 @@
 2024-04-19 21:02:52,284 INFO routes.user:69 User a@gmail.com signed in.
 2024-04-19 21:02:52,349 INFO routes.note:35 Viewing 2 notes for a@gmail.com
 2024-04-19 21:02:52,407 INFO routes.note:35 Viewing 2 notes for a@gmail.com
+2024-04-20 00:12:22,413 INFO main:22 Application starts up...
+2024-04-20 00:12:41,603 INFO routes.user:54 User jacksonmgrant@gmail.com is signing into the system.
+2024-04-20 00:12:41,962 INFO routes.user:69 User jacksonmgrant@gmail.com signed in.
+2024-04-20 00:12:42,394 INFO routes.note:35 Viewing 1 notes for jacksonmgrant@gmail.com
+2024-04-20 00:12:42,502 INFO routes.note:35 Viewing 1 notes for jacksonmgrant@gmail.com
+2024-04-20 00:12:53,091 INFO routes.note:41 User jacksonmgrant@gmail.com is creating a note.
+2024-04-20 00:12:53,161 INFO routes.note:47 New note #66234ed507f7a28d861df59a created.
+2024-04-20 00:12:53,282 INFO routes.note:35 Viewing 2 notes for jacksonmgrant@gmail.com
