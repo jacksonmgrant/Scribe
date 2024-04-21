@@ -3,6 +3,7 @@ import {FaStar} from "react-icons/fa"
 import "../styles/LoginSignup.css"
 import styles from "../styles/Formsubmission.module.css"
 import { Link,useNavigate } from "react-router-dom";
+import apiService from '../services/apiService';
 
 const FormSubmission = () => {
 
@@ -11,34 +12,6 @@ const FormSubmission = () => {
     const [cannotSend, setCannotSend] = useState(false);
     const [hover, setHover] = useState(null)
     const navigate = useNavigate();
-
-    const createFeedback = async () => {
-        try {
-            const response = await fetch(`/feedback/`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': 'Bearer ' + localStorage.getItem('token')
-                },
-                body: JSON.stringify({
-                    text: text,
-                    rating: rating
-                }),
-            });
-            const feedback = await response.json();
-            console.log(feedback)
-            if(feedback.detail === "successfully add new feedback"){
-                navigate('/userpage')
-                setCannotSend(false)
-            }
-            if(feedback.detail === "Plz fill something"){
-                setCannotSend(true)
-            }
-        } catch (error) {
-            console.error('Error:', error);
-            throw error;
-        }
-    }
 
     return(
         <div className={styles.container}>
@@ -82,7 +55,7 @@ const FormSubmission = () => {
             <div className='submit-container'>
                 <Link className='submit'
                 onClick={async () => {
-                    await createFeedback();
+                    await apiService.createFeedback(text,rating,setCannotSend,navigate);
                 }}>
                     Submit
                 </Link>

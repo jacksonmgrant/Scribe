@@ -1,39 +1,40 @@
 import React, {useState} from 'react';
 import "../styles/LoginSignup.css";
 import { Link,useNavigate } from 'react-router-dom';
+import apiService from '../services/apiService';
 
 const Signup = ({signin,signout,name,setName,email,setEmail,password,setPassword,clearSignupInput}) => {
 
     const [cannotSignup,setCannotSignup] = useState(false)
     const navigate = useNavigate();
 
-    const createUser = async () => {
-        try {
-            const response = await fetch(`/users/signup`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    name: name,
-                    email: email,
-                    password: password,
-                }),
-            });
-            const user = await response.json();
-            if(user.msg === "successfully add new user"){
-                await localStorage.setItem('token', user.access_token);
-                navigate('/userpage')
-                signin()
-            }else {
-                setCannotSignup(true)
-                signout()
-            }
-        } catch (error) {
-            console.error('Error:', error);
-            throw error;
-        }
-    }
+    // const createUser = async () => {
+    //     try {
+    //         const response = await fetch(`/users/signup`, {
+    //             method: 'POST',
+    //             headers: {
+    //                 'Content-Type': 'application/json',
+    //             },
+    //             body: JSON.stringify({
+    //                 name: name,
+    //                 email: email,
+    //                 password: password,
+    //             }),
+    //         });
+    //         const user = await response.json();
+    //         if(user.msg === "successfully add new user"){
+    //             await localStorage.setItem('token', user.access_token);
+    //             navigate('/userpage')
+    //             signin()
+    //         }else {
+    //             setCannotSignup(true)
+    //             signout()
+    //         }
+    //     } catch (error) {
+    //         console.error('Error:', error);
+    //         throw error;
+    //     }
+    // }
 
     return(
         <form method='POST'>
@@ -69,7 +70,7 @@ const Signup = ({signin,signout,name,setName,email,setEmail,password,setPassword
                 <div className='submit-container'>
                     <Link className="submit" 
                     onClick={async () => {
-                        await createUser();
+                        await apiService.createUser(name,email,password,navigate,setCannotSignup,signin,signout);
                         clearSignupInput()
                     }}>
                         Sign up

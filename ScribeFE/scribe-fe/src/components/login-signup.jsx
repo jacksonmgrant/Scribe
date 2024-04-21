@@ -1,41 +1,41 @@
 import React, {useState} from 'react';
 import "../styles/LoginSignup.css"
 import {Link,useNavigate} from 'react-router-dom';
-
+import apiService from '../services/apiService';
 
 const LoginSignup = ({signin,signout,email,setEmail,password,setPassword,clearLoginInput}) => {
 
     const [cannotLogin,setCannotLogin] = useState(false);
     const navigate = useNavigate();
 
-    const checkUser = async () => {
-        try {
-            const response = await fetch(`/users/login/`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    email: email,
-                    password: password,
-                }),
-            });
-            const user = await response.json();
-            console.log("1 ",user);
-            if(user.detail === "Incorrect email or password, or user does not exist."){
-                console.log(user.detail);
-                setCannotLogin(true);
-                signout();
-            }else if(user){
-                await localStorage.setItem('token', user.access_token);
-                navigate('/userpage');
-                signin();
-            }
-        } catch (error) {
-            console.error('Error:', error);
-            throw error;
-        }
-    }
+    // const checkUser = async () => {
+    //     try {
+    //         const response = await fetch(`/users/login/`, {
+    //             method: 'POST',
+    //             headers: {
+    //                 'Content-Type': 'application/json',
+    //             },
+    //             body: JSON.stringify({
+    //                 email: email,
+    //                 password: password,
+    //             }),
+    //         });
+    //         const user = await response.json();
+    //         console.log("1 ",user);
+    //         if(user.detail === "Incorrect email or password, or user does not exist."){
+    //             console.log(user.detail);
+    //             setCannotLogin(true);
+    //             signout();
+    //         }else if(user){
+    //             await localStorage.setItem('token', user.access_token);
+    //             navigate('/userpage');
+    //             signin();
+    //         }
+    //     } catch (error) {
+    //         console.error('Error:', error);
+    //         throw error;
+    //     }
+    // }
     
     return(
         <form method='GET'>
@@ -68,7 +68,7 @@ const LoginSignup = ({signin,signout,email,setEmail,password,setPassword,clearLo
                 <div className='submit-container'>
                     <Link className="submit" 
                         onClick={async () => {
-                            await checkUser()
+                            await apiService.checkUser(email,password,setCannotLogin,navigate,signin,signout)
                             clearLoginInput()
                         }}
                     >Log in

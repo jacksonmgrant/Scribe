@@ -116,6 +116,91 @@ const deleteNoteById = async (id) => {
         });
     }
 
-const apiService = {transcribe, createNote, getNotes, updateNote, deleteNoteById};
+const createFeedback = async (text,rating,setCannotSend,navigate) => {
+    try {
+        const response = await fetch(`/feedback/`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + localStorage.getItem('token')
+            },
+            body: JSON.stringify({
+                text: text,
+                rating: rating
+            }),
+        });
+        const feedback = await response.json();
+        console.log(feedback)
+        if(feedback.detail === "successfully add new feedback"){
+            navigate('/userpage')
+            setCannotSend(false)
+        }
+        if(feedback.detail === "Plz fill something"){
+            setCannotSend(true)
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        throw error;
+    }
+}
+
+const checkUser = async (email,password,setCannotLogin,navigate,signin,signout) => {
+    try {
+        const response = await fetch(`/users/login/`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                email: email,
+                password: password,
+            }),
+        });
+        const user = await response.json();
+        console.log("1 ",user);
+        if(user.detail === "Incorrect email or password, or user does not exist."){
+            console.log(user.detail);
+            setCannotLogin(true);
+            signout();
+        }else if(user){
+            await localStorage.setItem('token', user.access_token);
+            navigate('/userpage');
+            signin();
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        throw error;
+    }
+}
+
+const createUser = async (name,email,password,navigate,setCannotSignup,signin,signout) => {
+    try {
+        const response = await fetch(`/users/signup`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                name: name,
+                email: email,
+                password: password,
+            }),
+        });
+        const user = await response.json();
+        if(user.msg === "successfully add new user"){
+            await localStorage.setItem('token', user.access_token);
+            navigate('/userpage')
+            signin()
+        }else {
+            setCannotSignup(true)
+            signout()
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        throw error;
+    }
+}
+
+const apiService = {transcribe, createNote, getNotes, updateNote, deleteNoteById, createFeedback, checkUser, createUser};
 
 export default apiService;
