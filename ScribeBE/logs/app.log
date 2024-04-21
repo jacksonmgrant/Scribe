@@ -30,3 +30,120 @@
 2024-04-20 00:12:53,091 INFO routes.note:41 User jacksonmgrant@gmail.com is creating a note.
 2024-04-20 00:12:53,161 INFO routes.note:47 New note #66234ed507f7a28d861df59a created.
 2024-04-20 00:12:53,282 INFO routes.note:35 Viewing 2 notes for jacksonmgrant@gmail.com
+2024-04-20 11:54:02,213 INFO main:22 Application starts up...
+2024-04-20 11:54:44,222 INFO routes.user:54 User  is signing into the system.
+2024-04-20 11:54:44,255 WARN routes.user:59 User  not found.
+2024-04-20 11:54:51,611 INFO routes.user:19 User  is signing up.
+2024-04-20 11:54:51,611 WARN routes.user:22 Form fields cannot be blank
+2024-04-20 11:55:57,058 INFO routes.feedback:21 New feedback from a@gmail.com created
+2024-04-20 11:55:59,360 WARN routes.feedback:17 Fields cannot be blank
+2024-04-20 11:56:01,649 WARN routes.feedback:17 Fields cannot be blank
+2024-04-20 11:56:03,996 INFO routes.feedback:21 New feedback from a@gmail.com created
+2024-04-20 11:56:06,322 WARN routes.feedback:17 Fields cannot be blank
+2024-04-20 11:56:08,587 WARN routes.feedback:17 Fields cannot be blank
+2024-04-20 14:46:58,181 INFO main:22 Application starts up...
+2024-04-20 14:47:14,872 INFO routes.user:54 User a@gmail.com is signing into the system.
+2024-04-20 14:47:15,121 INFO routes.user:69 User a@gmail.com signed in.
+2024-04-20 14:47:15,245 INFO routes.note:35 Viewing 2 notes for a@gmail.com
+2024-04-20 14:47:15,309 INFO routes.note:35 Viewing 2 notes for a@gmail.com
+2024-04-20 14:48:18,860 INFO routes.note:41 User a@gmail.com is creating a note.
+2024-04-20 14:48:18,899 INFO routes.note:47 New note #66241c027802dff2ca66047a created.
+2024-04-20 14:48:18,965 INFO routes.note:35 Viewing 3 notes for a@gmail.com
+2024-04-20 14:48:53,119 ERRO root:40 Invalid token
+Traceback (most recent call last):
+  File "C:\Users\Asus\Downloads\Scribe\ScribeBE\auth\JWT_token.py", line 25, in verify_access_token
+    data = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Asus\Downloads\Scribe\ScribeBE\venv\Lib\site-packages\jose\jwt.py", line 157, in decode
+    _validate_claims(
+  File "C:\Users\Asus\Downloads\Scribe\ScribeBE\venv\Lib\site-packages\jose\jwt.py", line 481, in _validate_claims
+    _validate_exp(claims, leeway=leeway)
+  File "C:\Users\Asus\Downloads\Scribe\ScribeBE\venv\Lib\site-packages\jose\jwt.py", line 314, in _validate_exp
+    raise ExpiredSignatureError("Signature has expired.")
+jose.exceptions.ExpiredSignatureError: Signature has expired.
+2024-04-20 14:48:53,140 ERRO root:40 Invalid token
+Traceback (most recent call last):
+  File "C:\Users\Asus\Downloads\Scribe\ScribeBE\auth\JWT_token.py", line 25, in verify_access_token
+    data = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Asus\Downloads\Scribe\ScribeBE\venv\Lib\site-packages\jose\jwt.py", line 157, in decode
+    _validate_claims(
+  File "C:\Users\Asus\Downloads\Scribe\ScribeBE\venv\Lib\site-packages\jose\jwt.py", line 481, in _validate_claims
+    _validate_exp(claims, leeway=leeway)
+  File "C:\Users\Asus\Downloads\Scribe\ScribeBE\venv\Lib\site-packages\jose\jwt.py", line 314, in _validate_exp
+    raise ExpiredSignatureError("Signature has expired.")
+jose.exceptions.ExpiredSignatureError: Signature has expired.
+2024-04-20 14:48:56,915 ERRO root:40 Invalid token
+Traceback (most recent call last):
+  File "C:\Users\Asus\Downloads\Scribe\ScribeBE\auth\JWT_token.py", line 25, in verify_access_token
+    data = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Asus\Downloads\Scribe\ScribeBE\venv\Lib\site-packages\jose\jwt.py", line 157, in decode
+    _validate_claims(
+  File "C:\Users\Asus\Downloads\Scribe\ScribeBE\venv\Lib\site-packages\jose\jwt.py", line 481, in _validate_claims
+    _validate_exp(claims, leeway=leeway)
+  File "C:\Users\Asus\Downloads\Scribe\ScribeBE\venv\Lib\site-packages\jose\jwt.py", line 314, in _validate_exp
+    raise ExpiredSignatureError("Signature has expired.")
+jose.exceptions.ExpiredSignatureError: Signature has expired.
+2024-04-20 14:48:56,922 ERRO root:40 Invalid token
+Traceback (most recent call last):
+  File "C:\Users\Asus\Downloads\Scribe\ScribeBE\auth\JWT_token.py", line 25, in verify_access_token
+    data = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Asus\Downloads\Scribe\ScribeBE\venv\Lib\site-packages\jose\jwt.py", line 157, in decode
+    _validate_claims(
+  File "C:\Users\Asus\Downloads\Scribe\ScribeBE\venv\Lib\site-packages\jose\jwt.py", line 481, in _validate_claims
+    _validate_exp(claims, leeway=leeway)
+  File "C:\Users\Asus\Downloads\Scribe\ScribeBE\venv\Lib\site-packages\jose\jwt.py", line 314, in _validate_exp
+    raise ExpiredSignatureError("Signature has expired.")
+jose.exceptions.ExpiredSignatureError: Signature has expired.
+2024-04-20 14:49:05,009 INFO routes.user:54 User a@gmail.com is signing into the system.
+2024-04-20 14:49:05,233 INFO routes.user:69 User a@gmail.com signed in.
+2024-04-20 14:49:05,323 INFO routes.note:35 Viewing 3 notes for a@gmail.com
+2024-04-20 14:49:05,387 INFO routes.note:35 Viewing 3 notes for a@gmail.com
+2024-04-20 14:49:34,798 INFO routes.note:83 User a@gmail.com is deleting note #661efe80374bc649942efd83.
+2024-04-20 14:49:34,895 INFO routes.note:99 Note #661efe80374bc649942efd83 is updated.
+2024-04-20 14:55:09,751 INFO routes.user:54 User a@gmail.com is signing into the system.
+2024-04-20 14:55:09,973 INFO routes.user:69 User a@gmail.com signed in.
+2024-04-20 14:55:10,059 INFO routes.note:35 Viewing 2 notes for a@gmail.com
+2024-04-20 14:55:10,122 INFO routes.note:35 Viewing 2 notes for a@gmail.com
+2024-04-20 14:55:15,611 INFO routes.note:41 User a@gmail.com is creating a note.
+2024-04-20 14:55:15,663 INFO routes.note:47 New note #66241da37802dff2ca66047b created.
+2024-04-20 14:55:15,733 INFO routes.note:35 Viewing 3 notes for a@gmail.com
+2024-04-20 14:55:57,262 INFO routes.note:35 Viewing 3 notes for a@gmail.com
+2024-04-20 14:55:57,324 INFO routes.note:35 Viewing 3 notes for a@gmail.com
+2024-04-20 16:25:14,741 INFO main:22 Application starts up...
+2024-04-20 16:25:33,909 INFO routes.user:54 User a@gmail.com is signing into the system.
+2024-04-20 16:25:34,399 INFO routes.user:69 User a@gmail.com signed in.
+2024-04-20 16:25:35,047 INFO routes.note:35 Viewing 3 notes for a@gmail.com
+2024-04-20 16:25:35,595 INFO routes.note:35 Viewing 3 notes for a@gmail.com
+2024-04-20 16:25:43,625 INFO routes.note:41 User a@gmail.com is creating a note.
+2024-04-20 16:25:43,664 INFO routes.note:47 New note #662432d709735e221b49eeb1 created.
+2024-04-20 16:25:43,720 INFO routes.note:35 Viewing 4 notes for a@gmail.com
+2024-04-20 16:26:00,001 ERRO root:40 Invalid token
+Traceback (most recent call last):
+  File "C:\Users\Asus\Downloads\Scribe\ScribeBE\auth\JWT_token.py", line 25, in verify_access_token
+    data = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Asus\Downloads\Scribe\ScribeBE\venv\Lib\site-packages\jose\jwt.py", line 157, in decode
+    _validate_claims(
+  File "C:\Users\Asus\Downloads\Scribe\ScribeBE\venv\Lib\site-packages\jose\jwt.py", line 481, in _validate_claims
+    _validate_exp(claims, leeway=leeway)
+  File "C:\Users\Asus\Downloads\Scribe\ScribeBE\venv\Lib\site-packages\jose\jwt.py", line 314, in _validate_exp
+    raise ExpiredSignatureError("Signature has expired.")
+jose.exceptions.ExpiredSignatureError: Signature has expired.
+2024-04-20 16:26:00,004 ERRO root:40 Invalid token
+Traceback (most recent call last):
+  File "C:\Users\Asus\Downloads\Scribe\ScribeBE\auth\JWT_token.py", line 25, in verify_access_token
+    data = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Asus\Downloads\Scribe\ScribeBE\venv\Lib\site-packages\jose\jwt.py", line 157, in decode
+    _validate_claims(
+  File "C:\Users\Asus\Downloads\Scribe\ScribeBE\venv\Lib\site-packages\jose\jwt.py", line 481, in _validate_claims
+    _validate_exp(claims, leeway=leeway)
+  File "C:\Users\Asus\Downloads\Scribe\ScribeBE\venv\Lib\site-packages\jose\jwt.py", line 314, in _validate_exp
+    raise ExpiredSignatureError("Signature has expired.")
+jose.exceptions.ExpiredSignatureError: Signature has expired.
+2024-04-20 16:26:34,808 INFO routes.note:83 User a@gmail.com is deleting note #66232152a4d14d5bf69264d6.
+2024-04-20 16:26:34,894 INFO routes.note:99 Note #66232152a4d14d5bf69264d6 is updated.
+2024-04-20 19:40:32,740 INFO main:22 Application starts up...
