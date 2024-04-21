@@ -32,7 +32,7 @@ async def get_notes(user_id: Any,
         logger.info(f"Viewing {len(notes)} notes")
     else:
         notes = await note_database.get_by_field("user_id", user_id)
-        logger.info(f"Viewing {len(notes)} notes for {user["email_id"]}")
+        logger.info(f"Viewing {len(notes)} notes for {user.email}")
     return {"notes": notes}
 
 
