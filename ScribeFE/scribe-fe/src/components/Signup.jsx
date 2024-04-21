@@ -8,34 +8,6 @@ const Signup = ({signin,signout,name,setName,email,setEmail,password,setPassword
     const [cannotSignup,setCannotSignup] = useState(false)
     const navigate = useNavigate();
 
-    // const createUser = async () => {
-    //     try {
-    //         const response = await fetch(`/users/signup`, {
-    //             method: 'POST',
-    //             headers: {
-    //                 'Content-Type': 'application/json',
-    //             },
-    //             body: JSON.stringify({
-    //                 name: name,
-    //                 email: email,
-    //                 password: password,
-    //             }),
-    //         });
-    //         const user = await response.json();
-    //         if(user.msg === "successfully add new user"){
-    //             await localStorage.setItem('token', user.access_token);
-    //             navigate('/userpage')
-    //             signin()
-    //         }else {
-    //             setCannotSignup(true)
-    //             signout()
-    //         }
-    //     } catch (error) {
-    //         console.error('Error:', error);
-    //         throw error;
-    //     }
-    // }
-
     return(
         <form method='POST'>
             <div className='container'>
