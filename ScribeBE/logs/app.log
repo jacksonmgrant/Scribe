@@ -164,3 +164,8 @@ jose.exceptions.ExpiredSignatureError: Signature has expired.
 2024-04-20 19:47:23,686 INFO main:22 Application starts up...
 2024-04-20 19:47:38,611 INFO routes.user:54 User a@gmail.com is signing into the system.
 2024-04-20 19:47:38,852 INFO routes.user:69 User a@gmail.com signed in.
+2024-04-20 20:40:05,272 INFO main:22 Application starts up...
+2024-04-20 20:40:18,638 INFO routes.user:54 User a@gmail.com is signing into the system.
+2024-04-20 20:40:18,883 INFO routes.user:69 User a@gmail.com signed in.
+2024-04-20 20:40:18,958 INFO routes.note:34 Viewing 4 notes for a@gmail.com
+2024-04-20 20:40:19,016 INFO routes.note:34 Viewing 4 notes for a@gmail.com

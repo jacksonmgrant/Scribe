@@ -31,6 +31,9 @@ export default function NoteManager() {
 		        <FileUploadButton onUpload={handleUpload}/>
 		        <RecordAudioButton onUpload={handleUpload}/>
             </div>
+			<div style={{ paddingLeft: '40px' }}>
+    			<p style={{ color: 'var(--danger)' }}>Require .wav file</p>
+			</div>
             <NoteList notes={notes} setNotes={setNotes} />
         </main>
     );
