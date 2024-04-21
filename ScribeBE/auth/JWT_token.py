@@ -1,7 +1,7 @@
 from datetime import datetime, timedelta, timezone
 from fastapi import HTTPException, status
 from jose import JWTError, jwt
-from settings import Settings
+from database.connection import Settings
 import logging
 
 SECRET_KEY = Settings().SECRET_KEY
