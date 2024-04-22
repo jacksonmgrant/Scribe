@@ -5,7 +5,6 @@ from fastapi import FastAPI, APIRouter  # type: ignore
 from fastapi.middleware.cors import CORSMiddleware  # type: ignore
 from fastapi.responses import RedirectResponse  # type: ignore
 
-
 import routes.note as note
 import routes.user as user
 import routes.feedback as feedback

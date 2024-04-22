@@ -18,8 +18,7 @@ user_database = Database(DbUser)
 
 
 @note_router.get("/{user_id}")
-async def get_notes(user_id: Any,
-                    user: str = Depends(authenticate)) -> dict:
+async def get_notes(user_id: Any, user: str = Depends(authenticate)) -> dict:
     try:
         user_obj_id = ObjectId(user_id)
     except Exception:
@@ -65,20 +64,13 @@ async def update_note(note: Note, user: str = Depends(authenticate)) -> dict:
             status_code=status.HTTP_400_BAD_REQUEST,
             detail="Operation not allowed"
         )
-    updated_note = await note_database.update(note.id, note)
-    if not updated_note:
-        logger.warning(f"Note #{note.id} not found")
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail="Note not found"
-        )
+    await note_database.update(note.id, note)
     logger.info(f"Note #{note.id} is updated.")
     return {"message": "Note updated"}
 
 
 @note_router.delete("/{note_id}")
-async def delete_note(note_id: PydanticObjectId,
-                      user: str = Depends(authenticate)) -> dict:
+async def delete_note(note_id: PydanticObjectId, user: str = Depends(authenticate)) -> dict:
     logger.info(f"User {user["email_id"]} is deleting note #{note_id}.")
     note_to_delete = await note_database.get(note_id)
     if not note_to_delete:
