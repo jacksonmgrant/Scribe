@@ -50,24 +50,34 @@ export function Note({id: _id, text = "Empty note", time, hasRecording, onEdit, 
           aria-describedby="modal-modal-description">
             {isEditable ?
             <>
-            <h2>Edit Note</h2>
+           <div className="modal-header">
+              <h2>Edit Note</h2>
+              <button className="main">
+                <i class="fas fa-download"></i>
+              </button>
+            </div>
             <textarea autoFocus type="text" className="text-edit" value={noteText} onChange={editNote}/>
             <div className="buttons">
               <button className="cancel" onClick={handleEditCancel}>Cancel
               </button>
-              <button className="save" onClick={handleSaveClick}>Save
+              <button className="main" onClick={handleSaveClick}>Save
                 <i className="fa-solid fa-square-check" style={{ marginLeft: '8px' }}></i>
               </button>
             </div>
             </>
             :
             <>
-            <h2>View Note</h2>
+            <div className="modal-header">
+              <h2>View Note</h2>
+              <button className="main">
+                <i class="fas fa-download" style={{paddingInline: "0.25rem"}}></i>
+              </button>
+            </div>
             <textarea type="text" className="text" value={noteText} readOnly/>
             <div className="buttons">
               <button className="cancel" onClick={handleEditClose}>Close
               </button>
-              <button className="save" onClick={handleEditClick}>Edit
+              <button className="main" onClick={handleEditClick}>Edit
                 <i className="fa-solid fa-pen-to-square" style={{ marginLeft: '8px' }}></i>
               </button>
             </div>
