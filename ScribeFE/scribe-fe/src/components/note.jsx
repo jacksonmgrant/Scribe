@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import apiService from '../services/apiService';
 import '../styles/note.css'
+import audioFile from './Assets/Conference.wav' // eventually this will be the audio file from the db
 
 export function Note({id: _id, text = "Empty note", time, hasRecording, onEdit, onDelete}) {
   const [noteText, setText] = useState(text);
@@ -52,9 +53,11 @@ export function Note({id: _id, text = "Empty note", time, hasRecording, onEdit, 
             <>
            <div className="modal-header">
               <h2>Edit Note</h2>
-              <button className="main">
-                <i class="fas fa-download"></i>
-              </button>
+              <a href={audioFile} download='myAudioFile' target="_blank">
+                <button className="main">
+                  <i class="fas fa-download" style={{paddingInline: "0.25rem"}}></i>
+                </button>
+              </a>
             </div>
             <textarea autoFocus type="text" className="text-edit" value={noteText} onChange={editNote}/>
             <div className="buttons">
@@ -69,9 +72,11 @@ export function Note({id: _id, text = "Empty note", time, hasRecording, onEdit, 
             <>
             <div className="modal-header">
               <h2>View Note</h2>
-              <button className="main">
-                <i class="fas fa-download" style={{paddingInline: "0.25rem"}}></i>
-              </button>
+              <a href={audioFile} download='myAudioFile' target="_blank"> {/* change download value to file name */}
+                <button className="main">
+                  <i class="fas fa-download" style={{paddingInline: "0.25rem"}}></i>
+                </button>
+              </a>
             </div>
             <textarea type="text" className="text" value={noteText} readOnly/>
             <div className="buttons">
