@@ -70,8 +70,6 @@ async def test_get_notes_as_user(access_token: str, mock_note: DbNote, setupData
     expected = True
     for note in note_dict:
         if note["user_id"] != mock_note.user_id:
-            print(note["user_id"])
-            print(mock_note.user_id)
             expected = False
             break
 
@@ -80,7 +78,7 @@ async def test_get_notes_as_user(access_token: str, mock_note: DbNote, setupData
 
 
 @pytest.mark.anyio
-async def test_get_notes_as_admin(admin_token: str, mock_note: DbNote, setupDatabase) -> None:
+async def test_get_notes_as_admin(admin_token: str, setupDatabase) -> None:
     headers = {
         "Content-Type": "application/json",
         "Authorization": f"Bearer {admin_token}"
@@ -95,7 +93,7 @@ async def test_get_notes_as_admin(admin_token: str, mock_note: DbNote, setupData
     assert len(response.json()["notes"]) == expected_response
 
 @pytest.mark.anyio
-async def test_get_notes_with_invalid_user_id(access_token: str, mock_note: DbNote, setupDatabase) -> None:
+async def test_get_notes_with_invalid_user_id(access_token: str) -> None:
     headers = {
         "Content-Type": "application/json",
         "Authorization": f"Bearer {access_token}"
@@ -169,7 +167,7 @@ async def test_update_note(access_token: str, mock_note: DbNote, setupDatabase) 
     assert response.json() == expected_response
 
 @pytest.mark.anyio
-async def test_update_note_as_wrong_user(access_token: str, setupDatabase) -> None:
+async def test_update_note_as_wrong_user(access_token: str) -> None:
     headers = {
         "Content-Type": "application/json",
         "Authorization": f"Bearer {access_token}"
@@ -190,7 +188,7 @@ async def test_update_note_as_wrong_user(access_token: str, setupDatabase) -> No
     assert response.json() == expected_response
 
 @pytest.mark.anyio
-async def test_update_note_with_invalid_note_id(access_token: str, setupDatabase) -> None:
+async def test_update_note_with_invalid_note_id(access_token: str) -> None:
     headers = {
         "Content-Type": "application/json",
         "Authorization": f"Bearer {access_token}"
@@ -209,7 +207,7 @@ async def test_update_note_with_invalid_note_id(access_token: str, setupDatabase
     assert response.json() == expected_response
 
 @pytest.mark.anyio
-async def test_update_note_with_nonexistent_note_id(access_token: str, setupDatabase) -> None:
+async def test_update_note_with_nonexistent_note_id(access_token: str) -> None:
     headers = {
         "Content-Type": "application/json",
         "Authorization": f"Bearer {access_token}"
@@ -258,7 +256,7 @@ async def test_delete_note_with_nonexistent_id(access_token: str, mock_note: DbN
     assert response.json() == expected_response
 
 @pytest.mark.anyio
-async def test_delete_note_with_invalid_user_id(access_token: str, setupDatabase) -> None:
+async def test_delete_note_with_invalid_user_id(access_token: str) -> None:
     headers = {
         "Content-Type": "application/json",
         "Authorization": f"Bearer {access_token}"
