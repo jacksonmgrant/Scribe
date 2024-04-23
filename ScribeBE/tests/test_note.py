@@ -66,7 +66,6 @@ async def test_get_notes_as_user(access_token: str, mock_note: DbNote, setupData
 
     response = httpx.get("http://localhost:8000/notes/"+test_user_id, headers=headers)
 
-    print(response)
     assert response.status_code == 200
     assert response.json()["notes"][0]["_id"] == str(mock_note.id)
 
@@ -96,7 +95,6 @@ async def test_get_notes_with_invalid_user_id(access_token: str, mock_note: DbNo
     wrong_id = 'wrongid'
     response = httpx.get("http://localhost:8000/notes/"+wrong_id, headers=headers)
 
-    print(response.json())
     assert response.status_code == 400
 
 
@@ -158,7 +156,6 @@ async def test_update_note(access_token: str, mock_note: DbNote, setupDatabase) 
 
     response = httpx.put("http://localhost:8000/notes/", headers=headers, json=payload)
     
-    print(response.json())
     assert response.status_code == 200
     assert response.json() == expected_response
 
@@ -224,12 +221,41 @@ async def test_update_note_with_nonexistent_note_id(access_token: str, setupData
 #Delete note tests
 @pytest.mark.anyio
 async def test_delete_note(access_token: str, mock_note: DbNote, setupDatabase) -> None:
-    pass
+    headers = {
+        "Content-Type": "application/json",
+        "Authorization": f"Bearer {access_token}"
+    }
+
+    expected_response = {"message": "Note deleted successfully"}
+
+    response = httpx.delete("http://localhost:8000/notes/"+str(mock_note.id), headers=headers)
+    
+    assert response.status_code == 200
+    assert response.json() == expected_response
 
 @pytest.mark.anyio
-async def test_delete_note_with_invalid_id(access_token: str, setupDatabase) -> None:
-    pass
+async def test_delete_note_with_nonexistent_id(access_token: str, mock_note: DbNote, setupDatabase) -> None:
+    headers = {
+        "Content-Type": "application/json",
+        "Authorization": f"Bearer {access_token}"
+    }
+
+    expected_response = {"detail": "Note not found"}
+
+    wrong_id = "66105db717133f8a7b0952dc"
+    response = httpx.delete("http://localhost:8000/notes/"+wrong_id, headers=headers)
+    
+    assert response.status_code == 404
+    assert response.json() == expected_response
 
 @pytest.mark.anyio
 async def test_delete_note_with_invalid_user_id(access_token: str, setupDatabase) -> None:
-    pass
+    headers = {
+        "Content-Type": "application/json",
+        "Authorization": f"Bearer {access_token}"
+    }
+
+    wrong_id = "not-an-id"
+    response = httpx.delete("http://localhost:8000/notes/"+wrong_id, headers=headers)
+    
+    assert response.status_code == 422

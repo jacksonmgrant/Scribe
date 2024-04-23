@@ -83,8 +83,11 @@ async def update_note(note: Note, user: str = Depends(authenticate)) -> dict:
 @note_router.delete("/{note_id}")
 async def delete_note(note_id: PydanticObjectId, user: str = Depends(authenticate)) -> dict:
     logger.info(f"User {user["email_id"]} is deleting note #{note_id}.")
-    note_to_delete = await note_database.get(note_id)
-    if not note_to_delete:
+    try:
+        note_to_delete = await note_database.get(note_id)
+        if not note_to_delete:
+            raise Exception
+    except Exception:
         logger.warning(f"Note #{note_id} not found")
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND, detail="Note not found"
