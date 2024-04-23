@@ -38,25 +38,21 @@ async def admin_token() -> str:
         })
 
 @pytest.fixture
-async def setupDatabase(init_database):
-    note_database = Database(DbNote)
-
-    yield
-
-    await note_database.get_by_field("user_id", ObjectId(test_user_id))
-    await note_database.delete_all_by_field("user_id", test_user_id)
-
-@pytest.fixture
 async def mock_note(init_database):
-    note_database = Database(DbNote)
-
     new_note = DbNote(
         text="pytest note",
         user_id=test_user_id
     )
-    await note_database.save(new_note)
-
     return new_note
+
+@pytest.fixture
+async def setupDatabase(init_database, mock_note):
+    note_database = Database(DbNote)
+    await note_database.save(mock_note)
+
+    yield
+
+    await note_database.delete_all_by_field("user_id", mock_note.user_id)
 
 
 # Create note tests
@@ -79,7 +75,7 @@ async def test_create_note(access_token: str) -> None:
     assert response.status_code == 201
     assert response.json() == expected_response
 
-"""
+
 @pytest.mark.anyio
 async def test_create_note_with_empty_text(access_token: str) -> None:
     headers = {
@@ -102,7 +98,7 @@ async def test_create_note_with_empty_text(access_token: str) -> None:
 
 #Get notes tests
 @pytest.mark.anyio
-async def test_get_notes_as_user(access_token: str, mock_note: DbNote) -> None:
+async def test_get_notes_as_user(access_token: str, mock_note: DbNote, setupDatabase) -> None:
     headers = {
         "Content-Type": "application/json",
         "Authorization": f"Bearer {access_token}"
@@ -117,7 +113,7 @@ async def test_get_notes_as_user(access_token: str, mock_note: DbNote) -> None:
 
 
 @pytest.mark.anyio
-async def test_get_notes_as_admin(admin_token: str, mock_note: DbNote) -> None:
+async def test_get_notes_as_admin(admin_token: str, mock_note: DbNote, setupDatabase) -> None:
     headers = {
         "Content-Type": "application/json",
         "Authorization": f"Bearer {admin_token}"
@@ -133,7 +129,7 @@ async def test_get_notes_as_admin(admin_token: str, mock_note: DbNote) -> None:
 
 
 @pytest.mark.anyio
-async def test_get_notes_with_invalid_user_id(access_token: str, mock_note: DbNote) -> None:
+async def test_get_notes_with_invalid_user_id(access_token: str, mock_note: DbNote, setupDatabase) -> None:
     headers = {
         "Content-Type": "application/json",
         "Authorization": f"Bearer {access_token}"
@@ -150,7 +146,7 @@ async def test_get_notes_with_invalid_user_id(access_token: str, mock_note: DbNo
 
 #Update note tests
 @pytest.mark.anyio
-async def test_update_note(access_token: str, mock_note: DbNote) -> None:
+async def test_update_note(access_token: str, mock_note: DbNote, setupDatabase) -> None:
     headers = {
         "Content-Type": "application/json",
         "Authorization": f"Bearer {access_token}"
@@ -164,12 +160,13 @@ async def test_update_note(access_token: str, mock_note: DbNote) -> None:
     expected_response = {"message": "Note updated"}
 
     response = httpx.put("http://localhost:8000/notes/", headers=headers, json=payload)
-
+    
+    print(response.json())
     assert response.status_code == 201
     assert response.json() == expected_response
 
 @pytest.mark.anyio
-async def test_update_note_with_invalid_id(access_token: str) -> None:
+async def test_update_note_with_invalid_id(access_token: str, setupDatabase) -> None:
     headers = {
         "Content-Type": "application/json",
         "Authorization": f"Bearer {access_token}"
@@ -189,19 +186,18 @@ async def test_update_note_with_invalid_id(access_token: str) -> None:
     assert response.json() == expected_response
 
 @pytest.mark.anyio
-async def test_update_note_with_invalid_user_id(access_token: str) -> None:
+async def test_update_note_with_invalid_user_id(access_token: str, setupDatabase) -> None:
     pass
 
 #Delete note tests
 @pytest.mark.anyio
-async def test_delete_note(access_token: str, mock_note: DbNote) -> None:
+async def test_delete_note(access_token: str, mock_note: DbNote, setupDatabase) -> None:
     pass
 
 @pytest.mark.anyio
-async def test_delete_note_with_invalid_id(access_token: str) -> None:
+async def test_delete_note_with_invalid_id(access_token: str, setupDatabase) -> None:
     pass
 
 @pytest.mark.anyio
-async def test_delete_note_with_invalid_user_id(access_token: str) -> None:
+async def test_delete_note_with_invalid_user_id(access_token: str, setupDatabase) -> None:
     pass
-"""

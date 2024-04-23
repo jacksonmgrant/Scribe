@@ -43,7 +43,7 @@ class Database:
         await doc.delete()
         return True
     
-    async def delete_all_by_user(self, field: str, value: Any) -> bool:
+    async def delete_all_by_field(self, field: str, value: Any) -> bool:
         docs = await self.get_by_field(field, value)
         for doc in docs:
             await doc.delete()
