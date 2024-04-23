@@ -153,7 +153,7 @@ async def test_update_note(access_token: str, mock_note: DbNote, setupDatabase) 
     }
 
     payload = {
-        "id": test_user_id,
+        "id": str(mock_note.id),
         "text" : "pytest note updated"
     }
 
@@ -162,20 +162,21 @@ async def test_update_note(access_token: str, mock_note: DbNote, setupDatabase) 
     response = httpx.put("http://localhost:8000/notes/", headers=headers, json=payload)
     
     print(response.json())
-    assert response.status_code == 201
+    assert response.status_code == 200
     assert response.json() == expected_response
 
 @pytest.mark.anyio
-async def test_update_note_with_invalid_id(access_token: str, setupDatabase) -> None:
+async def test_update_note_as_wrong_user(access_token: str, setupDatabase) -> None:
     headers = {
         "Content-Type": "application/json",
         "Authorization": f"Bearer {access_token}"
     }
 
-    wrong_id = '66119545e3baf3d485e8fda6'
+    # If this test is failing the note with this id probably got deleted. Make a new one and paste the id here.
+    wrong_id = '662713c5232c69e8241749e5'
     payload = {
         "id": wrong_id,
-        "text" : "pytest note updated"
+        "text" : "This note will be accessed by the wrong user"
     }
 
     expected_response = {"detail": "Operation not allowed"}
@@ -186,8 +187,42 @@ async def test_update_note_with_invalid_id(access_token: str, setupDatabase) -> 
     assert response.json() == expected_response
 
 @pytest.mark.anyio
-async def test_update_note_with_invalid_user_id(access_token: str, setupDatabase) -> None:
-    pass
+async def test_update_note_with_invalid_note_id(access_token: str, setupDatabase) -> None:
+    headers = {
+        "Content-Type": "application/json",
+        "Authorization": f"Bearer {access_token}"
+    }
+
+    payload = {
+        "id": "wrong_id",
+        "text" : "This note does not exist"
+    }
+
+    expected_response = {"detail": "Note not found"}
+
+    response = httpx.put("http://localhost:8000/notes/", headers=headers, json=payload)
+
+    assert response.status_code == 404
+    assert response.json() == expected_response
+
+@pytest.mark.anyio
+async def test_update_note_with_nonexistent_note_id(access_token: str, setupDatabase) -> None:
+    headers = {
+        "Content-Type": "application/json",
+        "Authorization": f"Bearer {access_token}"
+    }
+
+    payload = {
+        "id": "66105db717133f8a7b0952dc",
+        "text" : "This note does not exist"
+    }
+
+    expected_response = {"detail": "Note not found"}
+
+    response = httpx.put("http://localhost:8000/notes/", headers=headers, json=payload)
+
+    assert response.status_code == 404
+    assert response.json() == expected_response
 
 #Delete note tests
 @pytest.mark.anyio

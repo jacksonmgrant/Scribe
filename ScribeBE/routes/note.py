@@ -49,13 +49,16 @@ async def create_note(note: Note, user: str = Depends(authenticate)) -> dict:
 @note_router.put("/")
 async def update_note(note: Note, user: str = Depends(authenticate)) -> dict:
     logger.info(f"User {user["email_id"]} is updating event #{note.id}")
-    note_to_update = await note_database.get(note.id)
-    if not note_to_update:
+    try:
+        note_to_update = await note_database.get(note.id)
+        if not note_to_update:
+            raise Exception
+    except Exception:
         logger.warning(f"Note #{note.id} not found")
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
             detail="Note not found",
-            )
+        )
     if note_to_update.user_id != user["sub"]:
         logger.warning(
             f"User {user["email_id"]} is not authorized to perform that operation"
