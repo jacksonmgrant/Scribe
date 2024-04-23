@@ -1,0 +1,47 @@
+2024-04-22 15:57:00,411 INFO main:22 Application starts up...
+2024-04-19 20:58:42,586 INFO routes.note:41 User a@gmail.com is creating a note.
+2024-04-19 20:58:42,629 INFO routes.note:47 New note #66232152a4d14d5bf69264d6 created.
+2024-04-19 20:58:42,688 INFO routes.note:35 Viewing 5 notes for a@gmail.com
+2024-04-19 20:58:48,422 INFO routes.note:83 User a@gmail.com is deleting note #66217b9ddd26a6f114c24747.
+2024-04-19 20:58:48,516 INFO routes.note:99 Note #66217b9ddd26a6f114c24747 is updated.
+2024-04-19 20:58:49,865 INFO routes.note:83 User a@gmail.com is deleting note #66218ce351a86b010728de45.
+2024-04-19 20:58:49,951 INFO routes.note:99 Note #66218ce351a86b010728de45 is updated.
+2024-04-19 20:58:51,322 INFO routes.note:83 User a@gmail.com is deleting note #66231f55a4d14d5bf69264d5.
+2024-04-19 20:58:51,413 INFO routes.note:99 Note #66231f55a4d14d5bf69264d5 is updated.
+2024-04-19 20:59:56,606 INFO routes.note:35 Viewing 2 notes for a@gmail.com
+2024-04-19 20:59:56,662 INFO routes.note:35 Viewing 2 notes for a@gmail.com
+2024-04-19 21:00:21,092 INFO routes.note:35 Viewing 2 notes for a@gmail.com
+2024-04-19 21:00:21,159 INFO routes.note:35 Viewing 2 notes for a@gmail.com
+2024-04-19 21:01:12,594 INFO routes.note:35 Viewing 2 notes for a@gmail.com
+2024-04-19 21:01:12,655 INFO routes.note:35 Viewing 2 notes for a@gmail.com
+2024-04-19 21:01:28,190 INFO routes.note:35 Viewing 2 notes for a@gmail.com
+2024-04-19 21:01:28,250 INFO routes.note:35 Viewing 2 notes for a@gmail.com
+2024-04-19 21:01:42,118 INFO routes.note:35 Viewing 2 notes for a@gmail.com
+2024-04-19 21:01:42,178 INFO routes.note:35 Viewing 2 notes for a@gmail.com
+2024-04-19 21:02:52,062 INFO routes.user:54 User a@gmail.com is signing into the system.
+2024-04-19 21:02:52,284 INFO routes.user:69 User a@gmail.com signed in.
+2024-04-19 21:02:52,349 INFO routes.note:35 Viewing 2 notes for a@gmail.com
+2024-04-19 21:02:52,407 INFO routes.note:35 Viewing 2 notes for a@gmail.com
+2024-04-20 00:12:22,413 INFO main:22 Application starts up...
+2024-04-20 00:12:41,603 INFO routes.user:54 User jacksonmgrant@gmail.com is signing into the system.
+2024-04-20 00:12:41,962 INFO routes.user:69 User jacksonmgrant@gmail.com signed in.
+2024-04-20 00:12:42,394 INFO routes.note:35 Viewing 1 notes for jacksonmgrant@gmail.com
+2024-04-20 00:12:42,502 INFO routes.note:35 Viewing 1 notes for jacksonmgrant@gmail.com
+2024-04-20 00:12:53,091 INFO routes.note:41 User jacksonmgrant@gmail.com is creating a note.
+2024-04-20 00:12:53,161 INFO routes.note:47 New note #66234ed507f7a28d861df59a created.
+2024-04-20 00:12:53,282 INFO routes.note:35 Viewing 2 notes for jacksonmgrant@gmail.com
+2024-04-20 11:54:02,213 INFO main:22 Application starts up...
+2024-04-20 11:54:44,222 INFO routes.user:54 User  is signing into the system.
+2024-04-20 11:54:44,255 WARN routes.user:59 User  not found.
+2024-04-20 11:54:51,611 INFO routes.user:19 User  is signing up.
+2024-04-20 11:54:51,611 WARN routes.user:22 Form fields cannot be blank
+2024-04-20 11:55:57,058 INFO routes.feedback:21 New feedback from a@gmail.com created
+2024-04-20 11:55:59,360 WARN routes.feedback:17 Fields cannot be blank
+2024-04-20 11:56:01,649 WARN routes.feedback:17 Fields cannot be blank
+2024-04-20 11:56:03,996 INFO routes.feedback:21 New feedback from a@gmail.com created
+2024-04-20 11:56:06,322 WARN routes.feedback:17 Fields cannot be blank
+2024-04-20 11:56:08,587 WARN routes.feedback:17 Fields cannot be blank
+2024-04-20 14:46:58,181 INFO main:22 Application starts up...
+2024-04-20 14:47:14,872 INFO routes.user:54 User a@gmail.com is signing into the system.
+2024-04-20 14:47:15,121 INFO routes.user:69 User a@gmail.com signed in.
+
