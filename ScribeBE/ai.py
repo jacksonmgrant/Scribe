@@ -1,6 +1,9 @@
 from transformers import pipeline
+from database.connection import Settings
 
-generator = pipeline("text-generation", model="meta-llama/Meta-Llama-3-8B")
+access_token = Settings().HUGGINGFACE_TOKEN
+
+generator = pipeline("text-generation", model="meta-llama/Meta-Llama-3-8B", token=access_token)
 
 def generate_title(text: str) -> str:
     prompt = f"Generate a title for this text: {text}"
