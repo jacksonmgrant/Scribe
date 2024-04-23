@@ -41,7 +41,8 @@ async def admin_token() -> str:
 async def mock_note(init_database):
     new_note = DbNote(
         text="pytest note",
-        user_id=test_user_id
+        user_id=test_user_id,
+        time=datetime.now()
     )
     return new_note
 
@@ -53,6 +54,50 @@ async def setupDatabase(init_database, mock_note):
     yield
 
     await note_database.delete_all_by_field("user_id", mock_note.user_id)
+
+
+#Get notes tests
+@pytest.mark.anyio
+async def test_get_notes_as_user(access_token: str, mock_note: DbNote, setupDatabase) -> None:
+    headers = {
+        "Content-Type": "application/json",
+        "Authorization": f"Bearer {access_token}"
+    }
+
+    response = httpx.get("http://localhost:8000/notes/"+test_user_id, headers=headers)
+
+    print(response)
+    assert response.status_code == 200
+    assert response.json()["notes"][0]["_id"] == str(mock_note.id)
+
+
+@pytest.mark.anyio
+async def test_get_notes_as_admin(admin_token: str, mock_note: DbNote, setupDatabase) -> None:
+    headers = {
+        "Content-Type": "application/json",
+        "Authorization": f"Bearer {admin_token}"
+    }
+
+    note_database = Database(DbNote)
+    expected_response = len(await note_database.get_all())
+
+    response = httpx.get("http://localhost:8000/notes/"+admin_user_id, headers=headers)
+
+    assert response.status_code == 200
+    assert len(response.json()["notes"]) == expected_response
+
+@pytest.mark.anyio
+async def test_get_notes_with_invalid_user_id(access_token: str, mock_note: DbNote, setupDatabase) -> None:
+    headers = {
+        "Content-Type": "application/json",
+        "Authorization": f"Bearer {access_token}"
+    }
+
+    wrong_id = 'wrongid'
+    response = httpx.get("http://localhost:8000/notes/"+wrong_id, headers=headers)
+
+    print(response.json())
+    assert response.status_code == 400
 
 
 # Create note tests
@@ -93,54 +138,6 @@ async def test_create_note_with_empty_text(access_token: str) -> None:
     response = httpx.post("http://localhost:8000/notes/", headers=headers, json=payload)
 
     assert response.status_code == 400
-    assert response.json() == expected_response
-
-
-#Get notes tests
-@pytest.mark.anyio
-async def test_get_notes_as_user(access_token: str, mock_note: DbNote, setupDatabase) -> None:
-    headers = {
-        "Content-Type": "application/json",
-        "Authorization": f"Bearer {access_token}"
-    }
-
-    expected_response = {"notes": [mock_note.model_dump()]}
-
-    response = httpx.get("http://localhost:8000/notes/"+test_user_id, headers=headers)
-
-    assert response.status_code == 200
-    assert response.json() == expected_response
-
-
-@pytest.mark.anyio
-async def test_get_notes_as_admin(admin_token: str, mock_note: DbNote, setupDatabase) -> None:
-    headers = {
-        "Content-Type": "application/json",
-        "Authorization": f"Bearer {admin_token}"
-    }
-
-    note_database = Database(DbNote)
-    expected_response = len(await note_database.get_all())
-
-    response = httpx.get("http://localhost:8000/notes/"+admin_user_id, headers=headers)
-
-    assert response.status_code == 200
-    assert len(response.json().notes) == expected_response
-
-
-@pytest.mark.anyio
-async def test_get_notes_with_invalid_user_id(access_token: str, mock_note: DbNote, setupDatabase) -> None:
-    headers = {
-        "Content-Type": "application/json",
-        "Authorization": f"Bearer {access_token}"
-    }
-
-    expected_response = {"notes": [mock_note.model_dump()]}
-
-    wrong_id = '66119545e3baf3d485e8fda6'
-    response = httpx.get("http://localhost:8000/notes/"+wrong_id, headers=headers)
-
-    assert response.status_code == 200
     assert response.json() == expected_response
 
 

@@ -18,7 +18,7 @@ class Database:
             return doc
         return False
 
-    async def get_all(self) -> list[Any]:
+    async def get_all(self) -> list:
         docs = await self.model.find_all().to_list()
         return docs
     

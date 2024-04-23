@@ -21,16 +21,24 @@ user_database = Database(DbUser)
 async def get_notes(user_id: Any, user: str = Depends(authenticate)) -> dict:
     try:
         user_obj_id = ObjectId(user_id)
+        db_user = await user_database.get(user_obj_id)
     except Exception:
         logger.warning(f"{user_id} is an invalid user id")
         raise HTTPException(status_code=400, detail="Invalid user id")
-    user = await user_database.get(user_obj_id)
-    if user.role == "admin":
+    if str(db_user.id) != user["sub"]:
+        logger.warning(
+            f"Unuathorized attempt to access other {db_user.email}'s notes by {user["email_id"]}"
+        )
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Operation not allowed"
+        )
+    if db_user.role == "admin":
         notes = await note_database.get_all()
         logger.info(f"Viewing {len(notes)} notes")
     else:
         notes = await note_database.get_by_field("user_id", user_id)
-        logger.info(f"Viewing {len(notes)} notes for {user.email}")
+        logger.info(f"Viewing {len(notes)} notes for {user["email_id"]}")
     return {"notes": notes}
 
 
