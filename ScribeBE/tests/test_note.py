@@ -1,4 +1,5 @@
 from datetime import datetime
+import anyio
 from bson import ObjectId
 from dotenv import load_dotenv
 import httpx
@@ -48,16 +49,17 @@ async def mock_note(init_database):
 
 @pytest.fixture
 async def setupDatabase(init_database, mock_note):
-    note_database = Database(DbNote)
-    await note_database.save(mock_note)
+    async with anyio.create_task_group() as tg:
+        note_database = Database(DbNote)
+        await note_database.save(mock_note)
 
-    yield
-
-    await note_database.delete_all_by_field("user_id", mock_note.user_id)
+        yield
+        
+        await note_database.delete_all_by_field("user_id", mock_note.user_id)
 
 
 #Get notes tests
-@pytest.mark.anyio
+@pytest.mark.asyncio
 async def test_get_notes_as_user(access_token: str, mock_note: DbNote, setupDatabase) -> None:
     headers = {
         "Content-Type": "application/json",
