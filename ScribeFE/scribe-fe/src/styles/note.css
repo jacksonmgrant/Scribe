@@ -129,6 +129,21 @@ dialog {
 	transition: all 1s ease;
 }
 
+.modal-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: 1rem;
+
+	h2 {
+		margin: 0;
+	}
+
+	button {
+		margin: 0;
+	}
+}
+
 @media (max-width: 1200px) {
 	dialog {
 		width: 80%;
@@ -154,14 +169,15 @@ dialog {
 }
 
 dialog textarea {
-  	height: 82%;
+  	height: 80%;
 	margin-bottom: 1rem;
 	resize: none;
-	color: var(--text-light)
+	color: var(--text-light);
+	background-color: var(--solid-bg-3);
 }
 
 .text-edit {
-	background-color: var(--dark);
+	background-color: var(--solid-bg-2);
 }
 
 .buttons {
@@ -180,7 +196,7 @@ dialog button {
 	transition: all 0.25s ease;
 }
 
-.save:hover, .save:active, .save:focus {
+.main:hover, .main:active, .main:focus {
 	border: 1px solid var(--border-main);
 	transition: all 0.5s ease;
 }
