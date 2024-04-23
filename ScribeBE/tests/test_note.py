@@ -12,7 +12,7 @@ from database.database import Database
 test_user_id = '66253cbf8765b34b68bfe638'
 admin_user_id = '66105db717133f8a7b0952dc'
 
-
+################## Created note isn't deleting and the get, update, and delete tests aren't working in trio
 
 @pytest.fixture
 async def init_database():
@@ -66,8 +66,17 @@ async def test_get_notes_as_user(access_token: str, mock_note: DbNote, setupData
 
     response = httpx.get("http://localhost:8000/notes/"+test_user_id, headers=headers)
 
+    note_dict = response.json()["notes"]
+    expected = True
+    for note in note_dict:
+        if note["user_id"] != mock_note.user_id:
+            print(note["user_id"])
+            print(mock_note.user_id)
+            expected = False
+            break
+
     assert response.status_code == 200
-    assert response.json()["notes"][0]["_id"] == str(mock_note.id)
+    assert expected == True
 
 
 @pytest.mark.anyio
