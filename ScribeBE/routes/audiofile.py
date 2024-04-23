@@ -41,3 +41,40 @@ async def receive_audio(file: UploadFile) -> dict:
     new_audio = DbAudio(wavfile=audio_bytes)
     await new_audio.insert()
     return {"id" : new_audio.id}
+
+
+#### Code from ChatGPT
+
+import pymongo
+from bson.binary import Binary
+
+# Connect to MongoDB
+client = pymongo.MongoClient("mongodb://localhost:27017/")
+db = client["audio_db"]
+collection = db["audio_collection"]
+
+def store_audio_file(file_path):
+    with open(file_path, 'rb') as f:
+        audio_data = f.read()
+        audio_binary = Binary(audio_data)
+        audio_doc = {
+            "filename": file_path.split('/')[-1],
+            "format": file_path.split('.')[-1],
+            "data": audio_binary
+        }
+        collection.insert_one(audio_doc)
+        print("Audio file stored successfully.")
+
+def retrieve_audio_file(filename):
+    audio_doc = collection.find_one({"filename": filename})
+    if audio_doc:
+        with open(filename, 'wb') as f:
+            f.write(audio_doc['data'])
+        print("Audio file retrieved successfully.")
+    else:
+        print("Audio file not found.")
+
+# Example usage
+store_audio_file("audio.wav")
+retrieve_audio_file("audio.wav")
+
