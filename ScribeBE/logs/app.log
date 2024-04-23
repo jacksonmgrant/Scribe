@@ -1,0 +1,81 @@
+2024-04-23 11:57:26,504 INFO main:21 Application starts up...
+2024-04-23 11:58:09,881 INFO routes.user:54 User admin@admin.com is signing into the system.
+2024-04-23 11:58:10,225 INFO routes.user:69 User admin@admin.com signed in.
+2024-04-23 11:58:10,356 INFO routes.note:38 Viewing 15 notes
+2024-04-23 11:58:10,466 INFO routes.note:38 Viewing 15 notes
+2024-04-23 11:58:31,190 INFO routes.note:59 User admin@admin.com is updating event #66274079f8f8605f0a0f3371
+2024-04-23 11:58:31,255 WARN routes.note:71 User admin@admin.com is not authorized to perform that operation
+2024-04-23 11:58:36,956 INFO routes.user:54 User  is signing into the system.
+2024-04-23 11:58:37,014 WARN routes.user:59 User  not found.
+2024-04-23 11:58:41,166 INFO routes.user:19 User  is signing up.
+2024-04-23 11:58:41,166 WARN routes.user:22 Form fields cannot be blank
+2024-04-23 11:58:51,243 INFO routes.user:54 User admin@admin.com is signing into the system.
+2024-04-23 11:58:51,613 INFO routes.user:69 User admin@admin.com signed in.
+2024-04-23 11:58:51,733 INFO routes.note:38 Viewing 15 notes
+2024-04-23 11:58:51,851 INFO routes.note:38 Viewing 15 notes
+2024-04-23 12:00:26,394 INFO routes.note:38 Viewing 15 notes
+2024-04-23 12:00:26,524 INFO routes.note:38 Viewing 15 notes
+2024-04-23 12:00:52,498 INFO routes.note:38 Viewing 15 notes
+2024-04-23 12:00:52,607 INFO routes.note:38 Viewing 15 notes
+2024-04-23 12:01:09,875 INFO routes.note:38 Viewing 15 notes
+2024-04-23 12:01:09,989 INFO routes.note:38 Viewing 15 notes
+2024-04-23 12:01:34,598 INFO routes.note:38 Viewing 15 notes
+2024-04-23 12:01:34,707 INFO routes.note:38 Viewing 15 notes
+2024-04-23 12:01:47,792 INFO routes.note:38 Viewing 15 notes
+2024-04-23 12:01:47,904 INFO routes.note:38 Viewing 15 notes
+2024-04-23 12:02:24,686 INFO routes.note:38 Viewing 15 notes
+2024-04-23 12:02:24,818 INFO routes.note:38 Viewing 15 notes
+2024-04-23 12:02:42,678 INFO routes.note:38 Viewing 15 notes
+2024-04-23 12:02:42,790 INFO routes.note:38 Viewing 15 notes
+2024-04-23 12:02:58,894 INFO routes.note:38 Viewing 15 notes
+2024-04-23 12:02:59,014 INFO routes.note:38 Viewing 15 notes
+2024-04-23 12:03:15,975 INFO routes.note:38 Viewing 15 notes
+2024-04-23 12:03:16,090 INFO routes.note:38 Viewing 15 notes
+2024-04-23 12:03:18,069 INFO routes.note:38 Viewing 15 notes
+2024-04-23 12:03:18,182 INFO routes.note:38 Viewing 15 notes
+2024-04-23 12:03:33,484 INFO routes.note:38 Viewing 15 notes
+2024-04-23 12:03:33,616 INFO routes.note:38 Viewing 15 notes
+2024-04-23 12:04:03,526 INFO routes.note:38 Viewing 15 notes
+2024-04-23 12:04:03,653 INFO routes.note:38 Viewing 15 notes
+2024-04-23 12:04:11,871 INFO routes.note:38 Viewing 15 notes
+2024-04-23 12:04:11,981 INFO routes.note:38 Viewing 15 notes
+2024-04-23 12:04:55,376 INFO routes.note:38 Viewing 15 notes
+2024-04-23 12:04:55,493 INFO routes.note:38 Viewing 15 notes
+2024-04-23 12:05:38,128 INFO routes.note:38 Viewing 15 notes
+2024-04-23 12:05:38,233 INFO routes.note:38 Viewing 15 notes
+2024-04-23 12:05:53,431 INFO routes.note:38 Viewing 15 notes
+2024-04-23 12:05:53,539 INFO routes.note:38 Viewing 15 notes
+2024-04-23 12:06:08,303 INFO routes.note:38 Viewing 15 notes
+2024-04-23 12:06:08,412 INFO routes.note:38 Viewing 15 notes
+2024-04-23 12:06:11,629 INFO routes.note:38 Viewing 15 notes
+2024-04-23 12:06:11,730 INFO routes.note:38 Viewing 15 notes
+2024-04-23 12:06:16,534 INFO routes.note:38 Viewing 15 notes
+2024-04-23 12:06:16,654 INFO routes.note:38 Viewing 15 notes
+2024-04-23 12:06:39,572 INFO routes.note:38 Viewing 15 notes
+2024-04-23 12:06:39,680 INFO routes.note:38 Viewing 15 notes
+2024-04-23 12:06:54,908 INFO routes.note:38 Viewing 15 notes
+2024-04-23 12:06:55,015 INFO routes.note:38 Viewing 15 notes
+2024-04-23 12:07:27,645 INFO routes.note:38 Viewing 15 notes
+2024-04-23 12:07:27,748 INFO routes.note:38 Viewing 15 notes
+2024-04-23 12:08:07,660 INFO routes.note:38 Viewing 15 notes
+2024-04-23 12:08:07,769 INFO routes.note:38 Viewing 15 notes
+2024-04-23 12:08:24,899 INFO routes.note:38 Viewing 15 notes
+2024-04-23 12:08:25,012 INFO routes.note:38 Viewing 15 notes
+2024-04-23 12:09:25,987 INFO routes.note:38 Viewing 15 notes
+2024-04-23 12:09:26,100 INFO routes.note:38 Viewing 15 notes
+2024-04-23 12:09:39,483 INFO routes.note:38 Viewing 15 notes
+2024-04-23 12:09:39,592 INFO routes.note:38 Viewing 15 notes
+2024-04-23 12:09:52,281 INFO routes.note:38 Viewing 15 notes
+2024-04-23 12:09:52,393 INFO routes.note:38 Viewing 15 notes
+2024-04-23 12:10:06,772 INFO routes.note:38 Viewing 15 notes
+2024-04-23 12:10:06,882 INFO routes.note:38 Viewing 15 notes
+2024-04-23 12:10:15,992 INFO routes.note:38 Viewing 15 notes
+2024-04-23 12:10:16,111 INFO routes.note:38 Viewing 15 notes
+2024-04-23 12:11:09,736 INFO routes.note:38 Viewing 15 notes
+2024-04-23 12:11:09,849 INFO routes.note:38 Viewing 15 notes
+2024-04-23 12:11:18,866 INFO routes.note:38 Viewing 15 notes
+2024-04-23 12:11:18,970 INFO routes.note:38 Viewing 15 notes
+2024-04-23 12:11:20,161 INFO routes.note:38 Viewing 15 notes
+2024-04-23 12:11:20,277 INFO routes.note:38 Viewing 15 notes
+2024-04-23 12:12:03,002 INFO routes.note:38 Viewing 15 notes
+2024-04-23 12:12:03,129 INFO routes.note:38 Viewing 15 notes
