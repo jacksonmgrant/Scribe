@@ -144,6 +144,31 @@ const createFeedback = async (text,rating,setCannotSend,navigate) => {
     }
 }
 
+const createAudio = async (noteText,event) => {
+    // const token = await localStorage.getItem('token');
+    // const userId = decodeToken(token).sub;
+    return fetch(`/audio/`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + localStorage.getItem('token')
+            },
+            body: JSON.stringify({
+                file: event.target.value,
+                text: noteText
+            }),
+        })
+        .then((response) => response.json())
+        .then((result) => {
+            console.log('Success:', result);
+            return result;
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+            throw error;
+        });
+}
+
 const checkUser = async (email,password,setCannotLogin,navigate,signin,signout) => {
     try {
         const response = await fetch(`/users/login/`, {
@@ -201,6 +226,6 @@ const createUser = async (name,email,password,navigate,setCannotSignup,signin,si
     }
 }
 
-const apiService = {transcribe, createNote, getNotes, updateNote, deleteNoteById, createFeedback, checkUser, createUser};
+const apiService = {transcribe, createNote, getNotes, updateNote, deleteNoteById, createFeedback, checkUser, createUser,createAudio};
 
 export default apiService;

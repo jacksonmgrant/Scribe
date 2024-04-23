@@ -110,3 +110,331 @@ Traceback (most recent call last):
     raise JWTError(e)
 jose.exceptions.JWTError: Not enough segments
 2024-04-23 13:38:22,130 INFO main:21 Application starts up...
+2024-04-23 15:10:47,306 INFO main:21 Application starts up...
+2024-04-23 15:11:08,126 INFO routes.user:54 User a@gmail.com is signing into the system.
+2024-04-23 15:11:08,366 INFO routes.user:69 User a@gmail.com signed in.
+2024-04-23 15:11:08,440 INFO routes.note:41 Viewing 3 notes for a@gmail.com
+2024-04-23 15:11:08,498 INFO routes.note:41 Viewing 3 notes for a@gmail.com
+2024-04-23 15:13:24,149 INFO main:22 Application starts up...
+2024-04-23 15:13:26,165 INFO main:22 Application starts up...
+2024-04-23 15:15:47,567 INFO main:22 Application starts up...
+2024-04-23 15:15:49,547 INFO main:22 Application starts up...
+2024-04-23 15:15:51,371 INFO main:22 Application starts up...
+2024-04-23 15:25:32,998 INFO main:22 Application starts up...
+2024-04-23 15:30:06,720 INFO main:22 Application starts up...
+2024-04-23 15:30:08,679 INFO main:22 Application starts up...
+2024-04-23 15:34:51,583 INFO main:22 Application starts up...
+2024-04-23 15:35:06,317 INFO routes.user:54 User a@gmail.com is signing into the system.
+2024-04-23 15:35:06,558 INFO routes.user:69 User a@gmail.com signed in.
+2024-04-23 15:35:06,629 INFO routes.note:41 Viewing 3 notes for a@gmail.com
+2024-04-23 15:35:06,686 INFO routes.note:41 Viewing 3 notes for a@gmail.com
+2024-04-23 15:35:12,692 INFO routes.note:47 User a@gmail.com is creating a note.
+2024-04-23 15:35:12,729 INFO routes.note:53 New note #66281b80d2273041f9b2c9bc created.
+2024-04-23 15:35:12,790 INFO routes.note:41 Viewing 4 notes for a@gmail.com
+2024-04-23 15:36:08,012 INFO routes.note:85 User a@gmail.com is deleting note #66241c027802dff2ca66047a.
+2024-04-23 15:36:08,097 INFO routes.note:104 Note #66241c027802dff2ca66047a is updated.
+2024-04-23 15:36:17,612 INFO routes.note:47 User a@gmail.com is creating a note.
+2024-04-23 15:36:17,647 INFO routes.note:53 New note #66281bc1d2273041f9b2c9bd created.
+2024-04-23 15:36:17,707 INFO routes.note:41 Viewing 4 notes for a@gmail.com
+2024-04-23 15:38:09,458 INFO routes.note:41 Viewing 4 notes for a@gmail.com
+2024-04-23 15:38:09,519 INFO routes.note:41 Viewing 4 notes for a@gmail.com
+2024-04-23 15:38:10,349 INFO routes.note:41 Viewing 4 notes for a@gmail.com
+2024-04-23 15:38:10,416 INFO routes.note:41 Viewing 4 notes for a@gmail.com
+2024-04-23 15:38:21,016 INFO routes.note:47 User a@gmail.com is creating a note.
+2024-04-23 15:38:21,059 INFO routes.note:53 New note #66281c3dd2273041f9b2c9be created.
+2024-04-23 15:38:21,119 INFO routes.note:41 Viewing 5 notes for a@gmail.com
+2024-04-23 15:38:23,864 INFO routes.note:85 User a@gmail.com is deleting note #66281c3dd2273041f9b2c9be.
+2024-04-23 15:38:23,953 INFO routes.note:104 Note #66281c3dd2273041f9b2c9be is updated.
+2024-04-23 15:44:15,546 INFO routes.note:41 Viewing 4 notes for a@gmail.com
+2024-04-23 15:44:15,608 INFO routes.note:41 Viewing 4 notes for a@gmail.com
+2024-04-23 15:44:33,291 INFO routes.note:47 User a@gmail.com is creating a note.
+2024-04-23 15:44:33,321 INFO routes.note:53 New note #66281db1d2273041f9b2c9bf created.
+2024-04-23 15:44:33,381 INFO routes.note:41 Viewing 5 notes for a@gmail.com
+2024-04-23 15:47:16,507 INFO main:22 Application starts up...
+2024-04-23 15:47:18,517 INFO main:22 Application starts up...
+2024-04-23 15:47:19,189 INFO routes.note:41 Viewing 5 notes for a@gmail.com
+2024-04-23 15:47:19,249 INFO routes.note:41 Viewing 5 notes for a@gmail.com
+2024-04-23 15:47:40,837 INFO routes.user:54 User a@gmail.com is signing into the system.
+2024-04-23 15:47:41,078 INFO routes.user:69 User a@gmail.com signed in.
+2024-04-23 15:47:41,147 INFO routes.note:41 Viewing 5 notes for a@gmail.com
+2024-04-23 15:47:41,204 INFO routes.note:41 Viewing 5 notes for a@gmail.com
+2024-04-23 15:47:48,079 INFO routes.note:47 User a@gmail.com is creating a note.
+2024-04-23 15:47:48,114 INFO routes.note:53 New note #66281e744a6a6d7d8226631a created.
+2024-04-23 15:47:48,176 INFO routes.note:41 Viewing 6 notes for a@gmail.com
+2024-04-23 15:47:53,734 INFO routes.note:85 User a@gmail.com is deleting note #66281db1d2273041f9b2c9bf.
+2024-04-23 15:47:53,822 INFO routes.note:104 Note #66281db1d2273041f9b2c9bf is updated.
+2024-04-23 15:47:55,403 INFO routes.note:85 User a@gmail.com is deleting note #66281bc1d2273041f9b2c9bd.
+2024-04-23 15:47:55,495 INFO routes.note:104 Note #66281bc1d2273041f9b2c9bd is updated.
+2024-04-23 15:48:26,583 INFO routes.note:85 User a@gmail.com is deleting note #66281e744a6a6d7d8226631a.
+2024-04-23 15:48:26,672 INFO routes.note:104 Note #66281e744a6a6d7d8226631a is updated.
+2024-04-23 15:48:28,215 INFO routes.note:85 User a@gmail.com is deleting note #66281b80d2273041f9b2c9bc.
+2024-04-23 15:48:28,305 INFO routes.note:104 Note #66281b80d2273041f9b2c9bc is updated.
+2024-04-23 15:51:14,724 INFO routes.note:41 Viewing 2 notes for a@gmail.com
+2024-04-23 15:51:14,785 INFO routes.note:41 Viewing 2 notes for a@gmail.com
+2024-04-23 15:52:04,637 INFO routes.note:41 Viewing 2 notes for a@gmail.com
+2024-04-23 15:52:04,703 INFO routes.note:41 Viewing 2 notes for a@gmail.com
+2024-04-23 15:52:23,278 INFO routes.note:47 User a@gmail.com is creating a note.
+2024-04-23 15:52:23,312 INFO routes.note:53 New note #66281f874a6a6d7d8226631b created.
+2024-04-23 15:52:23,373 INFO routes.note:41 Viewing 3 notes for a@gmail.com
+2024-04-23 15:57:20,003 INFO main:22 Application starts up...
+2024-04-23 15:57:21,900 INFO main:22 Application starts up...
+2024-04-23 15:59:14,680 INFO routes.note:41 Viewing 3 notes for a@gmail.com
+2024-04-23 15:59:14,734 INFO routes.note:41 Viewing 3 notes for a@gmail.com
+2024-04-23 15:59:35,080 INFO routes.note:47 User a@gmail.com is creating a note.
+2024-04-23 15:59:35,111 INFO routes.note:53 New note #6628213719c6b04d90d874fc created.
+2024-04-23 15:59:35,171 INFO routes.note:41 Viewing 4 notes for a@gmail.com
+2024-04-23 15:59:46,020 INFO routes.note:41 Viewing 4 notes for a@gmail.com
+2024-04-23 15:59:46,087 INFO routes.note:41 Viewing 4 notes for a@gmail.com
+2024-04-23 15:59:50,186 INFO routes.note:85 User a@gmail.com is deleting note #6628213719c6b04d90d874fc.
+2024-04-23 15:59:50,269 INFO routes.note:104 Note #6628213719c6b04d90d874fc is updated.
+2024-04-23 15:59:51,802 INFO routes.note:85 User a@gmail.com is deleting note #66281f874a6a6d7d8226631b.
+2024-04-23 15:59:51,883 INFO routes.note:104 Note #66281f874a6a6d7d8226631b is updated.
+2024-04-23 16:00:11,338 INFO routes.note:47 User a@gmail.com is creating a note.
+2024-04-23 16:00:11,368 INFO routes.note:53 New note #6628215b19c6b04d90d874fd created.
+2024-04-23 16:00:11,427 INFO routes.note:41 Viewing 3 notes for a@gmail.com
+2024-04-23 16:03:49,546 INFO routes.note:41 Viewing 3 notes for a@gmail.com
+2024-04-23 16:03:49,599 INFO routes.note:41 Viewing 3 notes for a@gmail.com
+2024-04-23 16:03:57,877 INFO routes.note:41 Viewing 3 notes for a@gmail.com
+2024-04-23 16:03:57,930 INFO routes.note:41 Viewing 3 notes for a@gmail.com
+2024-04-23 16:04:05,584 INFO routes.note:41 Viewing 3 notes for a@gmail.com
+2024-04-23 16:04:05,638 INFO routes.note:41 Viewing 3 notes for a@gmail.com
+2024-04-23 16:04:10,111 INFO routes.note:41 Viewing 3 notes for a@gmail.com
+2024-04-23 16:04:10,171 INFO routes.note:41 Viewing 3 notes for a@gmail.com
+2024-04-23 16:04:14,538 INFO routes.note:47 User a@gmail.com is creating a note.
+2024-04-23 16:04:14,581 INFO routes.note:53 New note #6628224e19c6b04d90d874fe created.
+2024-04-23 16:04:31,067 INFO routes.note:41 Viewing 4 notes for a@gmail.com
+2024-04-23 16:04:31,130 INFO routes.note:41 Viewing 4 notes for a@gmail.com
+2024-04-23 16:05:10,556 INFO routes.note:41 Viewing 4 notes for a@gmail.com
+2024-04-23 16:05:10,631 INFO routes.note:41 Viewing 4 notes for a@gmail.com
+2024-04-23 16:05:16,704 INFO routes.note:41 Viewing 4 notes for a@gmail.com
+2024-04-23 16:05:16,756 INFO routes.note:41 Viewing 4 notes for a@gmail.com
+2024-04-23 16:05:32,842 INFO routes.note:41 Viewing 4 notes for a@gmail.com
+2024-04-23 16:05:32,904 INFO routes.note:41 Viewing 4 notes for a@gmail.com
+2024-04-23 16:05:37,066 INFO routes.note:41 Viewing 4 notes for a@gmail.com
+2024-04-23 16:05:37,121 INFO routes.note:41 Viewing 4 notes for a@gmail.com
+2024-04-23 16:05:38,607 INFO routes.note:41 Viewing 4 notes for a@gmail.com
+2024-04-23 16:05:38,666 INFO routes.note:41 Viewing 4 notes for a@gmail.com
+2024-04-23 16:05:40,651 INFO routes.note:85 User a@gmail.com is deleting note #6628224e19c6b04d90d874fe.
+2024-04-23 16:05:40,768 INFO routes.note:104 Note #6628224e19c6b04d90d874fe is updated.
+2024-04-23 16:05:50,253 INFO routes.note:47 User a@gmail.com is creating a note.
+2024-04-23 16:05:50,284 INFO routes.note:53 New note #662822ae19c6b04d90d874ff created.
+2024-04-23 16:05:50,342 INFO routes.note:41 Viewing 4 notes for a@gmail.com
+2024-04-23 16:06:09,424 INFO routes.note:41 Viewing 4 notes for a@gmail.com
+2024-04-23 16:06:09,498 INFO routes.note:41 Viewing 4 notes for a@gmail.com
+2024-04-23 16:06:20,542 INFO routes.note:41 Viewing 4 notes for a@gmail.com
+2024-04-23 16:06:20,598 INFO routes.note:41 Viewing 4 notes for a@gmail.com
+2024-04-23 16:06:22,067 INFO routes.note:85 User a@gmail.com is deleting note #662822ae19c6b04d90d874ff.
+2024-04-23 16:06:22,149 INFO routes.note:104 Note #662822ae19c6b04d90d874ff is updated.
+2024-04-23 16:06:30,107 INFO routes.note:47 User a@gmail.com is creating a note.
+2024-04-23 16:06:30,147 INFO routes.note:53 New note #662822d619c6b04d90d87500 created.
+2024-04-23 16:06:30,206 INFO routes.note:41 Viewing 4 notes for a@gmail.com
+2024-04-23 16:12:44,140 INFO routes.note:85 User a@gmail.com is deleting note #662822d619c6b04d90d87500.
+2024-04-23 16:12:44,223 INFO routes.note:104 Note #662822d619c6b04d90d87500 is updated.
+2024-04-23 16:12:45,790 INFO main:22 Application starts up...
+2024-04-23 16:12:47,961 INFO main:22 Application starts up...
+2024-04-23 16:12:48,548 INFO routes.note:47 User a@gmail.com is creating a note.
+2024-04-23 16:12:48,582 INFO routes.note:53 New note #66282450ea673f8111361b95 created.
+2024-04-23 16:12:48,651 INFO routes.note:41 Viewing 4 notes for a@gmail.com
+2024-04-23 16:22:24,624 ERRO root:40 Invalid token
+Traceback (most recent call last):
+  File "C:\Users\Asus\Downloads\Scribe\ScribeBE\auth\JWT_token.py", line 25, in verify_access_token
+    data = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Asus\Downloads\Scribe\ScribeBE\venv\Lib\site-packages\jose\jwt.py", line 157, in decode
+    _validate_claims(
+  File "C:\Users\Asus\Downloads\Scribe\ScribeBE\venv\Lib\site-packages\jose\jwt.py", line 481, in _validate_claims
+    _validate_exp(claims, leeway=leeway)
+  File "C:\Users\Asus\Downloads\Scribe\ScribeBE\venv\Lib\site-packages\jose\jwt.py", line 314, in _validate_exp
+    raise ExpiredSignatureError("Signature has expired.")
+jose.exceptions.ExpiredSignatureError: Signature has expired.
+2024-04-23 16:22:24,630 ERRO root:40 Invalid token
+Traceback (most recent call last):
+  File "C:\Users\Asus\Downloads\Scribe\ScribeBE\auth\JWT_token.py", line 25, in verify_access_token
+    data = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Asus\Downloads\Scribe\ScribeBE\venv\Lib\site-packages\jose\jwt.py", line 157, in decode
+    _validate_claims(
+  File "C:\Users\Asus\Downloads\Scribe\ScribeBE\venv\Lib\site-packages\jose\jwt.py", line 481, in _validate_claims
+    _validate_exp(claims, leeway=leeway)
+  File "C:\Users\Asus\Downloads\Scribe\ScribeBE\venv\Lib\site-packages\jose\jwt.py", line 314, in _validate_exp
+    raise ExpiredSignatureError("Signature has expired.")
+jose.exceptions.ExpiredSignatureError: Signature has expired.
+2024-04-23 16:22:49,501 INFO main:22 Application starts up...
+2024-04-23 16:22:51,464 INFO main:22 Application starts up...
+2024-04-23 16:23:34,347 INFO main:22 Application starts up...
+2024-04-23 16:23:48,145 ERRO root:40 Invalid token
+Traceback (most recent call last):
+  File "C:\Users\Asus\Downloads\Scribe\ScribeBE\auth\JWT_token.py", line 25, in verify_access_token
+    data = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Asus\Downloads\Scribe\ScribeBE\venv\Lib\site-packages\jose\jwt.py", line 157, in decode
+    _validate_claims(
+  File "C:\Users\Asus\Downloads\Scribe\ScribeBE\venv\Lib\site-packages\jose\jwt.py", line 481, in _validate_claims
+    _validate_exp(claims, leeway=leeway)
+  File "C:\Users\Asus\Downloads\Scribe\ScribeBE\venv\Lib\site-packages\jose\jwt.py", line 314, in _validate_exp
+    raise ExpiredSignatureError("Signature has expired.")
+jose.exceptions.ExpiredSignatureError: Signature has expired.
+2024-04-23 16:23:48,147 ERRO root:40 Invalid token
+Traceback (most recent call last):
+  File "C:\Users\Asus\Downloads\Scribe\ScribeBE\auth\JWT_token.py", line 25, in verify_access_token
+    data = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Asus\Downloads\Scribe\ScribeBE\venv\Lib\site-packages\jose\jwt.py", line 157, in decode
+    _validate_claims(
+  File "C:\Users\Asus\Downloads\Scribe\ScribeBE\venv\Lib\site-packages\jose\jwt.py", line 481, in _validate_claims
+    _validate_exp(claims, leeway=leeway)
+  File "C:\Users\Asus\Downloads\Scribe\ScribeBE\venv\Lib\site-packages\jose\jwt.py", line 314, in _validate_exp
+    raise ExpiredSignatureError("Signature has expired.")
+jose.exceptions.ExpiredSignatureError: Signature has expired.
+2024-04-23 16:23:50,277 ERRO root:40 Invalid token
+Traceback (most recent call last):
+  File "C:\Users\Asus\Downloads\Scribe\ScribeBE\auth\JWT_token.py", line 25, in verify_access_token
+    data = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Asus\Downloads\Scribe\ScribeBE\venv\Lib\site-packages\jose\jwt.py", line 157, in decode
+    _validate_claims(
+  File "C:\Users\Asus\Downloads\Scribe\ScribeBE\venv\Lib\site-packages\jose\jwt.py", line 481, in _validate_claims
+    _validate_exp(claims, leeway=leeway)
+  File "C:\Users\Asus\Downloads\Scribe\ScribeBE\venv\Lib\site-packages\jose\jwt.py", line 314, in _validate_exp
+    raise ExpiredSignatureError("Signature has expired.")
+jose.exceptions.ExpiredSignatureError: Signature has expired.
+2024-04-23 16:23:50,282 ERRO root:40 Invalid token
+Traceback (most recent call last):
+  File "C:\Users\Asus\Downloads\Scribe\ScribeBE\auth\JWT_token.py", line 25, in verify_access_token
+    data = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Asus\Downloads\Scribe\ScribeBE\venv\Lib\site-packages\jose\jwt.py", line 157, in decode
+    _validate_claims(
+  File "C:\Users\Asus\Downloads\Scribe\ScribeBE\venv\Lib\site-packages\jose\jwt.py", line 481, in _validate_claims
+    _validate_exp(claims, leeway=leeway)
+  File "C:\Users\Asus\Downloads\Scribe\ScribeBE\venv\Lib\site-packages\jose\jwt.py", line 314, in _validate_exp
+    raise ExpiredSignatureError("Signature has expired.")
+jose.exceptions.ExpiredSignatureError: Signature has expired.
+2024-04-23 16:24:01,311 INFO routes.user:54 User a@gmail.com is signing into the system.
+2024-04-23 16:24:01,555 INFO routes.user:69 User a@gmail.com signed in.
+2024-04-23 16:24:01,630 INFO routes.note:41 Viewing 4 notes for a@gmail.com
+2024-04-23 16:24:01,690 INFO routes.note:41 Viewing 4 notes for a@gmail.com
+2024-04-23 16:24:05,722 INFO routes.note:85 User a@gmail.com is deleting note #66282450ea673f8111361b95.
+2024-04-23 16:24:05,811 INFO routes.note:104 Note #66282450ea673f8111361b95 is updated.
+2024-04-23 16:24:07,980 INFO routes.note:85 User a@gmail.com is deleting note #66241da37802dff2ca66047b.
+2024-04-23 16:24:09,318 INFO routes.note:85 User a@gmail.com is deleting note #66241da37802dff2ca66047b.
+2024-04-23 16:24:09,370 INFO routes.note:104 Note #66241da37802dff2ca66047b is updated.
+2024-04-23 16:24:09,971 WARN routes.note:91 Note #66241da37802dff2ca66047b not found
+2024-04-23 16:24:13,408 INFO routes.note:47 User a@gmail.com is creating a note.
+2024-04-23 16:24:13,445 INFO routes.note:53 New note #662826fd6c723d7b5527da4b created.
+2024-04-23 16:24:14,095 INFO routes.note:41 Viewing 3 notes for a@gmail.com
+2024-04-23 16:24:55,040 INFO routes.note:47 User a@gmail.com is creating a note.
+2024-04-23 16:24:55,071 INFO routes.note:53 New note #662827276c723d7b5527da4c created.
+2024-04-23 16:24:55,128 INFO routes.note:41 Viewing 4 notes for a@gmail.com
+2024-04-23 16:27:16,910 INFO routes.note:41 Viewing 4 notes for a@gmail.com
+2024-04-23 16:27:16,963 INFO routes.note:41 Viewing 4 notes for a@gmail.com
+2024-04-23 16:27:30,985 INFO routes.note:41 Viewing 4 notes for a@gmail.com
+2024-04-23 16:27:31,039 INFO routes.note:41 Viewing 4 notes for a@gmail.com
+2024-04-23 16:27:33,473 INFO routes.note:85 User a@gmail.com is deleting note #662827276c723d7b5527da4c.
+2024-04-23 16:27:33,551 INFO routes.note:104 Note #662827276c723d7b5527da4c is updated.
+2024-04-23 16:27:45,264 INFO routes.note:47 User a@gmail.com is creating a note.
+2024-04-23 16:27:45,305 INFO routes.note:53 New note #662827d16c723d7b5527da4d created.
+2024-04-23 16:28:19,554 INFO routes.note:41 Viewing 4 notes for a@gmail.com
+2024-04-23 16:28:19,667 INFO routes.note:41 Viewing 4 notes for a@gmail.com
+2024-04-23 16:28:35,260 INFO routes.note:47 User a@gmail.com is creating a note.
+2024-04-23 16:28:35,297 INFO routes.note:53 New note #662828036c723d7b5527da4e created.
+2024-04-23 16:29:20,307 INFO routes.note:41 Viewing 5 notes for a@gmail.com
+2024-04-23 16:29:20,368 INFO routes.note:41 Viewing 5 notes for a@gmail.com
+2024-04-23 16:31:35,242 INFO routes.note:41 Viewing 5 notes for a@gmail.com
+2024-04-23 16:31:35,318 INFO routes.note:41 Viewing 5 notes for a@gmail.com
+2024-04-23 16:31:36,760 INFO routes.note:41 Viewing 5 notes for a@gmail.com
+2024-04-23 16:31:36,825 INFO routes.note:41 Viewing 5 notes for a@gmail.com
+2024-04-23 16:31:43,801 INFO routes.note:47 User a@gmail.com is creating a note.
+2024-04-23 16:31:43,843 INFO routes.note:53 New note #662828bf6c723d7b5527da4f created.
+2024-04-23 16:31:43,900 INFO routes.note:41 Viewing 6 notes for a@gmail.com
+2024-04-23 16:34:31,998 INFO routes.note:41 Viewing 6 notes for a@gmail.com
+2024-04-23 16:34:32,068 INFO routes.note:41 Viewing 6 notes for a@gmail.com
+2024-04-23 16:34:33,624 INFO routes.note:41 Viewing 6 notes for a@gmail.com
+2024-04-23 16:34:33,678 INFO routes.note:41 Viewing 6 notes for a@gmail.com
+2024-04-23 16:34:34,810 INFO routes.note:41 Viewing 6 notes for a@gmail.com
+2024-04-23 16:34:34,872 INFO routes.note:41 Viewing 6 notes for a@gmail.com
+2024-04-23 16:34:42,687 INFO routes.note:41 Viewing 6 notes for a@gmail.com
+2024-04-23 16:34:42,746 INFO routes.note:41 Viewing 6 notes for a@gmail.com
+2024-04-23 16:34:51,285 INFO routes.note:41 Viewing 6 notes for a@gmail.com
+2024-04-23 16:34:51,351 INFO routes.note:41 Viewing 6 notes for a@gmail.com
+2024-04-23 16:34:52,909 INFO routes.note:41 Viewing 6 notes for a@gmail.com
+2024-04-23 16:34:52,967 INFO routes.note:41 Viewing 6 notes for a@gmail.com
+2024-04-23 16:34:54,693 INFO routes.note:85 User a@gmail.com is deleting note #662828bf6c723d7b5527da4f.
+2024-04-23 16:34:54,772 INFO routes.note:104 Note #662828bf6c723d7b5527da4f is updated.
+2024-04-23 16:34:56,335 INFO routes.note:85 User a@gmail.com is deleting note #662828036c723d7b5527da4e.
+2024-04-23 16:34:56,412 INFO routes.note:104 Note #662828036c723d7b5527da4e is updated.
+2024-04-23 16:34:57,717 INFO routes.note:85 User a@gmail.com is deleting note #662827d16c723d7b5527da4d.
+2024-04-23 16:34:57,810 INFO routes.note:104 Note #662827d16c723d7b5527da4d is updated.
+2024-04-23 16:35:01,274 INFO routes.note:47 User a@gmail.com is creating a note.
+2024-04-23 16:35:01,317 INFO routes.note:53 New note #662829856c723d7b5527da50 created.
+2024-04-23 16:35:01,373 INFO routes.note:41 Viewing 4 notes for a@gmail.com
+2024-04-23 16:35:33,713 INFO routes.note:41 Viewing 4 notes for a@gmail.com
+2024-04-23 16:35:33,782 INFO routes.note:41 Viewing 4 notes for a@gmail.com
+2024-04-23 16:35:35,225 INFO routes.note:41 Viewing 4 notes for a@gmail.com
+2024-04-23 16:35:35,286 INFO routes.note:41 Viewing 4 notes for a@gmail.com
+2024-04-23 16:35:41,768 INFO routes.note:47 User a@gmail.com is creating a note.
+2024-04-23 16:35:41,797 INFO routes.note:53 New note #662829ad6c723d7b5527da51 created.
+2024-04-23 16:35:41,853 INFO routes.note:41 Viewing 5 notes for a@gmail.com
+2024-04-23 16:36:21,347 INFO routes.note:41 Viewing 5 notes for a@gmail.com
+2024-04-23 16:36:21,414 INFO routes.note:41 Viewing 5 notes for a@gmail.com
+2024-04-23 16:36:31,489 INFO routes.note:47 User a@gmail.com is creating a note.
+2024-04-23 16:36:31,517 INFO routes.note:53 New note #662829df6c723d7b5527da52 created.
+2024-04-23 16:36:31,573 INFO routes.note:41 Viewing 6 notes for a@gmail.com
+2024-04-23 16:36:57,253 INFO routes.note:41 Viewing 6 notes for a@gmail.com
+2024-04-23 16:36:57,315 INFO routes.note:41 Viewing 6 notes for a@gmail.com
+2024-04-23 16:37:08,698 INFO routes.note:85 User a@gmail.com is deleting note #662829df6c723d7b5527da52.
+2024-04-23 16:37:08,775 INFO routes.note:104 Note #662829df6c723d7b5527da52 is updated.
+2024-04-23 16:37:10,083 INFO routes.note:85 User a@gmail.com is deleting note #662829ad6c723d7b5527da51.
+2024-04-23 16:37:10,164 INFO routes.note:104 Note #662829ad6c723d7b5527da51 is updated.
+2024-04-23 16:37:11,294 INFO routes.note:85 User a@gmail.com is deleting note #662829856c723d7b5527da50.
+2024-04-23 16:37:11,370 INFO routes.note:104 Note #662829856c723d7b5527da50 is updated.
+2024-04-23 16:37:12,541 INFO routes.note:85 User a@gmail.com is deleting note #662826fd6c723d7b5527da4b.
+2024-04-23 16:37:12,618 INFO routes.note:104 Note #662826fd6c723d7b5527da4b is updated.
+2024-04-23 16:37:16,516 INFO routes.note:47 User a@gmail.com is creating a note.
+2024-04-23 16:37:16,556 INFO routes.note:53 New note #66282a0c6c723d7b5527da53 created.
+2024-04-23 16:38:10,329 INFO routes.note:41 Viewing 3 notes for a@gmail.com
+2024-04-23 16:38:10,390 INFO routes.note:41 Viewing 3 notes for a@gmail.com
+2024-04-23 16:40:57,002 INFO routes.note:47 User a@gmail.com is creating a note.
+2024-04-23 16:40:57,044 INFO routes.note:53 New note #66282ae96c723d7b5527da54 created.
+2024-04-23 16:42:04,866 INFO routes.note:41 Viewing 4 notes for a@gmail.com
+2024-04-23 16:42:04,918 INFO routes.note:41 Viewing 4 notes for a@gmail.com
+2024-04-23 16:42:11,569 INFO routes.note:85 User a@gmail.com is deleting note #66282ae96c723d7b5527da54.
+2024-04-23 16:42:11,648 INFO routes.note:104 Note #66282ae96c723d7b5527da54 is updated.
+2024-04-23 16:42:15,811 INFO routes.note:47 User a@gmail.com is creating a note.
+2024-04-23 16:42:15,840 INFO routes.note:53 New note #66282b376c723d7b5527da55 created.
+2024-04-23 16:42:15,897 INFO routes.note:41 Viewing 4 notes for a@gmail.com
+2024-04-23 16:43:20,636 INFO routes.note:41 Viewing 4 notes for a@gmail.com
+2024-04-23 16:43:20,698 INFO routes.note:41 Viewing 4 notes for a@gmail.com
+2024-04-23 16:43:26,023 INFO routes.note:41 Viewing 4 notes for a@gmail.com
+2024-04-23 16:43:26,078 INFO routes.note:41 Viewing 4 notes for a@gmail.com
+2024-04-23 16:43:30,927 INFO routes.note:47 User a@gmail.com is creating a note.
+2024-04-23 16:43:30,986 INFO routes.note:53 New note #66282b826c723d7b5527da56 created.
+2024-04-23 16:43:31,062 INFO routes.note:41 Viewing 5 notes for a@gmail.com
+2024-04-23 16:46:41,392 INFO main:22 Application starts up...
+2024-04-23 16:46:43,538 INFO main:22 Application starts up...
+2024-04-23 16:47:03,711 INFO main:22 Application starts up...
+2024-04-23 16:48:00,275 INFO main:22 Application starts up...
+2024-04-23 16:49:31,002 INFO main:22 Application starts up...
+2024-04-23 16:54:11,898 INFO main:22 Application starts up...
+2024-04-23 16:54:13,814 INFO main:22 Application starts up...
+2024-04-23 16:55:35,645 INFO main:22 Application starts up...
+2024-04-23 16:56:30,141 INFO main:22 Application starts up...
+2024-04-23 16:56:32,037 INFO main:22 Application starts up...
+2024-04-23 16:59:13,995 INFO main:22 Application starts up...
+2024-04-23 16:59:16,021 INFO main:22 Application starts up...
+2024-04-23 17:01:49,290 INFO main:22 Application starts up...
+2024-04-23 17:01:51,257 INFO main:22 Application starts up...
+2024-04-23 17:03:14,989 INFO main:22 Application starts up...
+2024-04-23 17:03:17,014 INFO main:22 Application starts up...
+2024-04-23 17:03:27,420 INFO routes.user:54 User a@gmail.com is signing into the system.
+2024-04-23 17:03:27,965 INFO routes.user:69 User a@gmail.com signed in.
+2024-04-23 17:03:28,033 INFO routes.note:41 Viewing 5 notes for a@gmail.com
+2024-04-23 17:03:28,087 INFO routes.note:41 Viewing 5 notes for a@gmail.com
+2024-04-23 17:03:30,759 INFO routes.note:85 User a@gmail.com is deleting note #66282b826c723d7b5527da56.
+2024-04-23 17:03:30,843 INFO routes.note:104 Note #66282b826c723d7b5527da56 is updated.
+2024-04-23 17:03:32,100 INFO routes.note:85 User a@gmail.com is deleting note #66282b376c723d7b5527da55.
+2024-04-23 17:03:32,181 INFO routes.note:104 Note #66282b376c723d7b5527da55 is updated.
+2024-04-23 17:03:47,109 INFO routes.note:47 User a@gmail.com is creating a note.
+2024-04-23 17:03:47,139 INFO routes.note:53 New note #66283043c52486ede1f7212e created.
+2024-04-23 17:03:47,172 INFO routes.audio:20 New audio file from a@gmail.com created
+2024-04-23 17:03:47,226 INFO routes.note:41 Viewing 4 notes for a@gmail.com

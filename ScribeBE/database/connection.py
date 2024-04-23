@@ -3,6 +3,7 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 from models.feedback_model import DbFeedback
 from models.note_model import DbNote
 from models.user_model import DbUser
+from models.audio_model import DbAudio
 from motor.motor_asyncio import AsyncIOMotorClient  # type: ignore
 from pydantic import Field
 
@@ -19,5 +20,5 @@ class Settings(BaseSettings):
         client = AsyncIOMotorClient(DATABASE_URL)
         await init_beanie(
             database=client.ScribeDB,
-            document_models=[DbFeedback, DbNote, DbUser]
+            document_models=[DbFeedback, DbNote, DbUser, DbAudio]
         )

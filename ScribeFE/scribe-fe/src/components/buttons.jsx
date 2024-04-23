@@ -23,6 +23,7 @@ export function FileUploadButton({ onUpload }) {
             const text = await transcribeFile(event);
             console.log(text);
             await apiService.createNote(text);
+            await apiService.createAudio(text,event)
             setIsTranscribing(false);
             document.body.style.overflow = 'scroll'; //enable window scroll
             onUpload();
