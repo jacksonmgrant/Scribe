@@ -145,8 +145,8 @@ const createFeedback = async (text,rating,setCannotSend,navigate) => {
 }
 
 const createAudio = async (noteText,event) => {
-    // const token = await localStorage.getItem('token');
-    // const userId = decodeToken(token).sub;
+    const token = await localStorage.getItem('token');
+    const userId = decodeToken(token).sub;
     return fetch(`/audio/`, {
             method: 'POST',
             headers: {
@@ -154,6 +154,7 @@ const createAudio = async (noteText,event) => {
                 'Authorization': 'Bearer ' + localStorage.getItem('token')
             },
             body: JSON.stringify({
+                id: userId,
                 file: event.target.value,
                 text: noteText
             }),
