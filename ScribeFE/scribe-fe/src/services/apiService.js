@@ -160,6 +160,7 @@ const createAudio = async (noteText,audioFile) => {
     console.log(formDataToObject(wavFile))
     const fileType = audioFile.type
     const fileSize = audioFile.size
+    const fileName = audioFile.name
     return fetch(`/audio/`, {
             method: 'POST',
             headers: {
@@ -167,6 +168,7 @@ const createAudio = async (noteText,audioFile) => {
                 'Authorization': 'Bearer ' + localStorage.getItem('token')
             },
             body: JSON.stringify({
+                name: fileName,
                 type: fileType,
                 file: formDataToObject(wavFile),
                 size: fileSize,

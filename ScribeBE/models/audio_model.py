@@ -5,6 +5,7 @@ from typing import Optional
 from typing import BinaryIO
 
 class Audio(BaseModel):
+    name: str
     type: str
     file: dict  # change it later
     size: int
@@ -12,6 +13,7 @@ class Audio(BaseModel):
     id: str
 
 class DbAudio(Document):
+    name: str
     type: str
     file: dict # change it later
     size: int
