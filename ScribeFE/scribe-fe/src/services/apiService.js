@@ -144,37 +144,44 @@ const createFeedback = async (text,rating,setCannotSend,navigate) => {
     }
 }
 
-function formDataToObject(formData) {
-    let obj = {};
-    formData.forEach((value, key) => {
-        obj[key] = value;
-    });
-    return obj;
-}
+// function formDataToObject(formData) {
+//     let obj = {};
+//     formData.forEach((value, key) => {
+//         obj[key] = value;
+//     });
+//     return obj;
+// }
 
 const createAudio = async (noteText,audioFile) => {
     const token = await localStorage.getItem('token');
     const userId = decodeToken(token).sub;
-    const wavFile = new FormData();
-    wavFile.append("file", audioFile)
-    console.log(formDataToObject(wavFile))
     const fileType = audioFile.type
     const fileSize = audioFile.size
     const fileName = audioFile.name
+
+    const wavFile = new FormData();
+    wavFile.append("name", fileName)
+    wavFile.append("type", fileType)
+    wavFile.append("file", audioFile)
+    wavFile.append("size", fileSize)
+    wavFile.append("text", noteText)
+    wavFile.append("id", userId)
+    // console.log(formDataToObject(wavFile))
+
     return fetch(`/audio/`, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json',
                 'Authorization': 'Bearer ' + localStorage.getItem('token')
             },
-            body: JSON.stringify({
-                name: fileName,
-                type: fileType,
-                file: formDataToObject(wavFile),
-                size: fileSize,
-                text: noteText,
-                id: userId
-            }),
+            // body: JSON.stringify({
+            //     name: fileName,
+            //     type: fileType,
+            //     file: formDataToObject(wavFile),
+            //     size: fileSize,
+            //     text: noteText,
+            //     id: userId
+            // }),
+            body: wavFile,
         })
         .then((response) => response.json())
         .then((result) => {
