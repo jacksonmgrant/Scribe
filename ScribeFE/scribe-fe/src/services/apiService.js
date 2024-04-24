@@ -144,12 +144,21 @@ const createFeedback = async (text,rating,setCannotSend,navigate) => {
     }
 }
 
+function formDataToObject(formData) {
+    let obj = {};
+    formData.forEach((value, key) => {
+        obj[key] = value;
+    });
+    return obj;
+}
+
 const createAudio = async (noteText,audioFile) => {
     const token = await localStorage.getItem('token');
     const userId = decodeToken(token).sub;
-
+    const wavFile = new FormData();
+    wavFile.append("file", audioFile)
+    console.log(formDataToObject(wavFile))
     const fileType = audioFile.type
-    const fileName = audioFile.name
     const fileSize = audioFile.size
     return fetch(`/audio/`, {
             method: 'POST',
@@ -159,7 +168,7 @@ const createAudio = async (noteText,audioFile) => {
             },
             body: JSON.stringify({
                 type: fileType,
-                file: fileName,
+                file: formDataToObject(wavFile),
                 size: fileSize,
                 text: noteText,
                 id: userId
