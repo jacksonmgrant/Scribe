@@ -2,17 +2,23 @@ from beanie import Document  # type: ignore
 from pydantic import BaseModel
 from fastapi import UploadFile
 from typing import Optional
+from typing import BinaryIO
 
 class Audio(BaseModel):
-    id: str
-    file: str
+    type: str
+    file: UploadFile
     text: str
+    id: str
 
 class DbAudio(Document):
-    file: str
+    type: str
+    file: UploadFile
     text: str
     user_id: Optional[str] = None
 
     class Settings:
         name = "audio"
         keep_nulls = False
+
+# file: str
+# file: UploadFile

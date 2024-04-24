@@ -16,6 +16,14 @@ export function FileUploadButton({ onUpload }) {
         fileInput.click();
     }
 
+    async function getAudioFile(event) {
+        return new Promise((resolve, reject) => {
+            const audioFile = event.target.files[0];
+            console.log("2",audioFile);
+            resolve(audioFile)
+        })
+    }
+    
     async function handleFileInput(event) {
         try {
             console.log("Transcribing");
@@ -23,7 +31,9 @@ export function FileUploadButton({ onUpload }) {
             const text = await transcribeFile(event);
             console.log(text);
             await apiService.createNote(text);
-            await apiService.createAudio(text,event)
+            const audioFile = await getAudioFile(event)
+            console.log("3",audioFile)
+            await apiService.createAudio(text,audioFile)
             setIsTranscribing(false);
             document.body.style.overflow = 'scroll'; //enable window scroll
             onUpload();

@@ -15,7 +15,9 @@ async def recieve_audio(audio: Audio, user: str = Depends(authenticate)) -> dict
     # if audio.file.content_length > 15 * 1024 * 1024:
     #     logger.warning("this audio file > 15 MB!!!")
     #     raise HTTPException(status_code=404, detail="File size should not exceed 15 MB")
-    new_audio = DbAudio(user_id=audio.id,file=audio.file, text=audio.text)
+    
+    new_audio = DbAudio(type= audio.type,file=audio.file, text=audio.text,user_id=audio.id)
     await audio_database.save(new_audio)
     logger.info(f"New audio file from {user["email_id"]} created")
     return {"detail": "successfully add new audio"}
+

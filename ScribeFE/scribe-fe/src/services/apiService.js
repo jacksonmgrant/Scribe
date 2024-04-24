@@ -144,20 +144,27 @@ const createFeedback = async (text,rating,setCannotSend,navigate) => {
     }
 }
 
-const createAudio = async (noteText,event) => {
+const createAudio = async (noteText,audioFile) => {
     const token = await localStorage.getItem('token');
     const userId = decodeToken(token).sub;
+
+    const audioFileee = new FormData();
+    audioFileee.append('file_type', audioFile.name)
+    audioFileee.append('file', audioFile);
+    audioFileee.append('text', noteText);
+    audioFileee.append('id', userId);
+    console.log("4", audioFileee)
     return fetch(`/audio/`, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json',
                 'Authorization': 'Bearer ' + localStorage.getItem('token')
             },
-            body: JSON.stringify({
-                id: userId,
-                file: event.target.value,
-                text: noteText
-            }),
+            // body: JSON.stringify({
+            //     id: userId,
+            //     file: audioFileee,
+            //     text: noteText
+            // }),
+            body: audioFileee
         })
         .then((response) => response.json())
         .then((result) => {
