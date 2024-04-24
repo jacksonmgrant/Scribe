@@ -6,13 +6,13 @@ from typing import BinaryIO
 
 class Audio(BaseModel):
     type: str
-    file: UploadFile
+    file: str  # change it later
     text: str
     id: str
 
 class DbAudio(Document):
     type: str
-    file: UploadFile
+    file: str # change it later
     text: str
     user_id: Optional[str] = None
 

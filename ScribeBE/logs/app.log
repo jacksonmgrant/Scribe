@@ -892,3 +892,45 @@ jose.exceptions.ExpiredSignatureError: Signature has expired.
 2024-04-23 19:31:15,305 INFO routes.note:47 User a@gmail.com is creating a note.
 2024-04-23 19:31:15,342 INFO routes.note:53 New note #662852d38d98cde0d052a026 created.
 2024-04-23 19:33:02,171 INFO main:22 Application starts up...
+2024-04-23 19:33:04,131 INFO main:22 Application starts up...
+2024-04-23 19:34:06,343 INFO routes.note:41 Viewing 4 notes for a@gmail.com
+2024-04-23 19:34:06,404 INFO routes.note:41 Viewing 4 notes for a@gmail.com
+2024-04-23 19:37:30,566 INFO routes.user:54 User a@gmail.com is signing into the system.
+2024-04-23 19:37:30,808 INFO routes.user:69 User a@gmail.com signed in.
+2024-04-23 19:37:30,880 INFO routes.note:41 Viewing 4 notes for a@gmail.com
+2024-04-23 19:37:30,949 INFO routes.note:41 Viewing 4 notes for a@gmail.com
+2024-04-23 19:39:10,932 INFO routes.note:41 Viewing 4 notes for a@gmail.com
+2024-04-23 19:39:10,997 INFO routes.note:41 Viewing 4 notes for a@gmail.com
+2024-04-23 19:39:25,380 INFO routes.note:47 User a@gmail.com is creating a note.
+2024-04-23 19:39:25,426 INFO routes.note:53 New note #662854bde98a71de147173e3 created.
+2024-04-23 19:39:48,502 INFO routes.note:41 Viewing 5 notes for a@gmail.com
+2024-04-23 19:39:48,562 INFO routes.note:41 Viewing 5 notes for a@gmail.com
+2024-04-23 19:39:51,577 INFO routes.note:85 User a@gmail.com is deleting note #662854bde98a71de147173e3.
+2024-04-23 19:39:51,661 INFO routes.note:104 Note #662854bde98a71de147173e3 is updated.
+2024-04-23 19:39:53,358 INFO routes.note:85 User a@gmail.com is deleting note #662852d38d98cde0d052a026.
+2024-04-23 19:39:53,446 INFO routes.note:104 Note #662852d38d98cde0d052a026 is updated.
+2024-04-23 19:40:19,708 INFO routes.note:41 Viewing 3 notes for a@gmail.com
+2024-04-23 19:40:19,767 INFO routes.note:41 Viewing 3 notes for a@gmail.com
+2024-04-23 19:40:48,107 INFO routes.note:41 Viewing 3 notes for a@gmail.com
+2024-04-23 19:40:48,169 INFO routes.note:41 Viewing 3 notes for a@gmail.com
+2024-04-23 19:41:06,262 INFO routes.note:47 User a@gmail.com is creating a note.
+2024-04-23 19:41:06,295 INFO routes.note:53 New note #66285522e98a71de147173e4 created.
+2024-04-23 19:41:06,359 INFO routes.note:41 Viewing 4 notes for a@gmail.com
+2024-04-23 19:41:54,981 INFO routes.note:85 User a@gmail.com is deleting note #66285522e98a71de147173e4.
+2024-04-23 19:41:55,067 INFO routes.note:104 Note #66285522e98a71de147173e4 is updated.
+2024-04-23 19:44:32,710 INFO routes.note:41 Viewing 3 notes for a@gmail.com
+2024-04-23 19:44:32,767 INFO routes.note:41 Viewing 3 notes for a@gmail.com
+2024-04-23 19:45:44,771 INFO routes.note:41 Viewing 3 notes for a@gmail.com
+2024-04-23 19:45:44,832 INFO routes.note:41 Viewing 3 notes for a@gmail.com
+2024-04-23 19:46:00,880 INFO routes.note:41 Viewing 3 notes for a@gmail.com
+2024-04-23 19:46:00,945 INFO routes.note:41 Viewing 3 notes for a@gmail.com
+2024-04-23 19:46:06,904 INFO routes.note:47 User a@gmail.com is creating a note.
+2024-04-23 19:46:06,948 INFO routes.note:53 New note #6628564ee98a71de147173e5 created.
+2024-04-23 19:46:07,015 INFO routes.note:41 Viewing 4 notes for a@gmail.com
+2024-04-23 19:46:48,361 INFO routes.note:41 Viewing 4 notes for a@gmail.com
+2024-04-23 19:46:48,438 INFO routes.note:41 Viewing 4 notes for a@gmail.com
+2024-04-23 19:46:55,838 INFO routes.note:41 Viewing 4 notes for a@gmail.com
+2024-04-23 19:46:55,900 INFO routes.note:41 Viewing 4 notes for a@gmail.com
+2024-04-23 19:47:34,120 INFO routes.note:47 User a@gmail.com is creating a note.
+2024-04-23 19:47:34,153 INFO routes.note:53 New note #662856a6e98a71de147173e6 created.
+2024-04-23 19:47:35,863 INFO main:22 Application starts up...
