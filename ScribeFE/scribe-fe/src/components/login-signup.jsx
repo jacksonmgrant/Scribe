@@ -3,16 +3,12 @@ import "../styles/LoginSignup.css"
 import {Link,useNavigate} from 'react-router-dom';
 import apiService from '../services/apiService';
 
-const LoginSignup = ({signin,signout,email,setEmail,password,setPassword}) => {
+const LoginSignup = ({signin,signout,email,setEmail,password,setPassword,clearLoginInput}) => {
     const [emailEmpty, setEmailEmpty] = useState(true);
     const [passwordEmpty, setPasswordEmpty] = useState(true);
     
     const [cannotLogin,setCannotLogin] = useState(false);
     const navigate = useNavigate();
-
-    function clearLoginInput() {
-        document.getElementsByTagName('input').value = '';
-    }
 
     function handleEmailInput(event) {
         setEmail(event.target.value);
