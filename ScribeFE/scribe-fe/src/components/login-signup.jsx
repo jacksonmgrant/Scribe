@@ -4,7 +4,6 @@ import {Link,useNavigate} from 'react-router-dom';
 import apiService from '../services/apiService';
 
 const LoginSignup = ({signin,signout,email,setEmail,password,setPassword,clearLoginInput}) => {
-
     const [cannotLogin,setCannotLogin] = useState(false);
     const navigate = useNavigate();
     
