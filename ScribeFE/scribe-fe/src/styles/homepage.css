@@ -34,7 +34,7 @@ body {
 }
 
 header {
-	padding: 5rem 1rem 1.25rem;
+	padding: 4rem 1rem 1.25rem;
 	max-width: 80%;
 	width: 100%;
 	margin: 0 auto;
@@ -48,6 +48,12 @@ header h1{
 	color: var(--h1);
 }
 
+.logo {
+	height: 5rem;
+	margin-right: 1.25rem;
+	padding-top: 10px;
+}
+
 main {
 	flex: 1 1 0%;
 	width: 80%;
@@ -56,4 +62,37 @@ main {
 
 #new-note-buttons {
 	padding-inline: 0.75rem;
+}
+
+@media (max-width: 600px) {
+	header {
+		max-width: 100%;
+		padding-inline: 1.5rem;
+		padding-top: 2.5rem;
+
+		h1 {
+			font-size: 2rem;
+		}
+	}
+
+	.home-container {
+		padding-bottom: 4rem;
+	}
+	
+	main {
+		width: 100%;
+		padding-inline: 1.5rem;
+	}
+
+	#new-note-buttons, .note-list {
+		padding-inline: 0;
+	}
+
+	button {
+		margin-inline: 0;
+	}
+
+	.logo {
+		height: 4rem;
+	}
 }

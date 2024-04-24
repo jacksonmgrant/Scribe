@@ -38,14 +38,14 @@ const About = () => {
                 </div>
             </div>
         </div>
-        <h1>Tech stack that we used</h1>
+        <h1>Tech Stack</h1>
         <div className={styles.container}>
-            <StackIcon name="mongodb" />
-            <StackIcon name="reactjs" />
-            <StackIcon name="python" />
-            <StackIcon name="js" />
-            <StackIcon name="html5" />
-            <StackIcon name="css3" />
+            <StackIcon className="icon" name="mongodb" />
+            <StackIcon className="icon" name="reactjs" />
+            <StackIcon className="icon" name="python" />
+            <StackIcon className="icon" name="js" />
+            <StackIcon className="icon" name="html5" />
+            <StackIcon className="icon" name="css3" />
         </div>
       </div>
     )
