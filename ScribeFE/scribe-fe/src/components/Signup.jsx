@@ -4,7 +4,6 @@ import { Link,useNavigate } from 'react-router-dom';
 import apiService from '../services/apiService';
 
 const Signup = ({signin,signout,name,setName,email,setEmail,password,setPassword,clearSignupInput}) => {
-
     const [cannotSignup,setCannotSignup] = useState(false)
     const navigate = useNavigate();
 
@@ -19,6 +18,7 @@ const Signup = ({signin,signout,name,setName,email,setEmail,password,setPassword
                         <i className="fa-solid fa-user"></i>
                         <input autoFocus type='text' placeholder='Name' 
                             value={name}
+                            required 
                             onChange={(event) => setName(event.target.value)}
                         />
                     </div>
@@ -26,6 +26,7 @@ const Signup = ({signin,signout,name,setName,email,setEmail,password,setPassword
                         <i className="fa-solid fa-user"></i>
                         <input type='email'  placeholder='Email' 
                             value={email}
+                            required
                             onChange={(event) => setEmail(event.target.value)}
                         />
                     </div>
@@ -34,6 +35,7 @@ const Signup = ({signin,signout,name,setName,email,setEmail,password,setPassword
                         <input type='password' 
                             placeholder='Password' 
                             value={password}
+                            required
                             onChange={(event) => setPassword(event.target.value)}
                         />
                     </div>
