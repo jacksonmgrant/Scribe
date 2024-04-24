@@ -38,7 +38,6 @@ const FormSubmission = () => {
                                 />
                                 <label>
                                 <FaStar 
-                                    size={60}
                                     color={currentRating <= (hover || rating) ? "var(--orange)" : "var(--light)"}
                                     onMouseEnter={() => setHover(currentRating)}
                                     onMouseLeave={() => setHover(null)}
@@ -52,7 +51,7 @@ const FormSubmission = () => {
                 </form>
                 {cannotSend && <p className={styles.header} style={{ color: 'var(--danger)' }}>Form fields cannot be blank</p>}
             </div>
-            <div className='submit-container'>
+            <div className='submit-container-form'>
                 <Link className='submit'
                 onClick={async () => {
                     await apiService.createFeedback(text,rating,setCannotSend,navigate);

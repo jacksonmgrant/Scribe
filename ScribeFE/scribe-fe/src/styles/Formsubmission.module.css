@@ -2,20 +2,20 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 40rem;
+    width: 40%;
     margin-inline: auto;
-    margin-block: 5rem 8rem;
+    margin-block: 4rem 8rem;
     background: var(--solid-bg);
     padding: 2rem;
     border-radius: 25px;
-    text-align: left;
+    text-align: center;
 }
 
 .header{
     display: flex;
     align-items: center;
     width: 80%;
-    justify-content: left;
+    justify-content: center;
 
     h1 {
         color: var(--h1);
@@ -62,6 +62,7 @@ textarea {
 .stars {
     display: flex;
     justify-content: space-between;
+    font-size: 3.5rem;
 }
 
 .input input {
@@ -72,12 +73,27 @@ label {
     cursor: pointer;
 }
 
-.submit-container{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    width: 80%;
-    margin: auto;
-    margin-block: 2.5rem;
+@media (max-width: 600px) {
+    .container {
+        margin-block: 2.5rem 4rem;
+        width: 90%;
+        max-width: 90%;
+        padding-inline: 0.5rem;
+    }
+
+    .stars {
+        font-size: 2rem;
+    }
+
+    textarea {
+        height: 10rem;
+    }
+
+    .header h1 {
+        font-size: 2rem;
+    }
+
+    .submit-container-form {
+        margin-top: 1.5rem;
+    }
 }
