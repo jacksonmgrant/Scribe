@@ -1,6 +1,1 @@
 
-2024-04-23 22:24:23,349 INFO main:22 Application starts up...
-2024-04-23 22:24:39,825 INFO routes.user:54 User a@gmail.com is signing into the system.
-2024-04-23 22:24:40,073 INFO routes.user:69 User a@gmail.com signed in.
-2024-04-23 22:24:40,158 INFO routes.note:41 Viewing 2 notes for a@gmail.com
-2024-04-23 22:24:40,217 INFO routes.note:41 Viewing 2 notes for a@gmail.com
