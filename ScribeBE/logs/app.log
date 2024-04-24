@@ -79,3 +79,34 @@
 2024-04-23 12:11:20,277 INFO routes.note:38 Viewing 15 notes
 2024-04-23 12:12:03,002 INFO routes.note:38 Viewing 15 notes
 2024-04-23 12:12:03,129 INFO routes.note:38 Viewing 15 notes
+2024-04-23 13:36:44,845 INFO main:21 Application starts up...
+2024-04-23 13:38:20,263 ERRO root:40 Invalid token
+Traceback (most recent call last):
+  File "C:\Users\Asus\Downloads\Scribe\ScribeBE\venv\Lib\site-packages\jose\jws.py", line 176, in _load
+    signing_input, crypto_segment = jwt.rsplit(b".", 1)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: not enough values to unpack (expected 2, got 1)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Asus\Downloads\Scribe\ScribeBE\venv\Lib\site-packages\jose\jwt.py", line 142, in decode
+    payload = jws.verify(token, key, algorithms, verify=verify_signature)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Asus\Downloads\Scribe\ScribeBE\venv\Lib\site-packages\jose\jws.py", line 70, in verify
+    header, payload, signing_input, signature = _load(token)
+                                                ^^^^^^^^^^^^
+  File "C:\Users\Asus\Downloads\Scribe\ScribeBE\venv\Lib\site-packages\jose\jws.py", line 180, in _load
+    raise JWSError("Not enough segments")
+jose.exceptions.JWSError: Not enough segments
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Asus\Downloads\Scribe\ScribeBE\auth\JWT_token.py", line 25, in verify_access_token
+    data = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Asus\Downloads\Scribe\ScribeBE\venv\Lib\site-packages\jose\jwt.py", line 144, in decode
+    raise JWTError(e)
+jose.exceptions.JWTError: Not enough segments
+2024-04-23 13:38:22,130 INFO main:21 Application starts up...

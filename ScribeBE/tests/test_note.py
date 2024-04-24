@@ -1,4 +1,5 @@
 from datetime import datetime
+import anyio
 from bson import ObjectId
 from dotenv import load_dotenv
 import httpx
@@ -48,16 +49,17 @@ async def mock_note(init_database):
 
 @pytest.fixture
 async def setupDatabase(init_database, mock_note):
-    note_database = Database(DbNote)
-    await note_database.save(mock_note)
+    async with anyio.create_task_group() as tg:
+        note_database = Database(DbNote)
+        await note_database.save(mock_note)
 
-    yield
-
-    await note_database.delete_all_by_field("user_id", mock_note.user_id)
+        yield
+        
+        await note_database.delete_all_by_field("user_id", mock_note.user_id)
 
 
 #Get notes tests
-@pytest.mark.anyio
+@pytest.mark.asyncio
 async def test_get_notes_as_user(access_token: str, mock_note: DbNote, setupDatabase) -> None:
     headers = {
         "Content-Type": "application/json",
@@ -77,7 +79,7 @@ async def test_get_notes_as_user(access_token: str, mock_note: DbNote, setupData
     assert expected == True
 
 
-@pytest.mark.anyio
+@pytest.mark.asyncio
 async def test_get_notes_as_admin(admin_token: str, setupDatabase) -> None:
     headers = {
         "Content-Type": "application/json",
@@ -92,7 +94,7 @@ async def test_get_notes_as_admin(admin_token: str, setupDatabase) -> None:
     assert response.status_code == 200
     assert len(response.json()["notes"]) == expected_response
 
-@pytest.mark.anyio
+@pytest.mark.asyncio
 async def test_get_notes_with_invalid_user_id(access_token: str) -> None:
     headers = {
         "Content-Type": "application/json",
@@ -106,7 +108,7 @@ async def test_get_notes_with_invalid_user_id(access_token: str) -> None:
 
 
 # Create note tests
-@pytest.mark.anyio
+@pytest.mark.asyncio
 async def test_create_note(access_token: str) -> None:
     headers = {
         "Content-Type": "application/json",
@@ -126,7 +128,7 @@ async def test_create_note(access_token: str) -> None:
     assert response.json() == expected_response
 
 
-@pytest.mark.anyio
+@pytest.mark.asyncio
 async def test_create_note_with_empty_text(access_token: str) -> None:
     headers = {
         "Content-Type": "application/json",
@@ -147,7 +149,7 @@ async def test_create_note_with_empty_text(access_token: str) -> None:
 
 
 #Update note tests
-@pytest.mark.anyio
+@pytest.mark.asyncio
 async def test_update_note(access_token: str, mock_note: DbNote, setupDatabase) -> None:
     headers = {
         "Content-Type": "application/json",
@@ -166,7 +168,7 @@ async def test_update_note(access_token: str, mock_note: DbNote, setupDatabase) 
     assert response.status_code == 200
     assert response.json() == expected_response
 
-@pytest.mark.anyio
+@pytest.mark.asyncio
 async def test_update_note_as_wrong_user(access_token: str) -> None:
     headers = {
         "Content-Type": "application/json",
@@ -187,7 +189,7 @@ async def test_update_note_as_wrong_user(access_token: str) -> None:
     assert response.status_code == 400
     assert response.json() == expected_response
 
-@pytest.mark.anyio
+@pytest.mark.asyncio
 async def test_update_note_with_invalid_note_id(access_token: str) -> None:
     headers = {
         "Content-Type": "application/json",
@@ -206,7 +208,7 @@ async def test_update_note_with_invalid_note_id(access_token: str) -> None:
     assert response.status_code == 404
     assert response.json() == expected_response
 
-@pytest.mark.anyio
+@pytest.mark.asyncio
 async def test_update_note_with_nonexistent_note_id(access_token: str) -> None:
     headers = {
         "Content-Type": "application/json",
@@ -226,7 +228,7 @@ async def test_update_note_with_nonexistent_note_id(access_token: str) -> None:
     assert response.json() == expected_response
 
 #Delete note tests
-@pytest.mark.anyio
+@pytest.mark.asyncio
 async def test_delete_note(access_token: str, mock_note: DbNote, setupDatabase) -> None:
     headers = {
         "Content-Type": "application/json",
@@ -240,7 +242,7 @@ async def test_delete_note(access_token: str, mock_note: DbNote, setupDatabase) 
     assert response.status_code == 200
     assert response.json() == expected_response
 
-@pytest.mark.anyio
+@pytest.mark.asyncio
 async def test_delete_note_with_nonexistent_id(access_token: str, mock_note: DbNote, setupDatabase) -> None:
     headers = {
         "Content-Type": "application/json",
@@ -255,7 +257,7 @@ async def test_delete_note_with_nonexistent_id(access_token: str, mock_note: DbN
     assert response.status_code == 404
     assert response.json() == expected_response
 
-@pytest.mark.anyio
+@pytest.mark.asyncio
 async def test_delete_note_with_invalid_user_id(access_token: str) -> None:
     headers = {
         "Content-Type": "application/json",
