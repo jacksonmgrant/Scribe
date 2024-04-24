@@ -934,3 +934,13 @@ jose.exceptions.ExpiredSignatureError: Signature has expired.
 2024-04-23 19:47:34,120 INFO routes.note:47 User a@gmail.com is creating a note.
 2024-04-23 19:47:34,153 INFO routes.note:53 New note #662856a6e98a71de147173e6 created.
 2024-04-23 19:47:35,863 INFO main:22 Application starts up...
+2024-04-23 19:47:37,942 INFO main:22 Application starts up...
+2024-04-23 19:47:38,655 INFO routes.audio:21 New audio file from a@gmail.com created
+2024-04-23 19:47:38,739 INFO routes.note:41 Viewing 5 notes for a@gmail.com
+2024-04-23 19:47:42,847 INFO routes.note:85 User a@gmail.com is deleting note #66284d77b1e1510130b0e8f3.
+2024-04-23 19:47:42,934 INFO routes.note:104 Note #66284d77b1e1510130b0e8f3 is updated.
+2024-04-23 19:55:10,784 INFO routes.note:47 User a@gmail.com is creating a note.
+2024-04-23 19:55:10,830 INFO routes.note:53 New note #6628586e216bbdcb145f20a0 created.
+2024-04-23 19:55:10,867 INFO routes.audio:21 New audio file from a@gmail.com created
+2024-04-23 19:55:10,927 INFO routes.note:41 Viewing 5 notes for a@gmail.com
+2024-04-23 20:00:11,581 INFO main:22 Application starts up...

@@ -7,12 +7,14 @@ from typing import BinaryIO
 class Audio(BaseModel):
     type: str
     file: str  # change it later
+    size: int
     text: str
     id: str
 
 class DbAudio(Document):
     type: str
     file: str # change it later
+    size: int
     text: str
     user_id: Optional[str] = None
 

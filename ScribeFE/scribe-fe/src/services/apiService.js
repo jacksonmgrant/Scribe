@@ -150,6 +150,7 @@ const createAudio = async (noteText,audioFile) => {
 
     const fileType = audioFile.type
     const fileName = audioFile.name
+    const fileSize = audioFile.size
     return fetch(`/audio/`, {
             method: 'POST',
             headers: {
@@ -159,6 +160,7 @@ const createAudio = async (noteText,audioFile) => {
             body: JSON.stringify({
                 type: fileType,
                 file: fileName,
+                size: fileSize,
                 text: noteText,
                 id: userId
             }),
