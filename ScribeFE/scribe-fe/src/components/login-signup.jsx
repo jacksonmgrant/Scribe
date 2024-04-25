@@ -3,16 +3,12 @@ import "../styles/LoginSignup.css"
 import {Link,useNavigate} from 'react-router-dom';
 import apiService from '../services/apiService';
 
-const LoginSignup = ({signin,signout,email,setEmail,password,setPassword}) => {
+const LoginSignup = ({signin,signout,email,setEmail,password,setPassword,clearLoginInput}) => {
     const [emailEmpty, setEmailEmpty] = useState(true);
     const [passwordEmpty, setPasswordEmpty] = useState(true);
     
-    const [cannotLogin,setCannotLogin] = useState(false);
+    const [cannotLogin,setCannotLogin] = useState(true);
     const navigate = useNavigate();
-
-    function clearLoginInput() {
-        document.getElementsByTagName('input').value = '';
-    }
 
     function handleEmailInput(event) {
         setEmail(event.target.value);
@@ -52,10 +48,10 @@ const LoginSignup = ({signin,signout,email,setEmail,password,setPassword}) => {
                         />
                     </div>
                     {passwordEmpty && <p id="passwordMsg" style={{ color: 'var(--danger)', display: 'none' }}>Password cannot be blank</p>}
-                    {cannotLogin && <p id="errMsg" style={{ color: 'var(--danger)', display: 'none' }}>Incorrect email or password</p>}
+                    {cannotLogin && <p id="cannotLogin" style={{ color: 'var(--danger)', display: 'none' }}>Incorrect email or password</p>}
                 </div>
                 <div className='submit-container'>
-                    <Link className="submit" 
+                    <Link className="submit"
                         onClick={async () => {
                             if (emailEmpty) {
                                 document.getElementById('emailMsg').style.display = 'block';
@@ -63,11 +59,11 @@ const LoginSignup = ({signin,signout,email,setEmail,password,setPassword}) => {
                             if (passwordEmpty) {
                                 document.getElementById('passwordMsg').style.display = 'block';
                             }
-                            else if (cannotLogin) {
-                                document.getElementById('errMsg').style.display = 'block';
+                            else if(cannotLogin) {
+                                document.getElementById('cannotLogin').style.display = 'block';
                             }
                             await apiService.checkUser(email,password,setCannotLogin,navigate,signin,signout)
-                            clearLoginInput()
+                            clearLoginInput();
                         }}
                     >Log in
                     </Link>
