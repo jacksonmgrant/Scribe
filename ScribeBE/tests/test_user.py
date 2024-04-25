@@ -1,5 +1,7 @@
 from httpx import ASGITransport, AsyncClient
 import pytest
+from database.database import Database
+from models.user_model import DbUser
 from database.connection import Settings
 from main import app
 import auth.JWT_token as JWT_token
@@ -36,6 +38,9 @@ async def access_token() -> str:
 async def test_signup() -> None:
     
     await init_db()
+    # Clean test data
+    user_database = Database(DbUser)
+    await user_database.delete_all_by_field("email", "pytest@gmail.com")
 
     payload = {"name" : "pytest", "email": "pytest@gmail.com", "password": "pytest123"}
     headers = {"Content-Type": "application/json"}
