@@ -39,7 +39,7 @@ const About = () => {
             </div>
         </div>
         <h1>Tech Stack</h1>
-        <div className={styles.container}>
+        <div className={styles.iconContainer}>
             <StackIcon className="icon" name="mongodb" />
             <StackIcon className="icon" name="reactjs" />
             <StackIcon className="icon" name="python" />
