@@ -36,8 +36,8 @@ const Layout = ({isSignin,signout}) => {
                   </li>
                 </ul>
                 {/* hamburger icon for small screens */}
-                <Link href="javascript:void(0);" class="icon" onClick={collapseMenu}>
-                    <i class="fa fa-bars"></i>
+                <Link href="javascript:void(0);" className="icon" onClick={collapseMenu}>
+                    <i className="fa fa-bars"></i>
                 </Link>
               </div>
               ) 
