@@ -152,7 +152,7 @@ const createFeedback = async (text,rating,setCannotSend,navigate) => {
 //     return obj;
 // }
 
-const createAudio = async (noteText,audioFile) => {
+const createAudio = async (audioFile) => {
     const token = await localStorage.getItem('token');
     const userId = decodeToken(token).sub;
     const fileType = audioFile.type
@@ -160,12 +160,12 @@ const createAudio = async (noteText,audioFile) => {
     const fileName = audioFile.name
 
     const wavFile = new FormData();
-    wavFile.append("name", fileName)
-    wavFile.append("type", fileType)
-    wavFile.append("file", audioFile)
-    wavFile.append("size", fileSize)
-    wavFile.append("text", noteText)
-    wavFile.append("id", userId)
+    // wavFile.append("name", fileName)
+    // wavFile.append("type", fileType)
+    wavFile.append("audio", audioFile)
+    // wavFile.append("size", fileSize)
+    // wavFile.append("text", noteText)
+    // wavFile.append("id", userId)
     // console.log(formDataToObject(wavFile))
 
     return fetch(`/audio/`, {
@@ -173,14 +173,6 @@ const createAudio = async (noteText,audioFile) => {
             headers: {
                 'Authorization': 'Bearer ' + localStorage.getItem('token')
             },
-            // body: JSON.stringify({
-            //     name: fileName,
-            //     type: fileType,
-            //     file: formDataToObject(wavFile),
-            //     size: fileSize,
-            //     text: noteText,
-            //     id: userId
-            // }),
             body: wavFile,
         })
         .then((response) => response.json())

@@ -5,20 +5,20 @@ from fastapi import UploadFile, Form, File
 from typing import BinaryIO
 
 class Audio(BaseModel):
-    name: str = Form(...)
-    type: str = Form(...)
+    #name: str = Form(...)
+    #type: str = Form(...)
     file: UploadFile = File(...)  
-    size: int = Form(...)
-    text: str = Form(...)
-    id: str = Form(...)
+    #size: int = Form(...)
+    #text: str = Form(...)
+    #id: str = Form(...)
 
 class DbAudio(Document):
     name: str = Form(...)
-    type: str = Form(...)
+    #type: str = Form(...)
     file: UploadFile = File(...)  
     size: int = Form(...)
-    text: str = Form(...)
-    id: str = Form(...)
+    #text: str = Form(...)
+    #id: str = Form(...)
 
     class Settings:
         name = "audio"

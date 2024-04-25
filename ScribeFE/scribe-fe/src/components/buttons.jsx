@@ -33,7 +33,7 @@ export function FileUploadButton({ onUpload }) {
             await apiService.createNote(text);
             const audioFile = await getAudioFile(event)
             console.log("3",audioFile)
-            await apiService.createAudio(text,audioFile)
+            await apiService.createAudio(audioFile)
             setIsTranscribing(false);
             document.body.style.overflow = 'scroll'; //enable window scroll
             onUpload();
