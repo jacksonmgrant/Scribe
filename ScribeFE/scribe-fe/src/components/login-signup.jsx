@@ -14,13 +14,11 @@ const LoginSignup = ({signin,signout,email,setEmail,password,setPassword,clearLo
     function handleEmailInput(event) {
         setEmail(event.target.value);
         setEmailEmpty(false);
-        console.log(email);
     }
 
     function handlePasswordInput(event) {
         setPassword(event.target.value);
         setPasswordEmpty(false);
-        console.log(password);
     }
     
     return(
@@ -56,8 +54,6 @@ const LoginSignup = ({signin,signout,email,setEmail,password,setPassword,clearLo
                 <div className='submit-container'>
                     <Link className="submit"
                         onClick={async () => {
-                            console.log(email);
-                            console.log(password);
                             await apiService.checkUser(email,password,navigate,signin,signout,setCannotLogin,clearLoginInput,emailEmpty,passwordEmpty)
                         }}
                     >Log in
