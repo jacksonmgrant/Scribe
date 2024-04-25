@@ -8,7 +8,6 @@ const LoginSignup = ({signin,signout,email,setEmail,password,setPassword,clearLo
     const [passwordEmpty, setPasswordEmpty] = useState(true);
 
     const [cannotLogin, setCannotLogin] = useState(true);
-    
     const navigate = useNavigate();
 
     function handleEmailInput(event) {
