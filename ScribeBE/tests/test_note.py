@@ -13,8 +13,6 @@ from database.database import Database
 test_user_id = '66253cbf8765b34b68bfe638'
 admin_user_id = '66105db717133f8a7b0952dc'
 
-################## Created note isn't deleting and the get, update, and delete tests aren't working in trio
-
 @pytest.fixture
 async def init_database():
     load_dotenv()
@@ -40,6 +38,7 @@ async def admin_token() -> str:
 
 @pytest.fixture
 async def mock_note(init_database):
+    await init_database
     new_note = DbNote(
         text="pytest note",
         user_id=test_user_id,
@@ -49,56 +48,61 @@ async def mock_note(init_database):
 
 @pytest.fixture
 async def setupDatabase(init_database, mock_note):
-    async with anyio.create_task_group() as tg:
-        note_database = Database(DbNote)
-        await note_database.save(mock_note)
+    note = await mock_note
+    note_database = Database(DbNote)
+    await note_database.save(note)
 
-        yield
-        
-        await note_database.delete_all_by_field("user_id", mock_note.user_id)
+    yield note_database
+    
+    await note_database.delete_all_by_field("user_id", note.user_id)
 
 
 #Get notes tests
 @pytest.mark.asyncio
-async def test_get_notes_as_user(access_token: str, mock_note: DbNote, setupDatabase) -> None:
-    headers = {
-        "Content-Type": "application/json",
-        "Authorization": f"Bearer {access_token}"
-    }
+async def test_get_notes_as_user(access_token: str, setupDatabase) -> None:
+    token = await access_token
+    async for note_database in setupDatabase:
+        headers = {
+            "Content-Type": "application/json",
+            "Authorization": f"Bearer {token}"
+        }
 
-    response = httpx.get("http://localhost:8000/notes/"+test_user_id, headers=headers)
+        response = httpx.get("http://localhost:8000/notes/"+test_user_id, headers=headers)
 
-    note_dict = response.json()["notes"]
-    expected = True
-    for note in note_dict:
-        if note["user_id"] != mock_note.user_id:
-            expected = False
-            break
+        note_dict = response.json()["notes"]
+        expected = True
+        expected_id = test_user_id
+        for note in note_dict:
+            if note["user_id"] != expected_id:
+                expected = False
+                break
 
-    assert response.status_code == 200
-    assert expected == True
+        assert response.status_code == 200
+        assert expected == True
 
 
 @pytest.mark.asyncio
 async def test_get_notes_as_admin(admin_token: str, setupDatabase) -> None:
-    headers = {
-        "Content-Type": "application/json",
-        "Authorization": f"Bearer {admin_token}"
-    }
+    token = await admin_token
+    async for note_database in setupDatabase:
+        headers = {
+            "Content-Type": "application/json",
+            "Authorization": f"Bearer {token}"
+        }
 
-    note_database = Database(DbNote)
-    expected_response = len(await note_database.get_all())
+        expected_response = len(await note_database.get_all())
 
-    response = httpx.get("http://localhost:8000/notes/"+admin_user_id, headers=headers)
+        response = httpx.get("http://localhost:8000/notes/"+admin_user_id, headers=headers)
 
-    assert response.status_code == 200
-    assert len(response.json()["notes"]) == expected_response
+        assert response.status_code == 200
+        assert len(response.json()["notes"]) == expected_response
 
 @pytest.mark.asyncio
 async def test_get_notes_with_invalid_user_id(access_token: str) -> None:
+    token = await access_token
     headers = {
         "Content-Type": "application/json",
-        "Authorization": f"Bearer {access_token}"
+        "Authorization": f"Bearer {token}"
     }
 
     wrong_id = 'wrongid'
@@ -110,9 +114,10 @@ async def test_get_notes_with_invalid_user_id(access_token: str) -> None:
 # Create note tests
 @pytest.mark.asyncio
 async def test_create_note(access_token: str) -> None:
+    token = await access_token
     headers = {
         "Content-Type": "application/json",
-        "Authorization": f"Bearer {access_token}"
+        "Authorization": f"Bearer {token}"
     }
 
     payload = {
@@ -130,9 +135,10 @@ async def test_create_note(access_token: str) -> None:
 
 @pytest.mark.asyncio
 async def test_create_note_with_empty_text(access_token: str) -> None:
+    token = await access_token
     headers = {
         "Content-Type": "application/json",
-        "Authorization": f"Bearer {access_token}"
+        "Authorization": f"Bearer {token}"
     }
 
     payload = {
@@ -151,28 +157,33 @@ async def test_create_note_with_empty_text(access_token: str) -> None:
 #Update note tests
 @pytest.mark.asyncio
 async def test_update_note(access_token: str, mock_note: DbNote, setupDatabase) -> None:
-    headers = {
-        "Content-Type": "application/json",
-        "Authorization": f"Bearer {access_token}"
-    }
+    token = await access_token
+    async for note_database in setupDatabase:
+        headers = {
+            "Content-Type": "application/json",
+            "Authorization": f"Bearer {token}"
+        }
 
-    payload = {
-        "id": str(mock_note.id),
-        "text" : "pytest note updated"
-    }
+        note_id = str((await note_database.get_by_field("user_id", test_user_id))[0].id)
 
-    expected_response = {"message": "Note updated"}
+        payload = {
+            "id": note_id,
+            "text" : "pytest note updated"
+        }
 
-    response = httpx.put("http://localhost:8000/notes/", headers=headers, json=payload)
-    
-    assert response.status_code == 200
-    assert response.json() == expected_response
+        expected_response = {"message": "Note updated"}
+
+        response = httpx.put("http://localhost:8000/notes/", headers=headers, json=payload)
+        
+        assert response.status_code == 200
+        assert response.json() == expected_response
 
 @pytest.mark.asyncio
 async def test_update_note_as_wrong_user(access_token: str) -> None:
+    token = await access_token
     headers = {
         "Content-Type": "application/json",
-        "Authorization": f"Bearer {access_token}"
+        "Authorization": f"Bearer {token}"
     }
 
     # If this test is failing the note with this id probably got deleted. Make a new one and paste the id here.
@@ -191,9 +202,10 @@ async def test_update_note_as_wrong_user(access_token: str) -> None:
 
 @pytest.mark.asyncio
 async def test_update_note_with_invalid_note_id(access_token: str) -> None:
+    token = await access_token
     headers = {
         "Content-Type": "application/json",
-        "Authorization": f"Bearer {access_token}"
+        "Authorization": f"Bearer {token}"
     }
 
     payload = {
@@ -210,9 +222,10 @@ async def test_update_note_with_invalid_note_id(access_token: str) -> None:
 
 @pytest.mark.asyncio
 async def test_update_note_with_nonexistent_note_id(access_token: str) -> None:
+    token = await access_token
     headers = {
         "Content-Type": "application/json",
-        "Authorization": f"Bearer {access_token}"
+        "Authorization": f"Bearer {token}"
     }
 
     payload = {
@@ -230,23 +243,28 @@ async def test_update_note_with_nonexistent_note_id(access_token: str) -> None:
 #Delete note tests
 @pytest.mark.asyncio
 async def test_delete_note(access_token: str, mock_note: DbNote, setupDatabase) -> None:
-    headers = {
-        "Content-Type": "application/json",
-        "Authorization": f"Bearer {access_token}"
-    }
+    token = await access_token
+    async for note_database in setupDatabase:
+        headers = {
+            "Content-Type": "application/json",
+            "Authorization": f"Bearer {token}"
+        }
 
-    expected_response = {"message": "Note deleted successfully"}
+        note_id = str((await note_database.get_by_field("user_id", test_user_id))[0].id)
 
-    response = httpx.delete("http://localhost:8000/notes/"+str(mock_note.id), headers=headers)
-    
-    assert response.status_code == 200
-    assert response.json() == expected_response
+        response = httpx.delete("http://localhost:8000/notes/"+note_id, headers=headers)
+
+        expected_response = {"message": "Note deleted successfully"}
+        
+        assert response.status_code == 200
+        assert response.json() == expected_response
 
 @pytest.mark.asyncio
-async def test_delete_note_with_nonexistent_id(access_token: str, mock_note: DbNote, setupDatabase) -> None:
+async def test_delete_note_with_nonexistent_id(access_token: str) -> None:
+    token = await access_token
     headers = {
         "Content-Type": "application/json",
-        "Authorization": f"Bearer {access_token}"
+        "Authorization": f"Bearer {token}"
     }
 
     expected_response = {"detail": "Note not found"}
@@ -259,9 +277,10 @@ async def test_delete_note_with_nonexistent_id(access_token: str, mock_note: DbN
 
 @pytest.mark.asyncio
 async def test_delete_note_with_invalid_user_id(access_token: str) -> None:
+    token = await access_token
     headers = {
         "Content-Type": "application/json",
-        "Authorization": f"Bearer {access_token}"
+        "Authorization": f"Bearer {token}"
     }
 
     wrong_id = "not-an-id"

@@ -1,19 +1,41 @@
-.zone {
+nav {
     font-size: 1.25rem;
     color: var(--text-dark);
 }
 
 .main-nav{
+    width: 100%;
     display: flex;
+    top: 0;
+    left: 0;
     align-items: center;
-    list-style: none;
     margin: 0;
     padding: 15px;
+    background: var(--main-bg-gradient);
+}
+
+.main-nav ul {
+    margin: 0;
+}
+
+.main-nav a.icon {
+    display: none;
+    padding: 0rem 0.5rem;
+    height: 2.35rem;
 }
 
 .push{
     margin-left: auto;
 }
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+  }
 
 li{
     display: flex;
@@ -38,6 +60,57 @@ a:hover, a:focus {
     transition: all 0.5s ease;
 }
 
-.gradient{
-    background: var(--main-bg-gradient);
+.icon {
+    display: flex;
+    align-items: center;
+    color: var(--text-dark);
+    padding: 1rem;
+}
+
+@media (max-width: 600px) {
+    nav {
+        align-items: start;
+    }
+    
+    .main-nav ul {
+        margin: 0;
+        align-items: start;
+    }
+
+    .main-nav ul li a {
+        display: none;
+    }
+
+    .main-nav a.icon {
+        position: absolute;
+        right: 0.90rem;
+        top: 0.90rem;
+        float: right;
+        display: flex;
+        align-items: center;
+    }
+
+    .main-nav.responsive {
+        position: relative;
+    }
+
+    .main-nav.responsive ul {
+        display: block;
+    }
+    
+    .main-nav.responsive ul li a {
+        float: none;
+        display: block;
+        text-align: left;
+    }
+
+    .main-nav.responsive ul li {
+        display: block;
+        padding-bottom: 0.5rem;
+        width: fit-content;
+    }
+
+    .push {
+        margin-inline: 10px;
+    }
 }
