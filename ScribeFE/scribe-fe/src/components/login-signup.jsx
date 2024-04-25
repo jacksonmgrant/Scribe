@@ -6,8 +6,8 @@ import apiService from '../services/apiService';
 const LoginSignup = ({signin,signout,email,setEmail,password,setPassword,clearLoginInput}) => {
     const [emailEmpty, setEmailEmpty] = useState(true);
     const [passwordEmpty, setPasswordEmpty] = useState(true);
-    
-    const [cannotLogin,setCannotLogin] = useState(true);
+
+    const [cannotLogin, setCannotLogin] = useState(true);
     const navigate = useNavigate();
 
     function handleEmailInput(event) {
@@ -53,17 +53,7 @@ const LoginSignup = ({signin,signout,email,setEmail,password,setPassword,clearLo
                 <div className='submit-container'>
                     <Link className="submit"
                         onClick={async () => {
-                            if (emailEmpty) {
-                                document.getElementById('emailMsg').style.display = 'block';
-                            }
-                            if (passwordEmpty) {
-                                document.getElementById('passwordMsg').style.display = 'block';
-                            }
-                            else if(cannotLogin) {
-                                document.getElementById('cannotLogin').style.display = 'block';
-                            }
-                            await apiService.checkUser(email,password,setCannotLogin,navigate,signin,signout)
-                            clearLoginInput();
+                            await apiService.checkUser(email,password,navigate,setCannotLogin,signin,signout,clearLoginInput,emailEmpty,passwordEmpty)
                         }}
                     >Log in
                     </Link>

@@ -144,7 +144,7 @@ const createFeedback = async (text,rating,setCannotSend,navigate) => {
     }
 }
 
-const checkUser = async (email,password,setCannotLogin,navigate,signin,signout) => {
+const checkUser = async (email,password,navigate,setCannotLogin,signin,signout,clearLoginInput,emailEmpty,passwordEmpty) => {
     try {
         const response = await fetch(`/users/login/`, {
             method: 'POST',
@@ -160,12 +160,22 @@ const checkUser = async (email,password,setCannotLogin,navigate,signin,signout) 
         console.log("1 ",user);
         if(user.detail === "Incorrect email or password, or user does not exist."){
             console.log(user.detail);
-            setCannotLogin(true);
+            if (emailEmpty) {
+                document.getElementById('emailMsg').style.display = 'block';
+            }
+            if (passwordEmpty) {
+                document.getElementById('passwordMsg').style.display = 'block';
+            }
+            else {
+                document.getElementById('cannotLogin').style.display = 'block';
+            }
             signout();
         }else if(user){
+            setCannotLogin(false);
             await localStorage.setItem('token', user.access_token);
             navigate('/userpage');
             signin();
+            clearLoginInput();
         }
     } catch (error) {
         console.error('Error:', error);
@@ -173,7 +183,7 @@ const checkUser = async (email,password,setCannotLogin,navigate,signin,signout) 
     }
 }
 
-const createUser = async (name,email,password,navigate,setCannotSignup,signin,signout) => {
+const createUser = async (name,email,password,navigate,setCannotSignup,signin,signout,clearSignupInput,nameEmpty,emailEmpty,passwordEmpty) => {
     try {
         const response = await fetch(`/users/signup`, {
             method: 'POST',
@@ -188,11 +198,24 @@ const createUser = async (name,email,password,navigate,setCannotSignup,signin,si
         });
         const user = await response.json();
         if(user.msg === "successfully add new user"){
+            setCannotSignup(false)
             await localStorage.setItem('token', user.access_token);
             navigate('/userpage')
             signin()
+            clearSignupInput();
         }else {
-            setCannotSignup(true)
+            if (nameEmpty) {
+                document.getElementById('nameMsg').style.display = 'block';
+            }
+            if (emailEmpty) {
+                document.getElementById('emailMsg').style.display = 'block';
+            }
+            if (passwordEmpty) {
+                document.getElementById('passwordMsg').style.display = 'block';
+            }
+            else {
+                document.getElementById('cannotSignup').style.display = 'block';
+            }
             signout()
         }
     } catch (error) {

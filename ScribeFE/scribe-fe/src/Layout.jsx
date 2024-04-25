@@ -41,9 +41,9 @@ const Layout = ({isSignin,signout}) => {
                   </li>
                 </ul>
                 {/* hamburger icon for small screens */}
-                <a href="javascript:void(0);" className="icon" onClick={toggleMenu}>
+                <Link href="javascript:void(0);" className="icon" onClick={toggleMenu}>
                     <i className="fa fa-bars"></i>
-                </a>
+                </Link>
               </div>
               ) 
             : (
