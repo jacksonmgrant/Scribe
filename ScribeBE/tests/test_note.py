@@ -48,13 +48,15 @@ async def mock_note(init_database):
 
 @pytest.fixture
 async def setupDatabase(init_database, mock_note):
-    note = await mock_note
-    note_database = Database(DbNote)
-    await note_database.save(note)
+    try:
+        note = await mock_note
+        note_database = Database(DbNote)
+        await note_database.save(note)
 
-    yield note_database
-    
-    await note_database.delete_all_by_field("user_id", note.user_id)
+        yield note_database
+        
+    finally:
+        await note_database.delete_all_by_field("user_id", note.user_id)
 
 
 #Get notes tests

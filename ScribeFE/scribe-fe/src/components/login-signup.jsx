@@ -7,7 +7,7 @@ const LoginSignup = ({signin,signout,email,setEmail,password,setPassword,clearLo
     const [emailEmpty, setEmailEmpty] = useState(true);
     const [passwordEmpty, setPasswordEmpty] = useState(true);
     
-    const [cannotLogin,setCannotLogin] = useState(false);
+    const [cannotLogin,setCannotLogin] = useState(true);
     const navigate = useNavigate();
 
     function handleEmailInput(event) {
@@ -48,10 +48,10 @@ const LoginSignup = ({signin,signout,email,setEmail,password,setPassword,clearLo
                         />
                     </div>
                     {passwordEmpty && <p id="passwordMsg" style={{ color: 'var(--danger)', display: 'none' }}>Password cannot be blank</p>}
-                    {cannotLogin && <p id="errMsg" style={{ color: 'var(--danger)', display: 'none' }}>Incorrect email or password</p>}
+                    {cannotLogin && <p id="cannotLogin" style={{ color: 'var(--danger)', display: 'none' }}>Incorrect email or password</p>}
                 </div>
                 <div className='submit-container'>
-                    <Link className="submit" 
+                    <Link className="submit"
                         onClick={async () => {
                             if (emailEmpty) {
                                 document.getElementById('emailMsg').style.display = 'block';
@@ -59,11 +59,11 @@ const LoginSignup = ({signin,signout,email,setEmail,password,setPassword,clearLo
                             if (passwordEmpty) {
                                 document.getElementById('passwordMsg').style.display = 'block';
                             }
-                            else if (cannotLogin) {
-                                document.getElementById('errMsg').style.display = 'block';
+                            else if(cannotLogin) {
+                                document.getElementById('cannotLogin').style.display = 'block';
                             }
                             await apiService.checkUser(email,password,setCannotLogin,navigate,signin,signout)
-                            clearLoginInput()
+                            clearLoginInput();
                         }}
                     >Log in
                     </Link>

@@ -39,7 +39,7 @@ const Signup = ({signin,signout,name,setName,email,setEmail,password,setPassword
                             onChange={(event) => setPassword(event.target.value)}
                         />
                     </div>
-                    {cannotSignup && <p style={{ color: 'var(--danger)' }}>An account with this email already exists</p>}
+                    {cannotSignup && <p id="cannotSignup" style={{ color: 'var(--danger)' }}>Cannot Sign Up</p>}
                 </div>
                 <div className='submit-container'>
                     <Link className="submit" 
