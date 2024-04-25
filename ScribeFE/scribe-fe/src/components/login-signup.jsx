@@ -53,7 +53,7 @@ const LoginSignup = ({signin,signout,email,setEmail,password,setPassword,clearLo
                 <div className='submit-container'>
                     <Link className="submit"
                         onClick={async () => {
-                            await apiService.checkUser(email,password,navigate,signin,signout,setCannotLogin,clearLoginInput,emailEmpty,passwordEmpty)
+                            await apiService.checkUser(email,password,navigate,setCannotLogin,signin,signout,clearLoginInput,emailEmpty,passwordEmpty)
                         }}
                     >Log in
                     </Link>
