@@ -21,7 +21,7 @@ const LoginSignup = ({signin,signout,email,setEmail,password,setPassword,clearLo
     }
     
     return(
-        <form method='GET' id="form">
+        <form method='GET'>
             <div className='container'>
                 <div className='header'>
                     <h1 className='text'>Log In</h1>
