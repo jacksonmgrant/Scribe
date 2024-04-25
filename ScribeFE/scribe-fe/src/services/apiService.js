@@ -144,7 +144,7 @@ const createFeedback = async (text,rating,setCannotSend,navigate) => {
     }
 }
 
-const checkUser = async (email,password,setCannotLogin,navigate,signin,signout) => {
+const checkUser = async (email,password,navigate,signin,signout,setCannotLogin,clearLoginInput,emailEmpty,passwordEmpty) => {
     try {
         const response = await fetch(`/users/login/`, {
             method: 'POST',
@@ -160,12 +160,22 @@ const checkUser = async (email,password,setCannotLogin,navigate,signin,signout) 
         console.log("1 ",user);
         if(user.detail === "Incorrect email or password, or user does not exist."){
             console.log(user.detail);
-            setCannotLogin(true);
+            if (emailEmpty) {
+                document.getElementById('emailMsg').style.display = 'block';
+            }
+            if (passwordEmpty) {
+                document.getElementById('passwordMsg').style.display = 'block';
+            }
+            else {
+                document.getElementById('cannotLogin').style.display = 'block';
+            }
             signout();
         }else if(user){
+            setCannotLogin(false);
             await localStorage.setItem('token', user.access_token);
             navigate('/userpage');
             signin();
+            clearLoginInput();
         }
     } catch (error) {
         console.error('Error:', error);
