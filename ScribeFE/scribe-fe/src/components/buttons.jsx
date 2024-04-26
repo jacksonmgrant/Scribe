@@ -136,7 +136,7 @@ export function RecordAudioButton({ onUpload }) {
         isTranscribing ?
         <>
         <div className="loading-screen">
-            <iframe style={{border: 'none', width: '200px'}} src="https://lottie.host/embed/3578901e-5772-46f4-a34a-22b3a2904f7b/4eUF6lZ22c.json"></iframe>
+            <iframe style={{border: 'none', width: '200px'}} src="https://lottie.host/embed/3578901e-5772-46f4-a34a-22b3a2904f7b/4eUF6lZ22c.json" title="waiting Animation"></iframe>
         </div>
         <div>
             {status !== "recording" ? (

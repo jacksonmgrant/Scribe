@@ -53,7 +53,7 @@ export function Note({id: _id, text = "Empty note", time, hasRecording, onEdit, 
             <>
            <div className="modal-header">
               <h2>Edit Note</h2>
-              <a href={audioFile} download='myAudioFile' target="_blank">
+              <a href={audioFile} download='myAudioFile' target="_blank" rel="noreferrer">
                 <button className="main">
                   <i class="fas fa-download" style={{paddingInline: "0.25rem"}}></i>
                 </button>
@@ -72,7 +72,7 @@ export function Note({id: _id, text = "Empty note", time, hasRecording, onEdit, 
             <>
             <div className="modal-header">
               <h2>View Note</h2>
-              <a href={audioFile} download='myAudioFile.wav' target="_blank"> {/* change download value to file name */}
+              <a href={audioFile} download='myAudioFile.wav' target="_blank" rel="noreferrer"> {/* change download value to file name */}
                 <button className="main">
                   <i class="fas fa-download" style={{paddingInline: "0.25rem"}}></i>
                 </button>
