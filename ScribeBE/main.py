@@ -8,6 +8,7 @@ from fastapi.responses import RedirectResponse  # type: ignore
 import routes.note as note
 import routes.user as user
 import routes.feedback as feedback
+import routes.audio as audio
 from database.connection import Settings
 from logging_setup import setup_logging
 
@@ -52,3 +53,4 @@ app.include_router(root_router, tags=["Root"])
 app.include_router(note.note_router, prefix="/notes")
 app.include_router(user.user_router, prefix="/users")
 app.include_router(feedback.feedback_router, prefix="/feedback")
+app.include_router(audio.audio_router, prefix="/audio")

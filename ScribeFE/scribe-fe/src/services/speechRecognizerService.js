@@ -8,7 +8,7 @@ const sdk = require("microsoft-cognitiveservices-speech-sdk");
 export async function transcribeFile(event) {
     return new Promise((resolve, reject) => {
         const audioFile = event.target.files[0];
-        console.log(audioFile);
+        console.log("audioFILEEEE",audioFile);
         
         const speechConfig = sdk.SpeechConfig.fromSubscription(process.env.REACT_APP_SPEECH_KEY, process.env.REACT_APP_SPEECH_REGION);
         speechConfig.speechRecognitionLanguage = 'en-US';

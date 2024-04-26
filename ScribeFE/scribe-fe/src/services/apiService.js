@@ -39,7 +39,7 @@ const getNotes = async () => {
         });
 }
 
-const createNote = async (noteText) => {
+const createNote = async (noteText, recordingId = null) => {
     const token = await localStorage.getItem('token');
     const userId = decodeToken(token).sub;
     const data = {id: userId, text: noteText};
@@ -124,6 +124,47 @@ const createFeedback = async (text,rating,setCannotSend,navigate) => {
     }
 }
 
+const createAudio = async (audioFile) => {
+
+    const wavFile = new FormData();
+    wavFile.append("audio", audioFile)
+
+    return fetch(`/audio/`, {
+            method: 'POST',
+            headers: {
+                'Authorization': 'Bearer ' + localStorage.getItem('token')
+            },
+            body: wavFile,
+        })
+        .then((response) => response.json())
+        .then((result) => {
+            console.log('Success:', result);
+            return result;
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+            throw error;
+        });
+}
+
+const getAudio = async (id) => {
+    return fetch(`/audio/${id}`, {
+            method: 'GET',
+            headers: {
+                'Authorization': 'Bearer ' + localStorage.getItem('token')
+            }
+        })
+        .then((response) => response.json())
+        .then((result) => {
+            console.log('Success:', result);
+            return result;
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+            throw error;
+        });
+}
+
 const checkUser = async (email,password,navigate,setCannotLogin,signin,signout,clearLoginInput,emailEmpty,passwordEmpty) => {
     try {
         const response = await fetch(`/users/login/`, {
@@ -204,6 +245,6 @@ const createUser = async (name,email,password,navigate,setCannotSignup,signin,si
     }
 }
 
-const apiService = {createNote, getNotes, updateNote, deleteNoteById, createFeedback, checkUser, createUser};
+const apiService = {createNote, getNotes, updateNote, deleteNoteById, createFeedback, createAudio, getAudio, checkUser, createUser};
 
 export default apiService;
