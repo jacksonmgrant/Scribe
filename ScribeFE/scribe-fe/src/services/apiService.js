@@ -39,7 +39,7 @@ const getNotes = async () => {
         });
 }
 
-const createNote = async (noteText) => {
+const createNote = async (noteText, recordingId = null) => {
     const token = await localStorage.getItem('token');
     const userId = decodeToken(token).sub;
     const data = {id: userId, text: noteText};
