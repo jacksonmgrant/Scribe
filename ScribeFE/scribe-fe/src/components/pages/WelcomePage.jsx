@@ -14,7 +14,7 @@ const Welcomepage = () => {
                         <ReactPlayer className='player' 
                         width='100%'
                         height='100%'
-                        url="https://www.youtube.com/watch?v=XJrT1xQZmKk" controls={true}/>
+                        url="https://youtu.be/uHreL4ulx0g?si=dvtDBAHz90hX1KPY" controls={true}/>
                     </div>
                 </div>
                 <div className="overview">
