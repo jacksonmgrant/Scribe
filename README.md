@@ -45,6 +45,9 @@ CRUD actions for notes:
 Multiple notes:
     ![The Scribe app with multiple notes recorded](./ScribeFE/screenshots/Multiple_notes.png)
 
+Giving feedback as a user:
+    [![Scribe Core Actions Demo](https://img.youtube.com/vi/ynCKYspCr1o/maxresdefault.jpg)](https://www.youtube.com/watch?v=ynCKYspCr1o)
+
 ## Development Notes
 
 ### Requirements
