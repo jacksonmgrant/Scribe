@@ -147,6 +147,24 @@ const createAudio = async (audioFile) => {
         });
 }
 
+const getAudio = async (id) => {
+    return fetch(`/audio/${id}`, {
+            method: 'GET',
+            headers: {
+                'Authorization': 'Bearer ' + localStorage.getItem('token')
+            }
+        })
+        .then((response) => response.json())
+        .then((result) => {
+            console.log('Success:', result);
+            return result;
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+            throw error;
+        });
+}
+
 const checkUser = async (email,password,navigate,setCannotLogin,signin,signout,clearLoginInput,emailEmpty,passwordEmpty) => {
     try {
         const response = await fetch(`/users/login/`, {
@@ -227,6 +245,6 @@ const createUser = async (name,email,password,navigate,setCannotSignup,signin,si
     }
 }
 
-const apiService = {createNote, getNotes, updateNote, deleteNoteById, createFeedback, checkUser, createUser,createAudio};
+const apiService = {createNote, getNotes, updateNote, deleteNoteById, createFeedback, createAudio, getAudio, checkUser, createUser};
 
 export default apiService;

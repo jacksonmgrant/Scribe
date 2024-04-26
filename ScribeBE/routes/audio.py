@@ -14,7 +14,7 @@ audio_router = APIRouter(tags=["Audio"])
 
 audio_database = Database(DbAudio)
 
-@audio_router.get("/")
+@audio_router.get("/${id}")
 async def get_audio_file(id: str, user: str = Depends(authenticate)) -> dict:
     try:
         audio_file_id = ObjectId(id)
