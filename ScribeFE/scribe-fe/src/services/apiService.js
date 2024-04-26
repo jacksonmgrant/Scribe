@@ -24,26 +24,6 @@ function decodeToken(token) {
     return payload;
 }
 
-//Only returns the transcribed text, but creates a new note
-const transcribe = async (file) => {
-    const formData = new FormData();
-    formData.append('file', file);
-
-    return fetch(`/transcribe/`, {
-            method: 'POST',
-            body: formData,
-        })
-        .then((response) => response.json())
-        .then((result) => {
-            console.log('Success:', result);
-            return result.transcribed;
-        })
-        .catch((error) => {
-            console.error('Error:', error);
-            throw error;
-        });
-}
-
 const getNotes = async () => {
     const token = await localStorage.getItem('token');
     const userId = decodeToken(token).sub;
@@ -224,6 +204,6 @@ const createUser = async (name,email,password,navigate,setCannotSignup,signin,si
     }
 }
 
-const apiService = {transcribe, createNote, getNotes, updateNote, deleteNoteById, createFeedback, checkUser, createUser};
+const apiService = {createNote, getNotes, updateNote, deleteNoteById, createFeedback, checkUser, createUser};
 
 export default apiService;

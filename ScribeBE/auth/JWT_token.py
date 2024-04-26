@@ -1,8 +1,9 @@
 from datetime import datetime, timedelta, timezone
 from fastapi import HTTPException, status
 from jose import JWTError, jwt
-from database.connection import Settings
 import logging
+
+from database.connection import Settings
 
 SECRET_KEY = Settings().SECRET_KEY
 ALGORITHM = "HS256"

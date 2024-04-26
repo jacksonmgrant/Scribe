@@ -10,7 +10,6 @@ export async function transcribeFile(event) {
         const audioFile = event.target.files[0];
         console.log(audioFile);
         
-        // Uses environment variables to store the key and region
         const speechConfig = sdk.SpeechConfig.fromSubscription(process.env.REACT_APP_SPEECH_KEY, process.env.REACT_APP_SPEECH_REGION);
         speechConfig.speechRecognitionLanguage = 'en-US';
         

@@ -71,7 +71,7 @@ export function FileUploadButton({ onUpload }) {
 export function RecordAudioButton({ onUpload }) {
     // hook for loading screen
     const [isTranscribing, setIsTranscribing] = useState(false);
-    //const [ transcribedText, setTranscribedText ] = useState(null);
+    
     const [ status, setStatus ] = useState("idle");
 
     let transcribedTextArray = [];
