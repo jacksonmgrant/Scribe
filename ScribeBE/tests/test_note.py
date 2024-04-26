@@ -9,7 +9,7 @@ from models.note_model import DbNote
 from auth.JWT_token import create_access_token
 from database.database import Database
 
-test_user_id = '66253cbf8765b34b68bfe638'
+test_user_id = '662be2c6ef346c7484bf0c2a'
 admin_user_id = '66105db717133f8a7b0952dc'
 
 @pytest.fixture
@@ -68,7 +68,11 @@ async def test_get_notes_as_user(access_token: str, setupDatabase) -> None:
             "Authorization": f"Bearer {token}"
         }
 
+        print(await note_database.get_by_field("user_id", test_user_id))
+
         response = httpx.get("http://localhost:8000/notes/"+test_user_id, headers=headers)
+
+        assert response.status_code == 200
 
         note_dict = response.json()["notes"]
         expected = True
@@ -77,8 +81,6 @@ async def test_get_notes_as_user(access_token: str, setupDatabase) -> None:
             if note["user_id"] != expected_id:
                 expected = False
                 break
-
-        assert response.status_code == 200
         assert expected == True
 
 

@@ -82,10 +82,11 @@ async def test_login(access_token: str) -> None:
 
     await init_db()
 
+    token = await access_token
     payload = {"email": "a@gmail.com", "password": "a123"}
     headers = {
         "Content-Type": "application/json",
-        "Authorization": f"Bearer {access_token}"
+        "Authorization": f"Bearer {token}"
     }
     
     async with AsyncClient(
@@ -101,10 +102,11 @@ async def test_login_with_user_not_existing(access_token: str) -> None:
 
     await init_db()
 
+    token = await access_token
     payload = {"email": "", "password": ""}
     headers = {
         "Content-Type": "application/json",
-        "Authorization": f"Bearer {access_token}"
+        "Authorization": f"Bearer {token}"
     }
     
     test_response = {"detail" : "Incorrect email or password, or user does not exist."}

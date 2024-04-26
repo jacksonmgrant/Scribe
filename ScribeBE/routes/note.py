@@ -21,8 +21,12 @@ user_database = Database(DbUser)
 @note_router.get("/{user_id}")
 async def get_notes(user_id: Any, user: str = Depends(authenticate)) -> dict:
     try:
+        print(user_id)
         user_obj_id = ObjectId(user_id)
+        print(user_obj_id)
         db_user = await user_database.get(user_obj_id)
+        if not db_user:
+            raise Exception
     except Exception:
         logger.warning(f"{user_id} is an invalid user id")
         raise HTTPException(status_code=400, detail="Invalid user id")
