@@ -1,3 +1,5 @@
+# Run this in the main Scribe folder
+
 cd ./ScribeBE
 ./venv/Scripts/activate
 Start-Process powershell -ArgumentList '-NoExit', '-Command', 'uvicorn main:app --reload'

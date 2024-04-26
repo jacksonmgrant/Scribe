@@ -1,11 +1,13 @@
 from beanie import init_beanie  # type: ignore
 from pydantic_settings import BaseSettings, SettingsConfigDict
+from motor.motor_asyncio import AsyncIOMotorClient  # type: ignore
+from pydantic import Field
+
 from models.feedback_model import DbFeedback
 from models.note_model import DbNote
 from models.user_model import DbUser
 from models.audio_model import DbAudio
-from motor.motor_asyncio import AsyncIOMotorClient  # type: ignore
-from pydantic import Field
+
 
 
 class Settings(BaseSettings):

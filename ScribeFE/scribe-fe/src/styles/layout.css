@@ -67,7 +67,7 @@ a:hover, a:focus {
     padding: 1rem;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 650px) {
     nav {
         align-items: start;
     }

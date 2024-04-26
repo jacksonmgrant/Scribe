@@ -11,7 +11,6 @@ import SignupPage from './components/pages/SignupPage';
 import LoginSignupPage from './components/pages/LoginSignupPage';
 import FormSubmissionPage from "./components/pages/FormsubmissionPage";
 import Welcomepage from "./components/pages/WelcomePage";
-// import ParticlesBg from 'particles-bg'
 
 const App = () => {
     const [isSignin,setIsSignin] = useState(sessionStorage.getItem("isSignin") === "true" ? true : false);

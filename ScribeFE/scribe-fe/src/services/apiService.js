@@ -24,26 +24,6 @@ function decodeToken(token) {
     return payload;
 }
 
-//Only returns the transcribed text, but creates a new note
-const transcribe = async (file) => {
-    const formData = new FormData();
-    formData.append('file', file);
-
-    return fetch(`/transcribe/`, {
-            method: 'POST',
-            body: formData,
-        })
-        .then((response) => response.json())
-        .then((result) => {
-            console.log('Success:', result);
-            return result.transcribed;
-        })
-        .catch((error) => {
-            console.error('Error:', error);
-            throw error;
-        });
-}
-
 const getNotes = async () => {
     const token = await localStorage.getItem('token');
     const userId = decodeToken(token).sub;
@@ -144,6 +124,7 @@ const createFeedback = async (text,rating,setCannotSend,navigate) => {
     }
 }
 
+
 // function formDataToObject(formData) {
 //     let obj = {};
 //     formData.forEach((value, key) => {
@@ -186,7 +167,7 @@ const createAudio = async (audioFile) => {
         });
 }
 
-const checkUser = async (email,password,setCannotLogin,navigate,signin,signout) => {
+const checkUser = async (email,password,navigate,setCannotLogin,signin,signout,clearLoginInput,emailEmpty,passwordEmpty) => {
     try {
         const response = await fetch(`/users/login/`, {
             method: 'POST',
@@ -202,12 +183,22 @@ const checkUser = async (email,password,setCannotLogin,navigate,signin,signout) 
         console.log("1 ",user);
         if(user.detail === "Incorrect email or password, or user does not exist."){
             console.log(user.detail);
-            setCannotLogin(true);
+            if (emailEmpty) {
+                document.getElementById('emailMsg').style.display = 'block';
+            }
+            if (passwordEmpty) {
+                document.getElementById('passwordMsg').style.display = 'block';
+            }
+            else {
+                document.getElementById('cannotLogin').style.display = 'block';
+            }
             signout();
         }else if(user){
+            setCannotLogin(false);
             await localStorage.setItem('token', user.access_token);
             navigate('/userpage');
             signin();
+            clearLoginInput();
         }
     } catch (error) {
         console.error('Error:', error);
@@ -215,7 +206,7 @@ const checkUser = async (email,password,setCannotLogin,navigate,signin,signout) 
     }
 }
 
-const createUser = async (name,email,password,navigate,setCannotSignup,signin,signout) => {
+const createUser = async (name,email,password,navigate,setCannotSignup,signin,signout,clearSignupInput,nameEmpty,emailEmpty,passwordEmpty) => {
     try {
         const response = await fetch(`/users/signup`, {
             method: 'POST',
@@ -230,11 +221,24 @@ const createUser = async (name,email,password,navigate,setCannotSignup,signin,si
         });
         const user = await response.json();
         if(user.msg === "successfully add new user"){
+            setCannotSignup(false)
             await localStorage.setItem('token', user.access_token);
             navigate('/userpage')
             signin()
+            clearSignupInput();
         }else {
-            setCannotSignup(true)
+            if (nameEmpty) {
+                document.getElementById('nameMsg').style.display = 'block';
+            }
+            if (emailEmpty) {
+                document.getElementById('emailMsg').style.display = 'block';
+            }
+            if (passwordEmpty) {
+                document.getElementById('passwordMsg').style.display = 'block';
+            }
+            else {
+                document.getElementById('cannotSignup').style.display = 'block';
+            }
             signout()
         }
     } catch (error) {
@@ -243,6 +247,6 @@ const createUser = async (name,email,password,navigate,setCannotSignup,signin,si
     }
 }
 
-const apiService = {transcribe, createNote, getNotes, updateNote, deleteNoteById, createFeedback, checkUser, createUser,createAudio};
+const apiService = {createNote, getNotes, updateNote, deleteNoteById, createFeedback, checkUser, createUser,createAudio};
 
 export default apiService;

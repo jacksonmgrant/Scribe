@@ -14,7 +14,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    padding-top: 2rem;
+    padding-block: 2rem;
 
     h2 {
         font-size: 1.75rem;
@@ -46,7 +46,18 @@
     margin-bottom: 25px;
 }
 
-@media (max-width: 600px) {
+.iconContainer {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding-top: 2rem;
+
+    .icon {
+        padding-inline: 0.5rem;
+    }
+}
+
+@media (max-width: 650px) {
     .aboutContainer {
         padding-block: 2.5rem 4rem;
         padding-inline: 1.5rem;
@@ -66,5 +77,10 @@
 
     .container {
         justify-content: center;
+        flex-direction: column;
+    }
+
+    .iconContainer {
+        flex-wrap: wrap;
     }
 }

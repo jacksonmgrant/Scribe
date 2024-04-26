@@ -1,5 +1,4 @@
 from datetime import datetime
-import anyio
 from bson import ObjectId
 from dotenv import load_dotenv
 import httpx
@@ -54,7 +53,7 @@ async def setupDatabase(init_database, mock_note):
         await note_database.save(note)
 
         yield note_database
-        
+
     finally:
         await note_database.delete_all_by_field("user_id", note.user_id)
 

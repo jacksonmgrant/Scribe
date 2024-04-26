@@ -1,6 +1,5 @@
 #! /bin/bash
-
-# Can't open new terminal windows inside VSCode, had to split startup scripts
+# Run this in the main Scribe folder
 
 cd ./ScribeBE
 source venv/bin/activate

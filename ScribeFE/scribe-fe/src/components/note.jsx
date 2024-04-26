@@ -106,7 +106,6 @@ export function Note({id: _id, text = "Empty note", time, hasRecording, onEdit, 
     }
   
     async function handleDeleteClick() {
-      // This will need to send a delete request to the server
       await apiService.deleteNoteById(_id);
       onDelete(_id);
       handleDeleteClose();

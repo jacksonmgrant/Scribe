@@ -2,16 +2,6 @@ import React from 'react';
 import { Note } from "./note";
 
 export default function NoteList({notes, setNotes}) {
-	//const [idCount, setIdCount] = useState(0);
-
-	/*
-	// Adds notes to the state so that they can be rendered, just for testing
-	function addNewNote(input) {
-		const newNote = { id: idCount, text: input };
-		setNotes(prevNotes => [...prevNotes, newNote]);
-		setIdCount(prevIdCount => prevIdCount + 1);
-		fetchNotes();
-	}*/
 
 	function updateNote(_id, text) {
 		setNotes(prevNotes =>
