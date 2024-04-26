@@ -125,8 +125,6 @@ const createFeedback = async (text,rating,setCannotSend,navigate) => {
 }
 
 const createAudio = async (audioFile) => {
-    const token = await localStorage.getItem('token');
-    const userId = decodeToken(token).sub;
 
     const wavFile = new FormData();
     wavFile.append("audio", audioFile)
