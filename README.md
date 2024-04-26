@@ -39,8 +39,8 @@ The Scribe backend handles user data storage, authentication, and authorization.
 
 ## Demos
 
-CRUD actions (Old UI):
-    [Watch the demo here](https://www.loom.com/embed/1466ae1d1391430f85811b4509db6963?sid=2d92dc7d-2565-473f-86ab-683af466f3fc)
+CRUD actions for notes:
+    [![Scribe Core Actions Demo](https://youtu.be/uHreL4ulx0g?si=dvtDBAHz90hX1KPY)](https://youtu.be/uHreL4ulx0g?si=dvtDBAHz90hX1KPY)
 
 Multiple notes:
     ![The Scribe app with multiple notes recorded](./ScribeFE/screenshots/Multiple_notes.png)
