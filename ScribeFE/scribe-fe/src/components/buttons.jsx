@@ -164,3 +164,19 @@ export function RecordAudioButton({ onUpload }) {
         </div>
     );
 }
+
+export function DownloadFileButton ({ recording_id }) {
+    const [audioFile, setAudioFile] = useState(null);
+
+    useEffect(() => {
+        setAudioFile(apiService.getAudioFile(recording_id));
+    }, [recording_id]);
+
+    return (
+        <a href={audioFile} download='myAudioFile' target="_blank" rel="noreferrer">
+                <button className="main">
+                  <i class="fas fa-download" style={{paddingInline: "0.25rem"}}></i>
+                </button>
+        </a>
+    );
+}
