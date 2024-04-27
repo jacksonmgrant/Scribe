@@ -33,6 +33,12 @@ export function FileUploadButton({ onUpload }) {
             const audioFile = await getAudioFile(event);
             console.log("3",audioFile)
             const response = await apiService.createAudio(audioFile);
+            //////////// delete later for debugging ////////////
+            // const response44 = await apiService.getAudio("662c799edf209fc39d2d4544");
+            // console.log("forddda",response44)
+            // const blob = await response44.blob();
+            // console.log("blob", blob)
+            ////////////    SyntaxError: Unexpected token 'R', "RIFF�5    ////////////
             console.log("recordingid",response.recording_id) 
             await apiService.createNote(text, await response.recording_id); // just small mistake recording_id not recordingId
             setIsTranscribing(false);
@@ -170,11 +176,20 @@ export function DownloadFileButton ({ recording_id }) {
     const [audioFile, setAudioFile] = useState(null);
 
     useEffect(() => {
-        setAudioFile(apiService.getAudio(recording_id));
+        // setAudioFile(apiService.getAudio(recording_id));
+        async function fetchAudio() {
+            try {
+                const audioFile = await apiService.getAudio(recording_id);
+                setAudioFile(audioFile);
+            } catch (error) {
+                console.error('Error fetching audio:', error);
+            }
+        }
+        fetchAudio();
     }, [recording_id]);
 
     return (
-        <a href={audioFile} download='myAudioFile' target="_blank" rel="noreferrer">
+        <a href={audioFile} download='myAudioFile.wav' target="_blank" rel="noreferrer">
                 <button className="main">
                   <i class="fas fa-download" style={{paddingInline: "0.25rem"}}></i>
                 </button>

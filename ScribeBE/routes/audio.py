@@ -6,8 +6,9 @@ from auth.authenticate import authenticate
 from models.audio_model import DbAudio
 from bson.binary import Binary
 from database.database import Database
-from fastapi.responses import StreamingResponse
-import io
+# from fastapi.responses import StreamingResponse
+# import io
+import base64
 logger = logging.getLogger(__name__)
 
 audio_router = APIRouter(tags=["Audio"])
@@ -15,16 +16,17 @@ audio_router = APIRouter(tags=["Audio"])
 audio_database = Database(DbAudio)
 
 @audio_router.get("/{id}")
-async def get_audio_file(id: str, user: str = Depends(authenticate)) -> StreamingResponse:
+async def get_audio_file(id: str, user: str = Depends(authenticate)) -> dict:
     try:
         audio_file_id = ObjectId(id)
         audio_file = await audio_database.get(audio_file_id)
-        data = audio_file.file['data'] # Nithi: I think we need to send this data instead of file
+        data = audio_file.file['data'] # Nithi: this data instead of file
+        audio_base64 = base64.b64encode(data).decode('utf-8') 
         logger.info(f"Retrieved audio file {id} successfully")
     except Exception:
         logger.warning(f"{id} is an invalid audio file id")
         raise HTTPException(status_code=400, detail="Invalid audio file id")
-    return StreamingResponse(io.BytesIO(data), media_type="audio/wav") # Nithi still need correct conversion
+    return {"audio_data": audio_base64} # Nithi still need correct conversion
 
 @audio_router.post("/", status_code=201)
 async def recieve_audio(audio: UploadFile, user: str = Depends(authenticate)) -> dict:

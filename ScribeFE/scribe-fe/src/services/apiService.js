@@ -157,7 +157,7 @@ const getAudio = async (id) => {
         })
         .then((response) => response.json())
         .then((result) => {
-            console.log('Success:', result);
+            console.log('Audio Success:', result);
             return result;
         })
         .catch((error) => {
