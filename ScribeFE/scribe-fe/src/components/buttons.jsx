@@ -170,7 +170,7 @@ export function DownloadFileButton ({ recording_id }) {
     const [audioFile, setAudioFile] = useState(null);
 
     useEffect(() => {
-        setAudioFile(apiService.getAudioFile(recording_id));
+        setAudioFile(apiService.getAudio(recording_id));
     }, [recording_id]);
 
     return (
