@@ -69,7 +69,7 @@ export function Note({id: _id, text = "Empty note", time, recording_id, onEdit, 
             <>
             <div className="modal-header">
               <h2>View Note</h2>
-              {recording_id ? <DownloadFileButton parameter={recording_id} /> : <div></div>}
+              {recording_id ? <DownloadFileButton recording_id={recording_id} /> : <div></div>}
             </div>
             <textarea type="text" className="text" value={noteText} readOnly/>
             <div className="buttons">
