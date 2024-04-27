@@ -5,13 +5,16 @@
   - [Credits](#credits)
 - [Demos](#demos)
 - [Development Notes](#development-notes)
-  - [Project Design](#project-design)
   - [Requirements](#requirements)
 - [Project Setup](#project-setup)
   - [Quick Setup](#quick-setup)
+  - [Project Design](#project-design)
+  - [Testing](#testing)
 - [To-do](#to-do)
   - [Midterm](#midterm)
   - [Final](#final)
+    - [Required](#required)
+    - [Stretch Goals](#stretch-goals)
 - [Known Bugs](#known-bugs)
 
 ## Overview
@@ -164,7 +167,14 @@ To run tests, run `pytest tests/` from the ScribeBE folder. You will get an erro
   - [x] Feedback
   - [x] Notes
   - [x] Users
-     
+- [ ] Record demos of app
+  - [ ] User login (Do with network inspector open to show api calls)
+  - [ ] Notes demo
+    - [x] Note CRUD actions
+    - [ ] Upload/Download a note
+  - [x] User feedback form
+  - [ ] Screenshot all app pages
+
 #### Stretch Goals
 
 - [x] Make it pretty
