@@ -155,11 +155,24 @@ const getAudio = async (id) => {
                 'Authorization': 'Bearer ' + localStorage.getItem('token')
             }
         })
-        .then((response) => response.blob())
+        .then((response) => response.json())
         .then((result) => {
-            console.log(result)
-            const audio = URL.createObjectURL(result); // How to use our data to create audio file
-            return audio;
+            const binaryAudioData  = result.audio_data
+            const binaryString = atob(binaryAudioData);
+
+            // Create a Uint8Array from the binary string
+            const uint8Array = new Uint8Array(binaryString.length);
+            for (let i = 0; i < binaryString.length; i++) {
+                uint8Array[i] = binaryString.charCodeAt(i);
+            }
+
+            // Create a Blob from the Uint8Array with the appropriate MIME type
+            const blob = new Blob([uint8Array], { type: 'audio/wav' });
+
+            // Create a URL for the Blob
+            const audioUrl = URL.createObjectURL(blob);
+
+            return audioUrl;
         })
         .catch((error) => {
             console.error('Error:', error);
