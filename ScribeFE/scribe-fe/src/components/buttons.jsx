@@ -33,12 +33,6 @@ export function FileUploadButton({ onUpload }) {
             const audioFile = await getAudioFile(event);
             console.log("3",audioFile)
             const response = await apiService.createAudio(audioFile);
-            //////////// delete later for debugging ////////////
-            // const response44 = await apiService.getAudio("662c799edf209fc39d2d4544");
-            // console.log("forddda",response44)
-            // const blob = await response44.blob();
-            // console.log("blob", blob)
-            ////////////    SyntaxError: Unexpected token 'R', "RIFF�5    ////////////
             console.log("recordingid",response.recording_id) 
             await apiService.createNote(text, await response.recording_id); // just small mistake recording_id not recordingId
             setIsTranscribing(false);

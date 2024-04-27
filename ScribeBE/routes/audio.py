@@ -26,7 +26,7 @@ async def get_audio_file(id: str, user: str = Depends(authenticate)) -> dict:
     except Exception:
         logger.warning(f"{id} is an invalid audio file id")
         raise HTTPException(status_code=400, detail="Invalid audio file id")
-    return {"audio_data": audio_base64} # Nithi still need correct conversion
+    return {"audio_data": audio_base64} 
 
 @audio_router.post("/", status_code=201)
 async def recieve_audio(audio: UploadFile, user: str = Depends(authenticate)) -> dict:
@@ -52,12 +52,4 @@ def convert_audio_file(audio) -> dict:
     }
     return audio_doc
 
-# def retrieve_audio_file(filename):
-#     audio_doc = collection.find_one({"filename": filename})
-#     if audio_doc:
-#         with open(filename, 'wb') as f:
-#             f.write(audio_doc['data'])
-#         print("Audio file retrieved successfully.")
-#     else:
-#         print("Audio file not found.")
 

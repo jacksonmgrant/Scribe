@@ -155,10 +155,11 @@ const getAudio = async (id) => {
                 'Authorization': 'Bearer ' + localStorage.getItem('token')
             }
         })
-        .then((response) => response.json())
+        .then((response) => response.blob())
         .then((result) => {
-            console.log('Audio Success:', result);
-            return result;
+            console.log(result)
+            const audio = URL.createObjectURL(result); // How to use our data to create audio file
+            return audio;
         })
         .catch((error) => {
             console.error('Error:', error);
