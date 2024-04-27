@@ -147,6 +147,23 @@ const createAudio = async (audioFile) => {
         });
 }
 
+const transferBinaryToAudio = (binary) =>{
+    const binaryString = atob(binary);
+
+    // Create a Uint8Array from the binary string
+    const uint8Array = new Uint8Array(binaryString.length);
+    for (let i = 0; i < binaryString.length; i++) {
+        uint8Array[i] = binaryString.charCodeAt(i);
+    }
+
+    // Create a Blob from the Uint8Array with the appropriate MIME type
+    const blob = new Blob([uint8Array], { type: 'audio/wav' });
+
+    // Create a URL for the Blob
+    const audioUrl = URL.createObjectURL(blob);
+    return audioUrl
+}
+
 const getAudio = async (id) => {
     console.log("what;s id",id) // id is objectId now
     return fetch(`/audio/${id}`, {
@@ -158,27 +175,18 @@ const getAudio = async (id) => {
         .then((response) => response.json())
         .then((result) => {
             const binaryAudioData  = result.audio_data
-            const binaryString = atob(binaryAudioData);
 
-            // Create a Uint8Array from the binary string
-            const uint8Array = new Uint8Array(binaryString.length);
-            for (let i = 0; i < binaryString.length; i++) {
-                uint8Array[i] = binaryString.charCodeAt(i);
-            }
+            const audio = transferBinaryToAudio(binaryAudioData)
 
-            // Create a Blob from the Uint8Array with the appropriate MIME type
-            const blob = new Blob([uint8Array], { type: 'audio/wav' });
-
-            // Create a URL for the Blob
-            const audioUrl = URL.createObjectURL(blob);
-
-            return audioUrl;
+            return audio;
         })
         .catch((error) => {
             console.error('Error:', error);
             throw error;
         });
 }
+
+
 
 const checkUser = async (email,password,navigate,setCannotLogin,signin,signout,clearLoginInput,emailEmpty,passwordEmpty) => {
     try {
