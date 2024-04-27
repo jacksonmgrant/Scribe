@@ -53,7 +53,8 @@ async def create_note(note: Note, user: str = Depends(authenticate)) -> dict:
     if not note.text:
         logger.warning("Note must have text.")
         raise HTTPException(status_code=400, detail="Note must have text")
-    new_note = DbNote(text=note.text, user_id=note.id)
+    print(note)
+    new_note = DbNote(text=note.text, user_id=note.id, recording_id=note.recording_id)
     note_id = await note_database.save(new_note)
     logger.info(f"New note #{note_id} created.")
     return {"note created" : note.text}

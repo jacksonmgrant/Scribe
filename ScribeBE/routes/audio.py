@@ -14,12 +14,12 @@ audio_router = APIRouter(tags=["Audio"])
 
 audio_database = Database(DbAudio)
 
-@audio_router.get("/${id}")
+@audio_router.get("/{id}")
 async def get_audio_file(id: str, user: str = Depends(authenticate)) -> dict:
     try:
         audio_file_id = ObjectId(id)
         audio_file = await audio_database.get(audio_file_id)
-        logger.info(f"Revtrieved audio file {id} successfully")
+        logger.info(f"Retrieved audio file {id} successfully")
     except Exception:
         logger.warning(f"{id} is an invalid audio file id")
         raise HTTPException(status_code=400, detail="Invalid audio file id")
@@ -34,7 +34,8 @@ async def recieve_audio(audio: UploadFile, user: str = Depends(authenticate)) ->
     await audio_database.save(audio_instance)
 
     logger.info(f"New audio file from {user["email_id"]} created")
-    return {"detail": "successfully add new audio"}
+    print(audio_instance.id)
+    return {"recording_id": str(audio_instance.id)}
 
 
 def convert_audio_file(audio) -> dict:

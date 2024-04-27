@@ -24,7 +24,7 @@ export default function NoteList({notes, setNotes}) {
 					<div id="notes">
 						{notes && notes.map((note, index) => (
   	    	  				<div key={index}>
-								<Note key={note._id} id={note._id} text={note.text} onEdit={() => updateNote(note._id, note.text)} onDelete={() => deleteNote(note._id)} />        		
+								<Note key={note._id} id={note._id} text={note.text} recording_id={note.recording_id} onEdit={() => updateNote(note._id, note.text)} onDelete={() => deleteNote(note._id)} />        		
 							</div>
   	    				))}
 					</div>
