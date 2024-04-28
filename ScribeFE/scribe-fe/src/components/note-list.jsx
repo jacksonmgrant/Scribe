@@ -3,10 +3,10 @@ import { Note } from "./note";
 
 export default function NoteList({notes, setNotes}) {
 
-	function updateNote(_id, text) {
+	function updateNote(_id, text, recording_id) {
 		setNotes(prevNotes =>
 		  	prevNotes.map(note =>
-				note._id === _id ? { ...note, text: text } : note
+				note._id === _id ? { ...note, text: text, recording_id: recording_id} : note
 		  	)
 		);
 	}	  
@@ -24,7 +24,7 @@ export default function NoteList({notes, setNotes}) {
 					<div id="notes">
 						{notes && notes.map((note, index) => (
   	    	  				<div key={index}>
-								<Note key={note._id} id={note._id} text={note.text} recording_id={note.recording_id} onEdit={() => updateNote(note._id, note.text)} onDelete={() => deleteNote(note._id)} />        		
+								<Note key={note._id} id={note._id} text={note.text} recording_id={note.recording_id} onEdit={() => updateNote(note._id, note.text, note.recording_id)} onDelete={() => deleteNote(note._id)} />        		
 							</div>
   	    				))}
 					</div>

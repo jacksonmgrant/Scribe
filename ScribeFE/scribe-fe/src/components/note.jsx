@@ -59,6 +59,7 @@ export function Note({id: _id, text = "Empty note", time, recording_id, onEdit, 
         elem.setAttribute('tabindex', '0') } ) }
 
     async function handleEditClick() {
+      console.log("error message occur in handleEditclick function")
       setIsEditable(true);
     }
 
@@ -68,7 +69,7 @@ export function Note({id: _id, text = "Empty note", time, recording_id, onEdit, 
   
     async function handleSaveClick() {
       await apiService.updateNote(_id, noteText,recording_id)
-      onEdit(_id, noteText);
+      onEdit(_id, noteText, recording_id);
       handleEditClose();
     }
 
