@@ -186,7 +186,7 @@ export function Note({id: _id, text = "Empty note", time, recording_id, onEdit, 
     <>
     <div className="note">
       <div className="content">
-        <textarea id="note" type="text" className="text" value={noteText} readOnly tabIndex="-1" rows={noteText.length/100+1} cols={100}/>
+        <textarea title="Note Preview" id="note" type="text" className="text" value={noteText} readOnly tabIndex="-1" rows={noteText.length/100+1} cols={100}/>
       </div>
       <div className="actions">
         <button className="edit" onClick={handleEditOpen}>View
