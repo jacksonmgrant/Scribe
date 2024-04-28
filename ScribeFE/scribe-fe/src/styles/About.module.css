@@ -7,6 +7,14 @@
         font-size: 2.5rem;
         color: var(--h1);
         margin-inline: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    h2 {
+        font-size: 1.75rem;
+        color: var(--h2);
+        margin-inline: 1rem;
+        margin-bottom: 1.5rem;
     }
 }
 
@@ -14,13 +22,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    padding-block: 2rem;
-
-    h2 {
-        font-size: 1.75rem;
-        color: var(--h2);
-        margin: 0;
-    }
+    padding-bottom: 2rem;
 }
 
 .person {
@@ -30,12 +32,16 @@
     text-align: center;
     margin-bottom: 3rem;
     margin-inline: 1rem;
+
+    h3 {
+        color: var(--h3);
+        font-size: 1.5rem;
+    }
 }
 
 .text{
     display: flex;
     flex-direction: column;
-    font-size: 1.25rem;
     padding-top: 0.5rem;
     color: var(--text-main);
     width: 100%;
@@ -43,18 +49,22 @@
 
 .pic{
     border-radius: 12px;
-    margin-bottom: 25px;
+    margin-bottom: 0.5rem;
 }
 
 .iconContainer {
     width: 100%;
     display: flex;
     justify-content: space-between;
-    padding-top: 2rem;
 
     .icon {
         padding-inline: 0.5rem;
     }
+}
+
+.stack {
+    color: var(--text-light);
+    text-align: center;
 }
 
 @media (max-width: 650px) {
@@ -65,8 +75,11 @@
         width: 100%;
 
         h1 {
-            margin: 0;
             font-size: 2rem;
+            text-align: center;
+        }
+
+        h2 {
             text-align: center;
         }
     }
@@ -82,5 +95,12 @@
 
     .iconContainer {
         flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 315px) {
+    .iconContainer {
+        flex-direction: column;
+        align-items: center;
     }
 }

@@ -14,7 +14,7 @@
 .header{
     display: flex;
     align-items: center;
-    width: 80%;
+    width: 100%;
     justify-content: center;
 
     h1 {
@@ -31,7 +31,7 @@
 }
 
 .input {
-    margin-block: 2rem;
+    margin-block: 2rem 0.5rem;
     display: block;
     width: 100%;
     background: transparent;
@@ -59,9 +59,15 @@ textarea {
     color: var(--text-dark);
 }
 
-.stars {
+fieldset {
     display: flex;
     justify-content: space-between;
+    border: none;
+    padding: 0;
+    margin: 0;
+}
+
+.stars {
     font-size: 3rem;
 }
 
@@ -69,8 +75,11 @@ textarea {
     display: none;
 }
 
-label {
+.star-label {
+    display: inline-block;
     cursor: pointer;
+    margin-top: 0;
+    text-wrap: wrap;
 }
 
 @media (max-width: 1150px) {
