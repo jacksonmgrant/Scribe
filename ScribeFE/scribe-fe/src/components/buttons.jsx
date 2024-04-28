@@ -193,7 +193,7 @@ export function DownloadFileButton ({ recording_id }) {
         title="Download Audio"
         tabIndex='-1'>
             <button className="main" title="Download Audio">
-                <i class="fas fa-download" ari-hidden="true" style={{ paddingInline: '0.25rem' }}></i>
+                <i className="fas fa-download" ari-hidden="true" style={{ paddingInline: '0.25rem' }}></i>
             </button>
         </a>
     );

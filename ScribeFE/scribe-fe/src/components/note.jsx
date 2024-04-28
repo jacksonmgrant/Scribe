@@ -166,7 +166,7 @@ export function Note({id: _id, text = "Empty note", time, recording_id, onEdit, 
           open={deleteOpen}>
           <h2>Delete Note</h2>
           <div className="delete-message">
-            <h3><i class="fas fa-exclamation-triangle" style={{marginRight: '8px'}}></i>Are you sure?</h3>
+            <h3><i className="fas fa-exclamation-triangle" style={{marginRight: '8px'}}></i>Are you sure?</h3>
             <p>This action cannot be undone.</p>
           </div>
           <div className="buttons">
