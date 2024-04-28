@@ -31,13 +31,19 @@ export function FileUploadButton({ onUpload }) {
             const text = await transcribeFile(event);
             console.log(text);
             const audioFile = await getAudioFile(event);
-            console.log("3",audioFile)
-            const response = await apiService.createAudio(audioFile);
-            console.log("recordingid",response.recording_id) 
-            await apiService.createNote(text, await response.recording_id); // just small mistake recording_id not recordingId
-            setIsTranscribing(false);
-            document.body.style.overflow = 'scroll'; //enable window scroll
-            onUpload();
+            if (audioFile.size < 15 * 1024 * 1024) {
+                const audioFile = await getAudioFile(event);
+                console.log("3",audioFile)
+                const response = await apiService.createAudio(audioFile);
+                console.log("recordingid",response.recording_id) 
+                await apiService.createNote(text, await response.recording_id); // just small mistake recording_id not recordingId
+                setIsTranscribing(false);
+                document.body.style.overflow = 'scroll'; //enable window scroll
+                onUpload();
+            }
+            else {
+                alert("This file is bigger than 15 MB. Try another file")
+            }
         } catch (error) {
             console.error(error);
         }
