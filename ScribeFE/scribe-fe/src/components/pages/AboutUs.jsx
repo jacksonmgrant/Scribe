@@ -43,27 +43,27 @@ const About = () => {
         <div className={styles.iconContainer}>
           <div style={{ marginBottom: '1.5rem' }}>
             <StackIcon className="icon" name="mongodb" />
-            <p className="stack">Mongo DB</p>
+            <p className={styles.stack}>Mongo DB</p>
           </div>
            <div style={{ marginBottom: '1.5rem' }}>
             <StackIcon className="icon" name="python" />
-            <p className="stack">Python</p>
+            <p className={styles.stack}>Python</p>
            </div>
             <div style={{ marginBottom: '1.5rem' }}>
               <StackIcon className="icon" name="js" />
-              <p className="stack">Javascript</p>
+              <p className={styles.stack}>Javascript</p>
             </div>
             <div style={{ marginBottom: '1.5rem' }}>
               <StackIcon className="icon" name="reactjs" />
-              <p className="stack">React JS</p>
+              <p className={styles.stack}>React JS</p>
             </div>
             <div style={{ marginBottom: '1.5rem' }}>
               <StackIcon className="icon" name="html5" />
-              <p className="stack">HTML5</p>
+              <p className={styles.stack}>HTML5</p>
             </div>
             <div style={{ marginBottom: '1.5rem' }}>
               <StackIcon className="icon" name="css3" />
-              <p className="stack">CSS3</p>
+              <p className={styles.stack}>CSS3</p>
             </div>
         </div>
       </div>
