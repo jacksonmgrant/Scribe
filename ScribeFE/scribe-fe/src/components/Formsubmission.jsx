@@ -38,7 +38,7 @@ const FormSubmission = () => {
                                     name="rating"
                                     id={index + 1}
                                 />
-                                <label className="star-label" htmlFor={index + 1}>
+                                <label className="star-label" htmlFor={index + 1} tabIndex='0'>
                                     <FaStar className={styles.stars}
                                         color={currentRating <= (hover || rating) ? "var(--orange)" : "var(--light)"}
                                         onMouseEnter={() => setHover(currentRating)}
