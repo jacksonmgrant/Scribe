@@ -29,13 +29,13 @@ const Layout = ({isSignin,signout}) => {
               <div className='main-nav' id="main-nav">
                 <ul>
                   <li>
-                      <Link to="/" style={{ fontWeight: '700', display: 'flex', alignItems: 'center' }}
+                      <Link className="navlink" to="/" style={{ fontWeight: '700', display: 'flex', alignItems: 'center' }}
                       onClick={toggleMenu}>
                       <img alt="" src={Logo} style={{ height: '1.75rem', marginRight: '0.5rem' }}></img>
                       <span style={{ paddingBottom: '3px' }}>Scribe</span></Link>
                   </li>
                   <li className="push">
-                      <Link to="/loginSignupPage" onClick={toggleMenu}>Log In
+                      <Link className="navlink" to="/loginSignupPage" onClick={toggleMenu}>Log In
                       <i className="fa-solid fa-right-to-bracket" style={{ marginLeft: '8px' }}></i>
                       </Link>
                   </li>
@@ -50,29 +50,29 @@ const Layout = ({isSignin,signout}) => {
               <div className='main-nav' id="main-nav">
                 <ul>
                   <li>
-                      <Link to="/userpage" style={{ fontWeight: '700', display: 'flex', alignItems: 'center' }}
+                      <Link className="navlink" to="/userpage" style={{ fontWeight: '700', display: 'flex', alignItems: 'center' }}
                       onClick={toggleMenu}>
                       <img alt="" src={Logo} style={{ height: '1.75rem', marginRight: '0.5rem' }}></img>
                       <span style={{ paddingBottom: '2px' }}>Scribe</span></Link>
                   </li>
                   <li>
-                      <Link id="aboutus" to="/aboutus"
+                      <Link className="navlink" to="/aboutus"
                       onClick={toggleMenu}>About us</Link>
                   </li>
                   <li>
-                      <Link id="formsubmission" to="/formsubmission"
+                      <Link className="navlink" to="/formsubmission"
                       onClick={toggleMenu}>User feedback</Link>
                   </li>
                   <li className="push">
-                      <Link to="/loginSignupPage"  onClick={logOut}>Log out
+                      <Link className="navlink" to="/loginSignupPage"  onClick={logOut}>Log out
                       <i className="fa-solid fa-right-to-bracket" style={{ marginLeft: '8px' }}></i>
                       </Link>
                   </li>
                 </ul>
               {/* hamburger icon for small screens */}
-                <a href="javascript:void(0);" className="icon" onClick={toggleMenu}>
+                <Link href="javascript:void(0);" className="icon" onClick={toggleMenu}>
                     <i className="fa fa-bars"></i>
-                </a>
+                </Link>
               </div>
               )
             }

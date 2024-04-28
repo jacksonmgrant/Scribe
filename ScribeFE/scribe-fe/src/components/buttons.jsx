@@ -59,7 +59,7 @@ export function FileUploadButton({ onUpload }) {
                 aria-hidden='true'
                 onChange={handleFileInput}
             />
-            <button type="button" name="upload-audio-file" id="upload-audio-file" onClick={() => {handleUpload();}}>
+            <button type="button" name="upload-audio-file" className="upload-audio-file" onClick={() => {handleUpload();}}>
                 <i className="fa-solid fa-file-audio" style={{ marginRight: '8px' }}></i> Upload File
             </button>
             <p style={{ color: 'var(--text-main)', textAlign: 'center' }}>Accepts .wav files only</p>
@@ -76,7 +76,7 @@ export function FileUploadButton({ onUpload }) {
                 aria-hidden='true'
                 onChange={handleFileInput}
             />
-            <button type="button" name="upload-audio-file" id="upload-audio-file" onClick={() => {handleUpload();}}>
+            <button type="button" name="upload-audio-file" className="upload-audio-file" onClick={() => {handleUpload();}}>
                 <i className="fa-solid fa-file-audio" style={{ marginRight: '8px' }}></i> Upload File
             </button>
             <p style={{ color: 'var(--text-main)', textAlign: 'center' }}>Accepts .wav files only</p>
@@ -145,11 +145,11 @@ export function RecordAudioButton({ onUpload }) {
         </div>
         <div>
             {status !== "recording" ? (
-                <button type="button" name="record-audio" id="record-audio" onClick={() => {startSttFromMic()}}>
+                <button type="button" name="record-audio" className="record-audio" onClick={() => {startSttFromMic()}}>
                     <i className="fa-solid fa-microphone" style={{ marginRight: '8px' }}></i>  Record Audio
                 </button>
             ) : (
-                <button type="button" name="stop-recording" id="stop-recording" onClick={sendTranscription}>
+                <button type="button" name="stop-recording" className="stop-recording" onClick={sendTranscription}>
                     <i className="fa-solid fa-stop stop-icon" style={{ marginRight: '8px' }}></i> Stop Recording
                 </button>
             )}
@@ -158,11 +158,11 @@ export function RecordAudioButton({ onUpload }) {
         :
         <div>
         {status !== "recording" ? (
-            <button type="button" name="record-audio" id="record-audio" onClick={() => {startSttFromMic()}}>
+            <button type="button" name="record-audio" className="record-audio" onClick={() => {startSttFromMic()}}>
                 <i className="fa-solid fa-microphone" style={{ marginRight: '8px' }}></i>  Record Audio
             </button>
         ) : (
-            <button type="button" name="stop-recording" id="stop-recording" onClick={sendTranscription}>
+            <button type="button" name="stop-recording" className="stop-recording" onClick={sendTranscription}>
                 <i className="fa-solid fa-stop stop-icon" style={{ marginRight: '8px' }}></i> Stop Recording
             </button>
         )}
@@ -187,10 +187,14 @@ export function DownloadFileButton ({ recording_id }) {
     }, [recording_id]);
 
     return (
-        <a href={audioFile} download='myAudioFile.wav' target="_blank" rel="noreferrer">
-                <button className="main">
-                  <i class="fas fa-download" alt="Download file" style={{paddingInline: "0.25rem"}}></i>
-                </button>
+        <a href={audioFile} download='myAudioFile.wav' 
+        target="_blank" rel="noreferrer"
+        style={{ marginBottom: '1rem', display: 'flex', alignItems: 'center' }}
+        title="Download Audio"
+        tabIndex='-1'>
+            <button className="main" title="Download Audio">
+                <i class="fas fa-download" ari-hidden="true" style={{ paddingInline: '0.25rem' }}></i>
+            </button>
         </a>
     );
 }

@@ -21,12 +21,72 @@ export function Note({id: _id, text = "Empty note", time, recording_id, onEdit, 
   function EditModal() {
     if (editOpen === true) {
       document.body.style.overflow = 'hidden'; //disable window scroll
+
+      // this is a really annoying way to do this but I can't come up with anything better right now
+      document.querySelectorAll('.delete').forEach(elem => { //disable tabbing
+        elem.setAttribute('tabindex', '-1')
+        }
+      )
+      document.querySelectorAll('.edit').forEach(elem => {
+        elem.setAttribute('tabindex', '-1')
+        }
+      )
+      document.querySelectorAll('.navlink').forEach(elem => {
+        elem.setAttribute('tabindex', '-1')
+        }
+      )
+      document.querySelectorAll('.icon').forEach(elem => {
+        elem.setAttribute('tabindex', '-1')
+        }
+      )
+      document.querySelectorAll('.upload-audio-file').forEach(elem => {
+        elem.setAttribute('tabindex', '-1')
+        }
+      )
+      document.querySelectorAll('.record-audio').forEach(elem => {
+        elem.setAttribute('tabindex', '-1')
+        }
+      )
+      document.querySelectorAll('.stop-recording').forEach(elem => {
+        elem.setAttribute('tabindex', '-1')
+        }
+      )
     }
 
     function handleEditClose() {
       setEditOpen(false);
       setIsEditable(false);
       document.body.style.overflow = 'scroll'; //enable window scroll
+      
+      // this is a really annoying way to do this but I can't come up with anything better right now
+      document.querySelectorAll('.delete').forEach(elem => { //enable tabbing
+        elem.setAttribute('tabindex', '0')
+        }
+      )
+      document.querySelectorAll('.edit').forEach(elem => {
+        elem.setAttribute('tabindex', '0')
+        }
+      )
+      document.querySelectorAll('.navlink').forEach(elem => {
+        elem.setAttribute('tabindex', '0')
+        }
+      )
+      document.querySelectorAll('.icon').forEach(elem => {
+        elem.setAttribute('tabindex', '0')
+        }
+      )
+      document.querySelectorAll('.upload-audio-file').forEach(elem => {
+        elem.setAttribute('tabindex', '0')
+        }
+      )
+      document.querySelectorAll('.record-audio').forEach(elem => {
+        elem.setAttribute('tabindex', '0')
+        }
+      )
+      document.querySelectorAll('.stop-recording').forEach(elem => {
+        elem.setAttribute('tabindex', '0')
+        }
+      )
     }
 
     async function handleEditClick() {
@@ -89,11 +149,70 @@ export function Note({id: _id, text = "Empty note", time, recording_id, onEdit, 
   function DeleteModal() {
     if (deleteOpen === true) {
       document.body.style.overflow = 'hidden';
+      // this is a really annoying way to do this but I can't come up with anything better right now
+      document.querySelectorAll('.delete').forEach(elem => { //disable tabbing
+        elem.setAttribute('tabindex', '-1')
+        }
+      )
+      document.querySelectorAll('.edit').forEach(elem => {
+        elem.setAttribute('tabindex', '-1')
+        }
+      )
+      document.querySelectorAll('.navlink').forEach(elem => {
+        elem.setAttribute('tabindex', '-1')
+        }
+      )
+      document.querySelectorAll('.icon').forEach(elem => {
+        elem.setAttribute('tabindex', '-1')
+        }
+      )
+      document.querySelectorAll('.upload-audio-file').forEach(elem => {
+        elem.setAttribute('tabindex', '-1')
+        }
+      )
+      document.querySelectorAll('.record-audio').forEach(elem => {
+        elem.setAttribute('tabindex', '-1')
+        }
+      )
+      document.querySelectorAll('.stop-recording').forEach(elem => {
+        elem.setAttribute('tabindex', '-1')
+        }
+      )
     }
 
     function handleDeleteClose() {
       setDeleteOpen(false);
       document.body.style.overflow = 'scroll';
+
+      // this is a really annoying way to do this but I can't come up with anything better right now
+      document.querySelectorAll('.delete').forEach(elem => { //enable tabbing
+        elem.setAttribute('tabindex', '0')
+        }
+      )
+      document.querySelectorAll('.edit').forEach(elem => {
+        elem.setAttribute('tabindex', '0')
+        }
+      )
+      document.querySelectorAll('.navlink').forEach(elem => {
+        elem.setAttribute('tabindex', '0')
+        }
+      )
+      document.querySelectorAll('.icon').forEach(elem => {
+        elem.setAttribute('tabindex', '0')
+        }
+      )
+      document.querySelectorAll('.upload-audio-file').forEach(elem => {
+        elem.setAttribute('tabindex', '0')
+        }
+      )
+      document.querySelectorAll('.record-audio').forEach(elem => {
+        elem.setAttribute('tabindex', '0')
+        }
+      )
+      document.querySelectorAll('.stop-recording').forEach(elem => {
+        elem.setAttribute('tabindex', '0')
+        }
+      )
     }
   
     async function handleDeleteClick() {
