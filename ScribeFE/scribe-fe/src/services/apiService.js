@@ -61,8 +61,8 @@ const createNote = async (noteText, recordingId = null) => {
         });
 }
 
-const updateNote = async (id, note) => {
-    const data = {id: id, text: note};
+const updateNote = async (id, note, recordingId = null) => {
+    const data = {id: id, text: note, recording_id: recordingId};
     return fetch(`/notes/`, {
         method: 'PUT',
         headers: {

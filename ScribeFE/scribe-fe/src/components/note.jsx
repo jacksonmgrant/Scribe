@@ -67,7 +67,7 @@ export function Note({id: _id, text = "Empty note", time, recording_id, onEdit, 
     }
   
     async function handleSaveClick() {
-      await apiService.updateNote(_id, noteText)
+      await apiService.updateNote(_id, noteText,recording_id)
       onEdit(_id, noteText);
       handleEditClose();
     }
