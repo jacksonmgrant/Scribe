@@ -54,7 +54,9 @@ export function FileUploadButton({ onUpload }) {
                 type="file"
                 accept=".wav, .wav-x"
                 id="fileInput"
+                title="Hidden file input"
                 style={{ display: 'none' }}
+                aria-hidden='true'
                 onChange={handleFileInput}
             />
             <button type="button" name="upload-audio-file" id="upload-audio-file" onClick={() => {handleUpload();}}>
@@ -69,7 +71,9 @@ export function FileUploadButton({ onUpload }) {
                 type="file"
                 accept=".wav, .wav-x"
                 id="fileInput"
+                title="Hidden file input"
                 style={{ display: 'none' }}
+                aria-hidden='true'
                 onChange={handleFileInput}
             />
             <button type="button" name="upload-audio-file" id="upload-audio-file" onClick={() => {handleUpload();}}>
@@ -185,7 +189,7 @@ export function DownloadFileButton ({ recording_id }) {
     return (
         <a href={audioFile} download='myAudioFile.wav' target="_blank" rel="noreferrer">
                 <button className="main">
-                  <i class="fas fa-download" style={{paddingInline: "0.25rem"}}></i>
+                  <i class="fas fa-download" alt="Download file" style={{paddingInline: "0.25rem"}}></i>
                 </button>
         </a>
     );

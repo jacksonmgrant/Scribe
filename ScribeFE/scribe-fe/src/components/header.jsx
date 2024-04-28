@@ -4,7 +4,7 @@ export default function Header() {
   return (
     <header>
       {<div style={{ display: 'flex', alignItems: 'center' }}>
-        <img className="logo" alt="Scribe Logo" src={Logo}></img>
+        <img className="logo" alt="" src={Logo}></img>
         <h1>Scribe</h1>
        </div>}
     </header>

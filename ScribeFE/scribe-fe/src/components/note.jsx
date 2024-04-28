@@ -47,16 +47,14 @@ export function Note({id: _id, text = "Empty note", time, recording_id, onEdit, 
       editOpen ? 
       <div className='dialog-container'> {/* Kate: styled to prevent user from clicking behind modal */}
         <dialog className="edit-dialog"
-          open={editOpen}
-          aria-labelledby="modal-modal-title"
-          aria-describedby="modal-modal-description">
+          open={editOpen}>
             {isEditable ?
             <>
            <div className="modal-header">
-              <h2>Edit Note</h2>
+              <label className="text-label" htmlFor="note-edit"><h2>Edit Note</h2></label>
               {recording_id ? <DownloadFileButton parameter={recording_id} /> : <div></div>}
             </div>
-            <textarea autoFocus type="text" className="text-edit" value={noteText} onChange={editNote}/>
+            <textarea autoFocus id="note-edit" type="text" className="text-edit" value={noteText} onChange={editNote}/>
             <div className="buttons">
               <button className="cancel" onClick={handleEditCancel}>Cancel
               </button>
@@ -68,10 +66,10 @@ export function Note({id: _id, text = "Empty note", time, recording_id, onEdit, 
             :
             <>
             <div className="modal-header">
-              <h2>View Note</h2>
+              <label className="text-label" htmlFor="note"><h2>View Note</h2></label>
               {recording_id ? <DownloadFileButton recording_id={recording_id} /> : <div></div>}
             </div>
-            <textarea type="text" className="text" value={noteText} readOnly/>
+            <textarea id="note" type="text" className="text" value={noteText} readOnly/>
             <div className="buttons">
               <button className="cancel" onClick={handleEditClose}>Close
               </button>
@@ -108,9 +106,7 @@ export function Note({id: _id, text = "Empty note", time, recording_id, onEdit, 
       deleteOpen ?
       <div className='dialog-container'>
         <dialog className="delete-dialog"
-          open={deleteOpen}
-          aria-labelledby="modal-modal-title"
-          aria-describedby="modal-modal-description">
+          open={deleteOpen}>
           <h2>Delete Note</h2>
           <div className="delete-message">
             <h3><i class="fas fa-exclamation-triangle" style={{marginRight: '8px'}}></i>Are you sure?</h3>
@@ -133,7 +129,7 @@ export function Note({id: _id, text = "Empty note", time, recording_id, onEdit, 
     <>
     <div className="note">
       <div className="content">
-        <textarea type="text" className="text" value={noteText} onChange={editNote} readOnly rows={noteText.length/100+1} cols={100}/>
+        <p className="text">{noteText}</p>
       </div>
       <div className="actions">
         <button className="edit" onClick={handleEditOpen}>View

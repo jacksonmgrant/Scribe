@@ -27,22 +27,24 @@ const LoginSignup = ({signin,signout,email,setEmail,password,setPassword,clearLo
                     <h1 className='text'>Log In</h1>
                 </div>
                 <div className='inputs'>
+                    <label className="login-signup-label" htmlFor='email'>Email</label>
                     <div className='input'>
                         <i className="fa-solid fa-envelope"></i>
                         <input autoFocus
+                        id='email'
                         type='email' 
                         name="userid" 
-                        placeholder='Email'
                         required
                         onChange={(event) => handleEmailInput(event)}
                         />
                     </div>
                     {emailEmpty && <p id="emailMsg" style={{ color: 'var(--danger)', display: 'none' }}>Email cannot be blank</p>}
+                    <label className="login-signup-label" htmlFor='password'>Password</label>
                     <div className='input'>
                         <i className="fa-solid fa-lock"></i>
-                        <input type='password' 
+                        <input id='password'
+                        type='password' 
                         name="password" 
-                        placeholder='Password'
                         required
                         onChange={(event) => handlePasswordInput(event)}
                         />

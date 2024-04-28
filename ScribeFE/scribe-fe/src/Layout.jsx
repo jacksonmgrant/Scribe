@@ -31,7 +31,7 @@ const Layout = ({isSignin,signout}) => {
                   <li>
                       <Link to="/" style={{ fontWeight: '700', display: 'flex', alignItems: 'center' }}
                       onClick={toggleMenu}>
-                      <img alt="Scribe Logo" src={Logo} style={{ height: '1.75rem', marginRight: '0.5rem' }}></img>
+                      <img alt="" src={Logo} style={{ height: '1.75rem', marginRight: '0.5rem' }}></img>
                       <span style={{ paddingBottom: '3px' }}>Scribe</span></Link>
                   </li>
                   <li className="push">
@@ -52,7 +52,7 @@ const Layout = ({isSignin,signout}) => {
                   <li>
                       <Link to="/userpage" style={{ fontWeight: '700', display: 'flex', alignItems: 'center' }}
                       onClick={toggleMenu}>
-                      <img alt="Scribe Logo" src={Logo} style={{ height: '1.75rem', marginRight: '0.5rem' }}></img>
+                      <img alt="" src={Logo} style={{ height: '1.75rem', marginRight: '0.5rem' }}></img>
                       <span style={{ paddingBottom: '2px' }}>Scribe</span></Link>
                   </li>
                   <li>

@@ -8,44 +8,63 @@ const About = () => {
     return (
       <div className={styles.aboutContainer}>
         <h1>About Us</h1>
+        <h2>Team</h2>
         <div className={styles.container}>
             <div className={styles.person}>
-                <img src={Jacksonpfp} alt="Jackson Grant" width="220" height="220" className={styles.pic}/>
-                <h2>Jackson Grant</h2>
+                <img src={Jacksonpfp} alt="Headshot of Jackson Grant. He's smiling, there are trees in the background." width="220" height="220" className={styles.pic}/>
+                <h3>Jackson Grant</h3>
                 <div className={styles.text}>
                   <p>Project lead, <br></br> Full Stack Developer</p>
                 </div>
             </div>
             <div className={styles.person}>
-                <img src={suitFord} alt="ford" width="220" height="220" className={styles.pic}/>
-                <h2>Nithi Pipatkittikul</h2>
+                <img src={suitFord} alt="Headshot of Nithi Pipatkittikul. He's wearing a suit in front of a white background." width="220" height="220" className={styles.pic}/>
+                <h3>Nithi Pipatkittikul</h3>
                 <div className={styles.text}>
                   <p>Full Stack Developer, <br></br> Database Designer</p>
                 </div>
             </div>
             <div className={styles.person}>
-                <img src={Kate} alt="kate" width="220" height="220" className={styles.pic}/>
-                <h2>Kate Doolittle</h2>
-                <div className={styles.text}>
-                  <p>UI/UX Designer, <br></br> Frontend Developer</p>
-                </div>
-            </div>
-            <div className={styles.person}>
-                <img src={me} alt="dylan" width="220" height="220" className={styles.pic} style={{backgroundColor: "white"}}/>
-                <h2>Dylan Crooks</h2>
+                <img src={me} alt="Headshot of Dylan Crooks. He's wearing a suit in front of a white background." width="220" height="220" className={styles.pic} style={{backgroundColor: "white"}}/>
+                <h3>Dylan Crooks</h3>
                 <div className={styles.text}>
                   <p>Backend Developer, <br></br> Database Designer</p>
                 </div>
             </div>
+            <div className={styles.person}>
+                <img src={Kate} alt="Headshot of Kate Doolittle taken in their apartment." width="220" height="220" className={styles.pic}/>
+                <h3>Kate Doolittle</h3>
+                <div className={styles.text}>
+                  <p>UI/UX Designer, <br></br> Frontend Developer</p>
+                </div>
+            </div>
         </div>
-        <h1>Tech Stack</h1>
+        <h2>Tech Stack</h2>
         <div className={styles.iconContainer}>
+          <div style={{ marginBottom: '1.5rem' }}>
             <StackIcon className="icon" name="mongodb" />
-            <StackIcon className="icon" name="reactjs" />
+            <p className="stack">Mongo DB</p>
+          </div>
+           <div style={{ marginBottom: '1.5rem' }}>
             <StackIcon className="icon" name="python" />
-            <StackIcon className="icon" name="js" />
-            <StackIcon className="icon" name="html5" />
-            <StackIcon className="icon" name="css3" />
+            <p className="stack">Python</p>
+           </div>
+            <div style={{ marginBottom: '1.5rem' }}>
+              <StackIcon className="icon" name="js" />
+              <p className="stack">Javascript</p>
+            </div>
+            <div style={{ marginBottom: '1.5rem' }}>
+              <StackIcon className="icon" name="reactjs" />
+              <p className="stack">React JS</p>
+            </div>
+            <div style={{ marginBottom: '1.5rem' }}>
+              <StackIcon className="icon" name="html5" />
+              <p className="stack">HTML5</p>
+            </div>
+            <div style={{ marginBottom: '1.5rem' }}>
+              <StackIcon className="icon" name="css3" />
+              <p className="stack">CSS3</p>
+            </div>
         </div>
       </div>
     )

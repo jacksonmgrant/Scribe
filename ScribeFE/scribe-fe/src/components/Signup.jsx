@@ -33,28 +33,31 @@ const Signup = ({signin,signout,name,setName,email,setEmail,password,setPassword
                     <h1 className='text'>Sign up</h1>
                 </div>
                 <div className='inputs'>
+                    <label className="login-signup-label" htmlFor='name'>Name</label>
                     <div className='input'>
                         <i className="fa-solid fa-user"></i>
-                        <input autoFocus type='text' placeholder='Name' 
+                        <input autoFocus type='text' id='name' 
                             value={name}
                             required 
                             onChange={(event) => handleNameInput(event)}
                         />
                     </div>
                     {nameEmpty && <p id="nameMsg" style={{ color: 'var(--danger)', display: 'none' }}>Name cannot be blank</p>}
+                    <label className="login-signup-label" htmlFor='email'>Email</label>
                     <div className='input'>
                         <i className="fa-solid fa-user"></i>
-                        <input type='email'  placeholder='Email' 
+                        <input type='email'  id='email' 
                             value={email}
                             required
                             onChange={(event) => handleEmailInput(event)}
                         />
                     </div>
                     {emailEmpty && <p id="emailMsg" style={{ color: 'var(--danger)', display: 'none' }}>Email cannot be blank</p>}
+                    <label className="login-signup-label" htmlFor='password'>Password</label>
                     <div className='input'>
                         <i className="fa-solid fa-lock"></i>
                         <input type='password' 
-                            placeholder='Password' 
+                            id='password' 
                             value={password}
                             required
                             onChange={(event) => handlePasswordInput(event)}
