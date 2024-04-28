@@ -150,7 +150,7 @@ To run tests, run `pytest tests/` from the ScribeBE folder. You will get an erro
   - [x] Users collection
   - [x] Feedback collection
   - [x] Audio recordings collection
-    - [ ] Audio recordings are saved if they are < 15 MB
+    - [x] Audio recordings are saved if they are < 15 MB
     - [x] Allow user to listen to the recording in UI
   - [x] Database class to simplify MongoDB commands
 - [x] Implement user auth
@@ -167,6 +167,7 @@ To run tests, run `pytest tests/` from the ScribeBE folder. You will get an erro
   - [x] Feedback
   - [x] Notes
   - [x] Users
+  - [ ] Audio
 - [ ] Record demos of app
   - [ ] User login (Do with network inspector open to show api calls)
   - [ ] Notes demo
