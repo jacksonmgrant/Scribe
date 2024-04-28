@@ -32,7 +32,6 @@ export function FileUploadButton({ onUpload }) {
             console.log(text);
             const audioFile = await getAudioFile(event);
             if (audioFile.size < 15 * 1024 * 1024) {
-                const audioFile = await getAudioFile(event);
                 console.log("3",audioFile)
                 const response = await apiService.createAudio(audioFile);
                 console.log("recordingid",response.recording_id) 
