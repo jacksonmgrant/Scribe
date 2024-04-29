@@ -42,6 +42,7 @@ export async function sttFromMic() {
                 resolve(result.text);
             } else {
                 console.log('ERROR: Speech was cancelled or could not be recognized. Ensure your microphone is working properly.');
+                reject('ERROR: Speech was cancelled or could not be recognized. Ensure your microphone is working properly.');
             }
         });
     });

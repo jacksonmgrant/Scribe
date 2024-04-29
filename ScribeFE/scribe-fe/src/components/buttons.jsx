@@ -118,7 +118,12 @@ export function RecordAudioButton({ onUpload }) {
             console.log("Recording");
             while (status === "recording") {
                 console.log("Getting speech from mic")
-                transcribedTextArray = [...transcribedTextArray, await sttFromMic()];
+                try {
+                    const result = await sttFromMic();
+                    transcribedTextArray = [...transcribedTextArray, result];
+                } catch (error) {
+                    console.log(`Error recording: ${error}`);
+                }
             }
         } catch (error) {
             console.error(`Error recording: ${error}`);
