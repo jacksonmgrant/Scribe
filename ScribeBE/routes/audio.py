@@ -6,9 +6,8 @@ from auth.authenticate import authenticate
 from models.audio_model import DbAudio
 from bson.binary import Binary
 from database.database import Database
-# from fastapi.responses import StreamingResponse
-# import io
 import base64
+
 logger = logging.getLogger(__name__)
 
 audio_router = APIRouter(tags=["Audio"])
@@ -37,7 +36,6 @@ async def recieve_audio(audio: UploadFile, user: str = Depends(authenticate)) ->
     await audio_database.save(audio_instance)
 
     logger.info(f"New audio file from {user["email_id"]} created")
-    # logger.info(f"AYAAAAAAAAAAAAAAAAAA {audio_instance.id}")
     return {"recording_id": str(audio_instance.id)}
 
 

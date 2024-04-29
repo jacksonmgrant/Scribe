@@ -59,7 +59,6 @@ export function Note({id: _id, text = "Empty note", time, recording_id, onEdit, 
         elem.setAttribute('tabindex', '0') } ) }
 
     async function handleEditClick() {
-      console.log("error message occur in handleEditclick function")
       setIsEditable(true);
     }
 
@@ -82,7 +81,7 @@ export function Note({id: _id, text = "Empty note", time, recording_id, onEdit, 
             <>
            <div className="modal-header">
               <label className="text-label" htmlFor="note-edit"><h2>Edit Note</h2></label>
-              {recording_id ? <DownloadFileButton parameter={recording_id} /> : <div></div>}
+              {recording_id ? <DownloadFileButton recording_id={recording_id} /> : <div></div>}
             </div>
             <textarea autoFocus id="note-edit" type="text" className="text-edit" value={noteText} onChange={editNote}/>
             <div className="buttons">
