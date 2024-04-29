@@ -19,7 +19,6 @@ export function FileUploadButton({ onUpload }) {
     async function getAudioFile(event) {
         return new Promise((resolve, reject) => {
             const audioFile = event.target.files[0];
-            console.log("2",audioFile);
             resolve(audioFile)
         })
     }
@@ -29,12 +28,11 @@ export function FileUploadButton({ onUpload }) {
             console.log("Transcribing");
             setIsTranscribing(true);
             const text = await transcribeFile(event);
-            console.log(text);
             const audioFile = await getAudioFile(event);
             let recordingId = null;
 
             if (audioFile.size < 15728640) {
-                console.log("3",audioFile)
+                console.log("Uploading file",audioFile)
                 const response = await apiService.createAudio(audioFile);
                 recordingId = await response.recording_id;
             }
@@ -93,19 +91,12 @@ export function FileUploadButton({ onUpload }) {
 export function RecordAudioButton({ onUpload }) {
     // hook for loading screen
     const [isTranscribing, setIsTranscribing] = useState(false);
-    
-    const [ status, setStatus ] = useState("idle");
-
+    const [status, setStatus] = useState("idle");
     let transcribedTextArray = [];
 
     if (isTranscribing === true) {
         document.body.style.overflow = 'hidden'; //disable window scroll
     }
-
-    const startSttFromMic = async () => {
-        setStatus("recording");
-        //record();
-    };
 
     useEffect(() => {
         if (status === "recording") {
@@ -113,11 +104,16 @@ export function RecordAudioButton({ onUpload }) {
         }
     }, [status]);
 
+    const startSttFromMic = async () => {
+        setStatus("recording");
+    };
+
     const record = async () => {
         try {
             console.log("Recording");
             while (status === "recording") {
                 console.log("Getting speech from mic")
+                console.log(await status)
                 try {
                     const result = await sttFromMic();
                     transcribedTextArray = [...transcribedTextArray, result];

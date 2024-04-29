@@ -165,7 +165,6 @@ const transferBinaryToAudio = (binary) =>{
 }
 
 const getAudio = async (id) => {
-    console.log("what;s id",id) // id is objectId now
     return fetch(`/audio/${id}`, {
             method: 'GET',
             headers: {
