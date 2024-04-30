@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import apiService from '../services/apiService';
 import { transcribeFile, sttFromMic } from '../services/speechRecognizerService';
 import '../styles/buttons.css'
@@ -92,6 +92,7 @@ export function RecordAudioButton({ onUpload }) {
     // hook for loading screen
     const [isTranscribing, setIsTranscribing] = useState(false);
     const [status, setStatus] = useState("idle");
+    const latestState = useRef(status);
     let transcribedTextArray = [];
 
     if (isTranscribing === true) {
@@ -106,20 +107,17 @@ export function RecordAudioButton({ onUpload }) {
 
     const startSttFromMic = async () => {
         setStatus("recording");
+        latestState.current = "recording";
     };
 
     const record = async () => {
         try {
             console.log("Recording");
-            while (status === "recording") {
+            while (latestState.current === "recording") {
                 console.log("Getting speech from mic")
-                console.log(await status)
                 try {
-                    const result = await sttFromMic();
-                    transcribedTextArray = [...transcribedTextArray, result];
-                } catch (error) {
-                    console.log(`Error recording: ${error}`);
-                }
+                    transcribedTextArray = [...transcribedTextArray, await sttFromMic()];
+                } catch (error) {}
             }
         } catch (error) {
             console.error(`Error recording: ${error}`);
@@ -127,21 +125,24 @@ export function RecordAudioButton({ onUpload }) {
     };
 
     const sendTranscription = async () => {
-        if (transcribedTextArray.length !== 0) {
-            const transcribedText = transcribedTextArray.join(' ');
-            console.log('Transcribed speech:', transcribedText);
-            apiService.createNote(transcribedText)
-                .then(() => {
-                    onUpload();
-                })
-                .catch(error => {
-                    console.error('Error creating note:', error);
-                });
-            transcribedTextArray = [];
-        }
-        setIsTranscribing(false);
-        document.body.style.overflow = 'scroll'; //enable window scroll
-        setStatus("idle");
+        await setTimeout(() => {
+            if (transcribedTextArray.length !== 0) {
+                const transcribedText = transcribedTextArray.join(' ');
+                console.log('Transcribed speech:', transcribedText);
+                apiService.createNote(transcribedText)
+                    .then(() => {
+                        onUpload();
+                    })
+                    .catch(error => {
+                        console.error('Error creating note:', error);
+                    });
+                transcribedTextArray = [];
+            }
+            setStatus("idle");
+            latestState.current = "idle";
+            setIsTranscribing(false);
+            document.body.style.overflow = 'scroll'; //enable window scroll
+        }, 1000);
     };
 
     return (
