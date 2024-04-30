@@ -142,7 +142,7 @@ export function RecordAudioButton({ onUpload }) {
             latestState.current = "idle";
             setIsTranscribing(false);
             document.body.style.overflow = 'scroll'; //enable window scroll
-        }, 1000);
+        }, 1500);
     };
 
     return (
