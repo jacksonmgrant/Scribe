@@ -9,7 +9,7 @@ from models.note_model import DbNote
 from auth.JWT_token import create_access_token
 from database.database import Database
 
-test_user_id = '662be2c6ef346c7484bf0c2a'
+test_user_id = '66304cdcdd39bb070119e510'
 admin_user_id = '66105db717133f8a7b0952dc'
 
 @pytest.fixture
@@ -23,8 +23,8 @@ async def init_database():
 async def access_token() -> str:
     return create_access_token(data={
                 "sub": str(ObjectId(test_user_id)),
-                "email_id": 'pytest@email.com',
-                "password": "$2b$12$5JY3bnlMRTOm3rFl9g/ShOCkww0RHVwUdWXKRuilxSCfVTluX2pJW"
+                "email_id": 'notetester@email.com',
+                "password": "$2b$12$UrZEgTIbtDEah7lROiY/wOW8o.6rncpOgSqOrBju2RuNsOC5l/mju"
             })
 
 @pytest.fixture
@@ -125,7 +125,8 @@ async def test_create_note(access_token: str) -> None:
 
     payload = {
         "id": test_user_id,
-        "text" : "pytest create note"
+        "text" : "pytest create note",
+        "recording_id": None
     }
 
     expected_response = {"note created": "pytest create note"}
@@ -146,7 +147,8 @@ async def test_create_note_with_empty_text(access_token: str) -> None:
 
     payload = {
         "id": test_user_id,
-        "text" : None
+        "text" : None,
+        "recording_id": None
     }
 
     expected_response = {"detail": "Note must have text"}
@@ -171,7 +173,8 @@ async def test_update_note(access_token: str, mock_note: DbNote, setupDatabase) 
 
         payload = {
             "id": note_id,
-            "text" : "pytest note updated"
+            "text" : "pytest note updated",
+            "recording_id": None
         }
 
         expected_response = {"message": "Note updated"}
@@ -182,18 +185,22 @@ async def test_update_note(access_token: str, mock_note: DbNote, setupDatabase) 
         assert response.json() == expected_response
 
 @pytest.mark.asyncio
-async def test_update_note_as_wrong_user(access_token: str) -> None:
+async def test_update_note_as_wrong_user(access_token: str, setupDatabase) -> None:
     token = await access_token
     headers = {
         "Content-Type": "application/json",
         "Authorization": f"Bearer {token}"
     }
 
+    #async for note_database in setupDatabase:
+    #    wrong_id = note_database.model.find_one({"user_id": {"$ne": test_user_id}})["user_id"]
+
     # If this test is failing the note with this id probably got deleted. Make a new one and paste the id here.
-    wrong_id = '662713c5232c69e8241749e5'
+    wrong_id = '663050424817309c166badb5'
     payload = {
         "id": wrong_id,
-        "text" : "This note will be accessed by the wrong user"
+        "text" : "This note will be accessed by the wrong user",
+        "recording_id": None
     }
 
     expected_response = {"detail": "Operation not allowed"}
@@ -213,7 +220,8 @@ async def test_update_note_with_invalid_note_id(access_token: str) -> None:
 
     payload = {
         "id": "wrong_id",
-        "text" : "This note does not exist"
+        "text" : "This note does not exist",
+        "recording_id": None
     }
 
     expected_response = {"detail": "Note not found"}
@@ -233,7 +241,8 @@ async def test_update_note_with_nonexistent_note_id(access_token: str) -> None:
 
     payload = {
         "id": "66105db717133f8a7b0952dc",
-        "text" : "This note does not exist"
+        "text" : "This note does not exist",
+        "recording_id": None
     }
 
     expected_response = {"detail": "Note not found"}
