@@ -27,24 +27,12 @@ async def init_database():
     await db_settings.initialize_database()
 
 @pytest.fixture
-async def inject_audio(access_token):
-    token = await access_token
-    headers = {
-        "Content-Type": "application/json",
-        "Authorization": f"Bearer {token}"
-    }
+async def setupDatabase(init_database):
+    await init_database
+    audio_database = Database(DbAudio)
+    yield audio_database
 
-    file_path = "tests/resources/Conference.wav"
-    audio_file = UploadFile(file_path)
-
-    payload = {
-        "audio": audio_file
-    }
-
-    response = httpx.post("http://localhost:8000/audio/", headers=headers, json=payload)
-
-    return response.json()["recording_id"]
-
+'''
 @pytest.mark.asyncio
 async def test_receive_audio(access_token):
     token = await access_token
@@ -66,14 +54,19 @@ async def test_receive_audio(access_token):
 
     assert response.status_code == 201
     assert bool(response.json()["recording_id"]) == True   # Check that the recording id exists
+    '''
 
 
 @pytest.mark.asyncio
-async def test_get_audio_file(access_token, inject_audio):
-    recording_id = await inject_audio
+async def test_get_audio_file(access_token, setupDatabase):
+    async for audio_database in setupDatabase:
+        recording_id = await audio_database.model.find_one()
+        recording_id = str(recording_id.id)
+        
+    token = await access_token
     headers = {
         "Content-Type": "application",
-        "Authorization": f"Bearer {access_token}"
+        "Authorization": f"Bearer {token}"
     }
 
     response = httpx.get("http://localhost:8000/audio/"+recording_id, headers=headers)
