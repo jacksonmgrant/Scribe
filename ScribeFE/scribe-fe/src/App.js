@@ -29,12 +29,22 @@ const App = () => {
     }
 
     const clearSignupInput = () => {
+        let name = document.getElementById("name");
+        let email = document.getElementById("email");
+        let passowrd = document.getElementById("password");
+        name.value = "";
+        email.value = "";
+        passowrd.value = "";
         setName("")
         setEmail("")
         setPassword("")
     }
 
     const clearLoginInput = () => {
+        let email = document.getElementById("email");
+        let passowrd = document.getElementById("password");
+        email.value = "";
+        passowrd.value = "";
         setEmail("")
         setPassword("")
     }

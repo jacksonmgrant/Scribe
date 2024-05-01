@@ -187,7 +187,7 @@ const getAudio = async (id) => {
 
 
 
-const checkUser = async (email,password,navigate,setCannotLogin,signin,signout,clearLoginInput,emailEmpty,passwordEmpty) => {
+const checkUser = async (email,password,navigate,setCannotLogin,signin,signout,emailEmpty,passwordEmpty) => {
     try {
         const response = await fetch(`/users/login/`, {
             method: 'POST',
@@ -218,7 +218,6 @@ const checkUser = async (email,password,navigate,setCannotLogin,signin,signout,c
             await localStorage.setItem('token', user.access_token);
             navigate('/userpage');
             signin();
-            clearLoginInput();
         }
     } catch (error) {
         console.error('Error:', error);
@@ -226,7 +225,7 @@ const checkUser = async (email,password,navigate,setCannotLogin,signin,signout,c
     }
 }
 
-const createUser = async (name,email,password,navigate,setCannotSignup,signin,signout,clearSignupInput,nameEmpty,emailEmpty,passwordEmpty) => {
+const createUser = async (name,email,password,navigate,setCannotSignup,signin,signout,nameEmpty,emailEmpty,passwordEmpty) => {
     try {
         const response = await fetch(`/users/signup`, {
             method: 'POST',
@@ -245,7 +244,6 @@ const createUser = async (name,email,password,navigate,setCannotSignup,signin,si
             await localStorage.setItem('token', user.access_token);
             navigate('/userpage')
             signin()
-            clearSignupInput();
         }else {
             if (nameEmpty) {
                 document.getElementById('nameMsg').style.display = 'block';

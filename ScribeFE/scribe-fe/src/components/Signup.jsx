@@ -69,7 +69,8 @@ const Signup = ({signin,signout,name,setName,email,setEmail,password,setPassword
                 <div className='submit-container'>
                     <Link className="submit" 
                     onClick={async () => {
-                        await apiService.createUser(name,email,password,navigate,setCannotSignup,signin,signout,clearSignupInput,nameEmpty,emailEmpty,passwordEmpty);
+                        await apiService.createUser(name,email,password,navigate,setCannotSignup,signin,signout,nameEmpty,emailEmpty,passwordEmpty);
+                        clearSignupInput()
                     }}>
                         Sign up
                     </Link>
