@@ -44,12 +44,11 @@ async def test_receive_audio(access_token):
     file_path = "tests/resources/Conference.wav"
     audio_file = open(file_path, "rb")
 
-    files = {"audio": ("file", audio_file)}
+    files = {"audio": audio_file}
 
 
     response = httpx.post("http://localhost:8000/audio/", headers=headers, files=files)
 
-    # Close the file after adding it to the request payload
     audio_file.close()
 
     assert response.status_code == 201
