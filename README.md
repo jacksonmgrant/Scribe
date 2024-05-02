@@ -42,14 +42,17 @@ The Scribe backend handles user data storage, authentication, and authorization.
 
 ## Demos
 
-CRUD actions for notes:
-    [![Scribe Core Actions Demo](https://img.youtube.com/vi/uHreL4ulx0g/maxresdefault.jpg)](https://www.youtube.com/watch?v=uHreL4ulx0g)
+Scribe Notes Demo:
+    [![Scribe Core Actions Demo](https://img.youtube.com/vi/IqGp2SA8YvI/maxresdefault.jpg)](https://www.youtube.com/watch?v=IqGp2SA8YvI)
 
-Multiple notes:
-    ![The Scribe app with multiple notes recorded](./ScribeFE/screenshots/Multiple_notes.png)
+Scribe Login Demo:
+    [![Scribe Login Demo](https://img.youtube.com/vi/Cap5FSV4c3I/maxresdefault.jpg)](https://www.youtube.com/watch?v=Cap5FSV4c3I)
 
-Giving feedback as a user:
-    [![Scribe Core Actions Demo](https://img.youtube.com/vi/ynCKYspCr1o/maxresdefault.jpg)](https://www.youtube.com/watch?v=ynCKYspCr1o)
+Scribe User Feedback Demo:
+    [![Scribe Feedback Demo](https://img.youtube.com/vi/ynCKYspCr1o/maxresdefault.jpg)](https://www.youtube.com/watch?v=ynCKYspCr1o)
+
+Screenshot of the about us page:
+    ![About us page screenshot](.\ScribeFE\screenshots\About_us_page.png)
 
 ## Development Notes
 
@@ -168,13 +171,13 @@ To run tests, run `pytest tests/` from the ScribeBE folder. You will get an erro
   - [x] Notes
   - [x] Users
   - [ ] Audio
-- [ ] Record demos of app
-  - [ ] User login (Do with network inspector open to show api calls)
-  - [ ] Notes demo
+- [x] Record demos of app
+  - [x] User login (Do with network inspector open to show api calls)
+  - [x] Notes demo
     - [x] Note CRUD actions
-    - [ ] Upload/Download a note
+    - [x] Upload/Download a note
   - [x] User feedback form
-  - [ ] Screenshot all app pages
+  - [x] Screenshot all app pages
 
 #### Stretch Goals
 
