@@ -32,12 +32,11 @@ async def setupDatabase(init_database):
     audio_database = Database(DbAudio)
     yield audio_database
 
-'''
+
 @pytest.mark.asyncio
 async def test_receive_audio(access_token):
     token = await access_token
     headers = {
-        "Content-Type": "application/json",
         "Authorization": f"Bearer {token}"
     }
 
@@ -53,7 +52,7 @@ async def test_receive_audio(access_token):
 
     assert response.status_code == 201
     assert bool(response.json()["recording_id"]) == True   # Check that the recording id exists
-    '''
+
 
 
 @pytest.mark.asyncio
