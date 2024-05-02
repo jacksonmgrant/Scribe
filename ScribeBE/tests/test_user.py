@@ -1,13 +1,16 @@
 from httpx import ASGITransport, AsyncClient
 import pytest
-from database.connection import Settings
+import os
+from dotenv import load_dotenv
+from bson.objectid import ObjectId
+
 from main import app
+from database.database import Database
+from models.user_model import DbUser
+from database.connection import Settings
 import auth.JWT_token as JWT_token
 from datetime import timedelta
 from auth.JWT_token import create_access_token
-from bson.objectid import ObjectId
-import os
-from dotenv import load_dotenv
 
 
 load_dotenv()
@@ -36,6 +39,9 @@ async def access_token() -> str:
 async def test_signup() -> None:
     
     await init_db()
+    # Clean test data
+    user_database = Database(DbUser)
+    await user_database.delete_all_by_field("email", "pytest@gmail.com")
 
     payload = {"name" : "pytest", "email": "pytest@gmail.com", "password": "pytest123"}
     headers = {"Content-Type": "application/json"}
@@ -76,10 +82,11 @@ async def test_login(access_token: str) -> None:
 
     await init_db()
 
+    token = await access_token
     payload = {"email": "a@gmail.com", "password": "a123"}
     headers = {
         "Content-Type": "application/json",
-        "Authorization": f"Bearer {access_token}"
+        "Authorization": f"Bearer {token}"
     }
     
     async with AsyncClient(
@@ -95,10 +102,11 @@ async def test_login_with_user_not_existing(access_token: str) -> None:
 
     await init_db()
 
+    token = await access_token
     payload = {"email": "", "password": ""}
     headers = {
         "Content-Type": "application/json",
-        "Authorization": f"Bearer {access_token}"
+        "Authorization": f"Bearer {token}"
     }
     
     test_response = {"detail" : "Incorrect email or password, or user does not exist."}

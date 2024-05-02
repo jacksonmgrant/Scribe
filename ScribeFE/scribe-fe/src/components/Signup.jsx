@@ -4,9 +4,27 @@ import { Link,useNavigate } from 'react-router-dom';
 import apiService from '../services/apiService';
 
 const Signup = ({signin,signout,name,setName,email,setEmail,password,setPassword,clearSignupInput}) => {
-
-    const [cannotSignup,setCannotSignup] = useState(false)
+    const [nameEmpty, setNameEmpty] = useState(true);
+    const [emailEmpty, setEmailEmpty] = useState(true);
+    const [passwordEmpty, setPasswordEmpty] = useState(true);
+   
+    const [cannotSignup,setCannotSignup] = useState(true)
     const navigate = useNavigate();
+
+    function handleNameInput(event) {
+        setName(event.target.value);
+        setNameEmpty(false);
+    }
+
+    function handleEmailInput(event) {
+        setEmail(event.target.value);
+        setEmailEmpty(false);
+    }
+
+    function handlePasswordInput(event) {
+        setPassword(event.target.value);
+        setPasswordEmpty(false);
+    }
 
     return(
         <form method='POST'>
@@ -15,34 +33,43 @@ const Signup = ({signin,signout,name,setName,email,setEmail,password,setPassword
                     <h1 className='text'>Sign up</h1>
                 </div>
                 <div className='inputs'>
+                    <label className="login-signup-label" htmlFor='name'>Name</label>
                     <div className='input'>
                         <i className="fa-solid fa-user"></i>
-                        <input autoFocus type='text' placeholder='Name' 
+                        <input autoFocus type='text' id='name' 
                             value={name}
-                            onChange={(event) => setName(event.target.value)}
+                            required 
+                            onChange={(event) => handleNameInput(event)}
                         />
                     </div>
+                    {nameEmpty && <p id="nameMsg" style={{ color: 'var(--danger)', display: 'none' }}>Name cannot be blank</p>}
+                    <label className="login-signup-label" htmlFor='email'>Email</label>
                     <div className='input'>
                         <i className="fa-solid fa-user"></i>
-                        <input type='email'  placeholder='Email' 
+                        <input type='email'  id='email' 
                             value={email}
-                            onChange={(event) => setEmail(event.target.value)}
+                            required
+                            onChange={(event) => handleEmailInput(event)}
                         />
                     </div>
+                    {emailEmpty && <p id="emailMsg" style={{ color: 'var(--danger)', display: 'none' }}>Email cannot be blank</p>}
+                    <label className="login-signup-label" htmlFor='password'>Password</label>
                     <div className='input'>
                         <i className="fa-solid fa-lock"></i>
                         <input type='password' 
-                            placeholder='Password' 
+                            id='password' 
                             value={password}
-                            onChange={(event) => setPassword(event.target.value)}
+                            required
+                            onChange={(event) => handlePasswordInput(event)}
                         />
                     </div>
-                    {cannotSignup && <p style={{ color: 'var(--danger)' }}>An account with this email already exists</p>}
+                    {passwordEmpty && <p id="passwordMsg" style={{ color: 'var(--danger)', display: 'none' }}>Password cannot be blank</p>}
+                    {cannotSignup && <p id="cannotSignup" style={{ color: 'var(--danger)', display: 'none' }}>An account with that email already exists</p>}
                 </div>
                 <div className='submit-container'>
                     <Link className="submit" 
                     onClick={async () => {
-                        await apiService.createUser(name,email,password,navigate,setCannotSignup,signin,signout);
+                        await apiService.createUser(name,email,password,navigate,setCannotSignup,signin,signout,nameEmpty,emailEmpty,passwordEmpty);
                         clearSignupInput()
                     }}>
                         Sign up

@@ -39,9 +39,11 @@ then define custom properties for uses based on those colors */
 	--main-bg-gradient: linear-gradient(to bottom right, var(--yellow-orange), var(--orange));
 	--solid-bg: var(--darkest);
 	--solid-bg-2: var(--dark);
+	--solid-bg-3: var(--darker);
 
 	--h1: var(--orange);
 	--h2: var(--light);
+	--h3: var(--orange);
 
 	--text-main: var(--orange);
 	--text-light: var(--light);
@@ -54,7 +56,7 @@ then define custom properties for uses based on those colors */
 	--modal-shadow: rgba(17, 24, 39, 0.85);
 
 	--form-field: var(--light);
-	--form-field-text: var(--gray);
+	--form-field-text: var(--dark);
 
 	--star-filled: var(--orange);
 	--star-focus: var(--gray);

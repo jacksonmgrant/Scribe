@@ -19,36 +19,38 @@ const FormSubmission = () => {
                 <h1>User feedback</h1>
             </div>
             <div className={styles.inputs}>
-                <h2>Tell us about your experience</h2>
+                <label htmlFor="experience"><h2>Tell us about your experience</h2></label>
                 <div className={styles.experience} >
-                    <textarea 
+                    <textarea id="experience"
                     onChange={(event) => setText(event.target.value)} >
                     </textarea>
                 </div>
-                <form className={styles.input} onChange={(event) => setRating(event.target.value)} >
-                    <h2>Rate us</h2>
-                    <div className={styles.stars}>  
+                <form className={styles.input} >
+                    <fieldset>  
+                        <legend><h2>Rate us</h2></legend>
                         {[...Array(5)].map((star, index) =>{
                             const currentRating = index + 1;
+
                             return(
                             <div key={index}>
                                 <input
                                     type='radio'
                                     name="rating"
+                                    id={index + 1}
                                 />
-                                <label>
-                                <FaStar 
-                                    size={60}
-                                    color={currentRating <= (hover || rating) ? "var(--orange)" : "var(--light)"}
-                                    onMouseEnter={() => setHover(currentRating)}
-                                    onMouseLeave={() => setHover(null)}
-                                    onClick={() => setRating(currentRating)}
-                                />
+                                <label className="star-label" htmlFor={index + 1} tabIndex='0'>
+                                    <FaStar className={styles.stars}
+                                        color={currentRating <= (hover || rating) ? "var(--orange)" : "var(--light)"}
+                                        onMouseEnter={() => setHover(currentRating)}
+                                        onMouseLeave={() => setHover(null)}
+                                        onClick={() => setRating(currentRating)}
+                                    />
+                                    {index + 1}
                                 </label>
                             </div>
                             )
                         })}  
-                    </div>
+                    </fieldset>
                 </form>
                 {cannotSend && <p className={styles.header} style={{ color: 'var(--danger)' }}>Form fields cannot be blank</p>}
             </div>

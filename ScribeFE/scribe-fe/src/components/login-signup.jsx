@@ -4,9 +4,21 @@ import {Link,useNavigate} from 'react-router-dom';
 import apiService from '../services/apiService';
 
 const LoginSignup = ({signin,signout,email,setEmail,password,setPassword,clearLoginInput}) => {
+    const [emailEmpty, setEmailEmpty] = useState(true);
+    const [passwordEmpty, setPasswordEmpty] = useState(true);
 
-    const [cannotLogin,setCannotLogin] = useState(false);
+    const [cannotLogin, setCannotLogin] = useState(true);
     const navigate = useNavigate();
+
+    function handleEmailInput(event) {
+        setEmail(event.target.value);
+        setEmailEmpty(false);
+    }
+
+    function handlePasswordInput(event) {
+        setPassword(event.target.value);
+        setPasswordEmpty(false);
+    }
     
     return(
         <form method='GET'>
@@ -15,31 +27,35 @@ const LoginSignup = ({signin,signout,email,setEmail,password,setPassword,clearLo
                     <h1 className='text'>Log In</h1>
                 </div>
                 <div className='inputs'>
+                    <label className="login-signup-label" htmlFor='email'>Email</label>
                     <div className='input'>
                         <i className="fa-solid fa-envelope"></i>
                         <input autoFocus
+                        id='email'
                         type='email' 
                         name="userid" 
-                        placeholder='Email'
                         required
-                        onChange={(event) => setEmail(event.target.value)}
+                        onChange={(event) => handleEmailInput(event)}
                         />
                     </div>
+                    {emailEmpty && <p id="emailMsg" style={{ color: 'var(--danger)', display: 'none' }}>Email cannot be blank</p>}
+                    <label className="login-signup-label" htmlFor='password'>Password</label>
                     <div className='input'>
                         <i className="fa-solid fa-lock"></i>
-                        <input type='password' 
+                        <input id='password'
+                        type='password' 
                         name="password" 
-                        placeholder='Password'
                         required
-                        onChange={(event) => setPassword(event.target.value)}
+                        onChange={(event) => handlePasswordInput(event)}
                         />
                     </div>
-                    {cannotLogin && <p style={{ color: 'var(--danger)' }}>Incorrect email or password</p>}
+                    {passwordEmpty && <p id="passwordMsg" style={{ color: 'var(--danger)', display: 'none' }}>Password cannot be blank</p>}
+                    {cannotLogin && <p id="cannotLogin" style={{ color: 'var(--danger)', display: 'none' }}>Incorrect email or password</p>}
                 </div>
                 <div className='submit-container'>
-                    <Link className="submit" 
+                    <Link className="submit"
                         onClick={async () => {
-                            await apiService.checkUser(email,password,setCannotLogin,navigate,signin,signout)
+                            await apiService.checkUser(email,password,navigate,setCannotLogin,signin,signout,emailEmpty,passwordEmpty)
                             clearLoginInput()
                         }}
                     >Log in

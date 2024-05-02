@@ -11,7 +11,6 @@ import SignupPage from './components/pages/SignupPage';
 import LoginSignupPage from './components/pages/LoginSignupPage';
 import FormSubmissionPage from "./components/pages/FormsubmissionPage";
 import Welcomepage from "./components/pages/WelcomePage";
-// import ParticlesBg from 'particles-bg'
 
 const App = () => {
     const [isSignin,setIsSignin] = useState(sessionStorage.getItem("isSignin") === "true" ? true : false);
@@ -30,12 +29,22 @@ const App = () => {
     }
 
     const clearSignupInput = () => {
+        let name = document.getElementById("name");
+        let email = document.getElementById("email");
+        let passowrd = document.getElementById("password");
+        name.value = "";
+        email.value = "";
+        passowrd.value = "";
         setName("")
         setEmail("")
         setPassword("")
     }
 
     const clearLoginInput = () => {
+        let email = document.getElementById("email");
+        let passowrd = document.getElementById("password");
+        email.value = "";
+        passowrd.value = "";
         setEmail("")
         setPassword("")
     }

@@ -24,26 +24,6 @@ function decodeToken(token) {
     return payload;
 }
 
-//Only returns the transcribed text, but creates a new note
-const transcribe = async (file) => {
-    const formData = new FormData();
-    formData.append('file', file);
-
-    return fetch(`/transcribe/`, {
-            method: 'POST',
-            body: formData,
-        })
-        .then((response) => response.json())
-        .then((result) => {
-            console.log('Success:', result);
-            return result.transcribed;
-        })
-        .catch((error) => {
-            console.error('Error:', error);
-            throw error;
-        });
-}
-
 const getNotes = async () => {
     const token = await localStorage.getItem('token');
     const userId = decodeToken(token).sub;
@@ -59,10 +39,10 @@ const getNotes = async () => {
         });
 }
 
-const createNote = async (noteText) => {
+const createNote = async (noteText, recordingId = null) => {
     const token = await localStorage.getItem('token');
     const userId = decodeToken(token).sub;
-    const data = {id: userId, text: noteText};
+    const data = {id: userId, text: noteText, recording_id: recordingId};
     return fetch(`/notes/`, {
             method: 'POST',
             headers: {
@@ -81,8 +61,8 @@ const createNote = async (noteText) => {
         });
 }
 
-const updateNote = async (id, note) => {
-    const data = {id: id, text: note};
+const updateNote = async (id, note, recordingId = null) => {
+    const data = {id: id, text: note, recording_id: recordingId};
     return fetch(`/notes/`, {
         method: 'PUT',
         headers: {
@@ -144,7 +124,70 @@ const createFeedback = async (text,rating,setCannotSend,navigate) => {
     }
 }
 
-const checkUser = async (email,password,setCannotLogin,navigate,signin,signout) => {
+const createAudio = async (audioFile) => {
+
+    const wavFile = new FormData();
+    wavFile.append("audio", audioFile)
+
+    return fetch(`/audio/`, {
+            method: 'POST',
+            headers: {
+                'Authorization': 'Bearer ' + localStorage.getItem('token')
+            },
+            body: wavFile,
+        })
+        .then((response) => response.json())
+        .then((result) => {
+            console.log('Success:', result);
+            return result;
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+            throw error;
+        });
+}
+
+const transferBinaryToAudio = (binary) =>{
+    const binaryString = atob(binary);
+
+    // Create a Uint8Array from the binary string
+    const uint8Array = new Uint8Array(binaryString.length);
+    for (let i = 0; i < binaryString.length; i++) {
+        uint8Array[i] = binaryString.charCodeAt(i);
+    }
+
+    // Create a Blob from the Uint8Array with the appropriate MIME type
+    const blob = new Blob([uint8Array], { type: 'audio/wav' });
+
+    // Create a URL for the Blob
+    const audioUrl = URL.createObjectURL(blob);
+    return audioUrl
+}
+
+const getAudio = async (id) => {
+    return fetch(`/audio/${id}`, {
+            method: 'GET',
+            headers: {
+                'Authorization': 'Bearer ' + localStorage.getItem('token')
+            }
+        })
+        .then((response) => response.json())
+        .then((result) => {
+            const binaryAudioData  = result.audio_data
+
+            const audio = transferBinaryToAudio(binaryAudioData)
+
+            return audio;
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+            throw error;
+        });
+}
+
+
+
+const checkUser = async (email,password,navigate,setCannotLogin,signin,signout,emailEmpty,passwordEmpty) => {
     try {
         const response = await fetch(`/users/login/`, {
             method: 'POST',
@@ -160,9 +203,18 @@ const checkUser = async (email,password,setCannotLogin,navigate,signin,signout) 
         console.log("1 ",user);
         if(user.detail === "Incorrect email or password, or user does not exist."){
             console.log(user.detail);
-            setCannotLogin(true);
+            if (emailEmpty) {
+                document.getElementById('emailMsg').style.display = 'block';
+            }
+            if (passwordEmpty) {
+                document.getElementById('passwordMsg').style.display = 'block';
+            }
+            else {
+                document.getElementById('cannotLogin').style.display = 'block';
+            }
             signout();
         }else if(user){
+            setCannotLogin(false);
             await localStorage.setItem('token', user.access_token);
             navigate('/userpage');
             signin();
@@ -173,7 +225,7 @@ const checkUser = async (email,password,setCannotLogin,navigate,signin,signout) 
     }
 }
 
-const createUser = async (name,email,password,navigate,setCannotSignup,signin,signout) => {
+const createUser = async (name,email,password,navigate,setCannotSignup,signin,signout,nameEmpty,emailEmpty,passwordEmpty) => {
     try {
         const response = await fetch(`/users/signup`, {
             method: 'POST',
@@ -188,11 +240,23 @@ const createUser = async (name,email,password,navigate,setCannotSignup,signin,si
         });
         const user = await response.json();
         if(user.msg === "successfully add new user"){
+            setCannotSignup(false)
             await localStorage.setItem('token', user.access_token);
             navigate('/userpage')
             signin()
         }else {
-            setCannotSignup(true)
+            if (nameEmpty) {
+                document.getElementById('nameMsg').style.display = 'block';
+            }
+            if (emailEmpty) {
+                document.getElementById('emailMsg').style.display = 'block';
+            }
+            if (passwordEmpty) {
+                document.getElementById('passwordMsg').style.display = 'block';
+            }
+            else {
+                document.getElementById('cannotSignup').style.display = 'block';
+            }
             signout()
         }
     } catch (error) {
@@ -201,6 +265,6 @@ const createUser = async (name,email,password,navigate,setCannotSignup,signin,si
     }
 }
 
-const apiService = {transcribe, createNote, getNotes, updateNote, deleteNoteById, createFeedback, checkUser, createUser};
+const apiService = {createNote, getNotes, updateNote, deleteNoteById, createFeedback, createAudio, getAudio, checkUser, createUser, decodeToken};
 
 export default apiService;

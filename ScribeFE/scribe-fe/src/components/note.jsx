@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import apiService from '../services/apiService';
 import '../styles/note.css'
+import { DownloadFileButton } from './buttons';
+//import audioFile from './Assets/Conference.wav' // eventually this will be the audio file from the db
 
-export function Note({id: _id, text = "Empty note", time, hasRecording, onEdit, onDelete}) {
+export function Note({id: _id, text = "Empty note", time, recording_id, onEdit, onDelete}) {
   const [noteText, setText] = useState(text);
 
   const [editOpen, setEditOpen] = React.useState(false);
@@ -16,16 +18,45 @@ export function Note({id: _id, text = "Empty note", time, hasRecording, onEdit, 
     setText(e.target.value);
   }
 
-  function EditModal() {
-    if (editOpen === true) {
-      document.body.style.overflow = 'hidden'; //disable window scroll
-    }
+  function EditModal() { 
+    if (editOpen === true) { 
+    document.body.style.overflow = 'hidden'; //disable window scroll 
 
-    function handleEditClose() {
-      setEditOpen(false);
-      setIsEditable(false);
-      document.body.style.overflow = 'scroll'; //enable window scroll
-    }
+    // this is a really annoying way to do this but I can't come up with anything better right now 
+    document.querySelectorAll('.delete').forEach(elem => { //disable tabbing 
+      elem.setAttribute('tabindex', '-1') } ) 
+    document.querySelectorAll('.edit').forEach(elem => { 
+      elem.setAttribute('tabindex', '-1') } ) 
+    document.querySelectorAll('.navlink').forEach(elem => { 
+      elem.setAttribute('tabindex', '-1') } ) 
+    document.querySelectorAll('.icon').forEach(elem => { 
+      elem.setAttribute('tabindex', '-1') } ) 
+    document.querySelectorAll('.upload-audio-file').forEach(elem => { 
+      elem.setAttribute('tabindex', '-1') } ) 
+    document.querySelectorAll('.record-audio').forEach(elem => { 
+      elem.setAttribute('tabindex', '-1') } ) 
+    document.querySelectorAll('.stop-recording').forEach(elem => { 
+      elem.setAttribute('tabindex', '-1') } ) 
+    document.querySelectorAll('.stop-recording').forEach(elem => { 
+      elem.setAttribute('tabindex', '-1') } ) } 
+    
+    function handleEditClose() { 
+      setEditOpen(false); setIsEditable(false); 
+      document.body.style.overflow = 'scroll'; //enable window scroll 
+      
+      // this is a really annoying way to do this but I can't come up with anything better right now 
+      document.querySelectorAll('.delete').forEach(elem => { //enable tabbing 
+        elem.setAttribute('tabindex', '0') } ) 
+      document.querySelectorAll('.edit').forEach(elem => { 
+        elem.setAttribute('tabindex', '0') } ) 
+      document.querySelectorAll('.navlink').forEach(elem => { 
+        elem.setAttribute('tabindex', '0') } ) 
+      document.querySelectorAll('.icon').forEach(elem => { 
+        elem.setAttribute('tabindex', '0') } ) 
+      document.querySelectorAll('.upload-audio-file').forEach(elem => { 
+        elem.setAttribute('tabindex', '0') } ) 
+      document.querySelectorAll('.record-audio').forEach(elem => { 
+        elem.setAttribute('tabindex', '0') } ) }
 
     async function handleEditClick() {
       setIsEditable(true);
@@ -36,8 +67,8 @@ export function Note({id: _id, text = "Empty note", time, hasRecording, onEdit, 
     }
   
     async function handleSaveClick() {
-      await apiService.updateNote(_id, noteText)
-      onEdit(_id, noteText);
+      await apiService.updateNote(_id, noteText,recording_id)
+      onEdit(_id, noteText, recording_id);
       handleEditClose();
     }
 
@@ -45,29 +76,33 @@ export function Note({id: _id, text = "Empty note", time, hasRecording, onEdit, 
       editOpen ? 
       <div className='dialog-container'> {/* Kate: styled to prevent user from clicking behind modal */}
         <dialog className="edit-dialog"
-          open={editOpen}
-          aria-labelledby="modal-modal-title"
-          aria-describedby="modal-modal-description">
+          open={editOpen}>
             {isEditable ?
             <>
-            <h2>Edit Note</h2>
-            <textarea autoFocus type="text" className="text-edit" value={noteText} onChange={editNote}/>
+           <div className="modal-header">
+              <label className="text-label" htmlFor="note-edit"><h2>Edit Note</h2></label>
+              {recording_id ? <DownloadFileButton recording_id={recording_id} /> : <div></div>}
+            </div>
+            <textarea autoFocus id="note-edit" type="text" className="text-edit" value={noteText} onChange={editNote}/>
             <div className="buttons">
               <button className="cancel" onClick={handleEditCancel}>Cancel
               </button>
-              <button className="save" onClick={handleSaveClick}>Save
+              <button className="main" onClick={handleSaveClick}>Save
                 <i className="fa-solid fa-square-check" style={{ marginLeft: '8px' }}></i>
               </button>
             </div>
             </>
             :
             <>
-            <h2>View Note</h2>
-            <textarea type="text" className="text" value={noteText} readOnly/>
+            <div className="modal-header">
+              <label className="text-label" htmlFor="note"><h2>View Note</h2></label>
+              {recording_id ? <DownloadFileButton recording_id={recording_id} /> : <div></div>}
+            </div>
+            <textarea id="note" type="text" value={noteText} onClick={handleEditClick} readOnly tabIndex="-1"/>
             <div className="buttons">
               <button className="cancel" onClick={handleEditClose}>Close
               </button>
-              <button className="save" onClick={handleEditClick}>Edit
+              <button className="main" onClick={handleEditClick}>Edit
                 <i className="fa-solid fa-pen-to-square" style={{ marginLeft: '8px' }}></i>
               </button>
             </div>
@@ -83,15 +118,42 @@ export function Note({id: _id, text = "Empty note", time, hasRecording, onEdit, 
   function DeleteModal() {
     if (deleteOpen === true) {
       document.body.style.overflow = 'hidden';
-    }
+    // this is a really annoying way to do this but I can't come up with anything better right now 
+    document.querySelectorAll('.delete').forEach(elem => { //disable tabbing 
+      elem.setAttribute('tabindex', '-1') } ) 
+    document.querySelectorAll('.edit').forEach(elem => { 
+      elem.setAttribute('tabindex', '-1') } ) 
+    document.querySelectorAll('.navlink').forEach(elem => { 
+      elem.setAttribute('tabindex', '-1') } ) 
+    document.querySelectorAll('.icon').forEach(elem => { 
+      elem.setAttribute('tabindex', '-1') } ) 
+    document.querySelectorAll('.upload-audio-file').forEach(elem => { 
+      elem.setAttribute('tabindex', '-1') } ) 
+    document.querySelectorAll('.record-audio').forEach(elem => { 
+      elem.setAttribute('tabindex', '-1') } ) 
+    document.querySelectorAll('.stop-recording').forEach(elem => { 
+      elem.setAttribute('tabindex', '-1') } ) 
+    document.querySelectorAll('.stop-recording').forEach(elem => { 
+      elem.setAttribute('tabindex', '-1') } ) } 
 
     function handleDeleteClose() {
       setDeleteOpen(false);
       document.body.style.overflow = 'scroll';
-    }
+      // this is a really annoying way to do this but I can't come up with anything better right now 
+      document.querySelectorAll('.delete').forEach(elem => { //enable tabbing 
+        elem.setAttribute('tabindex', '0') } ) 
+      document.querySelectorAll('.edit').forEach(elem => { 
+        elem.setAttribute('tabindex', '0') } ) 
+      document.querySelectorAll('.navlink').forEach(elem => { 
+        elem.setAttribute('tabindex', '0') } ) 
+      document.querySelectorAll('.icon').forEach(elem => { 
+        elem.setAttribute('tabindex', '0') } ) 
+      document.querySelectorAll('.upload-audio-file').forEach(elem => { 
+        elem.setAttribute('tabindex', '0') } ) 
+      document.querySelectorAll('.record-audio').forEach(elem => { 
+        elem.setAttribute('tabindex', '0') } ) }
   
     async function handleDeleteClick() {
-      // This will need to send a delete request to the server
       await apiService.deleteNoteById(_id);
       onDelete(_id);
       handleDeleteClose();
@@ -101,12 +163,10 @@ export function Note({id: _id, text = "Empty note", time, hasRecording, onEdit, 
       deleteOpen ?
       <div className='dialog-container'>
         <dialog className="delete-dialog"
-          open={deleteOpen}
-          aria-labelledby="modal-modal-title"
-          aria-describedby="modal-modal-description">
+          open={deleteOpen}>
           <h2>Delete Note</h2>
           <div className="delete-message">
-            <h3><i class="fas fa-exclamation-triangle" style={{marginRight: '8px'}}></i>Are you sure?</h3>
+            <h3><i className="fas fa-exclamation-triangle" style={{marginRight: '8px'}}></i>Are you sure?</h3>
             <p>This action cannot be undone.</p>
           </div>
           <div className="buttons">
@@ -126,7 +186,7 @@ export function Note({id: _id, text = "Empty note", time, hasRecording, onEdit, 
     <>
     <div className="note">
       <div className="content">
-        <textarea type="text" className="text" value={noteText} onChange={editNote} readOnly rows={noteText.length/100+1} cols={100}/>
+        <textarea title="Note Preview" id="note" type="text" className="text" value={noteText} readOnly tabIndex="-1" rows={noteText.length/100+1} cols={100}/>
       </div>
       <div className="actions">
         <button className="edit" onClick={handleEditOpen}>View

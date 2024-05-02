@@ -7,6 +7,7 @@ from pydantic import BaseModel
 class Note(BaseModel):
     id: str
     text: str | None
+    recording_id: str | None
 
 
 class DbNote(Document):

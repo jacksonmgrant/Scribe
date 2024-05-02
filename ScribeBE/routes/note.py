@@ -1,10 +1,11 @@
 import logging
 from typing import Any
-from auth.authenticate import authenticate
 from beanie import PydanticObjectId  # type: ignore
 from bson.objectid import ObjectId  # type: ignore
-from database.database import Database
 from fastapi import APIRouter, Depends, HTTPException, status  # type: ignore
+
+from auth.authenticate import authenticate
+from database.database import Database
 from models.user_model import DbUser
 from models.note_model import Note, DbNote
 
@@ -20,8 +21,12 @@ user_database = Database(DbUser)
 @note_router.get("/{user_id}")
 async def get_notes(user_id: Any, user: str = Depends(authenticate)) -> dict:
     try:
+        print(user_id)
         user_obj_id = ObjectId(user_id)
+        print(user_obj_id)
         db_user = await user_database.get(user_obj_id)
+        if not db_user:
+            raise Exception
     except Exception:
         logger.warning(f"{user_id} is an invalid user id")
         raise HTTPException(status_code=400, detail="Invalid user id")
@@ -48,7 +53,8 @@ async def create_note(note: Note, user: str = Depends(authenticate)) -> dict:
     if not note.text:
         logger.warning("Note must have text.")
         raise HTTPException(status_code=400, detail="Note must have text")
-    new_note = DbNote(text=note.text, user_id=note.id)
+    print(note)
+    new_note = DbNote(text=note.text, user_id=note.id, recording_id=note.recording_id)
     note_id = await note_database.save(new_note)
     logger.info(f"New note #{note_id} created.")
     return {"note created" : note.text}

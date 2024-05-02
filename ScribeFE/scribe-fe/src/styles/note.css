@@ -10,6 +10,10 @@
 	margin-bottom: 1rem;
 }
 
+.text-label {
+	margin-top: 0;
+}
+
 textarea {
 	width: 100%;
 	resize: none;
@@ -129,6 +133,20 @@ dialog {
 	transition: all 1s ease;
 }
 
+.modal-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+
+	h2 {
+		margin: 0 0 1rem 0;
+	}
+
+	button {
+		margin: 0;
+	}
+}
+
 @media (max-width: 1200px) {
 	dialog {
 		width: 80%;
@@ -154,14 +172,15 @@ dialog {
 }
 
 dialog textarea {
-  	height: 82%;
+  	height: 80%;
 	margin-bottom: 1rem;
 	resize: none;
-	color: var(--text-light)
+	color: var(--text-light);
+	background-color: var(--solid-bg-3);
 }
 
 .text-edit {
-	background-color: var(--dark);
+	background-color: var(--solid-bg-2);
 }
 
 .buttons {
@@ -180,7 +199,7 @@ dialog button {
 	transition: all 0.25s ease;
 }
 
-.save:hover, .save:active, .save:focus {
+.main:hover, .main:active, .main:focus {
 	border: 1px solid var(--border-main);
 	transition: all 0.5s ease;
 }
@@ -203,4 +222,12 @@ dialog button {
 .delete:hover, .delete:active, .delete:focus {
 	border: 1px solid var(--danger);
 	transition: all 0.5s ease;
+}
+
+@media (max-width: 600px) {
+	.content textarea {
+		min-height: 3rem;
+		height: 100%;
+		max-height: 10rem;
+	}
 }
