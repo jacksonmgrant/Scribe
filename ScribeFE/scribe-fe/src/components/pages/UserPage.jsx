@@ -32,13 +32,18 @@ const Userpage =  () => {
     return(
         <div>
             {isExpire
-              ?(<p>Your token is expired.Plz login again one more time</p>)
+              ?(
+                <div>
+                    <p>Your token is expired.Plz login again one more time</p>
+                </div>
+               )
               :(            
-              <div className="home-container">
-                <Header className="App-header"/>
-                <NoteManager />
-              </div>
-               )}
+                <div className="home-container">
+                    <Header className="App-header"/>
+                    <NoteManager />
+                </div>
+               )
+            }
         </div>
     )
 }
