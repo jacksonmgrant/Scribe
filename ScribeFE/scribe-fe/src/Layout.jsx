@@ -1,32 +1,31 @@
 import { Outlet, Link } from "react-router-dom";
 import Logo from "./components/Assets/logo-bw.png";
 import "./styles/layout.css";
-import apiService from './services/apiService';
-import React, { useState, useEffect } from 'react';
+import React, {useEffect} from 'react';
 
-const Layout = ({isSignin,signout}) => {
-  const [isExpire, setIsExpire] = useState(false);
+const Layout = ({isSignin,signout,isExpire,setIsExpire,getUserToken,checkTokenExpiration}) => {
+    // const [isExpire, setIsExpire] = useState(false);
 
-  async function getUserToken() {
-      const token = await localStorage.getItem('token');
-      return token;
-  }
+    // async function getUserToken() {
+    //     const token = await localStorage.getItem('token');
+    //     return token;
+    // }
 
-  async function checkTokenExpiration(token) {
-      const expireTime = apiService.decodeToken(token).exp;
-      const currentTime = Math.floor(Date.now() / 1000);
-      
-      return currentTime > expireTime;
-  }
+    // async function checkTokenExpiration(token) {
+    //     const expireTime = apiService.decodeToken(token).exp;
+    //     const currentTime = Math.floor(Date.now() / 1000);
+        
+    //     return currentTime > expireTime;
+    // }
 
-  useEffect(() => {
-      async function fetchTokenAndCheckExpiration() {
-          const token = await getUserToken();
-          const isTokenExpired = await checkTokenExpiration(token);
-          setIsExpire(isTokenExpired);
-      }
-      fetchTokenAndCheckExpiration();
-  }, []);
+    useEffect(() => {
+        async function fetchTokenAndCheckExpiration() {
+            const token = await getUserToken();
+            const isTokenExpired = await checkTokenExpiration(token);
+            setIsExpire(isTokenExpired);
+        }
+        fetchTokenAndCheckExpiration();
+    }, []);
 
     // responsive hamburger menu
     function toggleMenu() {
@@ -94,7 +93,8 @@ const Layout = ({isSignin,signout}) => {
                 </li>
               </ul>
             </div>
-            )}
+            )
+            }
         </div>
       </nav>
   <Outlet />
