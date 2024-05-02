@@ -52,7 +52,7 @@ Scribe User Feedback Demo:
     [![Scribe Feedback Demo](https://img.youtube.com/vi/ynCKYspCr1o/maxresdefault.jpg)](https://www.youtube.com/watch?v=ynCKYspCr1o)
 
 Screenshot of the about us page:
-    ![About us page screenshot](.\ScribeFE\screenshots\About_us_page.png)
+    ![About us page screenshot](./ScribeFE/screenshots/About_us_page.png)
 
 ## Development Notes
 
