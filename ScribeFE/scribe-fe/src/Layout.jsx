@@ -3,22 +3,24 @@ import Logo from "./components/Assets/logo-bw.png";
 import "./styles/layout.css";
 
 const Layout = ({isSignin,signout}) => {
-  // responsive hamburger menu
-  function toggleMenu() {
-    var x = document.getElementById("main-nav");
-    if (x.className === "main-nav") {
-      x.classList.add("responsive");
-    }
-    else {
-      x.classList.remove("responsive");
-    }
-  }
 
-  function logOut() {
-    toggleMenu();
-    signout();
-  }
+    
 
+    // responsive hamburger menu
+    function toggleMenu() {
+      var x = document.getElementById("main-nav");
+      if (x.className === "main-nav") {
+        x.classList.add("responsive");
+      }
+      else {
+        x.classList.remove("responsive");
+      }
+    }
+
+    function logOut() {
+      toggleMenu();
+      signout();
+    }
 
     return (
       <div>
@@ -81,6 +83,7 @@ const Layout = ({isSignin,signout}) => {
         <Outlet />
       </div>
     )
-  };
 
-  export default Layout;
+};
+
+export default Layout;

@@ -265,6 +265,6 @@ const createUser = async (name,email,password,navigate,setCannotSignup,signin,si
     }
 }
 
-const apiService = {createNote, getNotes, updateNote, deleteNoteById, createFeedback, createAudio, getAudio, checkUser, createUser};
+const apiService = {createNote, getNotes, updateNote, deleteNoteById, createFeedback, createAudio, getAudio, checkUser, createUser, decodeToken};
 
 export default apiService;
