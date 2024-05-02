@@ -4,19 +4,6 @@ import "./styles/layout.css";
 import React, {useEffect} from 'react';
 
 const Layout = ({isSignin,signout,isExpire,setIsExpire,getUserToken,checkTokenExpiration}) => {
-    // const [isExpire, setIsExpire] = useState(false);
-
-    // async function getUserToken() {
-    //     const token = await localStorage.getItem('token');
-    //     return token;
-    // }
-
-    // async function checkTokenExpiration(token) {
-    //     const expireTime = apiService.decodeToken(token).exp;
-    //     const currentTime = Math.floor(Date.now() / 1000);
-        
-    //     return currentTime > expireTime;
-    // }
 
     useEffect(() => {
         async function fetchTokenAndCheckExpiration() {
@@ -25,7 +12,7 @@ const Layout = ({isSignin,signout,isExpire,setIsExpire,getUserToken,checkTokenEx
             setIsExpire(isTokenExpired);
         }
         fetchTokenAndCheckExpiration();
-    }, []);
+    }, [getUserToken, checkTokenExpiration, setIsExpire]);
 
     // responsive hamburger menu
     function toggleMenu() {

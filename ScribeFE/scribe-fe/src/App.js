@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { useState,useEffect } from "react";
+import {useState} from "react";
 
 import './styles/App.css';
 
@@ -62,16 +62,6 @@ const App = () => {
         
         return currentTime > expireTime;
     }
-
-    useEffect(() => {
-        async function fetchTokenAndCheckExpiration() {
-            const token = await getUserToken();
-            const isTokenExpired = await checkTokenExpiration(token);
-            setIsExpire(isTokenExpired);
-        }
-        fetchTokenAndCheckExpiration();
-    }, []);
-
 
     return (
         <div>

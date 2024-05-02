@@ -4,20 +4,7 @@ import React, {useEffect} from 'react';
 
 
 const FormSubmissionPage = ({isExpire,setIsExpire,getUserToken,checkTokenExpiration}) =>{
-    // const [isExpire, setIsExpire] = useState(false);
 
-    // async function getUserToken() {
-    //     const token = await localStorage.getItem('token');
-    //     return token;
-    // }
-  
-    // async function checkTokenExpiration(token) {
-    //     const expireTime = apiService.decodeToken(token).exp;
-    //     const currentTime = Math.floor(Date.now() / 1000);
-        
-    //     return currentTime > expireTime;
-    // }
-  
     useEffect(() => {
         async function fetchTokenAndCheckExpiration() {
             const token = await getUserToken();
@@ -25,7 +12,7 @@ const FormSubmissionPage = ({isExpire,setIsExpire,getUserToken,checkTokenExpirat
             setIsExpire(isTokenExpired);
         }
         fetchTokenAndCheckExpiration();
-    }, []);
+    }, [getUserToken, checkTokenExpiration, setIsExpire]);
 
     return(
         <div>

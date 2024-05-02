@@ -9,19 +9,6 @@ import TokenExpireForm from '../TokenExpireForm';
 
 
 const About = ({isExpire,setIsExpire,getUserToken,checkTokenExpiration}) => {
-  // const [isExpire, setIsExpire] = useState(false);
-
-  //   async function getUserToken() {
-  //       const token = await localStorage.getItem('token');
-  //       return token;
-  //   }
-  
-  //   async function checkTokenExpiration(token) {
-  //       const expireTime = apiService.decodeToken(token).exp;
-  //       const currentTime = Math.floor(Date.now() / 1000);
-        
-  //       return currentTime > expireTime;
-  //   }
   
     useEffect(() => {
         async function fetchTokenAndCheckExpiration() {
@@ -30,7 +17,7 @@ const About = ({isExpire,setIsExpire,getUserToken,checkTokenExpiration}) => {
             setIsExpire(isTokenExpired);
         }
         fetchTokenAndCheckExpiration();
-    }, []);
+    }, [getUserToken, checkTokenExpiration, setIsExpire]);
     
     return (
       <div>
