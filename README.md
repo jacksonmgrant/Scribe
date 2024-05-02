@@ -45,7 +45,7 @@ The Scribe backend handles user data storage, authentication, and authorization.
 Scribe Notes Demo:
     [![Scribe Core Actions Demo](https://img.youtube.com/vi/IqGp2SA8YvI/maxresdefault.jpg)](https://www.youtube.com/watch?v=IqGp2SA8YvI)
 
-Scribe Login Demo:
+Scribe Login&Signup Demo:
     [![Scribe Login Demo](https://img.youtube.com/vi/Cap5FSV4c3I/maxresdefault.jpg)](https://www.youtube.com/watch?v=Cap5FSV4c3I)
 
 Scribe User Feedback Demo:
