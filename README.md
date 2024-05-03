@@ -170,7 +170,7 @@ To run tests, run `pytest tests/` from the ScribeBE folder. You will get an erro
   - [x] Feedback
   - [x] Notes
   - [x] Users
-  - [ ] Audio
+  - [x] Audio
 - [x] Record demos of app
   - [x] User login (Do with network inspector open to show api calls)
   - [x] Notes demo
