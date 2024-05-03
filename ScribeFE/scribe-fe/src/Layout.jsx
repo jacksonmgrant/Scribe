@@ -1,10 +1,18 @@
 import { Outlet, Link } from "react-router-dom";
 import Logo from "./components/Assets/logo-bw.png";
 import "./styles/layout.css";
+import React, {useEffect} from 'react';
 
-const Layout = ({isSignin,signout}) => {
+const Layout = ({isSignin,signout,isExpire,setIsExpire,getUserToken,checkTokenExpiration}) => {
 
-    
+    useEffect(() => {
+        async function fetchTokenAndCheckExpiration() {
+            const token = await getUserToken();
+            const isTokenExpired = await checkTokenExpiration(token);
+            setIsExpire(isTokenExpired);
+        }
+        fetchTokenAndCheckExpiration();
+    }, [getUserToken, checkTokenExpiration, setIsExpire]);
 
     // responsive hamburger menu
     function toggleMenu() {
@@ -23,11 +31,11 @@ const Layout = ({isSignin,signout}) => {
     }
 
     return (
-      <div>
+      <>
         <nav>
           <div>
-            { isSignin === false
-            ?(
+            { isSignin === false || isExpire ? 
+            (
               <div className='main-nav' id="main-nav">
                 <ul>
                   <li>
@@ -46,44 +54,38 @@ const Layout = ({isSignin,signout}) => {
                 <Link href="javascript:void(0);" className="icon" onClick={toggleMenu}>
                     <i className="fa fa-bars"></i>
                 </Link>
-              </div>
-              ) 
+            </div>
+            )
             : (
-              <div className='main-nav' id="main-nav">
-                <ul>
-                  <li>
-                      <Link className="navlink" to="/userpage" style={{ fontWeight: '700', display: 'flex', alignItems: 'center' }}
-                      onClick={toggleMenu}>
-                      <img alt="" src={Logo} style={{ height: '1.75rem', marginRight: '0.5rem' }}></img>
-                      <span style={{ paddingBottom: '2px' }}>Scribe</span></Link>
-                  </li>
-                  <li>
-                      <Link className="navlink" to="/aboutus"
-                      onClick={toggleMenu}>About us</Link>
-                  </li>
-                  <li>
-                      <Link className="navlink" to="/formsubmission"
-                      onClick={toggleMenu}>User feedback</Link>
-                  </li>
-                  <li className="push">
-                      <Link className="navlink" to="/loginSignupPage"  onClick={logOut}>Log out
-                      <i className="fa-solid fa-right-to-bracket" style={{ marginLeft: '8px' }}></i>
-                      </Link>
-                  </li>
-                </ul>
-              {/* hamburger icon for small screens */}
-                <Link href="javascript:void(0);" className="icon" onClick={toggleMenu}>
-                    <i className="fa fa-bars"></i>
-                </Link>
-              </div>
-              )
+            <div className='main-nav' id="main-nav">
+              <ul>
+                <li>
+                    <Link className="navlink" to="/userpage" style={{ fontWeight: '700', display: 'flex', alignItems: 'center' }}
+                    onClick={toggleMenu}>
+                    <img alt="" src={Logo} style={{ height: '1.75rem', marginRight: '0.5rem' }}></img>
+                    <span style={{ paddingBottom: '2px' }}>Scribe</span></Link>
+                </li>
+                <li>
+                    <Link className="navlink" to="/aboutus"
+                    onClick={toggleMenu}>About us</Link>
+                </li>
+                <li>
+                    <Link className="navlink" to="/formsubmission"
+                    onClick={toggleMenu}>User feedback</Link>
+                </li>
+                <li className="push">
+                    <Link className="navlink" to="/loginSignupPage"  onClick={logOut}>Log out
+                    <i className="fa-solid fa-right-to-bracket" style={{ marginLeft: '8px' }}></i>
+                    </Link>
+                </li>
+              </ul>
+            </div>
+            )
             }
-          </div>
-        </nav>
-        <Outlet />
-      </div>
-    )
-
+        </div>
+      </nav>
+  <Outlet />
+  </>)
 };
 
 export default Layout;

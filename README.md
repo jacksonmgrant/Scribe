@@ -45,14 +45,14 @@ The Scribe backend handles user data storage, authentication, and authorization.
 Scribe Notes Demo:
     [![Scribe Core Actions Demo](https://img.youtube.com/vi/IqGp2SA8YvI/maxresdefault.jpg)](https://www.youtube.com/watch?v=IqGp2SA8YvI)
 
-Scribe Login Demo:
+Scribe Login&Signup Demo:
     [![Scribe Login Demo](https://img.youtube.com/vi/Cap5FSV4c3I/maxresdefault.jpg)](https://www.youtube.com/watch?v=Cap5FSV4c3I)
 
 Scribe User Feedback Demo:
     [![Scribe Feedback Demo](https://img.youtube.com/vi/ynCKYspCr1o/maxresdefault.jpg)](https://www.youtube.com/watch?v=ynCKYspCr1o)
 
 Screenshot of the about us page:
-    ![About us page screenshot](.\ScribeFE\screenshots\About_us_page.png)
+    ![About us page screenshot](./ScribeFE/screenshots/About_us_page.png)
 
 ## Development Notes
 
@@ -170,7 +170,7 @@ To run tests, run `pytest tests/` from the ScribeBE folder. You will get an erro
   - [x] Feedback
   - [x] Notes
   - [x] Users
-  - [ ] Audio
+  - [x] Audio
 - [x] Record demos of app
   - [x] User login (Do with network inspector open to show api calls)
   - [x] Notes demo
