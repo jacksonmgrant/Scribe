@@ -14,6 +14,7 @@ class Settings(BaseSettings):
     DB_USER: str = Field(default="")
     DB_PASS: str = Field(default="")
     SECRET_KEY: str = Field(default="")
+    HUGGINGFACE_TOKEN: str = Field(default="")
 
     model_config = SettingsConfigDict(env_file=".env")
 
